@@ -15,6 +15,7 @@ const NICKNAME_KEY = "crit:nickname";
 
 export default function Comments({ slug }: { slug: string }) {
   const [comments, setComments] = useState<Comment[] | null>(null);
+  const [available, setAvailable] = useState(true);
   const [nickname, setNickname] = useState("");
   const [body, setBody] = useState("");
   const [pending, setPending] = useState(false);
@@ -24,7 +25,10 @@ export default function Comments({ slug }: { slug: string }) {
     setNickname(localStorage.getItem(NICKNAME_KEY) ?? "");
     fetch(`/api/comments?slug=${encodeURIComponent(slug)}`)
       .then((r) => r.json())
-      .then((d) => setComments(d.comments ?? []))
+      .then((d) => {
+        setComments(d.comments ?? []);
+        setAvailable(d.available !== false);
+      })
       .catch(() => setComments([]));
   }, [slug]);
 
@@ -44,13 +48,19 @@ export default function Comments({ slug }: { slug: string }) {
           deviceId: getDeviceId(),
         }),
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error);
+      }
       const { comment } = await res.json();
       localStorage.setItem(NICKNAME_KEY, nickname.trim());
       setComments((prev) => [...(prev ?? []), comment]);
       setBody("");
-    } catch {
-      setError("댓글 등록에 실패했어요. 잠시 후 다시 시도해주세요.");
+    } catch (e) {
+      setError(
+        (e as Error).message ||
+          "댓글 등록에 실패했어요. 잠시 후 다시 시도해주세요."
+      );
     } finally {
       setPending(false);
     }
@@ -86,7 +96,16 @@ export default function Comments({ slug }: { slug: string }) {
         )}
       </ul>
 
-      <form onSubmit={submit} className="mt-4 flex flex-col gap-2">
+      {!available && (
+        <p className="mt-3 rounded-xl bg-neutral-100 p-3 text-xs text-neutral-500">
+          댓글 기능은 준비 중이에요. 곧 열릴 예정입니다.
+        </p>
+      )}
+
+      <form
+        onSubmit={submit}
+        className={`mt-4 flex flex-col gap-2 ${available ? "" : "hidden"}`}
+      >
         <input
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}

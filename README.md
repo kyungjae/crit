@@ -61,12 +61,27 @@ npm run dev                 # http://localhost:3000
 에이전트를 실행합니다. 활성화하려면 리포지토리 시크릿에 `ANTHROPIC_API_KEY`를
 등록하세요. 수동 실행은 Actions 탭 → Daily Curation → Run workflow.
 
-## 배포
+## 배포 (Vercel)
 
-- **Vercel 권장.** push하면 자동 배포되므로 에이전트의 커밋이 곧 게시입니다.
-- 서버리스 환경에서는 SQLite 대신 Postgres를 사용하세요:
-  `prisma/schema.prisma`의 provider를 `postgresql`로 바꾸고 `DATABASE_URL` 설정
-  (Vercel Postgres, Neon, Supabase 등).
+push하면 자동 배포되므로 **에이전트의 커밋이 곧 게시**입니다.
+
+### 1단계 — 사이트 띄우기 (환경 변수 불필요)
+
+1. [vercel.com/new](https://vercel.com/new) → GitHub 연동 → `crit` 리포지토리 Import
+2. 설정은 기본값 그대로 **Deploy** (Next.js 자동 감지, `postinstall`이 Prisma 클라이언트를 생성)
+3. 배포 후 Settings → Git에서 Production Branch를 원하는 브랜치로 지정
+
+`DATABASE_URL` 없이도 사이트 전체가 동작합니다. 댓글/별점 영역만
+"준비 중"으로 표시됩니다.
+
+### 2단계 — 댓글/별점 활성화 (DB 연결)
+
+1. Vercel 대시보드 → Storage → **Neon Postgres** 생성 (또는 Supabase 등)
+   → `DATABASE_URL`이 프로젝트 환경 변수로 자동 등록됨
+2. `prisma/schema.prisma`의 `provider = "sqlite"`를 `"postgresql"`로 변경 후 push
+3. 테이블 생성: `DATABASE_URL="<postgres-url>" npx prisma db push` (1회)
+
+로컬 개발은 계속 SQLite(`file:./dev.db`)를 사용해도 됩니다.
 
 ## 로드맵
 

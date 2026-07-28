@@ -7,6 +7,7 @@ type RatingData = {
   average: number | null;
   count: number;
   myScore: number | null;
+  available?: boolean;
 };
 
 export default function Rating({ slug }: { slug: string }) {
@@ -52,7 +53,7 @@ export default function Rating({ slug }: { slug: string }) {
               role="radio"
               aria-checked={data?.myScore === score}
               aria-label={`${score}점`}
-              disabled={pending}
+              disabled={pending || data?.available === false}
               onClick={() => rate(score)}
               className="p-1 text-2xl leading-none transition-transform active:scale-125"
             >
@@ -71,9 +72,11 @@ export default function Rating({ slug }: { slug: string }) {
         <span className="text-sm text-neutral-500">
           {data === null
             ? "…"
-            : data.count > 0
-              ? `평균 ${data.average} · ${data.count}명`
-              : "첫 평가를 남겨보세요"}
+            : data.available === false
+              ? "평가 기능은 준비 중이에요"
+              : data.count > 0
+                ? `평균 ${data.average} · ${data.count}명`
+                : "첫 평가를 남겨보세요"}
         </span>
       </div>
     </section>
