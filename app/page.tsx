@@ -14,9 +14,15 @@ export default async function HomePage({
     : undefined;
 
   const articles = getAllArticles(active);
+  const today = new Date().toLocaleDateString("ko-KR", {
+    month: "long",
+    day: "numeric",
+    weekday: "long",
+  });
 
   return (
     <div>
+      <p className="mb-3 text-[13px] font-medium text-neutral-400">{today}</p>
       <CategoryTabs active={active} />
       {articles.length === 0 ? (
         <p className="py-16 text-center text-sm text-neutral-400">

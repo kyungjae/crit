@@ -26,10 +26,13 @@ export default function RootLayout({
       <body className="min-h-dvh">
         <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur">
           <div className="mx-auto flex h-12 max-w-2xl items-center justify-between px-4">
-            <Link href="/" className="text-lg font-extrabold tracking-tight">
+            <Link
+              href="/"
+              className="text-[19px] font-extrabold tracking-[-0.03em]"
+            >
               crit<span className="text-brand">.</span>
             </Link>
-            <span className="text-xs text-neutral-400">
+            <span className="text-[11px] font-medium text-neutral-400">
               디자이너를 위한 데일리 큐레이션
             </span>
           </div>

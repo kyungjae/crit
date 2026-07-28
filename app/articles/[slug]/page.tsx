@@ -57,7 +57,7 @@ export default async function ArticlePage({
         </a>
       )}
 
-      <div className="prose prose-neutral mt-6 max-w-none prose-a:text-brand prose-img:rounded-xl">
+      <div className="prose prose-neutral mt-6 max-w-none prose-headings:tracking-tight prose-p:leading-[1.8] prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-neutral-500 prose-a:text-brand prose-img:rounded-xl">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{article.body}</ReactMarkdown>
       </div>
 
