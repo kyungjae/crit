@@ -18,7 +18,7 @@ app/                   ← Next.js App Router
   api/ratings/         ← 별점 GET/POST (기기당 1표, 수정 가능)
 components/            ← UI 컴포넌트 (모바일 퍼스트)
 lib/schema.ts          ← 콘텐츠 zod 스키마 (단일 소스)
-prisma/                ← 댓글/별점 DB (기본 SQLite)
+prisma/                ← 댓글/별점 DB (Postgres)
 scripts/               ← 콘텐츠 검증·생성 스크립트
 docs/AGENT.md          ← 에이전트 포스팅 가이드 ★
 .github/workflows/
@@ -38,10 +38,12 @@ docs/AGENT.md          ← 에이전트 포스팅 가이드 ★
 
 ```bash
 npm install
-cp .env.example .env        # DATABASE_URL 설정 (기본: SQLite)
-npx prisma db push          # 댓글/별점 테이블 생성
 npm run dev                 # http://localhost:3000
 ```
+
+DB 없이 바로 실행됩니다 (댓글/별점만 "준비 중" 표시).
+실제 DB로 테스트하려면 `.env`에 Postgres `DATABASE_URL`을 설정하고
+`npx prisma db push`로 테이블을 만드세요.
 
 ## 자주 쓰는 명령
 
@@ -76,12 +78,16 @@ push하면 자동 배포되므로 **에이전트의 커밋이 곧 게시**입니
 
 ### 2단계 — 댓글/별점 활성화 (DB 연결)
 
-1. Vercel 대시보드 → Storage → **Neon Postgres** 생성 (또는 Supabase 등)
-   → `DATABASE_URL`이 프로젝트 환경 변수로 자동 등록됨
-2. `prisma/schema.prisma`의 `provider = "sqlite"`를 `"postgresql"`로 변경 후 push
-3. 테이블 생성: `DATABASE_URL="<postgres-url>" npx prisma db push` (1회)
+1. Vercel 프로젝트 → **Storage** 탭 → **Create Database** → **Neon** (Postgres, 무료)
+2. 생성 후 **Connect Project** 로 이 프로젝트에 연결
+   → `DATABASE_URL`이 환경 변수로 자동 등록됨
+3. **Deployments** 탭에서 최신 배포의 ⋯ 메뉴 → **Redeploy**
 
-로컬 개발은 계속 SQLite(`file:./dev.db`)를 사용해도 됩니다.
+끝. 빌드 시 `scripts/ensure-db.mjs`가 Postgres 연결을 감지하면 테이블을
+자동 생성하므로 별도의 마이그레이션 명령이 필요 없습니다.
+
+로컬 개발: `DATABASE_URL` 없이 돌리면 댓글/별점만 "준비 중"으로 표시됩니다.
+실제 DB로 테스트하려면 `.env`에 Postgres URL(예: Neon의 dev 브랜치)을 넣으세요.
 
 ## 로드맵
 
