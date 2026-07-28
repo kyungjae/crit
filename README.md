@@ -14,8 +14,12 @@ app/                   ← Next.js App Router
   page.tsx             ← 피드 (카테고리 탭 필터)
   articles/[slug]/     ← 아티클 상세 + 별점 + 댓글
   jobs/                ← 채용 목록
+  inspiration/         ← 영감 피드 (핀터레스트식 매소너리)
+  links/               ← 디자이너 필수 링크 모음
+  drafts/              ← 초안 검수 목록 (noindex, 피드에 없음)
   api/comments/        ← 댓글 GET/POST
   api/ratings/         ← 별점 GET/POST (기기당 1표, 수정 가능)
+  api/og/              ← 링크 카드용 OG 메타데이터 추출
 components/            ← UI 컴포넌트 (모바일 퍼스트)
 lib/schema.ts          ← 콘텐츠 zod 스키마 (단일 소스)
 prisma/                ← 댓글/별점 DB (Postgres)

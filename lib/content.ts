@@ -63,6 +63,36 @@ export function getAllArticles(
   );
 }
 
+/** 검수 대기 중인 초안 목록 (최신순) */
+export function getDraftArticles(): Article[] {
+  return getAllArticles(undefined, { includeDrafts: true }).filter(
+    (a) => a.draft
+  );
+}
+
+/**
+ * 발행 전에 손봐야 할 것들. 초안 목록에서 경고 칩으로 보여준다.
+ * placeholder 이미지를 그대로 배포하는 사고를 막는 용도.
+ */
+export function getDraftWarnings(article: Article): string[] {
+  const warnings: string[] = [];
+  const haystack = `${article.hero ?? ""}\n${article.body}`;
+
+  if (/picsum\.photos|placehold|example\.com/i.test(haystack)) {
+    warnings.push("placeholder 이미지");
+  }
+  if (/교체 필요|TODO|TBD/i.test(haystack)) {
+    warnings.push("교체 표시 남음");
+  }
+  if (article.format === "showcase" && !article.hero) {
+    warnings.push("히어로 이미지 없음");
+  }
+  if (!article.source_url) {
+    warnings.push("원문 링크 없음");
+  }
+  return warnings;
+}
+
 export function getArticle(slug: string): Article | null {
   const file = path.join(ARTICLES_DIR, `${slug}.md`);
   if (!fs.existsSync(file)) return null;

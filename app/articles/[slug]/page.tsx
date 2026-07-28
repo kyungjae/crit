@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getAllArticles, getArticle } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
 import { CATEGORY_LABELS } from "@/lib/schema";
@@ -47,8 +48,11 @@ export default async function ArticlePage({
   return (
     <article>
       {article.draft && (
-        <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200">
+        <p className="mb-3 flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200">
           초안 — 피드에 노출되지 않습니다
+          <Link href="/drafts" className="shrink-0 underline underline-offset-2">
+            목록
+          </Link>
         </p>
       )}
 
