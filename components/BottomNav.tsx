@@ -3,45 +3,59 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const iconProps = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+};
+
 function FeedIcon({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden
-    >
+    <svg {...iconProps} className={className}>
       <rect x="3" y="4" width="18" height="16" rx="3" />
       <path d="M7 9h10M7 13h10M7 17h6" />
     </svg>
   );
 }
 
+function InspirationIcon({ className }: { className?: string }) {
+  return (
+    <svg {...iconProps} className={className}>
+      <rect x="3" y="3" width="8" height="12" rx="2" />
+      <rect x="13" y="3" width="8" height="7" rx="2" />
+      <rect x="13" y="12" width="8" height="9" rx="2" />
+      <rect x="3" y="17" width="8" height="4" rx="2" />
+    </svg>
+  );
+}
+
 function JobsIcon({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden
-    >
+    <svg {...iconProps} className={className}>
       <rect x="3" y="7" width="18" height="13" rx="3" />
       <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12h18" />
     </svg>
   );
 }
 
+function LinksIcon({ className }: { className?: string }) {
+  return (
+    <svg {...iconProps} className={className}>
+      <path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93" />
+      <path d="M14 11a5 5 0 0 0-7.07 0l-2.12 2.12a5 5 0 0 0 7.07 7.07L13 19.07" />
+    </svg>
+  );
+}
+
 const items = [
   { href: "/", label: "피드", Icon: FeedIcon },
+  { href: "/inspiration", label: "영감", Icon: InspirationIcon },
   { href: "/jobs", label: "채용", Icon: JobsIcon },
+  { href: "/links", label: "링크", Icon: LinksIcon },
 ];
 
 export default function BottomNav() {

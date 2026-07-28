@@ -69,3 +69,39 @@ export const EMPLOYMENT_TYPE_LABELS: Record<Job["employment_type"], string> = {
   freelance: "프리랜서",
   internship: "인턴",
 };
+
+export const linkItemSchema = z.object({
+  name: z.string().min(1).max(40),
+  url: z.string().url(),
+  description: z.string().min(1).max(80),
+});
+
+export const linksFileSchema = z.object({
+  groups: z
+    .array(
+      z.object({
+        title: z.string().min(1).max(30),
+        items: z.array(linkItemSchema).min(1),
+      })
+    )
+    .min(1),
+});
+
+export type LinkGroup = z.infer<typeof linksFileSchema>["groups"][number];
+
+export const inspirationItemSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1).max(80),
+  image: z.string().url(),
+  source_url: z.string().url(),
+  source_name: z.string().max(40).optional(),
+  tags: z.array(z.string()).max(6).default([]),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  sample: z.boolean().optional(),
+});
+
+export type InspirationItem = z.infer<typeof inspirationItemSchema>;
+
+export const inspirationFileSchema = z.object({
+  items: z.array(inspirationItemSchema),
+});

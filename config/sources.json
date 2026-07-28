@@ -1,0 +1,148 @@
+{
+  "$comment": "큐레이션 수집 소스 레지스트리. scripts/check-sources.ts가 읽는다. feed가 null이면 체커가 건너뛰므로 에이전트가 home을 직접 확인한다. 소스 추가/제거는 이 파일만 수정하면 된다.",
+  "sources": [
+    {
+      "id": "nngroup",
+      "name": "Nielsen Norman Group",
+      "type": "media",
+      "lang": "en",
+      "home": "https://www.nngroup.com/articles/",
+      "feed": "https://www.nngroup.com/feed/rss/",
+      "default_category": "news",
+      "note": "UX 리서치 최고 권위. 아티클 밀도 높음"
+    },
+    {
+      "id": "uxcollective",
+      "name": "UX Collective",
+      "type": "newsletter",
+      "lang": "en",
+      "home": "https://uxdesign.cc",
+      "feed": "https://uxdesign.cc/feed",
+      "default_category": "news",
+      "note": "최대 규모 UX 퍼블리케이션. 양이 많으니 큐레이션 필수"
+    },
+    {
+      "id": "smashing",
+      "name": "Smashing Magazine",
+      "type": "media",
+      "lang": "en",
+      "home": "https://www.smashingmagazine.com",
+      "feed": "https://www.smashingmagazine.com/feed/",
+      "default_category": "tools",
+      "note": "UI/프론트엔드 실무. 도구/기법 아티클 강함"
+    },
+    {
+      "id": "densediscovery",
+      "name": "Dense Discovery",
+      "type": "newsletter",
+      "lang": "en",
+      "home": "https://www.densediscovery.com",
+      "feed": null,
+      "default_category": "tools",
+      "note": "디자인·기술·문화 교차 주간 큐레이션"
+    },
+    {
+      "id": "tldrdesign",
+      "name": "TLDR Design",
+      "type": "newsletter",
+      "lang": "en",
+      "home": "https://tldr.tech/design",
+      "feed": null,
+      "default_category": "news",
+      "note": "데일리 디자인 뉴스 다이제스트"
+    },
+    {
+      "id": "figmalion",
+      "name": "Figmalion",
+      "type": "newsletter",
+      "lang": "en",
+      "home": "https://figmalion.com",
+      "feed": null,
+      "default_category": "tools",
+      "note": "Figma 생태계 전문 주간 뉴스레터"
+    },
+    {
+      "id": "itsnicethat",
+      "name": "It's Nice That",
+      "type": "media",
+      "lang": "en",
+      "home": "https://www.itsnicethat.com",
+      "feed": null,
+      "default_category": "news",
+      "note": "그래픽/브랜딩/일러스트 등 비주얼 중심"
+    },
+    {
+      "id": "creativeboom",
+      "name": "Creative Boom",
+      "type": "media",
+      "lang": "en",
+      "home": "https://www.creativeboom.com",
+      "feed": "https://www.creativeboom.com/feed/",
+      "default_category": "news",
+      "note": "크리에이티브 산업 뉴스·인터뷰"
+    },
+    {
+      "id": "lennys",
+      "name": "Lenny's Newsletter",
+      "type": "vc",
+      "lang": "en",
+      "home": "https://www.lennysnewsletter.com",
+      "feed": "https://www.lennysnewsletter.com/feed",
+      "default_category": "ai-workflow",
+      "note": "프로덕트/성장. 디자인 조직·AI 활용 글 선별"
+    },
+    {
+      "id": "firstround",
+      "name": "First Round Review",
+      "type": "vc",
+      "lang": "en",
+      "home": "https://review.firstround.com",
+      "feed": null,
+      "default_category": "ai-workflow",
+      "note": "VC 리뷰의 고전. 디자인 리더십/조직 아티클 선별"
+    },
+    {
+      "id": "a16z",
+      "name": "a16z",
+      "type": "vc",
+      "lang": "en",
+      "home": "https://a16z.com",
+      "feed": "https://a16z.com/feed/",
+      "default_category": "news",
+      "note": "AI·소비자 트렌드. 디자인 관련만 선별"
+    },
+    {
+      "id": "figma-yt",
+      "name": "Figma (YouTube)",
+      "type": "youtube",
+      "lang": "en",
+      "home": "https://www.youtube.com/@Figma",
+      "feed": null,
+      "youtube_handle": "@Figma",
+      "default_category": "tools",
+      "note": "공식 채널. 신기능 데모/Config 세션"
+    },
+    {
+      "id": "thefutur-yt",
+      "name": "The Futur (YouTube)",
+      "type": "youtube",
+      "lang": "en",
+      "home": "https://www.youtube.com/@thefutur",
+      "feed": null,
+      "youtube_handle": "@thefutur",
+      "default_category": "ai-guide",
+      "note": "디자인 비즈니스/커리어"
+    },
+    {
+      "id": "ajsmart-yt",
+      "name": "AJ&Smart (YouTube)",
+      "type": "youtube",
+      "lang": "en",
+      "home": "https://www.youtube.com/@AJSmart",
+      "feed": null,
+      "youtube_handle": "@AJSmart",
+      "default_category": "ai-workflow",
+      "note": "디자인 스프린트/워크숍/AI 워크플로우"
+    }
+  ]
+}

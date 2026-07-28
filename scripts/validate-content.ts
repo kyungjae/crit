@@ -6,7 +6,12 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { articleFrontmatterSchema, jobsFileSchema } from "../lib/schema";
+import {
+  articleFrontmatterSchema,
+  inspirationFileSchema,
+  jobsFileSchema,
+  linksFileSchema,
+} from "../lib/schema";
 
 const ROOT = process.cwd();
 const ARTICLES_DIR = path.join(ROOT, "content", "articles");
@@ -83,6 +88,33 @@ if (fs.existsSync(JOBS_DIR)) {
     } catch (e) {
       fail(rel, `파싱 실패: ${(e as Error).message}`);
     }
+  }
+}
+
+// --- links & inspiration ---
+for (const [file, schema] of [
+  ["links.json", linksFileSchema],
+  ["inspiration.json", inspirationFileSchema],
+] as const) {
+  const full = path.join(ROOT, "content", file);
+  if (!fs.existsSync(full)) continue;
+  const rel = `content/${file}`;
+  try {
+    const result = schema.safeParse(JSON.parse(fs.readFileSync(full, "utf8")));
+    if (!result.success) {
+      fail(rel, result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; "));
+    } else {
+      if (file === "inspiration.json") {
+        const ids = new Set<string>();
+        for (const item of (result.data as { items: { id: string }[] }).items) {
+          if (ids.has(item.id)) fail(rel, `중복된 id: ${item.id}`);
+          ids.add(item.id);
+        }
+      }
+      console.log(`✓ ${rel}`);
+    }
+  } catch (e) {
+    fail(rel, `파싱 실패: ${(e as Error).message}`);
   }
 }
 

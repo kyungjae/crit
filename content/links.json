@@ -1,0 +1,68 @@
+{
+  "groups": [
+    {
+      "title": "레퍼런스 · 영감",
+      "items": [
+        { "name": "Mobbin", "url": "https://mobbin.com", "description": "실제 앱 UI 패턴 라이브러리. 플로우 단위로 검색" },
+        { "name": "Awwwards", "url": "https://www.awwwards.com", "description": "수상작 중심 웹 디자인 레퍼런스" },
+        { "name": "Behance", "url": "https://www.behance.net", "description": "브랜딩·그래픽 포트폴리오의 표준" },
+        { "name": "Dribbble", "url": "https://dribbble.com", "description": "비주얼 탐색용 숏폼 디자인 피드" },
+        { "name": "Land-book", "url": "https://land-book.com", "description": "랜딩 페이지 레퍼런스 모음" },
+        { "name": "Godly", "url": "https://godly.website", "description": "정제된 웹 디자인 큐레이션" }
+      ]
+    },
+    {
+      "title": "폰트",
+      "items": [
+        { "name": "눈누", "url": "https://noonnu.cc", "description": "상업용 무료 한글 폰트 검색의 기본" },
+        { "name": "산돌구름", "url": "https://www.sandollcloud.com", "description": "한글 폰트 구독 서비스" },
+        { "name": "Google Fonts", "url": "https://fonts.google.com", "description": "무료 웹폰트 표준. 한글 지원 확인 가능" },
+        { "name": "Fontshare", "url": "https://www.fontshare.com", "description": "ITF의 고품질 무료 영문 폰트" },
+        { "name": "Adobe Fonts", "url": "https://fonts.adobe.com", "description": "CC 구독에 포함된 폰트 라이브러리" }
+      ]
+    },
+    {
+      "title": "컬러",
+      "items": [
+        { "name": "Coolors", "url": "https://coolors.co", "description": "팔레트 생성·탐색 도구" },
+        { "name": "Adobe Color", "url": "https://color.adobe.com", "description": "색상 규칙 기반 팔레트 + 접근성 체크" },
+        { "name": "Realtime Colors", "url": "https://www.realtimecolors.com", "description": "실제 UI에 입혀보며 고르는 컬러 도구" }
+      ]
+    },
+    {
+      "title": "아이콘 · 일러스트",
+      "items": [
+        { "name": "Lucide", "url": "https://lucide.dev", "description": "오픈소스 라인 아이콘 표준" },
+        { "name": "Heroicons", "url": "https://heroicons.com", "description": "Tailwind 팀의 무료 아이콘" },
+        { "name": "Phosphor Icons", "url": "https://phosphoricons.com", "description": "굵기 6단계를 지원하는 아이콘 세트" },
+        { "name": "The Noun Project", "url": "https://thenounproject.com", "description": "방대한 아이콘 검색" },
+        { "name": "unDraw", "url": "https://undraw.co", "description": "컬러 커스텀 가능한 무료 일러스트" }
+      ]
+    },
+    {
+      "title": "사진 · 목업",
+      "items": [
+        { "name": "Unsplash", "url": "https://unsplash.com", "description": "무료 고해상도 사진" },
+        { "name": "Pexels", "url": "https://www.pexels.com", "description": "무료 사진·영상 소스" }
+      ]
+    },
+    {
+      "title": "AI 도구",
+      "items": [
+        { "name": "Claude", "url": "https://claude.ai", "description": "리서치·카피·코드 생성 범용 AI" },
+        { "name": "Midjourney", "url": "https://www.midjourney.com", "description": "이미지 생성의 사실상 표준" },
+        { "name": "v0", "url": "https://v0.dev", "description": "프롬프트로 UI 코드 생성" },
+        { "name": "Recraft", "url": "https://www.recraft.ai", "description": "벡터·브랜드 에셋 특화 생성 AI" }
+      ]
+    },
+    {
+      "title": "UX 학습 · 리서치",
+      "items": [
+        { "name": "Laws of UX", "url": "https://lawsofux.com", "description": "UX 심리 법칙 한 장 정리" },
+        { "name": "NN/g Articles", "url": "https://www.nngroup.com/articles/", "description": "UX 리서치 아티클의 기준점" },
+        { "name": "Growth.Design", "url": "https://growth.design", "description": "만화로 보는 프로덕트 심리 케이스 스터디" },
+        { "name": "Checklist Design", "url": "https://www.checklist.design", "description": "화면·컴포넌트별 체크리스트" }
+      ]
+    }
+  ]
+}

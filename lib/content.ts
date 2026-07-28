@@ -3,10 +3,14 @@ import path from "path";
 import matter from "gray-matter";
 import {
   articleFrontmatterSchema,
+  inspirationFileSchema,
   jobsFileSchema,
+  linksFileSchema,
   type ArticleFrontmatter,
   type Category,
+  type InspirationItem,
   type Job,
+  type LinkGroup,
 } from "./schema";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -63,4 +67,20 @@ export function getAllJobs(): Job[] {
   return jobs
     .filter((j) => !j.expires_at || j.expires_at >= today)
     .sort((a, b) => b.posted_at.localeCompare(a.posted_at));
+}
+
+export function getLinkGroups(): LinkGroup[] {
+  const file = path.join(CONTENT_DIR, "links.json");
+  if (!fs.existsSync(file)) return [];
+  return linksFileSchema.parse(JSON.parse(fs.readFileSync(file, "utf8")))
+    .groups;
+}
+
+export function getInspirationItems(): InspirationItem[] {
+  const file = path.join(CONTENT_DIR, "inspiration.json");
+  if (!fs.existsSync(file)) return [];
+  const { items } = inspirationFileSchema.parse(
+    JSON.parse(fs.readFileSync(file, "utf8"))
+  );
+  return items.sort((a, b) => b.date.localeCompare(a.date));
 }

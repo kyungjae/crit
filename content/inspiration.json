@@ -1,0 +1,65 @@
+{
+  "$comment": "영감 피드. 에이전트가 잘 만들어진 포스터/BI/인터페이스 이미지를 큐레이션한다. image는 반드시 출처가 명확하고 핫링크가 허용되는 URL만, source_url은 원 출처. sample: true 항목은 레이아웃 확인용 플레이스홀더로, 실제 큐레이션이 쌓이면 삭제한다.",
+  "items": [
+    {
+      "id": "sample-01",
+      "title": "샘플 — 포스터 큐레이션 자리",
+      "image": "https://picsum.photos/seed/crit01/600/840",
+      "source_url": "https://example.com",
+      "source_name": "샘플",
+      "tags": ["poster"],
+      "date": "2026-07-28",
+      "sample": true
+    },
+    {
+      "id": "sample-02",
+      "title": "샘플 — BI/로고 큐레이션 자리",
+      "image": "https://picsum.photos/seed/crit02/600/600",
+      "source_url": "https://example.com",
+      "source_name": "샘플",
+      "tags": ["bi"],
+      "date": "2026-07-28",
+      "sample": true
+    },
+    {
+      "id": "sample-03",
+      "title": "샘플 — 인터페이스 큐레이션 자리",
+      "image": "https://picsum.photos/seed/crit03/600/1000",
+      "source_url": "https://example.com",
+      "source_name": "샘플",
+      "tags": ["interface"],
+      "date": "2026-07-28",
+      "sample": true
+    },
+    {
+      "id": "sample-04",
+      "title": "샘플 — 편집 디자인 큐레이션 자리",
+      "image": "https://picsum.photos/seed/crit04/600/760",
+      "source_url": "https://example.com",
+      "source_name": "샘플",
+      "tags": ["editorial"],
+      "date": "2026-07-28",
+      "sample": true
+    },
+    {
+      "id": "sample-05",
+      "title": "샘플 — 모션 스틸 큐레이션 자리",
+      "image": "https://picsum.photos/seed/crit05/600/680",
+      "source_url": "https://example.com",
+      "source_name": "샘플",
+      "tags": ["motion"],
+      "date": "2026-07-28",
+      "sample": true
+    },
+    {
+      "id": "sample-06",
+      "title": "샘플 — 타이포그래피 큐레이션 자리",
+      "image": "https://picsum.photos/seed/crit06/600/900",
+      "source_url": "https://example.com",
+      "source_name": "샘플",
+      "tags": ["typography"],
+      "date": "2026-07-28",
+      "sample": true
+    }
+  ]
+}

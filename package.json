@@ -11,6 +11,7 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "validate": "tsx scripts/validate-content.ts",
+    "sources:check": "tsx scripts/check-sources.ts",
     "new:article": "tsx scripts/new-article.ts"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "react-dom": "^19.0.0",
     "react-markdown": "^9.0.1",
     "remark-gfm": "^4.0.0",
+    "rss-parser": "^3.13.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

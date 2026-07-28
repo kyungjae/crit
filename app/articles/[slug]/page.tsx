@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { getAllArticles, getArticle } from "@/lib/content";
+import ArticleBody from "@/components/ArticleBody";
 import { CATEGORY_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import Rating from "@/components/Rating";
@@ -67,9 +66,7 @@ export default async function ArticlePage({
         </a>
       )}
 
-      <div className="prose prose-neutral mt-6 max-w-none prose-headings:tracking-tight prose-p:leading-[1.8] prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-neutral-500 prose-a:text-brand prose-img:rounded-xl">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{article.body}</ReactMarkdown>
-      </div>
+      <ArticleBody markdown={article.body} />
 
       {article.tags.length > 0 && (
         <div className="mt-6 flex flex-wrap gap-1.5">
