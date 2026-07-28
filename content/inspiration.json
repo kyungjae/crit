@@ -1,65 +1,77 @@
 {
-  "$comment": "영감 피드. 에이전트가 잘 만들어진 포스터/BI/인터페이스 이미지를 큐레이션한다. image는 반드시 출처가 명확하고 핫링크가 허용되는 URL만, source_url은 원 출처. sample: true 항목은 레이아웃 확인용 플레이스홀더로, 실제 큐레이션이 쌓이면 삭제한다.",
+  "$comment": "영감 피드. 에이전트가 잘 만들어진 포스터/BI/인터페이스 이미지를 큐레이션한다. image는 반드시 출처가 명확하고 핫링크가 허용되는 URL만(위키미디어 커먼즈 Special:FilePath, 공식 유튜브 썸네일 등), source_url은 원 출처 페이지. 저작권 문제 제기 시 즉시 제거한다.",
   "items": [
     {
-      "id": "sample-01",
-      "title": "샘플 — 포스터 큐레이션 자리",
-      "image": "https://picsum.photos/seed/crit01/600/840",
-      "source_url": "https://example.com",
-      "source_name": "샘플",
-      "tags": ["poster"],
-      "date": "2026-07-28",
-      "sample": true
+      "id": "2026-07-28-muller-brockmann-beethoven",
+      "title": "요제프 뮐러-브로크만 — 베토벤 콘서트 포스터 (1955)",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Josef_M%C3%BCller-Brockmann._beethoven_poster(1955).jpg?width=640",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Josef_M%C3%BCller-Brockmann._beethoven_poster(1955).jpg",
+      "source_name": "Wikimedia Commons",
+      "tags": ["poster", "swiss-style", "typography"],
+      "date": "2026-07-28"
     },
     {
-      "id": "sample-02",
-      "title": "샘플 — BI/로고 큐레이션 자리",
-      "image": "https://picsum.photos/seed/crit02/600/600",
-      "source_url": "https://example.com",
-      "source_name": "샘플",
-      "tags": ["bi"],
-      "date": "2026-07-28",
-      "sample": true
+      "id": "2026-07-28-muller-brockmann-der-film",
+      "title": "요제프 뮐러-브로크만 — der Film 전시 포스터",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Josef_M%C3%BCller-Brockmann_der_Film.jpg?width=640",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Josef_M%C3%BCller-Brockmann_der_Film.jpg",
+      "source_name": "Wikimedia Commons",
+      "tags": ["poster", "swiss-style", "grid"],
+      "date": "2026-07-28"
     },
     {
-      "id": "sample-03",
-      "title": "샘플 — 인터페이스 큐레이션 자리",
-      "image": "https://picsum.photos/seed/crit03/600/1000",
-      "source_url": "https://example.com",
-      "source_name": "샘플",
-      "tags": ["interface"],
-      "date": "2026-07-28",
-      "sample": true
+      "id": "2026-07-28-joost-schmidt-bauhaus-1923",
+      "title": "요스트 슈미트 — 바우하우스 전시 포스터 (1923)",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Joost_Schmidt_Bauhausausstellung_1923.jpg?width=640",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Joost_Schmidt_Bauhausausstellung_1923.jpg",
+      "source_name": "Wikimedia Commons",
+      "tags": ["poster", "bauhaus", "geometry"],
+      "date": "2026-07-28"
     },
     {
-      "id": "sample-04",
-      "title": "샘플 — 편집 디자인 큐레이션 자리",
-      "image": "https://picsum.photos/seed/crit04/600/760",
-      "source_url": "https://example.com",
-      "source_name": "샘플",
-      "tags": ["editorial"],
-      "date": "2026-07-28",
-      "sample": true
+      "id": "2026-07-28-lissitzky-red-wedge",
+      "title": "엘 리시츠키 — 붉은 쐐기로 백군을 쳐라 (1920)",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Klinom_Krasnim_by_El_Lisitskiy_(1920).jpg?width=640",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Klinom_Krasnim_by_El_Lisitskiy_(1920).jpg",
+      "source_name": "Wikimedia Commons",
+      "tags": ["poster", "constructivism"],
+      "date": "2026-07-28"
     },
     {
-      "id": "sample-05",
-      "title": "샘플 — 모션 스틸 큐레이션 자리",
-      "image": "https://picsum.photos/seed/crit05/600/680",
-      "source_url": "https://example.com",
-      "source_name": "샘플",
-      "tags": ["motion"],
-      "date": "2026-07-28",
-      "sample": true
+      "id": "2026-07-28-nasa-worm-logo",
+      "title": "NASA 웜 로고 — Danne & Blackburn (1975)",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA_Worm_logo.svg?width=640",
+      "source_url": "https://commons.wikimedia.org/wiki/File:NASA_Worm_logo.svg",
+      "source_name": "Wikimedia Commons",
+      "tags": ["bi", "logo", "identity"],
+      "date": "2026-07-28"
     },
     {
-      "id": "sample-06",
-      "title": "샘플 — 타이포그래피 큐레이션 자리",
-      "image": "https://picsum.photos/seed/crit06/600/900",
-      "source_url": "https://example.com",
-      "source_name": "샘플",
-      "tags": ["typography"],
-      "date": "2026-07-28",
-      "sample": true
+      "id": "2026-07-28-lautrec-moulin-rouge",
+      "title": "툴루즈-로트레크 — 물랭 루주: 라 굴뤼 (1891)",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Lautrec_moulin_rouge,_la_goulue_(poster)_1891.jpg?width=640",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Lautrec_moulin_rouge,_la_goulue_(poster)_1891.jpg",
+      "source_name": "Wikimedia Commons",
+      "tags": ["poster", "lithography"],
+      "date": "2026-07-28"
+    },
+    {
+      "id": "2026-07-28-figma-motion-deepdive",
+      "title": "Figma Motion 딥다이브 — Config 2026 세션",
+      "image": "https://img.youtube.com/vi/3evAfmLVZK8/hqdefault.jpg",
+      "source_url": "https://www.youtube.com/watch?v=3evAfmLVZK8",
+      "source_name": "Figma (YouTube)",
+      "tags": ["interface", "motion"],
+      "date": "2026-07-28"
+    },
+    {
+      "id": "2026-07-28-figma-motion-3d",
+      "title": "Figma Motion + 3D 트랜스폼 시작하기 — Config 2026",
+      "image": "https://img.youtube.com/vi/rkKoK2JY3cw/hqdefault.jpg",
+      "source_url": "https://www.youtube.com/watch?v=rkKoK2JY3cw",
+      "source_name": "Figma (YouTube)",
+      "tags": ["interface", "motion", "3d"],
+      "date": "2026-07-28"
     }
   ]
 }
