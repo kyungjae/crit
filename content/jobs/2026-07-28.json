@@ -1,0 +1,39 @@
+{
+  "date": "2026-07-28",
+  "jobs": [
+    {
+      "id": "2026-07-28-toss-product-designer",
+      "company": "토스",
+      "title": "Product Designer (송금/결제)",
+      "location": "서울 강남",
+      "employment_type": "full-time",
+      "experience": "경력 3년+",
+      "tags": ["핀테크", "프로덕트디자인"],
+      "url": "https://toss.im/career/jobs",
+      "posted_at": "2026-07-28"
+    },
+    {
+      "id": "2026-07-28-kakao-brand-designer",
+      "company": "카카오",
+      "title": "Brand Experience Designer",
+      "location": "판교 / 재택 혼합",
+      "employment_type": "full-time",
+      "experience": "경력 5년+",
+      "tags": ["브랜드", "BX"],
+      "url": "https://careers.kakao.com",
+      "posted_at": "2026-07-28"
+    },
+    {
+      "id": "2026-07-28-startup-ai-ux",
+      "company": "AI 스타트업 (시리즈 A)",
+      "title": "AI Product UX Designer",
+      "location": "서울 성수 / 원격 가능",
+      "employment_type": "full-time",
+      "experience": "경력 무관",
+      "salary": "스톡옵션 포함",
+      "tags": ["AI", "스타트업", "원격"],
+      "url": "https://example.com/jobs/ai-ux",
+      "posted_at": "2026-07-28"
+    }
+  ]
+}

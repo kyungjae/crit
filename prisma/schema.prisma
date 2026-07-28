@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  slug      String
+  nickname  String
+  body      String
+  deviceId  String?
+  createdAt DateTime @default(now())
+
+  @@index([slug, createdAt])
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  slug      String
+  deviceId  String
+  score     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([slug, deviceId])
+  @@index([slug])
+}

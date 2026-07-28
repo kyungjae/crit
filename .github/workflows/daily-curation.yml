@@ -1,0 +1,41 @@
+# 매일 아침 큐레이션 에이전트를 실행하는 워크플로우.
+#
+# Claude Code GitHub Action(anthropics/claude-code-action)을 사용해
+# docs/AGENT.md 의 절차대로 콘텐츠를 수집·작성·검증·커밋합니다.
+# 사용하려면 리포지토리 시크릿에 ANTHROPIC_API_KEY 를 등록하세요.
+name: Daily Curation
+
+on:
+  schedule:
+    # 매일 07:30 KST (22:30 UTC)
+    - cron: "30 22 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Run curation agent
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            docs/AGENT.md 를 읽고 그 절차를 따라 오늘의 데일리 큐레이션을 게시해줘.
+
+            1. 웹에서 디자이너에게 유용한 최신 뉴스/AI 워크플로우/도구/AI 사용법/
+               포트폴리오 관련 소식을 조사해서 아티클 3~5건을 작성한다.
+            2. 디자이너 채용 공고를 조사해서 오늘 날짜의 jobs JSON을 작성한다.
+               (기존 content/jobs/ 의 id와 중복 금지)
+            3. npm run validate 로 검증하고, 통과하면 content/ 만 커밋 후
+               main에 푸시한다. 실패하면 고쳐서 다시 검증한다.
+          claude_args: "--allowedTools Bash,Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
