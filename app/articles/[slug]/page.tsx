@@ -8,7 +8,10 @@ import Rating from "@/components/Rating";
 import Comments from "@/components/Comments";
 
 export function generateStaticParams() {
-  return getAllArticles().map((a) => ({ slug: a.slug }));
+  // draft도 URL로 미리보기할 수 있게 빌드에 포함한다 (피드·사이트맵에는 없음)
+  return getAllArticles(undefined, { includeDrafts: true }).map((a) => ({
+    slug: a.slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -43,14 +46,38 @@ export default async function ArticlePage({
 
   return (
     <article>
+      {article.draft && (
+        <p className="mb-3 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200">
+          초안 — 피드에 노출되지 않습니다
+        </p>
+      )}
+
+      {article.hero && (
+        <div className="-mx-4 mb-5 sm:mx-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={article.hero}
+            alt=""
+            className="aspect-[4/3] w-full bg-neutral-100 object-cover sm:rounded-2xl"
+          />
+        </div>
+      )}
+
       <div className="mb-2 flex items-center gap-2 text-xs">
         <span className="rounded-full bg-brand/10 px-2 py-0.5 font-medium text-brand">
           {CATEGORY_LABELS[article.category]}
         </span>
         <time className="text-neutral-400">{formatDate(article.date)}</time>
+        {article.format !== "brief" && (
+          <span className="text-neutral-400">
+            · {article.readingMinutes}분 읽기
+          </span>
+        )}
       </div>
 
-      <h1 className="text-2xl font-bold leading-snug">{article.title}</h1>
+      <h1 className="text-2xl font-bold leading-snug tracking-[-0.02em]">
+        {article.title}
+      </h1>
       <p className="mt-2 text-sm leading-relaxed text-neutral-500">
         {article.summary}
       </p>
@@ -66,7 +93,20 @@ export default async function ArticlePage({
         </a>
       )}
 
-      <ArticleBody markdown={article.body} />
+      <ArticleBody markdown={article.body} format={article.format} />
+
+      {article.credits.length > 0 && (
+        <dl className="mt-8 rounded-xl border border-neutral-200/80 bg-white p-4">
+          <dt className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400">
+            크레딧
+          </dt>
+          {article.credits.map((credit) => (
+            <dd key={credit} className="text-sm leading-relaxed text-neutral-600">
+              {credit}
+            </dd>
+          ))}
+        </dl>
+      )}
 
       {article.tags.length > 0 && (
         <div className="mt-6 flex flex-wrap gap-1.5">

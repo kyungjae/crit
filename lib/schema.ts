@@ -23,15 +23,40 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   portfolio: "포트폴리오",
 };
 
+/**
+ * 아티클 레이아웃 포맷. 글의 성격에 맞는 렌더링을 고른다.
+ * - brief:    짧은 뉴스 큐레이션 (기본)
+ * - deep:     긴 글. 목차 + 읽는 시간 표시
+ * - rules:    번호 매긴 규칙/팁 카드 리스트 (레퍼런스형)
+ * - showcase: 브랜드 런칭·케이스 스터디. 히어로 이미지 + 풀블리드 비주얼 중심
+ */
+export const FORMATS = ["brief", "deep", "rules", "showcase"] as const;
+export type Format = (typeof FORMATS)[number];
+
+export const FORMAT_LABELS: Record<Format, string> = {
+  brief: "브리핑",
+  deep: "긴 글",
+  rules: "레퍼런스",
+  showcase: "케이스 스터디",
+};
+
 export const articleFrontmatterSchema = z.object({
   title: z.string().min(1).max(120),
   summary: z.string().min(1).max(300),
   category: z.enum(CATEGORIES),
+  format: z.enum(FORMATS).default("brief"),
   tags: z.array(z.string()).max(8).default([]),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD 형식"),
   source_url: z.string().url().optional(),
   source_name: z.string().optional(),
+  /** 피드 카드 썸네일 */
   thumbnail: z.string().url().optional(),
+  /** 아티클 상단 대표 이미지. showcase 포맷에서 풀블리드로 렌더 */
+  hero: z.string().url().optional(),
+  /** 크레딧 표기 (스튜디오, 클라이언트 등). showcase에서 사용 */
+  credits: z.array(z.string()).max(8).default([]),
+  /** true면 피드·사이트맵에서 제외. URL로는 미리보기 가능 */
+  draft: z.boolean().default(false),
   author: z.string().default("crit agent"),
 });
 

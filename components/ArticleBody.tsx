@@ -1,78 +1,128 @@
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import type { Element } from "hast";
-import YouTubeEmbed from "./embeds/YouTubeEmbed";
-import TweetEmbed from "./embeds/TweetEmbed";
-import LinkCard from "./embeds/LinkCard";
+import Slugger from "github-slugger";
+import type { Format } from "@/lib/schema";
+import Markdown from "./markdown";
 
-/** 유튜브 URL이면 비디오 ID 반환 */
-function youtubeId(url: string): string | null {
-  const m = url.match(
-    /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/
-  );
-  return m ? m[1] : null;
+const PROSE = [
+  "prose prose-neutral max-w-none",
+  "prose-headings:tracking-tight prose-p:leading-[1.8] prose-li:leading-[1.75]",
+  "prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-neutral-500",
+  "prose-a:text-brand prose-a:underline-offset-2",
+  // Tailwind Typography가 인라인 코드에 붙이는 백틱 제거 + 칩 스타일
+  "prose-code:before:content-none prose-code:after:content-none",
+  "prose-code:rounded prose-code:bg-neutral-100 prose-code:px-1.5 prose-code:py-0.5",
+  "prose-code:text-[0.85em] prose-code:font-medium prose-code:text-neutral-700",
+].join(" ");
+
+/** 코드블록 안의 #는 제목이 아니므로 제외하고 h2만 추출 */
+function extractHeadings(markdown: string) {
+  const withoutCode = markdown.replace(/```[\s\S]*?```/g, "");
+  const slugger = new Slugger();
+  return [...withoutCode.matchAll(/^##\s+(.+)$/gm)].map((m) => {
+    const text = m[1].replace(/[*_`]/g, "").trim();
+    return { text, id: slugger.slug(text) };
+  });
 }
 
-/** X(트위터) 포스트 URL 여부 */
-function isTweetUrl(url: string): boolean {
-  return /^https?:\/\/(?:www\.)?(?:twitter\.com|x\.com)\/\w+\/status\/\d+/.test(
-    url
+function TableOfContents({ markdown }: { markdown: string }) {
+  const headings = extractHeadings(markdown);
+  if (headings.length < 3) return null;
+
+  return (
+    <nav className="mt-6 rounded-xl border border-neutral-200/80 bg-white p-4">
+      <p className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400">
+        목차
+      </p>
+      <ol className="flex flex-col gap-1.5">
+        {headings.map((h, i) => (
+          <li key={h.id} className="flex gap-2 text-sm leading-snug">
+            <span className="shrink-0 tabular-nums text-neutral-300">
+              {i + 1}
+            </span>
+            <a
+              href={`#${h.id}`}
+              className="text-neutral-600 underline-offset-2 hover:text-brand hover:underline"
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 }
 
 /**
- * 문단이 "바로 그 URL 하나"만 담고 있으면 해당 URL을 반환.
- * 마크다운에서 유튜브/X 링크를 한 줄에 단독으로 쓰면 임베드로 렌더된다.
+ * rules 포맷: `### 제목` 단위로 카드를 만들고 자동 번호를 붙인다.
+ * 첫 `### ` 이전 내용은 도입부로 일반 렌더링한다.
  */
-function soleBareLink(node: Element | undefined): string | null {
-  if (!node || node.children.length !== 1) return null;
-  const child = node.children[0];
-  if (child.type !== "element" || child.tagName !== "a") return null;
-  const href = String(child.properties?.href ?? "");
-  const text =
-    child.children.length === 1 && child.children[0].type === "text"
-      ? child.children[0].value
-      : "";
-  return href && text === href ? href : null;
+function RulesLayout({ markdown }: { markdown: string }) {
+  const firstRule = markdown.search(/^### /m);
+  const intro = firstRule === -1 ? markdown : markdown.slice(0, firstRule);
+  const rest = firstRule === -1 ? "" : markdown.slice(firstRule);
+
+  const rules = rest
+    .split(/^### /m)
+    .filter((chunk) => chunk.trim())
+    .map((chunk) => {
+      const nl = chunk.indexOf("\n");
+      return nl === -1
+        ? { title: chunk.trim(), body: "" }
+        : { title: chunk.slice(0, nl).trim(), body: chunk.slice(nl + 1).trim() };
+    });
+
+  return (
+    <div>
+      {intro.trim() && (
+        <div className={`${PROSE} mt-6`}>
+          <Markdown>{intro.trim()}</Markdown>
+        </div>
+      )}
+
+      <ol className="mt-6 flex flex-col gap-3">
+        {rules.map((rule, i) => (
+          <li
+            key={i}
+            className="rounded-2xl border border-neutral-200/80 bg-white p-4"
+          >
+            <div className="flex items-baseline gap-2.5">
+              <span className="shrink-0 text-[13px] font-bold tabular-nums text-brand">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="text-[15px] font-bold leading-snug tracking-tight text-neutral-900">
+                {rule.title}
+              </h3>
+            </div>
+            {rule.body && (
+              <div
+                className={`${PROSE} prose-sm mt-2 pl-[30px] prose-p:leading-[1.7]`}
+              >
+                <Markdown>{rule.body}</Markdown>
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
 }
 
-export default function ArticleBody({ markdown }: { markdown: string }) {
+export default function ArticleBody({
+  markdown,
+  format = "brief",
+}: {
+  markdown: string;
+  format?: Format;
+}) {
+  if (format === "rules") return <RulesLayout markdown={markdown} />;
+
   return (
-    <div className="prose prose-neutral mt-6 max-w-none prose-headings:tracking-tight prose-p:leading-[1.8] prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-neutral-500 prose-a:text-brand prose-img:rounded-xl">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={{
-          p({ node, children }) {
-            const url = soleBareLink(node);
-            if (url) {
-              const yt = youtubeId(url);
-              if (yt) return <YouTubeEmbed id={yt} />;
-              if (isTweetUrl(url)) return <TweetEmbed url={url} />;
-              return <LinkCard url={url} />;
-            }
-            return <p>{children}</p>;
-          },
-          a({ href, children }) {
-            return (
-              <a href={href} target="_blank" rel="noopener noreferrer">
-                {children}
-              </a>
-            );
-          },
-          img({ src, alt }) {
-            return (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={typeof src === "string" ? src : ""}
-                alt={alt ?? ""}
-                loading="lazy"
-              />
-            );
-          },
-        }}
-      >
-        {markdown}
-      </ReactMarkdown>
-    </div>
+    <>
+      {(format === "deep" || format === "showcase") && (
+        <TableOfContents markdown={markdown} />
+      )}
+      <div className={`${PROSE} mt-6`}>
+        <Markdown bleed={format === "showcase"}>{markdown}</Markdown>
+      </div>
+    </>
   );
 }

@@ -32,9 +32,19 @@ export default function ArticleCard({ article }: { article: Article }) {
             <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500">
               {article.summary}
             </p>
-            <time className="mt-2 block text-[11px] text-neutral-400">
-              {formatDate(article.date)}
-            </time>
+            <div className="mt-2 flex items-center gap-1.5 text-[11px] text-neutral-400">
+              <time>{formatDate(article.date)}</time>
+              {article.format === "rules" && article.ruleCount > 0 && (
+                <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-medium text-neutral-500">
+                  규칙 {article.ruleCount}개
+                </span>
+              )}
+              {article.format === "deep" && (
+                <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-medium text-neutral-500">
+                  긴 글 · {article.readingMinutes}분
+                </span>
+              )}
+            </div>
           </div>
           {article.thumbnail && (
             <div className="relative size-20 shrink-0 overflow-hidden rounded-xl bg-neutral-100">

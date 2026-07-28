@@ -20,25 +20,42 @@ const JOBS_DIR = path.join(CONTENT_DIR, "jobs");
 export type Article = ArticleFrontmatter & {
   slug: string;
   body: string;
+  /** 대략적인 읽는 시간(분). 한국어 기준 분당 500자 + 이미지당 5초 */
+  readingMinutes: number;
+  /** rules 포맷에서 카드 개수 (피드 배지에 사용) */
+  ruleCount: number;
 };
+
+function analyze(body: string): { readingMinutes: number; ruleCount: number } {
+  const images = (body.match(/!\[[^\]]*\]\(/g) ?? []).length;
+  const text = body.replace(/!\[[^\]]*\]\([^)]*\)/g, "").replace(/\s/g, "");
+  const minutes = Math.max(1, Math.round(text.length / 500 + (images * 5) / 60));
+  const ruleCount = (body.match(/^### /gm) ?? []).length;
+  return { readingMinutes: minutes, ruleCount };
+}
 
 function listMarkdownFiles(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir).filter((f) => f.endsWith(".md"));
 }
 
-export function getAllArticles(category?: Category): Article[] {
+export function getAllArticles(
+  category?: Category,
+  { includeDrafts = false } = {}
+): Article[] {
   const articles = listMarkdownFiles(ARTICLES_DIR).map((file) => {
     const slug = file.replace(/\.md$/, "");
     const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), "utf8");
     const { data, content } = matter(raw);
     const fm = articleFrontmatterSchema.parse(data);
-    return { ...fm, slug, body: content.trim() };
+    const body = content.trim();
+    return { ...fm, slug, body, ...analyze(body) };
   });
 
+  const visible = includeDrafts ? articles : articles.filter((a) => !a.draft);
   const filtered = category
-    ? articles.filter((a) => a.category === category)
-    : articles;
+    ? visible.filter((a) => a.category === category)
+    : visible;
 
   // 최신 날짜 우선, 같은 날짜면 파일명 역순
   return filtered.sort((a, b) =>
@@ -52,7 +69,8 @@ export function getArticle(slug: string): Article | null {
   const raw = fs.readFileSync(file, "utf8");
   const { data, content } = matter(raw);
   const fm = articleFrontmatterSchema.parse(data);
-  return { ...fm, slug, body: content.trim() };
+  const body = content.trim();
+  return { ...fm, slug, body, ...analyze(body) };
 }
 
 export function getAllJobs(): Job[] {

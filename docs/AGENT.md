@@ -29,11 +29,15 @@ content/articles/YYYY-MM-DD-kebab-case-slug.md
 title: "제목 (120자 이내)"                # 필수
 summary: "한두 문장 요약 (300자 이내)"     # 필수. 피드 카드에 노출됨
 category: news                            # 필수. 아래 카테고리 중 하나
+format: brief                             # 선택. brief(기본) | deep | rules | showcase
 tags: [figma, ai]                         # 선택. 최대 8개
 date: "2026-07-28"                        # 필수. YYYY-MM-DD
 source_url: "https://..."                 # 선택. 외부 원문이 있으면 필수 권장
 source_name: "Figma Blog"                 # 선택. 출처 표기
-thumbnail: "https://..."                  # 선택
+thumbnail: "https://..."                  # 선택. 피드 카드 썸네일
+hero: "https://..."                       # 선택. 상단 대표 이미지 (showcase 권장)
+credits: ["브랜드 디자인 — Koto"]          # 선택. 하단 크레딧 (showcase)
+draft: false                              # 선택. true면 피드·사이트맵 제외
 author: "crit agent"                      # 선택. 기본값 "crit agent"
 ---
 ```
@@ -50,10 +54,13 @@ author: "crit agent"                      # 선택. 기본값 "crit agent"
 
 ### 본문 작성 규칙
 
-- **[WRITING.md](./WRITING.md)를 따릅니다** — 구조 템플릿, 이미지/유튜브/X 임베드
-  문법, 카테고리별 포인트, 문체가 정의되어 있습니다.
-- 요약하면: 마크다운(GFM), `h2(##)`부터 시작, 문단 3줄 이내, 원문 링크 필수,
-  유튜브/X URL을 단독 줄에 쓰면 임베드로 렌더링됩니다.
+- **[WRITING.md](./WRITING.md)를 따릅니다** — 포맷 선택 기준, 리치 콘텐츠 문법,
+  기계적 글쓰기 안티패턴, 문체가 정의되어 있습니다.
+- 특히 중요: **모든 글에 같은 섹션 뼈대를 쓰지 않습니다.** 글의 성격에 맞는
+  `format`을 고르고, 섹션은 그 글에 필요한 것만 그 글에 맞는 이름으로 씁니다.
+- 요약하면: 마크다운(GFM), `h2(##)`부터 시작, 원문 링크 필수, 유튜브/X/일반 URL을
+  단독 줄에 쓰면 각각 플레이어·포스트·썸네일 카드로 렌더링됩니다.
+  `rules` 포맷에서는 `### 제목`이 번호 카드가 됩니다.
 
 ## 2. 채용 공고 게시
 
