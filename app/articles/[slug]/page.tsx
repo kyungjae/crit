@@ -20,7 +20,17 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return {};
-  return { title: article.title, description: article.summary };
+  return {
+    title: article.title,
+    description: article.summary,
+    openGraph: {
+      title: article.title,
+      description: article.summary,
+      type: "article",
+      publishedTime: `${article.date}T00:00:00+09:00`,
+      ...(article.thumbnail && { images: [article.thumbnail] }),
+    },
+  };
 }
 
 export default async function ArticlePage({

@@ -2,14 +2,21 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "crit — 디자이너를 위한 데일리 큐레이션",
     template: "%s | crit",
   },
   description:
     "디자이너를 위한 뉴스, AI 워크플로우, 도구 추천, 채용 정보를 매일 큐레이션합니다.",
+  openGraph: {
+    siteName: "crit",
+    type: "website",
+    locale: "ko_KR",
+  },
 };
 
 export const viewport: Viewport = {
