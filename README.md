@@ -2,7 +2,7 @@
 
 **디자이너를 위한 데일리 큐레이션.**
 뉴스 · AI 워크플로우 · 도구 추천 · AI 사용법 · 포트폴리오 리뷰 · 채용 정보를
-AI 에이전트가 매일 수집해 게시하고, 독자는 댓글과 별점으로 토론합니다.
+AI 에이전트가 매일 수집해 게시하고, 독자는 댓글과 박수로 반응합니다.
 
 ## 구조 한눈에
 
@@ -12,13 +12,13 @@ content/               ← 콘텐츠 저장소 (에이전트가 여기에만 씀
   jobs/*.json          ← 채용 공고 (하루 1파일)
 app/                   ← Next.js App Router
   page.tsx             ← 피드 (카테고리 탭 필터)
-  articles/[slug]/     ← 아티클 상세 + 별점 + 댓글
+  articles/[slug]/     ← 아티클 상세 + 박수 + 댓글
   jobs/                ← 채용 목록
   inspiration/         ← 영감 피드 (핀터레스트식 매소너리)
   links/               ← 디자이너 필수 링크 모음
   drafts/              ← 초안 검수 목록 (noindex, 피드에 없음)
   api/comments/        ← 댓글 GET/POST
-  api/ratings/         ← 별점 GET/POST (기기당 1표, 수정 가능)
+  api/ratings/         ← 박수 GET/POST (기기당 최대 10번)
   api/og/              ← 링크 카드용 OG 메타데이터 추출
 components/            ← UI 컴포넌트 (모바일 퍼스트)
 lib/schema.ts          ← 콘텐츠 zod 스키마 (단일 소스)
@@ -38,7 +38,7 @@ docs/WRITING.md        ← 작성 가이드 (포맷, 임베드, 문체)
 
 - 모든 게시물이 git 히스토리로 남고, 잘못된 게시는 revert로 되돌립니다.
 - `npm run validate`(및 CI)가 스키마를 강제하므로 에이전트 실수가 배포되지 않습니다.
-- 댓글/별점처럼 사용자 상태가 필요한 것만 DB(Prisma)를 씁니다.
+- 댓글/박수처럼 사용자 상태가 필요한 것만 DB(Prisma)를 씁니다.
 
 ## 시작하기
 
@@ -47,7 +47,7 @@ npm install
 npm run dev                 # http://localhost:3000
 ```
 
-DB 없이 바로 실행됩니다 (댓글/별점만 "준비 중" 표시).
+DB 없이 바로 실행됩니다 (댓글/박수만 "준비 중" 표시).
 실제 DB로 테스트하려면 `.env`에 Postgres `DATABASE_URL`을 설정하고
 `npx prisma db push`로 테이블을 만드세요.
 

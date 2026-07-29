@@ -7,7 +7,7 @@ hermes를 비롯해 이 저장소를 처음 맡는 에이전트를 위한 문서
 
 **crit — 디자이너를 위한 데일리 큐레이션 사이트.** 해외 디자인 뉴스레터·미디어·
 VC·유튜브에서 새 글을 골라 한국어 아티클로 옮기고, 국내 채용 공고와 영감
-이미지를 함께 싣는다. 독자는 댓글과 별점으로 토론한다.
+이미지를 함께 싣는다. 독자는 댓글과 박수로 반응한다.
 
 - 스택: Next.js 15 (App Router) + Tailwind 4 + Prisma(Postgres)
 - 배포: Vercel — `main`에 푸시하면 자동 배포
@@ -20,7 +20,7 @@ VC·유튜브에서 새 글을 골라 한국어 아티클로 옮기고, 국내 �
 관리자 화면도, 콘텐츠 API도 없다. `content/` 아래 파일을 만들고 커밋해서
 푸시하면 그게 발행이다. 되돌리려면 revert 하면 된다.
 
-DB(Prisma)는 **댓글과 별점에만** 쓴다. 아티클은 절대 DB에 넣지 않는다.
+DB(Prisma)는 **댓글과 박수에만** 쓴다. 아티클은 절대 DB에 넣지 않는다.
 
 ## 3. 저장소 지도
 
@@ -36,7 +36,7 @@ config/sources.json    ← 수집 소스 레지스트리 (해외만)
 
 app/                   ← 화면. 콘텐츠 작업 중에는 손대지 않는다
   page.tsx               피드 (카테고리 탭)
-  articles/[slug]/       아티클 상세 + 별점 + 댓글
+  articles/[slug]/       아티클 상세 + 박수 + 댓글
   inspiration/ links/ jobs/ drafts/
   api/comments/ api/ratings/ api/og/
 components/  lib/      ← 렌더링·스키마. 기능 변경 때만
@@ -109,7 +109,7 @@ git push origin main
 프록시로 우회하지 않는다. GitHub Actions는 이 제약이 없어서, Actions의
 **Find Assets** 워크플로를 수동 실행하면 에셋 URL을 받을 수 있다.
 
-**DB 없이도 사이트는 돌아간다.** `DATABASE_URL`이 없으면 댓글·별점만
+**DB 없이도 사이트는 돌아간다.** `DATABASE_URL`이 없으면 댓글·박수만
 "준비 중"으로 표시되고 나머지는 정상이다. 로컬에서 DB 오류가 나도 콘텐츠
 작업은 그대로 진행하면 된다.
 

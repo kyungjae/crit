@@ -3,27 +3,24 @@ import { z } from "zod";
 import { getPrisma } from "@/lib/db";
 import { getArticle } from "@/lib/content";
 
-export async function GET(req: NextRequest) {
-  const slug = req.nextUrl.searchParams.get("slug");
-  const deviceId = req.nextUrl.searchParams.get("deviceId");
-  if (!slug) {
-    return NextResponse.json({ error: "slug is required" }, { status: 400 });
-  }
+const MAX_CLAPS = 10;
 
+async function getClapData(slug: string, deviceId?: string) {
   const prisma = getPrisma();
   if (!prisma) {
-    return NextResponse.json({
-      average: null,
+    return {
+      total: 0,
       count: 0,
-      myScore: null,
+      myClaps: 0,
+      maxClaps: MAX_CLAPS,
       available: false,
-    });
+    };
   }
 
   const [agg, mine] = await Promise.all([
     prisma.rating.aggregate({
       where: { slug },
-      _avg: { score: true },
+      _sum: { score: true },
       _count: true,
     }),
     deviceId
@@ -34,32 +31,42 @@ export async function GET(req: NextRequest) {
       : Promise.resolve(null),
   ]);
 
-  return NextResponse.json({
-    average: agg._avg.score ? Math.round(agg._avg.score * 10) / 10 : null,
+  return {
+    total: agg._sum.score ?? 0,
     count: agg._count,
-    myScore: mine?.score ?? null,
+    myClaps: mine?.score ?? 0,
+    maxClaps: MAX_CLAPS,
     available: true,
-  });
+  };
 }
 
-const rateSchema = z.object({
+export async function GET(req: NextRequest) {
+  const slug = req.nextUrl.searchParams.get("slug");
+  const deviceId = req.nextUrl.searchParams.get("deviceId") ?? undefined;
+  if (!slug) {
+    return NextResponse.json({ error: "slug is required" }, { status: 400 });
+  }
+
+  return NextResponse.json(await getClapData(slug, deviceId));
+}
+
+const clapSchema = z.object({
   slug: z.string().min(1),
   deviceId: z.string().min(8).max(64),
-  score: z.number().int().min(1).max(5),
 });
 
 export async function POST(req: NextRequest) {
   const prisma = getPrisma();
   if (!prisma) {
     return NextResponse.json(
-      { error: "평가 기능은 준비 중이에요." },
+      { error: "박수 기능은 준비 중이에요." },
       { status: 503 }
     );
   }
 
   let parsed;
   try {
-    parsed = rateSchema.parse(await req.json());
+    parsed = clapSchema.parse(await req.json());
   } catch {
     return NextResponse.json({ error: "invalid request" }, { status: 400 });
   }
@@ -68,23 +75,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "article not found" }, { status: 404 });
   }
 
-  const { slug, deviceId, score } = parsed;
+  const { slug, deviceId } = parsed;
+  const current = await prisma.rating.findUnique({
+    where: { slug_deviceId: { slug, deviceId } },
+    select: { score: true },
+  });
+
+  const nextScore = Math.min((current?.score ?? 0) + 1, MAX_CLAPS);
+
   await prisma.rating.upsert({
     where: { slug_deviceId: { slug, deviceId } },
-    create: { slug, deviceId, score },
-    update: { score },
+    create: { slug, deviceId, score: nextScore },
+    update: { score: nextScore },
   });
 
-  const agg = await prisma.rating.aggregate({
-    where: { slug },
-    _avg: { score: true },
-    _count: true,
-  });
-
-  return NextResponse.json({
-    average: agg._avg.score ? Math.round(agg._avg.score * 10) / 10 : null,
-    count: agg._count,
-    myScore: score,
-    available: true,
-  });
+  return NextResponse.json(await getClapData(slug, deviceId));
 }
