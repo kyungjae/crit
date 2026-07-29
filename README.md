@@ -18,7 +18,7 @@ app/                   ← Next.js App Router
   links/               ← 디자이너 필수 링크 모음
   drafts/              ← 초안 검수 목록 (noindex, 피드에 없음)
   api/comments/        ← 댓글 GET/POST
-  api/ratings/         ← 박수 GET/POST (기기당 최대 10번)
+  api/ratings/         ← 박수 GET/POST (기기별 누른 횟수 저장)
   api/og/              ← 링크 카드용 OG 메타데이터 추출
 components/            ← UI 컴포넌트 (모바일 퍼스트)
 lib/schema.ts          ← 콘텐츠 zod 스키마 (단일 소스)

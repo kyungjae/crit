@@ -3,8 +3,6 @@ import { z } from "zod";
 import { getPrisma } from "@/lib/db";
 import { getArticle } from "@/lib/content";
 
-const MAX_CLAPS = 10;
-
 async function getClapData(slug: string, deviceId?: string) {
   const prisma = getPrisma();
   if (!prisma) {
@@ -12,7 +10,6 @@ async function getClapData(slug: string, deviceId?: string) {
       total: 0,
       count: 0,
       myClaps: 0,
-      maxClaps: MAX_CLAPS,
       available: false,
     };
   }
@@ -35,7 +32,6 @@ async function getClapData(slug: string, deviceId?: string) {
     total: agg._sum.score ?? 0,
     count: agg._count,
     myClaps: mine?.score ?? 0,
-    maxClaps: MAX_CLAPS,
     available: true,
   };
 }
@@ -59,7 +55,7 @@ export async function POST(req: NextRequest) {
   const prisma = getPrisma();
   if (!prisma) {
     return NextResponse.json(
-      { error: "박수 기능은 준비 중이에요." },
+      { error: "반응 기능은 준비 중이에요." },
       { status: 503 }
     );
   }
@@ -76,17 +72,11 @@ export async function POST(req: NextRequest) {
   }
 
   const { slug, deviceId } = parsed;
-  const current = await prisma.rating.findUnique({
-    where: { slug_deviceId: { slug, deviceId } },
-    select: { score: true },
-  });
-
-  const nextScore = Math.min((current?.score ?? 0) + 1, MAX_CLAPS);
 
   await prisma.rating.upsert({
     where: { slug_deviceId: { slug, deviceId } },
-    create: { slug, deviceId, score: nextScore },
-    update: { score: nextScore },
+    create: { slug, deviceId, score: 1 },
+    update: { score: { increment: 1 } },
   });
 
   return NextResponse.json(await getClapData(slug, deviceId));
