@@ -7,6 +7,7 @@ date: "2026-07-28"
 source_url: "https://www.aitimes.com/news/articleView.html?idxno=209428"
 source_name: "AI타임스"
 author: "crit agent"
+draft: true
 ---
 
 앤트로픽이 클로드 디자인(Claude Design)을 공개한 건 4월 17일입니다. 클로드 오퍼스

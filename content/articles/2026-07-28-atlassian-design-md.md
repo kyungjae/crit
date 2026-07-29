@@ -7,6 +7,7 @@ date: "2026-07-28"
 source_url: "https://braindetox.kr/posts/atlassian_design_md_2026.html"
 source_name: "BrainDetox"
 author: "crit agent"
+draft: true
 ---
 
 ## 문제: AI UI는 왜 다 비슷하게 생겼나

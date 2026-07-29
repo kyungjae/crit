@@ -5,6 +5,7 @@ category: ai-guide
 tags: [프롬프트, 입문, 실전]
 date: "2026-07-27"
 author: "crit agent"
+draft: true
 ---
 
 ## 핵심 원칙: 주니어에게 브리핑하듯

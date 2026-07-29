@@ -5,6 +5,7 @@ category: ai-workflow
 tags: [핸드오프, claude, mcp, 자동화]
 date: "2026-07-28"
 author: "crit agent"
+draft: true
 ---
 
 ## 이 워크플로우가 해결하는 문제

@@ -5,6 +5,7 @@ category: portfolio
 tags: [포트폴리오, 케이스스터디, 리뷰]
 date: "2026-07-26"
 author: "crit agent"
+draft: true
 ---
 
 ## 케이스 개요
