@@ -34,13 +34,13 @@ function CompanyLogo({ job }: { job: Job }) {
       <img
         src={job.logo}
         alt={`${job.company} 로고`}
-        className="size-16 rounded-2xl border border-neutral-200 bg-white object-contain p-2"
+        className="size-16 rounded-2xl border border-neutral-200 bg-white object-contain p-2 dark:border-neutral-800 dark:bg-neutral-900"
       />
     );
   }
 
   return (
-    <div className="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 text-xl font-bold text-neutral-500">
+    <div className="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 text-xl font-bold text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
       {job.company.slice(0, 1)}
     </div>
   );
@@ -50,9 +50,9 @@ function DetailSection({ title, items }: { title: string; items: string[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="rounded-2xl border border-neutral-200 bg-white p-4">
-      <h2 className="text-sm font-bold text-neutral-900">{title}</h2>
-      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-neutral-600 marker:text-brand">
+    <section className="rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+      <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">{title}</h2>
+      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-neutral-600 marker:text-brand dark:text-neutral-300">
         {items.map((item) => (
           <li key={item}>{item}</li>
         ))}
@@ -74,31 +74,31 @@ export default async function JobDetailPage({
     <article>
       <Link
         href="/jobs"
-        className="mb-4 inline-flex text-sm font-medium text-neutral-500 underline underline-offset-2"
+        className="mb-4 inline-flex text-sm font-medium text-neutral-500 underline underline-offset-2 dark:text-neutral-400"
       >
         ← 채용 목록
       </Link>
 
-      <header className="rounded-3xl border border-neutral-200 bg-white p-5">
+      <header className="rounded-3xl border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900/80">
         <div className="flex gap-4">
           <CompanyLogo job={job} />
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-neutral-500">{job.company}</p>
+            <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{job.company}</p>
             <h1 className="mt-1 text-2xl font-bold leading-snug tracking-[-0.02em]">
               {job.title}
             </h1>
           </div>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-1.5 text-xs text-neutral-500">
-          <span className="rounded-full bg-neutral-100 px-2 py-0.5">
+        <div className="mt-4 flex flex-wrap gap-1.5 text-xs text-neutral-500 dark:text-neutral-400">
+          <span className="rounded-full bg-neutral-100 px-2 py-0.5 dark:bg-neutral-800">
             {job.location}
           </span>
-          <span className="rounded-full bg-neutral-100 px-2 py-0.5">
+          <span className="rounded-full bg-neutral-100 px-2 py-0.5 dark:bg-neutral-800">
             {EMPLOYMENT_TYPE_LABELS[job.employment_type]}
           </span>
           {job.experience && (
-            <span className="rounded-full bg-neutral-100 px-2 py-0.5">
+            <span className="rounded-full bg-neutral-100 px-2 py-0.5 dark:bg-neutral-800">
               {job.experience}
             </span>
           )}
@@ -107,18 +107,18 @@ export default async function JobDetailPage({
               {job.salary}
             </span>
           )}
-          <time className="rounded-full bg-neutral-100 px-2 py-0.5">
+          <time className="rounded-full bg-neutral-100 px-2 py-0.5 dark:bg-neutral-800">
             게시 {formatDate(job.posted_at)}
           </time>
           {job.expires_at && (
-            <time className="rounded-full bg-neutral-100 px-2 py-0.5">
+            <time className="rounded-full bg-neutral-100 px-2 py-0.5 dark:bg-neutral-800">
               마감 {formatDate(job.expires_at)}
             </time>
           )}
         </div>
 
         {job.summary && (
-          <p className="mt-4 text-sm leading-relaxed text-neutral-700">
+          <p className="mt-4 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
             {job.summary}
           </p>
         )}
@@ -127,16 +127,16 @@ export default async function JobDetailPage({
           href={job.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold text-white transition-opacity active:opacity-80"
+          className="mt-5 flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold text-white transition-opacity active:opacity-80 dark:bg-neutral-100 dark:text-neutral-950"
         >
           실제 공고 보러가기 ↗
         </a>
       </header>
 
       {job.company_description && (
-        <section className="mt-4 rounded-2xl border border-neutral-200 bg-white p-4">
-          <h2 className="text-sm font-bold text-neutral-900">회사 한눈에 보기</h2>
-          <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+        <section className="mt-4 rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+          <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">회사 한눈에 보기</h2>
+          <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
             {job.company_description}
           </p>
         </section>
@@ -153,7 +153,7 @@ export default async function JobDetailPage({
           {job.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs text-neutral-500"
+              className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400"
             >
               #{tag}
             </span>
@@ -162,8 +162,8 @@ export default async function JobDetailPage({
       )}
 
       {job.related_links.length > 0 && (
-        <section className="mt-6 rounded-2xl border border-neutral-200 bg-white p-4">
-          <h2 className="text-sm font-bold text-neutral-900">
+        <section className="mt-6 rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+          <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
             지원 전에 참고할 자료
           </h2>
           <ul className="mt-3 flex flex-col gap-2">
@@ -173,13 +173,13 @@ export default async function JobDetailPage({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block rounded-xl bg-neutral-50 p-3 active:bg-neutral-100"
+                  className="block rounded-xl bg-neutral-50 p-3 active:bg-neutral-100 dark:bg-neutral-800/80 dark:active:bg-neutral-800"
                 >
-                  <div className="mb-1 flex items-center gap-2 text-[11px] font-medium text-neutral-400">
+                  <div className="mb-1 flex items-center gap-2 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
                     <span>{JOB_RELATED_LINK_TYPE_LABELS[link.type]}</span>
                     {link.source_name && <span>· {link.source_name}</span>}
                   </div>
-                  <p className="text-sm font-semibold leading-snug text-neutral-800">
+                  <p className="text-sm font-semibold leading-snug text-neutral-800 dark:text-neutral-100">
                     {link.title}
                   </p>
                 </a>

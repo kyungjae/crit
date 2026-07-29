@@ -1,7 +1,7 @@
 /**
  * 아티클 템플릿 생성 헬퍼.
  * 사용: npm run new:article -- <category> <slug> "제목"
- * 예:  npm run new:article -- news figma-update "Figma 업데이트"
+ * 예:  npm run new:article -- design figma-update "Figma 업데이트"
  */
 import fs from "fs";
 import path from "path";

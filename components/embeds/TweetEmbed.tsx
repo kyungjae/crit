@@ -40,7 +40,7 @@ export default function TweetEmbed({ url }: { url: string }) {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="block rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-600"
+          className="block rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-600 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300"
         >
           X에서 보기 ↗ {url}
         </a>

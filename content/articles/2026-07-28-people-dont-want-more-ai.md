@@ -1,7 +1,7 @@
 ---
 title: "AI 기능을 더 넣는다고 사용자가 더 좋아하지는 않습니다"
 summary: "Smashing Magazine의 ‘No, People Don't Want More AI In Their Life’를 crit 관점에서 다시 읽었습니다. 좋은 AI 기능은 AI라는 사실을 과시하지 않고, 사용자가 이미 하려던 일을 덜 불안하고 덜 번거롭게 만드는 쪽에 가깝습니다."
-category: news
+category: ai-design
 format: deep
 tags: [smashing, ai, ux, 비판]
 date: "2026-07-28"

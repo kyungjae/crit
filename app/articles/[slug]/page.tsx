@@ -48,7 +48,7 @@ export default async function ArticlePage({
   return (
     <article>
       {article.draft && (
-        <p className="mb-3 flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200">
+        <p className="mb-3 flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
           초안 — 피드에 노출되지 않습니다
           <Link href="/drafts" className="shrink-0 underline underline-offset-2">
             목록
@@ -62,7 +62,7 @@ export default async function ArticlePage({
           <img
             src={article.hero}
             alt=""
-            className="aspect-[4/3] w-full bg-neutral-100 object-cover sm:rounded-2xl"
+            className="aspect-[4/3] w-full bg-neutral-100 object-cover sm:rounded-2xl dark:bg-neutral-800"
           />
         </div>
       )}
@@ -71,9 +71,9 @@ export default async function ArticlePage({
         <span className="rounded-full bg-brand/10 px-2 py-0.5 font-medium text-brand">
           {CATEGORY_LABELS[article.category]}
         </span>
-        <time className="text-neutral-400">{formatDate(article.date)}</time>
+        <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
         {article.format !== "brief" && (
-          <span className="text-neutral-400">
+          <span className="text-neutral-400 dark:text-neutral-500">
             · {article.readingMinutes}분 읽기
           </span>
         )}
@@ -82,7 +82,7 @@ export default async function ArticlePage({
       <h1 className="text-2xl font-bold leading-snug tracking-[-0.02em]">
         {article.title}
       </h1>
-      <p className="mt-2 text-sm leading-relaxed text-neutral-500">
+      <p className="mt-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
         {article.summary}
       </p>
 
@@ -100,12 +100,12 @@ export default async function ArticlePage({
       <ArticleBody markdown={article.body} format={article.format} />
 
       {article.credits.length > 0 && (
-        <dl className="mt-8 rounded-xl border border-neutral-200/80 bg-white p-4">
-          <dt className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400">
+        <dl className="mt-8 rounded-xl border border-neutral-200/80 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+          <dt className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400 dark:text-neutral-500">
             크레딧
           </dt>
           {article.credits.map((credit) => (
-            <dd key={credit} className="text-sm leading-relaxed text-neutral-600">
+            <dd key={credit} className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
               {credit}
             </dd>
           ))}
@@ -117,7 +117,7 @@ export default async function ArticlePage({
           {article.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs text-neutral-500"
+              className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400"
             >
               #{tag}
             </span>
@@ -125,11 +125,11 @@ export default async function ArticlePage({
         </div>
       )}
 
-      <div className="mt-8 border-t border-neutral-200 pt-6">
+      <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
         <Rating slug={article.slug} />
       </div>
 
-      <div className="mt-8 border-t border-neutral-200 pt-6">
+      <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
         <Comments slug={article.slug} />
       </div>
     </article>

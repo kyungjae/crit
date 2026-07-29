@@ -21,7 +21,7 @@ export default function LinksPage() {
   return (
     <div>
       <h1 className="mb-1 text-xl font-bold">링크</h1>
-      <p className="mb-5 text-sm text-neutral-500">
+      <p className="mb-5 text-sm text-neutral-500 dark:text-neutral-400">
         필요할 때 항상 안 보이는 그 사이트들, 화면으로 보고 고르세요
       </p>
 
@@ -30,7 +30,7 @@ export default function LinksPage() {
           <section key={group.title}>
             <div className="mb-3 flex items-end justify-between gap-3">
               <h2 className="text-[15px] font-bold">{group.title}</h2>
-              <span className="text-[11px] text-neutral-400">
+              <span className="text-[11px] text-neutral-400 dark:text-neutral-500">
                 {group.items.length}개
               </span>
             </div>
@@ -41,9 +41,9 @@ export default function LinksPage() {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block overflow-hidden rounded-2xl border border-neutral-200/80 bg-white transition-colors active:bg-neutral-50"
+                    className="group block overflow-hidden rounded-2xl border border-neutral-200/80 bg-white transition-colors active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:active:bg-neutral-900"
                   >
-                    <div className="relative aspect-[1.55] overflow-hidden bg-neutral-100">
+                    <div className="relative aspect-[1.55] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={screenshotUrl(item.url, item.preview)}
@@ -52,18 +52,18 @@ export default function LinksPage() {
                         className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                       />
                       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/35 to-transparent" />
-                      <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-medium text-neutral-600 shadow-sm backdrop-blur">
+                      <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-medium text-neutral-600 shadow-sm backdrop-blur dark:bg-neutral-950/80 dark:text-neutral-300">
                         {hostname(item.url)}
                       </span>
                     </div>
                     <div className="p-3">
                       <div className="flex items-start justify-between gap-3">
-                        <span className="text-sm font-semibold text-neutral-900">
+                        <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
                           {item.name}
                         </span>
-                        <span className="shrink-0 text-xs text-neutral-300">↗</span>
+                        <span className="shrink-0 text-xs text-neutral-300 dark:text-neutral-600">↗</span>
                       </div>
-                      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-neutral-500">
+                      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
                         {item.description}
                       </p>
                     </div>

@@ -1,7 +1,7 @@
 ---
 title: "디자인-개발 핸드오프를 AI로 자동화하는 워크플로우"
 summary: "시안에서 개발 스펙 문서까지, Claude와 Figma MCP를 연결해 핸드오프 문서를 자동 생성하는 실전 워크플로우를 소개합니다."
-category: ai-workflow
+category: ai-design
 tags: [핸드오프, claude, mcp, 자동화]
 date: "2026-07-28"
 author: "crit agent"

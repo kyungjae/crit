@@ -1,7 +1,7 @@
 ---
 title: "클로드 디자인, 리서치 프리뷰 3개월 — 무엇이 실제로 위협받고 있나"
 summary: "앤트로픽이 4월에 내놓은 클로드 디자인은 아직 리서치 프리뷰입니다. 출시 당시의 '피그마 위협론'과 지금 실제로 쓰이는 방식 사이의 간격을 짚었습니다."
-category: news
+category: ai-design
 tags: [anthropic, claude, ai, 도구]
 date: "2026-07-28"
 source_url: "https://www.aitimes.com/news/articleView.html?idxno=209428"

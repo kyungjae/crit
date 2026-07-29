@@ -1,7 +1,7 @@
 ---
 title: "AI에게 일을 맡기기 전에, 먼저 회사 문서 구조를 고쳐야 한다"
 summary: "Patrick Neeman은 AI가 틀리는 이유를 모델 성능보다 방치된 정보 구조에서 찾습니다. crit은 이 글을 AI 시대의 디자인 시스템과 조직 지식 관리 문제로 읽습니다. 자동화보다 먼저 정리해야 할 판단 기준을 짚었습니다."
-category: ai-workflow
+category: ai-design
 format: deep
 draft: true
 tags: [ai, 정보구조, rag, 디자인시스템, ux]

@@ -1,7 +1,7 @@
 ---
 title: "Paper가 말하는 AI 시대의 디자인 도구"
 summary: "Designer Fund가 Paper 창업자 Stephen Haney를 인터뷰했습니다. 핵심은 AI 기능을 붙인 디자인 툴이 아니라, 디자이너와 엔지니어와 에이전트가 같은 HTML/CSS 캔버스를 다루는 구조입니다. crit은 이 글을 ‘디자이너를 대체하지 않는 AI 도구’의 조건으로 읽습니다."
-category: ai-workflow
+category: ai-design
 format: deep
 draft: true
 tags: [Paper, 디자인도구, AI, 프로토타이핑, 디자인엔지니어링]

@@ -31,18 +31,18 @@ export default function LinkCard({ url }: { url: string }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="not-prose my-6 flex overflow-hidden rounded-xl border border-neutral-200 bg-white no-underline transition-colors active:bg-neutral-50"
+      className="not-prose my-6 flex overflow-hidden rounded-xl border border-neutral-200 bg-white no-underline transition-colors active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:active:bg-neutral-900"
     >
       <div className="min-w-0 flex-1 p-3.5">
-        <p className="line-clamp-2 text-sm font-semibold leading-snug text-neutral-900">
+        <p className="line-clamp-2 text-sm font-semibold leading-snug text-neutral-900 dark:text-neutral-100">
           {data?.title ?? domain}
         </p>
         {data?.description && (
-          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-neutral-500">
+          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
             {data.description}
           </p>
         )}
-        <p className="mt-1.5 text-[11px] text-neutral-400">
+        <p className="mt-1.5 text-[11px] text-neutral-400 dark:text-neutral-500">
           {data?.siteName ?? domain} ↗
         </p>
       </div>

@@ -1,7 +1,7 @@
 ---
 title: "AI 에이전트는 첫 프롬프트가 아니라 다섯 번째 수정에서 무너진다"
 summary: "Philipp Schmid가 소개한 EvoCode-Bench는 AI 에이전트가 깨끗한 첫 작업보다 누적 수정에서 훨씬 약해진다는 점을 보여줍니다. crit은 이 결과를 디자인 시스템과 AI 워크플로의 평가 기준 문제로 읽습니다."
-category: ai-workflow
+category: ai-design
 format: deep
 draft: true
 tags: [ai에이전트, 멀티턴, 디자인시스템, qa, 회귀]

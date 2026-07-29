@@ -1,7 +1,7 @@
 ---
 title: "UX 산출물의 다음 독자는 사람이 아니라 AI일 수 있습니다"
 summary: "NN/g의 UX Context Design 글을 다시 썼습니다. 리서치 보고서와 디자인 원칙은 더 이상 사람이 읽는 문서에만 머물지 않습니다. AI가 제품 결정을 돕는다면, 컨텍스트 자체를 설계하는 일이 UX의 새 작업이 됩니다."
-category: ai-workflow
+category: ai-design
 format: deep
 tags: [nngroup, 컨텍스트, ai, 리서치]
 date: "2026-07-28"

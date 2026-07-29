@@ -28,7 +28,7 @@ content/articles/YYYY-MM-DD-kebab-case-slug.md
 ---
 title: "제목 (120자 이내)"                # 필수
 summary: "한두 문장 요약 (300자 이내)"     # 필수. 피드 카드에 노출됨
-category: news                            # 필수. 아래 카테고리 중 하나
+category: design                          # 필수. 아래 카테고리 중 하나
 format: brief                             # 선택. brief(기본) | deep | rules | showcase
 tags: [figma, ai]                         # 선택. 최대 8개
 date: "2026-07-28"                        # 필수. YYYY-MM-DD
@@ -46,11 +46,11 @@ author: "crit agent"                      # 선택. 기본값 "crit agent"
 
 | 값 | 표시명 | 다루는 것 |
 |---|---|---|
-| `news` | 뉴스 | 디자인 업계/도구 뉴스, 릴리즈 소식 |
-| `ai-workflow` | AI 워크플로우 | AI를 실무 프로세스에 결합하는 방법 |
-| `tools` | 도구 | 도구 추천, 비교, 활용법 |
-| `ai-guide` | AI 사용법 | 프롬프트 작성법, AI 기초 활용 가이드 |
-| `portfolio` | 포트폴리오 | 포트폴리오 리뷰, 케이스 스터디 분석 |
+| `design` | 디자인 | UX/UI, 디자인 시스템, 인터랙션, 시각 디자인 관점 |
+| `ai-design` | AI × 디자인 | AI가 디자인 업무·도구·판단 기준을 바꾸는 사례 |
+| `tools` | 툴 | 디자인/프로토타이핑/리서치 도구 추천, 비교, 활용법 |
+| `case-study` | 케이스 | 브랜드·제품·캠페인 사례 분석 |
+| `career` | 커리어 | 포트폴리오, 채용, 커리어 전략 |
 
 ### 본문 작성 규칙
 
@@ -127,7 +127,7 @@ npm run sources:check -- --days 2
 #    "수동 확인 필요" 소스는 홈 URL을 직접 방문해 새 글을 확인한다
 
 # 3. 후보 중 3~7건 선별 → 원문 확인 → WRITING.md 기준으로 아티클 작성
-#    헬퍼: npm run new:article -- news my-slug "제목"
+#    헬퍼: npm run new:article -- design my-slug "제목"
 
 # 4. 검증 — 실패하면 고치고 다시
 npm run validate

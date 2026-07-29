@@ -1,7 +1,7 @@
 ---
 title: "Pfizer의 진짜 리브랜드는 로고가 아니었다 — Pentagram이 만든 첫 브랜드 시스템"
 summary: "2021년의 이중나선 로고는 다른 곳에서 나왔습니다. Pentagram이 한 일은 그 아래에 시스템을 깐 것 — 마스터브랜드와 수십 개 제품 브랜드를 어떻게 한 생태계로 묶었는지 봅니다."
-category: portfolio
+category: case-study
 format: showcase
 draft: true
 tags: [브랜딩, pentagram, 디자인시스템, 케이스스터디, bi]

@@ -81,13 +81,13 @@ export default function DraftPublishButton({
         type="button"
         onClick={onClick}
         disabled={status === "publishing" || status === "done"}
-        className="rounded-full bg-neutral-950 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-brand disabled:cursor-not-allowed disabled:bg-neutral-300"
+        className="rounded-full bg-neutral-950 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-brand disabled:cursor-not-allowed disabled:bg-neutral-300 dark:bg-neutral-100 dark:text-neutral-950 dark:disabled:bg-neutral-700 dark:disabled:text-neutral-400"
       >
         {status === "publishing" ? "발행 중…" : status === "done" ? "발행 요청됨" : "발행"}
       </button>
       {message && (
         <span
-          className={`text-xs ${status === "error" ? "text-red-600" : "text-neutral-500"}`}
+          className={`text-xs ${status === "error" ? "text-red-600 dark:text-red-400" : "text-neutral-500 dark:text-neutral-400"}`}
         >
           {message}
         </span>

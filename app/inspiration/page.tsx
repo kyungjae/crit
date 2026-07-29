@@ -12,12 +12,12 @@ export default function InspirationPage() {
 
   return (
     <div>
-      <div className="mb-4 rounded-3xl border border-neutral-200 bg-white p-4">
+      <div className="mb-4 rounded-3xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
           Inspiration feed
         </p>
         <h1 className="mt-1 text-2xl font-bold tracking-[-0.02em]">영감</h1>
-        <p className="mt-1 text-sm leading-relaxed text-neutral-500">
+        <p className="mt-1 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
           포스터 · BI · 인터페이스 · 모션을 핀터레스트처럼 가볍게 넘겨보는 피드
         </p>
       </div>

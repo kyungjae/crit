@@ -9,7 +9,7 @@ export default function ArticleCard({ article }: { article: Article }) {
     <li>
       <Link
         href={`/articles/${article.slug}`}
-        className="block rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors active:bg-neutral-50"
+        className="block rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:shadow-none dark:active:bg-neutral-900"
       >
         <div className="flex items-start gap-3.5">
           <div className="min-w-0 flex-1">
@@ -19,35 +19,35 @@ export default function ArticleCard({ article }: { article: Article }) {
               </span>
               {article.source_name && (
                 <>
-                  <span className="text-neutral-300">·</span>
-                  <span className="text-neutral-400">
+                  <span className="text-neutral-300 dark:text-neutral-700">·</span>
+                  <span className="text-neutral-400 dark:text-neutral-500">
                     {article.source_name}
                   </span>
                 </>
               )}
             </div>
-            <h2 className="text-[17px] font-semibold leading-snug text-neutral-900">
+            <h2 className="text-[17px] font-semibold leading-snug text-neutral-900 dark:text-neutral-100">
               {article.title}
             </h2>
-            <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500">
+            <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
               {article.summary}
             </p>
-            <div className="mt-2 flex items-center gap-1.5 text-[11px] text-neutral-400">
+            <div className="mt-2 flex items-center gap-1.5 text-[11px] text-neutral-400 dark:text-neutral-500">
               <time>{formatDate(article.date)}</time>
               {article.format === "rules" && article.ruleCount > 0 && (
-                <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-medium text-neutral-500">
+                <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
                   규칙 {article.ruleCount}개
                 </span>
               )}
               {article.format === "deep" && (
-                <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-medium text-neutral-500">
+                <span className="rounded bg-neutral-100 px-1.5 py-0.5 font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
                   긴 글 · {article.readingMinutes}분
                 </span>
               )}
             </div>
           </div>
           {article.thumbnail && (
-            <div className="relative size-20 shrink-0 overflow-hidden rounded-xl bg-neutral-100">
+            <div className="relative size-20 shrink-0 overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800">
               <Image
                 src={article.thumbnail}
                 alt=""

@@ -6,21 +6,21 @@ import { z } from "zod";
  */
 
 export const CATEGORIES = [
-  "news",
-  "ai-workflow",
+  "design",
+  "ai-design",
   "tools",
-  "ai-guide",
-  "portfolio",
+  "case-study",
+  "career",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];
 
 export const CATEGORY_LABELS: Record<Category, string> = {
-  news: "뉴스",
-  "ai-workflow": "AI 워크플로우",
-  tools: "도구",
-  "ai-guide": "AI 사용법",
-  portfolio: "포트폴리오",
+  design: "디자인",
+  "ai-design": "AI × 디자인",
+  tools: "툴",
+  "case-study": "케이스",
+  career: "커리어",
 };
 
 /**

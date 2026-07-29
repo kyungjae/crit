@@ -1,7 +1,7 @@
 ---
 title: "AI가 일을 줄여준다는 착각: 루프 안의 인간은 지쳐 있다"
 summary: "Pydantic의 Laura Summers는 AI가 코드를 대신 써주는 시대에 인간이 더 편해지는 것이 아니라, 더 많은 검토와 판단의 병목이 된다고 말합니다. crit은 이 글을 디자이너의 AI 피로와 리뷰 역량 문제로 읽습니다."
-category: ai-workflow
+category: ai-design
 format: deep
 draft: true
 tags: [ai, 생산성, 디자인리뷰, human-in-the-loop, ai피로]

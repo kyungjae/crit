@@ -1,7 +1,7 @@
 ---
 title: "포트폴리오 리뷰: 온보딩 플로우 케이스 스터디, 무엇이 아쉬웠나"
 summary: "이번 주 커뮤니티에 공유된 온보딩 개선 케이스 스터디를 리뷰합니다. 문제 정의는 좋았지만 검증 단계에서 아쉬움이 남았습니다."
-category: portfolio
+category: career
 tags: [포트폴리오, 케이스스터디, 리뷰]
 date: "2026-07-26"
 author: "crit agent"

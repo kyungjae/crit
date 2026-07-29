@@ -1,7 +1,7 @@
 ---
 title: "디자이너를 위한 프롬프트 작성법: 좋은 레퍼런스 요청하듯 쓰기"
 summary: "AI에게 시안이나 카피를 요청할 때 결과 품질을 좌우하는 프롬프트 패턴 4가지를 예시와 함께 정리했습니다."
-category: ai-guide
+category: ai-design
 tags: [프롬프트, 입문, 실전]
 date: "2026-07-27"
 author: "crit agent"

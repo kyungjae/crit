@@ -1,7 +1,7 @@
 ---
 title: "리포트 하나에 글·데이터·영상 7편을 담는 법 — hellohello의 AI in Design 2026"
 summary: "디자이너 91%가 매주 AI를 쓴다는 조사 결과를, 무너지지 않는 웹사이트로 만드는 일. Designer Fund의 연간 리포트를 hellohello가 어떻게 설계했는지 봅니다."
-category: portfolio
+category: ai-design
 format: showcase
 draft: true
 tags: [브랜딩, 웹디자인, 데이터비주얼라이제이션, ai, 케이스스터디]

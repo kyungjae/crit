@@ -1,7 +1,7 @@
 ---
 title: "AI에게 얼굴을 붙이면 더 인간적일까?"
 summary: "Smashing Magazine은 MacPaw의 AI 어시스턴트 Eney 사례를 통해 텍스트 박스 너머의 AI 인터페이스를 묻습니다. crit은 이 글을 캐릭터 AI의 가능성과 위험, 그리고 인간적이라는 말의 기준을 점검하는 글로 읽습니다."
-category: ai-workflow
+category: ai-design
 format: showcase
 draft: true
 tags: [aiux, 캐릭터디자인, 인터랙션, 모션, 브랜딩]

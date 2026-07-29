@@ -99,11 +99,11 @@ function Figure({
         src={src}
         alt={alt}
         loading="lazy"
-        className={`w-full bg-neutral-100 ${bleed ? BLEED_ROUNDED : ROUNDED}`}
+        className={`w-full bg-neutral-100 dark:bg-neutral-800 ${bleed ? BLEED_ROUNDED : ROUNDED}`}
       />
       {(title || alt) && (
         <figcaption
-          className={`mt-2 text-center text-xs leading-relaxed text-neutral-400 ${
+          className={`mt-2 text-center text-xs leading-relaxed text-neutral-400 dark:text-neutral-500 ${
             bleed ? "px-4 sm:px-0" : ""
           }`}
         >
@@ -139,12 +139,12 @@ function ImageGrid({
             src={img.src}
             alt={img.alt}
             loading="lazy"
-            className={`w-full bg-neutral-100 ${
+            className={`w-full bg-neutral-100 dark:bg-neutral-800 ${
               bleed ? "rounded-none sm:rounded-lg" : "rounded-lg"
             }`}
           />
           {img.alt && (
-            <figcaption className="mt-1.5 px-1 text-center text-[11px] font-medium leading-snug text-neutral-500">
+            <figcaption className="mt-1.5 px-1 text-center text-[11px] font-medium leading-snug text-neutral-500 dark:text-neutral-400">
               {img.alt}
             </figcaption>
           )}
@@ -155,10 +155,10 @@ function ImageGrid({
 }
 
 const CALLOUTS = {
-  TIP: { label: "팁", className: "border-emerald-200 bg-emerald-50/60" },
-  NOTE: { label: "참고", className: "border-sky-200 bg-sky-50/60" },
-  WARNING: { label: "주의", className: "border-amber-200 bg-amber-50/60" },
-  IMPORTANT: { label: "중요", className: "border-violet-200 bg-violet-50/60" },
+  TIP: { label: "팁", className: "border-emerald-200 bg-emerald-50/60 dark:border-emerald-900 dark:bg-emerald-950/30" },
+  NOTE: { label: "참고", className: "border-sky-200 bg-sky-50/60 dark:border-sky-900 dark:bg-sky-950/30" },
+  WARNING: { label: "주의", className: "border-amber-200 bg-amber-50/60 dark:border-amber-900 dark:bg-amber-950/30" },
+  IMPORTANT: { label: "중요", className: "border-violet-200 bg-violet-50/60 dark:border-violet-900 dark:bg-violet-950/30" },
 } as const;
 
 /** GFM alert 문법: > [!TIP] */
@@ -228,10 +228,10 @@ const createComponents = (bleed: boolean): Components => ({
       <div
         className={`not-prose my-5 rounded-xl border px-4 py-3 ${className}`}
       >
-        <p className="mb-1 text-[11px] font-bold tracking-wide text-neutral-500">
+        <p className="mb-1 text-[11px] font-bold tracking-wide text-neutral-500 dark:text-neutral-400">
           {label}
         </p>
-        <div className="text-sm leading-relaxed text-neutral-700 [&>p]:m-0 [&>p+p]:mt-2">
+        <div className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200 [&>p]:m-0 [&>p+p]:mt-2">
           {stripMarker(children)}
         </div>
       </div>

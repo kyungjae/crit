@@ -1,7 +1,7 @@
 ---
 title: "Atlassian의 DESIGN.md — AI에게 '우리 디자인'을 가르치는 파일"
 summary: "AI가 만든 UI가 브랜드 없는 평균으로 수렴하는 문제. Atlassian이 공개한 DESIGN.md는 디자인 컨텍스트를 파일로 정의해 AI에 주입하는 접근입니다."
-category: ai-workflow
+category: ai-design
 tags: [atlassian, 디자인시스템, ai, 컨텍스트]
 date: "2026-07-28"
 source_url: "https://braindetox.kr/posts/atlassian_design_md_2026.html"

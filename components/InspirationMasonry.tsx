@@ -46,7 +46,7 @@ export default function InspirationMasonry({ items }: { items: InspirationItem[]
 
   if (items.length === 0) {
     return (
-      <p className="py-16 text-center text-sm text-neutral-400">
+      <p className="py-16 text-center text-sm text-neutral-400 dark:text-neutral-500">
         아직 큐레이션된 이미지가 없습니다.
       </p>
     );
@@ -63,9 +63,9 @@ export default function InspirationMasonry({ items }: { items: InspirationItem[]
               href={item.source_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block break-inside-avoid overflow-hidden rounded-2xl border border-neutral-200/80 bg-white shadow-sm shadow-neutral-200/40 transition-transform duration-300 active:scale-[0.99]"
+              className="group block break-inside-avoid overflow-hidden rounded-2xl border border-neutral-200/80 bg-white shadow-sm shadow-neutral-200/40 transition-transform duration-300 active:scale-[0.99] dark:border-neutral-800 dark:bg-neutral-900/80 dark:shadow-none"
             >
-              <div className="relative overflow-hidden bg-neutral-100">
+              <div className="relative overflow-hidden bg-neutral-100 dark:bg-neutral-800">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.image}
@@ -82,7 +82,7 @@ export default function InspirationMasonry({ items }: { items: InspirationItem[]
                   {item.tags.slice(0, 1).map((tag) => (
                     <span
                       key={tag}
-                      className="ml-auto rounded-full bg-white/85 px-2 py-0.5 text-[10px] font-medium text-neutral-600 backdrop-blur"
+                      className="ml-auto rounded-full bg-white/85 px-2 py-0.5 text-[10px] font-medium text-neutral-600 backdrop-blur dark:bg-neutral-950/75 dark:text-neutral-300"
                     >
                       #{tag}
                     </span>
@@ -90,11 +90,11 @@ export default function InspirationMasonry({ items }: { items: InspirationItem[]
                 </div>
               </div>
               <div className="px-2.5 py-2.5">
-                <p className="line-clamp-2 text-xs font-semibold leading-snug text-neutral-800">
+                <p className="line-clamp-2 text-xs font-semibold leading-snug text-neutral-800 dark:text-neutral-100">
                   {item.title}
                 </p>
                 {item.source_name && (
-                  <p className="mt-1 text-[10px] text-neutral-400">
+                  <p className="mt-1 text-[10px] text-neutral-400 dark:text-neutral-500">
                     {item.source_name} ↗
                   </p>
                 )}
@@ -104,7 +104,7 @@ export default function InspirationMasonry({ items }: { items: InspirationItem[]
         })}
       </div>
 
-      <div ref={sentinelRef} className="py-6 text-center text-xs text-neutral-400">
+      <div ref={sentinelRef} className="py-6 text-center text-xs text-neutral-400 dark:text-neutral-500">
         {visibleCount < items.length ? "더 불러오는 중…" : "오늘의 영감 끝"}
       </div>
     </>

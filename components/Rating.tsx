@@ -47,7 +47,7 @@ export default function Rating({ slug }: { slug: string }) {
 
   return (
     <section>
-      <h2 className="text-sm font-semibold text-neutral-700">
+      <h2 className="text-sm font-semibold text-neutral-700 dark:text-neutral-200">
         도움이 됐다면 가볍게 눌러주세요
       </h2>
       <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -56,7 +56,7 @@ export default function Rating({ slug }: { slug: string }) {
           aria-label="반응 보내기"
           disabled={disabled}
           onClick={clap}
-          className="group relative inline-flex min-w-20 items-center justify-center gap-2 overflow-visible rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-800 shadow-sm transition active:scale-95 enabled:hover:border-brand/40 enabled:hover:bg-brand/5 disabled:cursor-not-allowed disabled:opacity-60"
+          className="group relative inline-flex min-w-20 items-center justify-center gap-2 overflow-visible rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-800 shadow-sm transition active:scale-95 enabled:hover:border-brand/40 enabled:hover:bg-brand/5 disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:shadow-none dark:enabled:hover:border-brand/50 dark:enabled:hover:bg-brand/10"
         >
           {burstKey > 0 ? (
             <span
@@ -77,7 +77,7 @@ export default function Rating({ slug }: { slug: string }) {
             {data === null ? "…" : data.total}
           </span>
         </button>
-        <span className="text-sm text-neutral-500">
+        <span className="text-sm text-neutral-500 dark:text-neutral-400">
           {data === null
             ? "불러오는 중…"
             : data.available === false
