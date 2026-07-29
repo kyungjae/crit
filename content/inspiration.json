@@ -1,6 +1,114 @@
 {
-  "$comment": "영감 피드. 에이전트가 잘 만들어진 포스터/BI/인터페이스 이미지를 큐레이션한다. image는 반드시 출처가 명확하고 핫링크가 허용되는 URL만(위키미디어 커먼즈 Special:FilePath, 공식 유튜브 썸네일 등), source_url은 원 출처 페이지. 저작권 문제 제기 시 즉시 제거한다.",
+  "$comment": "영감 피드. 에이전트가 잘 만들어진 포스터/BI/인터페이스 이미지를 큐레이션한다. image는 반드시 출처가 명확하고 핫링크가 허용되는 URL만(위키미디어 커먼즈 Special:FilePath, 공식 유튜브 썸네일, 공개 웹페이지 스크린샷 서비스 등), source_url은 원 출처 페이지. 저작권 문제 제기 시 즉시 제거한다.",
   "items": [
+    {
+      "id": "2026-07-29-material-design-motion",
+      "title": "Material Design — Motion 가이드",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://m3.material.io/styles/motion/overview",
+      "source_url": "https://m3.material.io/styles/motion/overview",
+      "source_name": "Material Design",
+      "tags": ["interface", "motion", "system"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-apple-hig-visionos",
+      "title": "Apple HIG — visionOS 디자인 원칙",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos",
+      "source_name": "Apple Developer",
+      "tags": ["interface", "spatial", "system"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-stripe-docs-home",
+      "title": "Stripe Docs — 정보 밀도가 높은 개발자 문서 UI",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://docs.stripe.com",
+      "source_url": "https://docs.stripe.com",
+      "source_name": "Stripe Docs",
+      "tags": ["interface", "docs", "ia"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-linear-home",
+      "title": "Linear — 어두운 톤의 프로덕트 랜딩",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://linear.app",
+      "source_url": "https://linear.app",
+      "source_name": "Linear",
+      "tags": ["web", "saas", "motion"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-raycast-home",
+      "title": "Raycast — 생산성 도구 랜딩과 인터랙션 톤",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://www.raycast.com",
+      "source_url": "https://www.raycast.com",
+      "source_name": "Raycast",
+      "tags": ["web", "productivity", "interface"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-figma-sites-overview",
+      "title": "Figma Sites — 제품 소개 페이지 구조",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://www.figma.com/sites/",
+      "source_url": "https://www.figma.com/sites/",
+      "source_name": "Figma",
+      "tags": ["web", "interface", "tool"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-notion-ai",
+      "title": "Notion AI — 업무 도구의 AI 소개 화면",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://www.notion.com/product/ai",
+      "source_url": "https://www.notion.com/product/ai",
+      "source_name": "Notion",
+      "tags": ["ai", "web", "product"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-anthropic-claude",
+      "title": "Claude — 차분한 AI 제품 랜딩 톤",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://www.anthropic.com/claude",
+      "source_url": "https://www.anthropic.com/claude",
+      "source_name": "Anthropic",
+      "tags": ["ai", "web", "brand"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-openai-chatgpt",
+      "title": "ChatGPT — 대중 AI 제품의 미니멀 소개 화면",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://openai.com/chatgpt/overview/",
+      "source_url": "https://openai.com/chatgpt/overview/",
+      "source_name": "OpenAI",
+      "tags": ["ai", "web", "product"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-airbnb-design",
+      "title": "Airbnb Design — 브랜드/제품 디자인 아카이브",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://airbnb.design",
+      "source_url": "https://airbnb.design",
+      "source_name": "Airbnb Design",
+      "tags": ["article", "brand", "product"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-spotify-design",
+      "title": "Spotify Design — 콘텐츠와 제품 디자인의 접점",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://spotify.design",
+      "source_url": "https://spotify.design",
+      "source_name": "Spotify Design",
+      "tags": ["article", "brand", "product"],
+      "date": "2026-07-29"
+    },
+    {
+      "id": "2026-07-29-google-design",
+      "title": "Google Design — 인터페이스와 리서치 아티클 허브",
+      "image": "https://image.thum.io/get/width/720/crop/980/noanimate/https://design.google",
+      "source_url": "https://design.google",
+      "source_name": "Google Design",
+      "tags": ["article", "research", "interface"],
+      "date": "2026-07-29"
+    },
     {
       "id": "2026-07-28-muller-brockmann-beethoven",
       "title": "요제프 뮐러-브로크만 — 베토벤 콘서트 포스터 (1955)",
@@ -61,7 +169,7 @@
       "image": "https://img.youtube.com/vi/3evAfmLVZK8/hqdefault.jpg",
       "source_url": "https://www.youtube.com/watch?v=3evAfmLVZK8",
       "source_name": "Figma (YouTube)",
-      "tags": ["interface", "motion"],
+      "tags": ["interface", "motion", "video"],
       "date": "2026-07-28"
     },
     {
@@ -70,7 +178,7 @@
       "image": "https://img.youtube.com/vi/rkKoK2JY3cw/hqdefault.jpg",
       "source_url": "https://www.youtube.com/watch?v=rkKoK2JY3cw",
       "source_name": "Figma (YouTube)",
-      "tags": ["interface", "motion", "3d"],
+      "tags": ["interface", "motion", "3d", "video"],
       "date": "2026-07-28"
     }
   ]

@@ -127,6 +127,8 @@ export const linkItemSchema = z.object({
   name: z.string().min(1).max(40),
   url: z.string().url(),
   description: z.string().min(1).max(80),
+  /** 링크 카드에 사용할 수동 프리뷰 이미지. 없으면 화면 캡처 서비스를 폴백으로 사용 */
+  preview: z.string().url().optional(),
 });
 
 export const linksFileSchema = z.object({

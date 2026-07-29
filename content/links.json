@@ -4,11 +4,15 @@
       "title": "레퍼런스 · 영감",
       "items": [
         { "name": "Mobbin", "url": "https://mobbin.com", "description": "실제 앱 UI 패턴 라이브러리. 플로우 단위로 검색" },
+        { "name": "Refero", "url": "https://refero.design", "description": "실제 제품 온보딩·웹·앱 화면 레퍼런스" },
+        { "name": "Page Flows", "url": "https://pageflows.com", "description": "앱/웹 사용자 플로우 영상 레퍼런스" },
         { "name": "Awwwards", "url": "https://www.awwwards.com", "description": "수상작 중심 웹 디자인 레퍼런스" },
         { "name": "Behance", "url": "https://www.behance.net", "description": "브랜딩·그래픽 포트폴리오의 표준" },
         { "name": "Dribbble", "url": "https://dribbble.com", "description": "비주얼 탐색용 숏폼 디자인 피드" },
         { "name": "Land-book", "url": "https://land-book.com", "description": "랜딩 페이지 레퍼런스 모음" },
-        { "name": "Godly", "url": "https://godly.website", "description": "정제된 웹 디자인 큐레이션" }
+        { "name": "Godly", "url": "https://godly.website", "description": "정제된 웹 디자인 큐레이션" },
+        { "name": "Savee", "url": "https://savee.it", "description": "무드보드와 비주얼 레퍼런스 저장/탐색" },
+        { "name": "Design Spells", "url": "https://www.designspells.com", "description": "마이크로인터랙션과 웹 디테일 큐레이션" }
       ]
     },
     {
@@ -35,6 +39,7 @@
         { "name": "Lucide", "url": "https://lucide.dev", "description": "오픈소스 라인 아이콘 표준" },
         { "name": "Heroicons", "url": "https://heroicons.com", "description": "Tailwind 팀의 무료 아이콘" },
         { "name": "Phosphor Icons", "url": "https://phosphoricons.com", "description": "굵기 6단계를 지원하는 아이콘 세트" },
+        { "name": "Iconify", "url": "https://iconify.design", "description": "여러 아이콘 세트를 한 번에 검색/사용" },
         { "name": "The Noun Project", "url": "https://thenounproject.com", "description": "방대한 아이콘 검색" },
         { "name": "unDraw", "url": "https://undraw.co", "description": "컬러 커스텀 가능한 무료 일러스트" }
       ]
@@ -43,7 +48,8 @@
       "title": "사진 · 목업",
       "items": [
         { "name": "Unsplash", "url": "https://unsplash.com", "description": "무료 고해상도 사진" },
-        { "name": "Pexels", "url": "https://www.pexels.com", "description": "무료 사진·영상 소스" }
+        { "name": "Pexels", "url": "https://www.pexels.com", "description": "무료 사진·영상 소스" },
+        { "name": "Shots", "url": "https://shots.so", "description": "제품 스크린샷을 빠르게 목업 이미지로 변환" }
       ]
     },
     {
@@ -52,6 +58,8 @@
         { "name": "Claude", "url": "https://claude.ai", "description": "리서치·카피·코드 생성 범용 AI" },
         { "name": "Midjourney", "url": "https://www.midjourney.com", "description": "이미지 생성의 사실상 표준" },
         { "name": "v0", "url": "https://v0.dev", "description": "프롬프트로 UI 코드 생성" },
+        { "name": "Lovable", "url": "https://lovable.dev", "description": "프롬프트로 웹앱 프로토타입 생성" },
+        { "name": "Relume", "url": "https://www.relume.io", "description": "사이트맵·와이어프레임 생성 AI" },
         { "name": "Recraft", "url": "https://www.recraft.ai", "description": "벡터·브랜드 에셋 특화 생성 AI" }
       ]
     },
@@ -61,7 +69,9 @@
         { "name": "Laws of UX", "url": "https://lawsofux.com", "description": "UX 심리 법칙 한 장 정리" },
         { "name": "NN/g Articles", "url": "https://www.nngroup.com/articles/", "description": "UX 리서치 아티클의 기준점" },
         { "name": "Growth.Design", "url": "https://growth.design", "description": "만화로 보는 프로덕트 심리 케이스 스터디" },
-        { "name": "Checklist Design", "url": "https://www.checklist.design", "description": "화면·컴포넌트별 체크리스트" }
+        { "name": "Baymard Institute", "url": "https://baymard.com", "description": "이커머스 UX 리서치와 벤치마크" },
+        { "name": "Checklist Design", "url": "https://www.checklist.design", "description": "화면·컴포넌트별 체크리스트" },
+        { "name": "Deceptive Patterns", "url": "https://www.deceptive.design", "description": "다크패턴 사례와 윤리적 UX 기준" }
       ]
     }
   ]
