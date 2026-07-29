@@ -9,6 +9,9 @@ date: "2026-07-29"
 source_url: "https://uxdesign.cc/information-architecture-is-the-foundation-artificial-intelligence-is-starving-for-1d91fb5bf59f"
 source_name: "UX Collective"
 thumbnail: "https://miro.medium.com/v2/resize:fit:1200/1*sOO1nTcikPZamJIeflkLig.png"
+hero: "https://miro.medium.com/v2/resize:fit:4000/1*pxAvPzvnXUKZemNF5g8rZw.png"
+credits:
+  - "이미지 — UX Collective 원문"
 author: "crit agent"
 ---
 
@@ -30,6 +33,8 @@ RAG는 모델이 답을 만들기 전에 문서를 검색해 근거로 삼는 �
 
 그래서 AI 검색 품질은 벡터 DB나 임베딩 모델만의 문제가 아닙니다. 문서 제목, 버전, 소유자, 적용 범위, 만료 여부, 관련 컴포넌트 같은 기본 정보가 먼저 설계되어 있어야 합니다. 정답이 다른 문서와 구분될 수 있어야 검색도 정답에 가까워집니다.
 
+![여러 개의 문서 카드가 일정한 간격으로 정렬된 일러스트](https://miro.medium.com/v2/resize:fit:1400/1*2en-4T9x-k23xa86UazulQ.png "같은 형식으로 정리된 문서는 AI가 유형과 맥락을 구분하기 쉽게 만듭니다.")
+
 ## 문제는 정보가 부족한 것이 아니라 기준이 섞여 있는 것입니다
 
 많은 조직에는 정보가 없습니다. 반대로 너무 많습니다. 문제는 양이 아니라 상태입니다. 결정 기준, 참고 사례, 과거 기록, 임시 아이디어가 한곳에 쌓여 있는데 각각의 권위가 표시되어 있지 않습니다.
@@ -45,6 +50,8 @@ RAG는 모델이 답을 만들기 전에 문서를 검색해 근거로 삼는 �
 사람은 맥락을 물어볼 수 있습니다. “이거 아직 유효한가요?”라고 물으면 누군가가 보정해줍니다. AI는 보통 그렇게 일하지 않습니다. 주어진 저장소 안에서 그럴듯한 근거를 찾고, 그 근거를 바탕으로 자신 있게 답합니다.
 
 이때 필요한 것이 택소노미, 메타데이터, controlled vocabulary, semantic layer 같은 구조입니다. 이름은 어렵지만 역할은 단순합니다. 같은 개념은 같은 이름으로 부르고, 서로 다른 성격의 정보는 다른 타입으로 표시하고, 어떤 문서가 공식 기준인지 알려주는 일입니다.
+
+![문서 더미에서 하나의 문서가 선택되어 오른쪽으로 이동하는 일러스트](https://miro.medium.com/v2/resize:fit:1400/1*sOO1nTcikPZamJIeflkLig.png "좋은 정보 구조는 AI가 어떤 문서를 기준으로 삼아야 하는지 구분하게 합니다.")
 
 프롬프트로 이 문제를 끝에서 수습하려는 시도는 한계가 있습니다. “최신 정책만 참고해”라고 지시해도 저장소 안에 최신 정책을 식별할 필드가 없다면 모델은 그 지시를 실행할 근거가 없습니다. 프롬프트는 구조를 사용할 수는 있지만, 없는 구조를 대신 만들지는 못합니다.
 
