@@ -17,8 +17,9 @@ VC·유튜브에서 새 글을 골라 한국어 아티클로 옮기고, 국내 �
 
 > **콘텐츠 = 파일 = git 커밋.**
 
-관리자 화면도, 콘텐츠 API도 없다. `content/` 아래 파일을 만들고 커밋해서
-푸시하면 그게 발행이다. 되돌리려면 revert 하면 된다.
+관리자 CMS는 없다. 기본은 `content/` 아래 파일을 만들고 커밋해서 푸시하면
+그게 발행이다. `/drafts`의 발행 버튼도 결국 GitHub에 `draft: true` 제거 커밋을
+만드는 얇은 도구다. 되돌리려면 revert 하면 된다.
 
 DB(Prisma)는 **댓글과 박수에만** 쓴다. 아티클은 절대 DB에 넣지 않는다.
 
@@ -38,7 +39,7 @@ app/                   ← 화면. 콘텐츠 작업 중에는 손대지 않는�
   page.tsx               피드 (카테고리 탭)
   articles/[slug]/       아티클 상세 + 박수 + 댓글
   inspiration/ links/ jobs/ drafts/
-  api/comments/ api/ratings/ api/og/
+  api/comments/ api/ratings/ api/og/ api/admin/publish/
 components/  lib/      ← 렌더링·스키마. 기능 변경 때만
 lib/schema.ts          ← 콘텐츠 스키마 원본(zod). 필드 추가는 여기부터
 scripts/               ← 검증·수집·에셋 도구
@@ -79,7 +80,10 @@ git push origin main
 
 - 검수 화면: **`/drafts`** — placeholder 이미지, "교체 필요" 표시, 히어로 누락,
   원문 링크 누락이 경고 칩으로 뜬다.
-- **칩이 하나도 없을 때** `draft` 줄을 지워서 발행한다.
+- 검수 후 카드의 **발행** 버튼을 누르면 `draft: true`를 제거하는 커밋이 만들어진다.
+  라이브에서 쓰려면 Vercel 환경변수 `CRIT_GITHUB_TOKEN`(또는 `GITHUB_TOKEN`)과
+  선택적으로 `CRIT_ADMIN_TOKEN`, `CRIT_CONTENT_BRANCH`가 필요하다.
+- **칩이 하나도 없을 때** 발행하는 것이 원칙이다. 경고가 남으면 버튼에서 다시 확인한다.
 
 반쯤 된 글을 피드에 올리지 않는다. 사람 검수를 기다리는 게 정상 경로다.
 

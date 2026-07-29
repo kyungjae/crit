@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DraftPublishButton from "@/components/DraftPublishButton";
 import { getDraftArticles, getDraftWarnings } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
@@ -17,8 +18,8 @@ export default function DraftsPage() {
     <div>
       <h1 className="mb-1 text-xl font-bold">초안</h1>
       <p className="mb-4 text-sm text-neutral-500">
-        검수 후 frontmatter의 <code className="text-[13px]">draft</code> 를 지우면
-        발행됩니다
+        검수 후 카드의 발행 버튼을 누르면 frontmatter의{" "}
+        <code className="text-[13px]">draft: true</code> 가 제거되어 발행됩니다.
       </p>
 
       {drafts.length === 0 ? (
@@ -30,11 +31,11 @@ export default function DraftsPage() {
           {drafts.map((article) => {
             const warnings = getDraftWarnings(article);
             return (
-              <li key={article.slug}>
-                <Link
-                  href={`/articles/${article.slug}`}
-                  className="block overflow-hidden rounded-2xl border border-neutral-200/80 bg-white transition-colors active:bg-neutral-50"
-                >
+              <li
+                key={article.slug}
+                className="overflow-hidden rounded-2xl border border-neutral-200/80 bg-white transition-colors"
+              >
+                <Link href={`/articles/${article.slug}`} className="block active:bg-neutral-50">
                   {article.hero && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -44,7 +45,9 @@ export default function DraftsPage() {
                       className="aspect-[16/9] w-full bg-neutral-100 object-cover"
                     />
                   )}
-                  <div className="p-4">
+                </Link>
+                <div className="p-4">
+                  <Link href={`/articles/${article.slug}`} className="block">
                     <div className="mb-1.5 flex flex-wrap items-center gap-1.5 text-[11px]">
                       <span className="rounded bg-neutral-900 px-1.5 py-0.5 font-medium text-white">
                         {FORMAT_LABELS[article.format]}
@@ -63,21 +66,27 @@ export default function DraftsPage() {
                     <p className="mt-1 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500">
                       {article.summary}
                     </p>
+                  </Link>
 
-                    {warnings.length > 0 && (
-                      <div className="mt-2.5 flex flex-wrap gap-1.5">
-                        {warnings.map((w) => (
-                          <span
-                            key={w}
-                            className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700 ring-1 ring-amber-200"
-                          >
-                            {w}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </Link>
+                  {warnings.length > 0 && (
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      {warnings.map((w) => (
+                        <span
+                          key={w}
+                          className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700 ring-1 ring-amber-200"
+                        >
+                          {w}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <DraftPublishButton
+                    slug={article.slug}
+                    title={article.title}
+                    warnings={warnings}
+                  />
+                </div>
               </li>
             );
           })}
