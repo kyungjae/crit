@@ -104,7 +104,7 @@ export default function Comments({ slug }: { slug: string }) {
 
       <form
         onSubmit={submit}
-        className={`mt-4 flex flex-col gap-2 ${available ? "" : "hidden"}`}
+        className={`mt-4 scroll-mb-32 flex flex-col gap-2 pb-4 ${available ? "" : "hidden"}`}
       >
         <input
           value={nickname}
@@ -112,7 +112,7 @@ export default function Comments({ slug }: { slug: string }) {
           placeholder="닉네임"
           maxLength={20}
           required
-          className="w-32 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm outline-none focus:border-brand"
+          className="w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand sm:w-32 sm:text-sm"
         />
         <textarea
           value={body}
@@ -121,13 +121,13 @@ export default function Comments({ slug }: { slug: string }) {
           rows={3}
           maxLength={1000}
           required
-          className="w-full resize-none rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm outline-none focus:border-brand"
+          className="min-h-32 w-full resize-y rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand sm:text-sm"
         />
         {error && <p className="text-xs text-red-500">{error}</p>}
         <button
           type="submit"
           disabled={pending}
-          className="self-end rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-opacity disabled:opacity-50"
+          className="w-full rounded-lg bg-neutral-900 px-4 py-3 text-sm font-medium text-white transition-opacity disabled:opacity-50 sm:w-auto sm:self-end sm:py-2"
         >
           {pending ? "등록 중…" : "댓글 등록"}
         </button>

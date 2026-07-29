@@ -52,3 +52,9 @@ h3 {
 .animate-clap-burst {
   animation: clap-burst 720ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
+
+@media (max-width: 640px) {
+  body:has(input:focus, textarea:focus) nav.fixed.bottom-0 {
+    display: none;
+  }
+}
