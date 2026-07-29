@@ -24,7 +24,9 @@ components/            ← UI 컴포넌트 (모바일 퍼스트)
 lib/schema.ts          ← 콘텐츠 zod 스키마 (단일 소스)
 prisma/                ← 댓글/별점 DB (Postgres)
 scripts/               ← 콘텐츠 검증·생성 스크립트
-docs/AGENT.md          ← 에이전트 포스팅 가이드 ★
+docs/HERMES.md         ← 에이전트 운영 안내 (처음 맡으면 여기부터) ★
+docs/AGENT.md          ← 파일 포맷·스키마·게시 절차 정본
+docs/WRITING.md        ← 작성 가이드 (포맷, 임베드, 문체)
 .github/workflows/
   ci.yml               ← push마다 콘텐츠 검증 + 빌드
   daily-curation.yml   ← 매일 07:30 KST 큐레이션 에이전트 실행
@@ -60,8 +62,10 @@ DB 없이 바로 실행됩니다 (댓글/별점만 "준비 중" 표시).
 
 ## 에이전트 자동 포스팅
 
-`docs/AGENT.md`가 에이전트용 단일 가이드입니다 — 파일 포맷, 카테고리 기준,
-게시 절차, 큐레이션 원칙이 정의되어 있습니다.
+에이전트가 이 저장소를 처음 맡으면 **`docs/HERMES.md`** 부터 읽으면 됩니다 —
+저장소 지도, 명령어, 데일리 운영 절차, 절대 규칙, 자주 걸리는 함정이
+한 장에 정리되어 있습니다. 세부 규칙은 `docs/AGENT.md`(포맷·스키마·절차)와
+`docs/WRITING.md`(작성 가이드)에 있습니다.
 
 `.github/workflows/daily-curation.yml`이 매일 아침 Claude Code Action으로
 에이전트를 실행합니다. 활성화하려면 리포지토리 시크릿에 `ANTHROPIC_API_KEY`를
