@@ -87,6 +87,16 @@ credits:                            # 하단 크레딧 블록
 - 브랜드 자산 이미지는 **공식 프레스킷 / 스튜디오 프로젝트 페이지** 출처만 쓰고
   `credits`에 밝힌다.
 
+에셋 URL은 손으로 찾지 말고 추출 도구를 쓴다:
+
+```bash
+npm run assets:find -- https://www.pentagram.com/work/pfizer
+```
+
+og:image(히어로 후보), srcset 최대 해상도, lazy `data-src`, `<video>`, 인라인
+JSON의 에셋까지 뽑아준다. 네트워크가 막힌 환경이면 GitHub Actions의
+**Find Assets** 워크플로를 수동 실행해 요약에서 URL을 받는다.
+
 > [!WARNING]
 > 리브랜드 시점을 확인하라. 스튜디오가 케이스 스터디를 늦게 공개하는 일이 흔하다.
 > 2년 전 작업을 "런칭했습니다"로 쓰면 안 된다 — 케이스 스터디로 쓰면 된다.

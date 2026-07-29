@@ -1,0 +1,35 @@
+# 케이스 스터디 페이지에서 이미지·영상 URL을 추출한다.
+#
+# Actions 탭 → Find Assets → Run workflow → URL 입력.
+# 결과는 실행 요약(Summary)에 표시되므로 복사해서 아티클에 넣으면 된다.
+# 세션 환경에서 외부 사이트 접근이 막힌 경우의 우회가 아니라, 정상 경로다.
+name: Find Assets
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "에셋을 추출할 페이지 URL (공백으로 여러 개 가능)"
+        required: true
+        type: string
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Extract asset URLs
+        run: |
+          {
+            echo '## 추출된 에셋 URL'
+            echo ''
+            echo '```'
+            npm run --silent assets:find -- ${{ inputs.url }} 2>&1
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -12,6 +12,7 @@
     "db:generate": "prisma generate",
     "validate": "tsx scripts/validate-content.ts",
     "sources:check": "tsx scripts/check-sources.ts",
+    "assets:find": "tsx scripts/find-assets.ts",
     "new:article": "tsx scripts/new-article.ts"
   },
   "dependencies": {
