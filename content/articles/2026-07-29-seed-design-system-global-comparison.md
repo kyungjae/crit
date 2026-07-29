@@ -1,6 +1,6 @@
 ---
-title: "SEED는 한국형 디자인 시스템의 다음 단계를 보여줄까"
-summary: "당근의 SEED Design System을 Material Design, Apple HIG, Carbon, Polaris, Atlassian, Fluent 같은 글로벌 시스템과 비교했습니다. SEED의 강점은 컴포넌트 수가 아니라, 브랜드·접근성·멀티플랫폼·AI 문서를 하나의 운영 구조로 묶는 방식에 있습니다."
+title: "SEED는 디자인 시스템을 내부 운영체제로 보여줄까"
+summary: "당근의 SEED Design System을 Material Design, Apple HIG, Carbon, Polaris, Atlassian, Fluent와 비교했습니다. SEED의 흥미로운 지점은 컴포넌트 수가 아니라, 브랜드·접근성·멀티플랫폼·AI 문서를 하나의 운영 구조로 묶으려는 태도입니다."
 category: tools
 format: deep
 draft: true
