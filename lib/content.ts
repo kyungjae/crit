@@ -103,7 +103,7 @@ export function getArticle(slug: string): Article | null {
   return { ...fm, slug, body, ...analyze(body) };
 }
 
-export function getAllJobs(): Job[] {
+export function getAllJobs({ includeExpired = false } = {}): Job[] {
   if (!fs.existsSync(JOBS_DIR)) return [];
   const files = fs.readdirSync(JOBS_DIR).filter((f) => f.endsWith(".json"));
   const jobs = files.flatMap((file) => {
@@ -113,8 +113,12 @@ export function getAllJobs(): Job[] {
 
   const today = new Date().toISOString().slice(0, 10);
   return jobs
-    .filter((j) => !j.expires_at || j.expires_at >= today)
+    .filter((j) => includeExpired || !j.expires_at || j.expires_at >= today)
     .sort((a, b) => b.posted_at.localeCompare(a.posted_at));
+}
+
+export function getJob(id: string): Job | null {
+  return getAllJobs({ includeExpired: true }).find((job) => job.id === id) ?? null;
 }
 
 export function getLinkGroups(): LinkGroup[] {

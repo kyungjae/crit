@@ -62,6 +62,13 @@ export const articleFrontmatterSchema = z.object({
 
 export type ArticleFrontmatter = z.infer<typeof articleFrontmatterSchema>;
 
+export const jobRelatedLinkSchema = z.object({
+  title: z.string().min(1).max(80),
+  url: z.string().url(),
+  source_name: z.string().min(1).max(40).optional(),
+  type: z.enum(["article", "youtube", "company", "news", "other"]).default("article"),
+});
+
 export const jobSchema = z.object({
   id: z.string().min(1),
   company: z.string().min(1),
@@ -79,6 +86,16 @@ export const jobSchema = z.object({
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .optional(),
+  /** 리스트/상세에서 보여줄 회사 로고. 공식 로고가 없으면 favicon/채용 사이트 로고도 허용 */
+  logo: z.string().url().optional(),
+  /** 회사/조직에 대한 한두 문장 설명 */
+  company_description: z.string().max(300).optional(),
+  /** 실제 공고를 읽고 사람이 빠르게 판단할 수 있게 요약한 내용 */
+  summary: z.string().max(500).optional(),
+  responsibilities: z.array(z.string()).max(8).default([]),
+  qualifications: z.array(z.string()).max(8).default([]),
+  preferred: z.array(z.string()).max(8).default([]),
+  related_links: z.array(jobRelatedLinkSchema).max(6).default([]),
 });
 
 export type Job = z.infer<typeof jobSchema>;
@@ -93,6 +110,17 @@ export const EMPLOYMENT_TYPE_LABELS: Record<Job["employment_type"], string> = {
   contract: "계약직",
   freelance: "프리랜서",
   internship: "인턴",
+};
+
+export const JOB_RELATED_LINK_TYPE_LABELS: Record<
+  z.infer<typeof jobRelatedLinkSchema>["type"],
+  string
+> = {
+  article: "아티클",
+  youtube: "YouTube",
+  company: "회사 자료",
+  news: "뉴스",
+  other: "참고 링크",
 };
 
 export const linkItemSchema = z.object({

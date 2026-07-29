@@ -8,9 +8,50 @@
       "location": "서울",
       "employment_type": "full-time",
       "experience": "경력",
-      "tags": ["핀테크", "프로덕트디자인"],
+      "tags": ["핀테크", "프로덕트디자인", "모바일", "UX"],
       "url": "https://toss.im/career/job-detail?job_id=4326315003",
-      "posted_at": "2026-07-28"
+      "posted_at": "2026-07-28",
+      "logo": "https://www.google.com/s2/favicons?domain=toss.im&sz=128",
+      "company_description": "토스는 송금, 결제, 증권, 은행, 보험 등 금융 경험을 하나의 사용자 경험으로 묶어온 핀테크 제품 조직입니다. 디자이너에게는 복잡한 금융 정책과 높은 사용 빈도를 쉬운 제품 경험으로 바꾸는 역량이 중요합니다.",
+      "summary": "토스 계열 제품의 핵심 사용자 흐름을 설계하고, 데이터와 리서치를 바탕으로 전환·리텐션·사용성 문제를 개선하는 Product Designer 포지션입니다. 실제 합류 팀에 따라 멤버십, 투자, 금융 서비스 등 복잡한 정책과 고빈도 모바일 경험을 다룰 가능성이 큽니다.",
+      "responsibilities": [
+        "제품의 핵심 화면과 사용자 흐름을 설계하고 개선합니다.",
+        "정성·정량 데이터를 바탕으로 사용자의 불편과 전환 병목을 찾습니다.",
+        "복잡한 금융 정책, 결제, 구독 관리 같은 정보를 사용자가 이해하기 쉬운 UI로 풀어냅니다.",
+        "PM, 개발자, 데이터 분석가와 함께 실험하고 출시 후 지표를 확인합니다."
+      ],
+      "qualifications": [
+        "사용자 문제를 데이터와 리서치 기반으로 파악해 제품으로 해결한 경험이 필요합니다.",
+        "고품질 App/Web UI를 직접 설계하고 출시한 경험이 필요합니다.",
+        "논리적인 커뮤니케이션으로 동료를 설득하고 협업할 수 있어야 합니다.",
+        "금융 경험은 필수가 아니지만 복잡한 도메인을 빠르게 이해할 수 있어야 합니다."
+      ],
+      "preferred": [
+        "구독, 커머스, 결제 등 전환 플로우가 포함된 서비스를 설계해본 경험",
+        "고가치 고객 또는 프리미엄 서비스 경험 설계 경험",
+        "사용자 행동 데이터를 기반으로 UI를 개선하고 성과를 측정한 경험",
+        "모바일과 PC를 함께 고려한 멀티 디바이스 경험 설계 경험"
+      ],
+      "related_links": [
+        {
+          "title": "토스 디자인 컨퍼런스 자료 모음",
+          "url": "https://toss.im/slash-23/design",
+          "source_name": "Toss",
+          "type": "company"
+        },
+        {
+          "title": "토스 디자인 YouTube 채널",
+          "url": "https://www.youtube.com/@tossdesign",
+          "source_name": "YouTube",
+          "type": "youtube"
+        },
+        {
+          "title": "토스 공식 채용 페이지",
+          "url": "https://toss.im/career/jobs",
+          "source_name": "Toss Careers",
+          "type": "company"
+        }
+      ]
     },
     {
       "id": "2026-07-28-toss-pd-challenge-2026",
@@ -19,9 +60,41 @@
       "location": "서울",
       "employment_type": "internship",
       "experience": "신입",
-      "tags": ["핀테크", "신입", "챌린지"],
-      "url": "https://toss.im/career/job-detail?job_id=7777462003",
-      "posted_at": "2026-07-28"
+      "tags": ["핀테크", "신입", "챌린지", "프로덕트디자인"],
+      "url": "https://toss.im/career/jobs?category=design",
+      "posted_at": "2026-07-28",
+      "logo": "https://www.google.com/s2/favicons?domain=toss.im&sz=128",
+      "company_description": "토스는 금융을 더 쉽고 빠르게 만드는 제품 조직입니다. 신입 디자이너에게는 포트폴리오의 결과물뿐 아니라 문제를 발견하고 검증하며 제품으로 만든 과정이 중요하게 평가됩니다.",
+      "summary": "Product Designer Challenge는 신입/주니어 디자이너가 토스의 제품 문제 해결 방식에 맞춰 역량을 보여주는 채용 트랙입니다. 실제 모집 여부와 세부 일정은 토스 채용 페이지에서 최신 공고를 확인해야 합니다.",
+      "responsibilities": [
+        "사용자 문제를 정의하고 모바일 제품 경험으로 해결하는 과정을 보여줍니다.",
+        "제품 개선 전후의 화면, 의사결정 근거, 결과를 설득력 있게 정리합니다.",
+        "토스의 제품 조직 방식에 맞춰 빠른 실험과 협업 가능성을 보여주는 것이 중요합니다."
+      ],
+      "qualifications": [
+        "프로덕트 디자인 포트폴리오 또는 이에 준하는 문제 해결 사례가 필요합니다.",
+        "사용자 관점에서 문제를 구조화하고 UI/UX로 풀어낸 경험이 필요합니다.",
+        "지원 시점의 실제 모집 조건은 공식 채용 페이지 기준으로 확인해야 합니다."
+      ],
+      "preferred": [
+        "모바일 앱 서비스 개선 경험",
+        "데이터나 사용자 피드백을 바탕으로 디자인을 수정한 경험",
+        "금융, 커머스, 구독 등 복잡한 흐름을 단순하게 정리한 사례"
+      ],
+      "related_links": [
+        {
+          "title": "토스 공식 채용 페이지 — 디자인 직군",
+          "url": "https://toss.im/career/jobs?category=design",
+          "source_name": "Toss Careers",
+          "type": "company"
+        },
+        {
+          "title": "토스 디자인 YouTube 채널",
+          "url": "https://www.youtube.com/@tossdesign",
+          "source_name": "YouTube",
+          "type": "youtube"
+        }
+      ]
     },
     {
       "id": "2026-07-28-kakao-ai-ui-designer",
@@ -30,9 +103,47 @@
       "location": "판교",
       "employment_type": "full-time",
       "experience": "경력 2년+",
-      "tags": ["AI", "프로덕트디자인"],
+      "tags": ["AI", "프로덕트디자인", "UI", "서비스디자인"],
       "url": "https://careers.kakao.com/jobs",
-      "posted_at": "2026-07-28"
+      "posted_at": "2026-07-28",
+      "logo": "https://www.google.com/s2/favicons?domain=kakao.com&sz=128",
+      "company_description": "카카오는 메신저, 콘텐츠, 커머스, 모빌리티 등 대규모 사용자 접점을 가진 플랫폼 회사입니다. AI 서비스 디자이너에게는 신규 기술을 사용자 맥락 안에서 이해 가능한 제품 경험으로 바꾸는 역량이 중요합니다.",
+      "summary": "AI 서비스의 사용자 흐름과 UI를 설계하는 프로덕트 디자인 포지션입니다. 카카오 채용 페이지가 SPA 구조라 상세 공고는 공식 채용 검색에서 최신 여부와 세부 내용을 다시 확인하는 것이 안전합니다.",
+      "responsibilities": [
+        "AI 서비스의 핵심 사용자 시나리오와 화면 구조를 설계합니다.",
+        "AI 기능의 입력, 결과 확인, 오류/불확실성 안내 같은 상호작용을 UI로 풀어냅니다.",
+        "PM, 엔지니어, 리서처와 협업해 신규 서비스 경험을 구체화합니다."
+      ],
+      "qualifications": [
+        "모바일 또는 웹 프로덕트 디자인 실무 경험이 필요합니다.",
+        "복잡한 기술 개념을 사용자가 이해할 수 있는 흐름과 화면으로 정리할 수 있어야 합니다.",
+        "디자인 산출물뿐 아니라 문제 정의, 의사결정, 검증 과정을 설명할 수 있어야 합니다."
+      ],
+      "preferred": [
+        "AI/검색/콘텐츠 서비스 디자인 경험",
+        "대규모 사용자 서비스의 UI 시스템을 다뤄본 경험",
+        "프로토타입으로 빠르게 가설을 검증한 경험"
+      ],
+      "related_links": [
+        {
+          "title": "카카오 공식 채용 페이지",
+          "url": "https://careers.kakao.com/jobs",
+          "source_name": "Kakao Careers",
+          "type": "company"
+        },
+        {
+          "title": "카카오테크 기술 블로그",
+          "url": "https://tech.kakao.com/",
+          "source_name": "Kakao Tech",
+          "type": "article"
+        },
+        {
+          "title": "카카오 공식 YouTube 채널",
+          "url": "https://www.youtube.com/@KakaoBrandMedia",
+          "source_name": "YouTube",
+          "type": "youtube"
+        }
+      ]
     }
   ]
 }

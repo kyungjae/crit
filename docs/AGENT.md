@@ -89,7 +89,21 @@ content/jobs/YYYY-MM-DD.json
       "tags": ["프로덕트디자인"],           // 선택, 최대 8개
       "url": "https://...",                 // 필수, 지원/공고 링크
       "posted_at": "2026-07-28",            // 필수
-      "expires_at": "2026-08-28"            // 선택, 지나면 목록에서 자동 제외
+      "expires_at": "2026-08-28",           // 선택, 지나면 목록에서 자동 제외
+      "logo": "https://...",                // 선택, 회사 로고 또는 favicon
+      "company_description": "회사 설명",    // 선택, 상세 페이지용
+      "summary": "공고 요약",                // 선택, 실제 공고 내용 기반 요약
+      "responsibilities": ["주요 업무"],      // 선택, 최대 8개
+      "qualifications": ["자격 요건"],        // 선택, 최대 8개
+      "preferred": ["우대 사항"],             // 선택, 최대 8개
+      "related_links": [                     // 선택, 최대 6개
+        {
+          "title": "지원 전에 볼 자료",
+          "url": "https://...",
+          "source_name": "YouTube",
+          "type": "youtube"                 // article | youtube | company | news | other
+        }
+      ]
     }
   ]
 }
@@ -97,6 +111,9 @@ content/jobs/YYYY-MM-DD.json
 
 - `id`는 `YYYY-MM-DD-회사-포지션` 패턴을 권장합니다. **이전 날짜 파일과도 중복 금지**
   (validate가 전체 파일을 교차 검사합니다). 같은 공고를 다시 싣지 않습니다.
+- 채용 목록에서는 회사 로고, 요약, 태그를 보여주고 `/jobs/[id]` 상세 페이지에서 실제 공고 요약,
+  주요 업무, 자격 요건, 우대 사항, 관련 아티클/유튜브/회사 자료를 함께 보여줍니다.
+  `url`은 반드시 실제 지원/공식 공고 링크여야 하며, 상세 내용은 공식 공고에서 확인한 것만 씁니다.
 
 ## 3. 게시 절차 (에이전트 체크리스트)
 
