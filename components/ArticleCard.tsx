@@ -66,19 +66,6 @@ function ArticleBadges({ article }: { article: Article }) {
   );
 }
 
-function FeedStats({ article }: { article: Article }) {
-  return (
-    <div className="flex shrink-0 items-center gap-2 text-[11px] font-semibold text-neutral-400 dark:text-neutral-500">
-      <span className="tabular-nums text-neutral-700 dark:text-neutral-200">
-        {getSignalScore(article)}
-      </span>
-      <span>signals</span>
-      <span className="text-neutral-300 dark:text-neutral-700">·</span>
-      <span>토론 열기</span>
-    </div>
-  );
-}
-
 function SourceLink({ article }: { article: Article }) {
   const domain = getDomain(article.source_url);
   if (!article.source_url || !domain) return null;
@@ -180,50 +167,57 @@ export default function ArticleCard({
   }
 
   if (variant === "signal") {
+    const domain = getDomain(article.source_url);
+
     return (
-      <li>
-        <div className="group rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors hover:border-neutral-300 hover:bg-neutral-50/70 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900">
-          <div className="flex items-start gap-3.5">
-            <div className="hidden pt-1 text-center sm:block">
-              <div className="text-[20px] font-black tabular-nums leading-none text-neutral-950 dark:text-neutral-50">
-                {getSignalScore(article)}
-              </div>
-              <div className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-neutral-300 dark:text-neutral-700">
-                signal
-              </div>
+      <li className="border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
+        <div className="grid gap-2 px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900 md:grid-cols-[44px_minmax(0,1fr)_auto] md:gap-4">
+          <div className="flex items-center gap-2 md:block md:text-center">
+            <span className="w-6 text-right text-[12px] font-bold tabular-nums text-neutral-300 dark:text-neutral-700 md:block md:w-auto">
+              {rank}
+            </span>
+            <span className="text-[12px] font-black tabular-nums text-neutral-800 dark:text-neutral-100 md:mt-1 md:block md:text-[18px]">
+              {getSignalScore(article)}
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-neutral-300 dark:text-neutral-700 md:block">
+              pts
+            </span>
+          </div>
+
+          <div className="min-w-0">
+            <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
+              <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
+              {domain && (
+                <>
+                  <span className="text-neutral-300 dark:text-neutral-700">·</span>
+                  <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
+                </>
+              )}
+              <span className="text-neutral-300 dark:text-neutral-700">·</span>
+              <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
             </div>
-            <div className="min-w-0 flex-1">
-              <Link href={`/articles/${article.slug}`} className="block">
-                <div className="flex items-center justify-between gap-3">
-                  <ArticleMeta article={article} />
-                  <div className="sm:hidden">
-                    <FeedStats article={article} />
-                  </div>
-                </div>
-                <h2 className="mt-1.5 text-[17px] font-semibold leading-snug text-neutral-900 transition group-hover:text-brand dark:text-neutral-100 md:text-[18px]">
-                  {article.title}
-                </h2>
-                <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                  <span className="font-semibold text-neutral-700 dark:text-neutral-200">crit: </span>
-                  {getCritTake(article)}
-                </p>
-              </Link>
-              <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-                <ArticleBadges article={article} />
-                <div className="flex items-center gap-2">
-                  <Link
-                    href={`/articles/${article.slug}#comments`}
-                    className="rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-600 transition hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
-                  >
-                    토론하기
-                  </Link>
-                  <SourceLink article={article} />
-                </div>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <Thumbnail article={article} variant="signal" />
-            </div>
+            <Link href={`/articles/${article.slug}`} className="group block">
+              <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
+                {article.title}
+              </h2>
+              <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <span className="font-semibold text-neutral-700 dark:text-neutral-200">crit: </span>
+                {getCritTake(article)}
+              </p>
+            </Link>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 md:justify-end md:self-center">
+            <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-[11px] font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
+              {FORMAT_LABELS[article.format]}
+            </span>
+            <Link
+              href={`/articles/${article.slug}#comments`}
+              className="rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-600 transition hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+            >
+              토론
+            </Link>
+            <SourceLink article={article} />
           </div>
         </div>
       </li>
