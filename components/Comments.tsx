@@ -143,7 +143,7 @@ export default function Comments({ slug }: { slug: string }) {
           <button
             type="submit"
             disabled={pending}
-            className="flex-1 rounded-lg bg-neutral-900 px-4 py-3 text-sm font-medium text-white transition-opacity disabled:opacity-50 dark:bg-neutral-100 dark:text-neutral-950 sm:flex-none sm:py-2"
+            className="flex-1 rounded-lg bg-neutral-900 px-4 py-3 text-sm font-medium text-white transition-opacity disabled:opacity-50 dark:bg-brand dark:text-white dark:disabled:bg-neutral-800 dark:disabled:text-neutral-500 sm:flex-none sm:py-2"
           >
             {pending ? "등록 중…" : parentId ? "답글 등록" : "댓글 등록"}
           </button>

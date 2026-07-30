@@ -49,7 +49,7 @@ export default function DraftsPage() {
                 <div className="p-4">
                   <Link href={`/articles/${article.slug}`} className="block">
                     <div className="mb-1.5 flex flex-wrap items-center gap-1.5 text-[11px]">
-                      <span className="rounded bg-neutral-900 px-1.5 py-0.5 font-medium text-white dark:bg-neutral-100 dark:text-neutral-950">
+                      <span className="rounded bg-neutral-900 px-1.5 py-0.5 font-medium text-white dark:bg-brand dark:text-white">
                         {FORMAT_LABELS[article.format]}
                       </span>
                       <span className="font-medium text-brand">

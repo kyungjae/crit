@@ -42,7 +42,7 @@ const themeInitScript = `
 (function () {
   try {
     var saved = localStorage.getItem('crit:theme');
-    var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var dark = saved !== 'light';
     document.documentElement.classList.toggle('dark', dark);
     document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
   } catch (_) {}
@@ -52,7 +52,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="ko" className="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
