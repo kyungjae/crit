@@ -50,7 +50,7 @@ function NewsletterCTA() {
         </div>
         <Link
           href="/links"
-          className="inline-flex h-11 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200 dark:bg-neutral-950 dark:text-white dark:hover:bg-neutral-800"
+          className="inline-flex h-11 items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200 dark:bg-brand dark:text-white dark:hover:bg-brand-dark"
         >
           읽을거리 더 보기
         </Link>

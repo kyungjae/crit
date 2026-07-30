@@ -127,7 +127,7 @@ export default async function JobDetailPage({
           href={job.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold text-white transition-opacity active:opacity-80 dark:bg-neutral-100 dark:text-neutral-950"
+          className="mt-5 flex w-full items-center justify-center rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold text-white transition-opacity active:opacity-80 dark:bg-brand dark:text-white dark:hover:bg-brand-dark"
         >
           실제 공고 보러가기 ↗
         </a>

@@ -81,15 +81,15 @@ export default function LinksExplorer({ groups }: { groups: LinkGroups }) {
             aria-pressed={activeCategory === "전체"}
             className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
               activeCategory === "전체"
-                ? "bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950"
-                : "bg-white text-neutral-600 ring-1 ring-neutral-200 dark:bg-neutral-900 dark:text-neutral-300 dark:ring-neutral-800"
+                ? "bg-neutral-900 text-white dark:bg-brand dark:text-white"
+                : "bg-white text-neutral-600 ring-1 ring-neutral-200 dark:!bg-neutral-900 dark:text-neutral-300 dark:ring-neutral-800"
             }`}
           >
             전체
             <span
               className={`ml-1 text-[11px] ${
                 activeCategory === "전체"
-                  ? "text-white/65 dark:text-neutral-950/55"
+                  ? "text-white/65 dark:text-white/70"
                   : "text-neutral-400 dark:text-neutral-500"
               }`}
             >
@@ -107,15 +107,15 @@ export default function LinksExplorer({ groups }: { groups: LinkGroups }) {
                 aria-pressed={isActive}
                 className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950"
-                    : "bg-white text-neutral-600 ring-1 ring-neutral-200 dark:bg-neutral-900 dark:text-neutral-300 dark:ring-neutral-800"
+                    ? "bg-neutral-900 text-white dark:bg-brand dark:text-white"
+                    : "bg-white text-neutral-600 ring-1 ring-neutral-200 dark:!bg-neutral-900 dark:text-neutral-300 dark:ring-neutral-800"
                 }`}
               >
                 {group.title}
                 <span
                   className={`ml-1 text-[11px] ${
                     isActive
-                      ? "text-white/65 dark:text-neutral-950/55"
+                      ? "text-white/65 dark:text-white/70"
                       : "text-neutral-400 dark:text-neutral-500"
                   }`}
                 >
