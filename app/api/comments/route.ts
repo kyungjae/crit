@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
   const comments = await prisma.comment.findMany({
     where: { slug },
     orderBy: { createdAt: "asc" },
-    select: { id: true, nickname: true, body: true, createdAt: true },
+    select: { id: true, nickname: true, body: true, parentId: true, createdAt: true },
   });
 
   return NextResponse.json({ comments, available: true });
@@ -27,6 +27,7 @@ const createCommentSchema = z.object({
   slug: z.string().min(1),
   nickname: z.string().trim().min(1).max(20),
   body: z.string().trim().min(1).max(1000),
+  parentId: z.string().trim().min(1).max(64).optional(),
   deviceId: z.string().max(64).optional(),
 });
 
@@ -50,9 +51,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "article not found" }, { status: 404 });
   }
 
+  if (parsed.parentId) {
+    const parent = await prisma.comment.findFirst({
+      where: { id: parsed.parentId, slug: parsed.slug },
+      select: { id: true },
+    });
+
+    if (!parent) {
+      return NextResponse.json({ error: "parent comment not found" }, { status: 404 });
+    }
+  }
+
   const comment = await prisma.comment.create({
     data: parsed,
-    select: { id: true, nickname: true, body: true, createdAt: true },
+    select: { id: true, nickname: true, body: true, parentId: true, createdAt: true },
   });
 
   return NextResponse.json({ comment }, { status: 201 });

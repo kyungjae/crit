@@ -13,9 +13,13 @@ model Comment {
   nickname  String
   body      String
   deviceId  String?
+  parentId  String?
+  parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
   createdAt DateTime @default(now())
 
   @@index([slug, createdAt])
+  @@index([slug, parentId, createdAt])
 }
 
 model Rating {
