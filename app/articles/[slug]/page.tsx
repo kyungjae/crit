@@ -46,7 +46,7 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   return (
-    <article>
+    <article className="mx-auto max-w-2xl">
       {article.draft && (
         <p className="mb-3 flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
           초안 — 피드에 노출되지 않습니다
