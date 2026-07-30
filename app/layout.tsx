@@ -17,11 +17,11 @@ const navItems = [
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "crit — 디자이너를 위한 오늘의 신호",
+    default: "crit — 디자이너를 위한 읽을거리 피드",
     template: "%s | crit",
   },
   description:
-    "디자이너가 오늘 봐야 할 디자인, 제품, AI, 툴, 케이스, 커리어 신호를 빠르게 훑고 토론하는 피드입니다.",
+    "디자이너가 오늘 봐야 할 디자인, 제품, AI, 툴, 케이스, 커리어 글을 빠르게 훑고 토론하는 피드입니다.",
   openGraph: {
     siteName: "crit",
     type: "website",
@@ -80,7 +80,7 @@ export default function RootLayout({
             </div>
             <div className="flex items-center gap-2">
               <span className="hidden text-[11px] font-medium text-neutral-400 dark:text-neutral-500 sm:inline">
-                디자이너를 위한 오늘의 신호
+                디자이너를 위한 읽을거리 피드
               </span>
               <ThemeToggle />
             </div>

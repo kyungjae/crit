@@ -38,15 +38,15 @@ function Masthead({ total }: { total: number }) {
       <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
         <div>
           <p className="text-[11px] font-black uppercase tracking-[0.18em] text-brand">
-            Designer news board
+            Designer feed
           </p>
           <h1 className="mt-2 max-w-3xl text-[30px] font-black leading-[1.05] tracking-[-0.055em] text-neutral-950 dark:text-neutral-50 md:text-[44px]">
             오늘 볼 디자인 링크와 관점을 한 곳에.
           </h1>
           <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-            news.hada.io처럼 빠르게 훑되, 각 링크에 crit의 짧은 판단 단서와
-            토론 입구를 붙입니다. 매거진보다 가볍고, 단순 링크 목록보다는
-            더 해석적인 디자이너 피드입니다.
+            news.hada.io처럼 빠르게 훑되, 읽어야 할 글에 crit의 짧은 판단
+            단서와 토론 입구를 붙입니다. 매거진보다 가볍고, 단순 링크
+            목록보다는 더 해석적인 디자이너 피드입니다.
           </p>
         </div>
         <div className="grid grid-cols-3 overflow-hidden rounded-2xl border border-neutral-200 bg-white text-center dark:border-neutral-800 dark:bg-neutral-900/80 md:w-[330px]">
@@ -108,7 +108,8 @@ function SidebarPanel() {
           좋은 링크 제보
         </h3>
         <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-          디자인, 제품, AI, 툴, 채용 신호를 발견하면 crit 피드 후보로 모읍니다.
+          디자인, 제품, AI, 툴, 채용 관련해서 같이 읽을 만한 글을 발견하면
+          crit 피드 후보로 모읍니다.
           초기에는 폼 연결 전 안내 모듈로 둡니다.
         </p>
       </section>
@@ -118,7 +119,7 @@ function SidebarPanel() {
           Weekly
         </p>
         <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em]">
-          한 주의 디자인 신호 10개
+          이번 주 읽어야 할 글 10개
         </h3>
         <p className="mt-2 text-[13px] leading-relaxed text-white/55">
           Sidebar처럼 날짜별 링크가 쌓이면, 주간 다이제스트는 자연스럽게
@@ -186,8 +187,8 @@ export default async function HomePage({
           <section className="mt-8">
             <SectionTitle
               eyebrow="Popular"
-              title="많이 볼 신호"
-              description="점수는 임시 편집 신호입니다. 나중에 추천/댓글 데이터로 대체할 수 있습니다."
+              title="많이 읽을 글"
+              description="점수는 임시 편집 점수입니다. 나중에 추천/댓글 데이터로 대체할 수 있습니다."
             />
             <ul className="overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900/80">
               {popularArticles.map((article, index) => (

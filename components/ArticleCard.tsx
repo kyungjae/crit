@@ -150,7 +150,7 @@ export default function ArticleCard({
               <div className="mb-1 flex items-center justify-between gap-2">
                 <ArticleMeta article={article} />
                 <span className="shrink-0 text-[11px] font-semibold tabular-nums text-neutral-400 dark:text-neutral-500">
-                  {getSignalScore(article)} signals
+                  {getSignalScore(article)} pts
                 </span>
               </div>
               <h3 className="line-clamp-2 text-[14px] font-semibold leading-snug text-neutral-900 transition group-hover:text-brand dark:text-neutral-100">
