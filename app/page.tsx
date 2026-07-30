@@ -4,68 +4,6 @@ import { CATEGORIES, CATEGORY_LABELS, type Category } from "@/lib/schema";
 import ArticleCard from "@/components/ArticleCard";
 import CategoryTabs from "@/components/CategoryTabs";
 
-const CATEGORY_DESCRIPTIONS: Record<Category, string> = {
-  design: "좋은 화면과 시스템이 만들어지는 방식",
-  "ai-design": "AI가 바꾸는 디자인 판단과 워크플로우",
-  tools: "새로운 제작 환경과 실무 도구",
-  "case-study": "브랜드와 제품이 남긴 설계 방식",
-  career: "역할, 시장, 포트폴리오와 채용 신호",
-};
-
-function HomeHero({
-  today,
-  counts,
-}: {
-  today: string;
-  counts: Record<Category, number>;
-}) {
-  return (
-    <section className="mb-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] dark:!border-neutral-800 dark:!bg-neutral-900/70 md:mb-10 md:p-8">
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
-        <div>
-          <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-brand">
-            {today} · Daily design signals
-          </p>
-          <h1 className="max-w-2xl text-[34px] font-extrabold leading-[1.05] tracking-[-0.055em] text-neutral-950 dark:text-neutral-50 md:text-[56px]">
-            디자인이 바뀌는 신호를 매일 읽기 좋게 정리합니다.
-          </h1>
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400 md:text-[17px]">
-            AI, 제품, 브랜드, 도구, 커리어에서 디자이너가 놓치면 안 되는
-            변화를 큐레이션합니다. 뉴스가 아니라 실무 판단에 남는 관점을
-            쌓습니다.
-          </p>
-        </div>
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-          {CATEGORIES.map((category) => (
-            <Link
-              key={category}
-              href={`/?category=${category}`}
-              className="group rounded-2xl border border-neutral-200 bg-neutral-50 p-4 transition hover:border-neutral-300 hover:bg-white dark:!border-neutral-800 dark:!bg-neutral-950/60 dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h2 className="text-[17px] font-bold tracking-[-0.03em] text-neutral-950 dark:text-neutral-50">
-                    {CATEGORY_LABELS[category]}
-                  </h2>
-                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                    {CATEGORY_DESCRIPTIONS[category]}
-                  </p>
-                </div>
-                <span className="text-lg text-neutral-300 transition group-hover:translate-x-0.5 group-hover:text-brand dark:text-neutral-700">
-                  →
-                </span>
-              </div>
-              <p className="mt-3 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
-                {counts[category]} articles
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function SectionHeader({
   eyebrow,
   title,
@@ -143,16 +81,9 @@ export default async function HomePage({
     : allArticles;
   const [featured, ...restArticles] = articles;
   const latestArticles = featured ? restArticles : articles;
-  const today = new Date().toLocaleDateString("ko-KR", {
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-  });
 
   return (
     <div>
-      <HomeHero today={today} counts={counts} />
-
       {featured && (
         <section className="mb-10">
           <SectionHeader
