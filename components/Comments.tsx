@@ -44,7 +44,6 @@ export default function Comments({ slug }: { slug: string }) {
   const [available, setAvailable] = useState(true);
   const [nickname, setNickname] = useState("");
   const [drafts, setDrafts] = useState<Record<string, string>>({ [ROOT_DRAFT_KEY]: "" });
-  const [replyTo, setReplyTo] = useState<string | null>(null);
   const [pendingKey, setPendingKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -90,7 +89,6 @@ export default function Comments({ slug }: { slug: string }) {
       localStorage.setItem(NICKNAME_KEY, nickname.trim());
       setComments((prev) => [...(prev ?? []), comment]);
       setDrafts((prev) => ({ ...prev, [draftKey]: "" }));
-      if (parentId) setReplyTo(null);
     } catch (e) {
       setError(
         (e as Error).message ||
@@ -142,15 +140,6 @@ export default function Comments({ slug }: { slug: string }) {
           <p className="text-xs text-red-500">{error}</p>
         )}
         <div className="flex gap-2 sm:self-end">
-          {parentId && (
-            <button
-              type="button"
-              onClick={() => setReplyTo(null)}
-              className="flex-1 rounded-lg border border-neutral-200 px-4 py-3 text-sm font-medium text-neutral-600 dark:border-neutral-800 dark:text-neutral-300 sm:flex-none sm:py-2"
-            >
-              취소
-            </button>
-          )}
           <button
             type="submit"
             disabled={pending}
@@ -164,8 +153,6 @@ export default function Comments({ slug }: { slug: string }) {
   }
 
   function CommentItem({ comment, depth = 0 }: { comment: CommentNode; depth?: number }) {
-    const isReplying = replyTo === comment.id;
-
     return (
       <li>
         <article className="rounded-xl bg-neutral-100 p-3 dark:bg-neutral-900">
@@ -179,15 +166,14 @@ export default function Comments({ slug }: { slug: string }) {
             {comment.body}
           </p>
           {available && (
-            <button
-              type="button"
-              onClick={() => setReplyTo(isReplying ? null : comment.id)}
-              className="mt-2 text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-            >
-              {isReplying ? "답글 닫기" : "답글"}
-            </button>
+            <details className="mt-2 group">
+              <summary className="cursor-pointer list-none text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">
+                <span className="group-open:hidden">답글</span>
+                <span className="hidden group-open:inline">답글 닫기</span>
+              </summary>
+              <CommentForm parentId={comment.id} compact />
+            </details>
           )}
-          {isReplying && <CommentForm parentId={comment.id} autoFocus compact />}
         </article>
 
         {comment.replies.length > 0 && (
