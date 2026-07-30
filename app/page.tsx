@@ -49,7 +49,7 @@ function Masthead({ total }: { total: number }) {
             목록보다는 더 해석적인 디자이너 피드입니다.
           </p>
         </div>
-        <div className="grid grid-cols-3 overflow-hidden rounded-2xl border border-neutral-200 bg-white text-center dark:border-neutral-800 dark:bg-neutral-900/80 md:w-[330px]">
+        <div className="grid grid-cols-3 overflow-hidden rounded-2xl border border-neutral-200 bg-white text-center dark:!border-neutral-800 dark:!bg-neutral-900/80 md:w-[330px]">
           <div className="border-r border-neutral-200 p-3 dark:border-neutral-800">
             <p className="text-[20px] font-black tabular-nums text-neutral-950 dark:text-neutral-50">
               {total}
@@ -73,7 +73,7 @@ function Masthead({ total }: { total: number }) {
 function SidebarPanel() {
   return (
     <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
-      <section className="rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+      <section className="rounded-2xl border border-neutral-200 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
         <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
           Community
         </p>
@@ -93,14 +93,14 @@ function SidebarPanel() {
           </Link>
           <Link
             href="/show"
-            className="rounded-full border border-neutral-200 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 dark:border-neutral-800 dark:text-neutral-200"
+            className="rounded-full border border-neutral-200 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 dark:!border-neutral-700 dark:!bg-neutral-800 dark:!text-neutral-100"
           >
             Show crit
           </Link>
         </div>
       </section>
 
-      <section className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-900/45">
+      <section className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-4 dark:!border-neutral-700 dark:!bg-neutral-900/45">
         <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
           Submit
         </p>
@@ -114,7 +114,7 @@ function SidebarPanel() {
         </p>
       </section>
 
-      <section className="rounded-2xl border border-neutral-200 bg-neutral-950 p-4 text-white dark:border-neutral-800 dark:bg-neutral-900">
+      <section className="rounded-2xl border border-neutral-200 bg-neutral-950 p-4 text-white dark:!border-neutral-800 dark:!bg-neutral-900">
         <p className="text-[11px] font-black uppercase tracking-[0.16em] text-white/45">
           Weekly
         </p>
@@ -172,7 +172,7 @@ export default async function HomePage({
               아직 등록된 아티클이 없습니다.
             </p>
           ) : (
-            <ul className="overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900/80">
+            <ul className="overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:!border-neutral-800 dark:!bg-neutral-900/80">
               {articles.map((article, index) => (
                 <ArticleCard
                   key={article.slug}
@@ -190,7 +190,7 @@ export default async function HomePage({
               title="많이 읽을 글"
               description="점수는 임시 편집 점수입니다. 나중에 추천/댓글 데이터로 대체할 수 있습니다."
             />
-            <ul className="overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900/80">
+            <ul className="overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:!border-neutral-800 dark:!bg-neutral-900/80">
               {popularArticles.map((article, index) => (
                 <ArticleCard
                   key={article.slug}
