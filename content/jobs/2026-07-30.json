@@ -1,0 +1,209 @@
+{
+  "date": "2026-07-30",
+  "jobs": [
+    {
+      "id": "2026-07-30-snow-ai-content-designer",
+      "company": "SNOW",
+      "title": "AI 콘텐츠 디자이너 (계약직)",
+      "location": "경기도 성남시 분당구 정자동",
+      "employment_type": "contract",
+      "experience": "경력 무관 / 생성형 AI 이미지 제작 경험",
+      "tags": [
+        "AI",
+        "콘텐츠디자인",
+        "LoRA",
+        "ComfyUI",
+        "생성형AI"
+      ],
+      "url": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005192",
+      "posted_at": "2026-07-30",
+      "expires_at": "2026-08-05",
+      "logo": "https://www.google.com/s2/favicons?domain=snowcorp.com&sz=128",
+      "company_description": "SNOW는 네이버 계열의 카메라, 콘텐츠, AI 기반 서비스를 만드는 회사이며 네이버 채용 사이트에서 공고를 운영합니다.",
+      "summary": "생성형 AI 워크플로우의 모델, 노드, 파라미터, 옵션 값을 테스트하고 LoRA 제작·품질 검증, 신규 AI 기술 리서치, 생성 결과물 품질 개선 기준 정립을 담당하는 계약직 포지션입니다.",
+      "responsibilities": [
+        "생성형 AI 워크플로우의 모델, 노드, 파라미터, 옵션 값을 테스트하고 결과를 비교·분석합니다.",
+        "AI 콘텐츠 제작에 활용되는 LoRA를 제작하고 학습 결과와 실제 적용 품질을 검증합니다.",
+        "최신 생성형 AI 기술, 오픈소스 모델, 체크포인트, 제작 방법론을 리서치하고 프로토타입 테스트를 수행합니다.",
+        "생성 결과물의 오류와 품질 저하 요인을 분석해 개선안과 표준 제작 기준을 정립합니다."
+      ],
+      "qualifications": [
+        "Midjourney, Stable Diffusion, FLUX 등 생성형 AI 기반 이미지 제작 도구에 대한 이해와 활용 경험이 필요합니다.",
+        "Photoshop, Illustrator 등 그래픽 편집 툴을 능숙하게 활용할 수 있어야 합니다.",
+        "디자이너, 개발자 등 다양한 직군과 원활하게 협업할 수 있어야 합니다.",
+        "인물 사진 및 편집 서비스에 대한 이해를 바탕으로 사용자 관점의 콘텐츠를 제작할 수 있어야 합니다."
+      ],
+      "preferred": [
+        "ComfyUI를 활용해 다양한 워크플로우를 구성하고 테스트해 본 경험",
+        "최신 AI 도구를 실제 콘텐츠 제작 프로세스에 적용해 본 경험",
+        "영어 AI 기술 문서, 오픈소스 자료, 커뮤니티 콘텐츠를 이해할 수 있는 역량"
+      ],
+      "related_links": [
+        {
+          "title": "NAVER Careers 디자인 검색",
+          "url": "https://recruit.navercorp.com/rcrt/list.do?sw=%EB%94%94%EC%9E%90%EC%9D%B8",
+          "source_name": "NAVER Careers",
+          "type": "company"
+        }
+      ]
+    },
+    {
+      "id": "2026-07-30-line-pay-product-designer-promotion-visual",
+      "company": "LINE Pay Plus",
+      "title": "LINE Pay Product Designer (Promotion/Visual)",
+      "location": "Bundang / LINE Hybrid Work 2.0",
+      "employment_type": "full-time",
+      "experience": "모바일·웹 디자인 3년 이상",
+      "tags": [
+        "프로덕트디자인",
+        "UI/UX",
+        "그래픽디자인",
+        "AI",
+        "커머스"
+      ],
+      "url": "https://careers.linecorp.com/ko/jobs/3016/",
+      "posted_at": "2026-07-30",
+      "logo": "https://www.google.com/s2/favicons?domain=linecorp.com&sz=128",
+      "company_description": "LINE Pay Plus는 대만 결제 기반 플랫폼 LINE Pay의 기획·개발을 담당하며 사용자와 가맹점을 연결하는 금융 및 마케팅 서비스를 설계합니다.",
+      "summary": "리워드 광고와 커머스 영역에서 UI/UX, 광고 크리에이티브, 그래픽·모션 요소를 함께 설계하는 Product Designer 공고입니다. AI와 함께 디자인하는 방식 자체를 설계하고 실행 속도를 높이는 역량을 기대합니다.",
+      "responsibilities": [
+        "리워드 광고 및 커머스 관련 UI/UX를 설계합니다.",
+        "배너, 인터랙션, 모션 등 광고 크리에이티브와 그래픽 디자인을 제작합니다.",
+        "브랜드·그래픽 요소를 서비스 UI에 자연스럽게 녹여내는 비주얼을 설계합니다.",
+        "빠른 실험과 반복을 통해 디자인을 개선합니다."
+      ],
+      "qualifications": [
+        "3년 이상의 모바일·웹 디자인 경력이 필요합니다.",
+        "그래픽 디자인 제작 및 활용 역량이 필요합니다.",
+        "비주얼을 통해 사용자 행동을 유도하는 디자인 경험이 필요합니다.",
+        "Figma 등 디자인 툴을 활용한 실무 역량이 필요합니다."
+      ],
+      "preferred": [
+        "광고 또는 마케팅 크리에이티브 디자인 경력",
+        "인터랙션 또는 게임형 UI 디자인 경력",
+        "다양한 이해관계자와 협업하며 디자인 결과물을 발전시킨 경험",
+        "AI 툴을 디자인 과정에 적극 활용해 더 빠르고 효율적인 프로세스를 설계한 경험",
+        "영어 또는 중국어 소통 역량"
+      ],
+      "related_links": [
+        {
+          "title": "LINE Careers Design 목록",
+          "url": "https://careers.linecorp.com/ko/jobs/?ca=Design",
+          "source_name": "LINE Careers",
+          "type": "company"
+        },
+        {
+          "title": "LINE Hybrid Work 안내",
+          "url": "https://careers.linecorp.com/ko/culture/workstyle/",
+          "source_name": "LINE Careers",
+          "type": "company"
+        }
+      ]
+    },
+    {
+      "id": "2026-07-30-daangn-brand-designer-service-branding-ui",
+      "company": "당근",
+      "title": "Brand Designer (계약직) - 브랜딩 (서비스 브랜딩 & UI)",
+      "location": "한국 / 상세 근무지는 공식 공고 확인",
+      "employment_type": "contract",
+      "experience": "경력 1년 이상",
+      "tags": [
+        "브랜드디자인",
+        "서비스브랜딩",
+        "UI",
+        "그래픽",
+        "콘텐츠"
+      ],
+      "url": "https://careers.daangn.com/jobs/role/6589282003/",
+      "posted_at": "2026-07-30",
+      "logo": "https://www.google.com/s2/favicons?domain=daangn.com&sz=128",
+      "company_description": "당근은 중고거래를 넘어 동네의 다양한 연결과 활동이 일어나는 하이퍼로컬 플랫폼을 만드는 회사입니다.",
+      "summary": "당근의 모바일 서비스, 비즈니스, 프로덕트 UI, 마케팅 접점에서 ‘당근다운’ 브랜드 경험과 키비주얼·랜딩페이지·SNS 콘텐츠 이미지를 만드는 서비스 브랜딩 계약직 포지션입니다.",
+      "responsibilities": [
+        "당근의 서비스를 알리기 위한 온·오프라인 브랜드 디자인을 실행합니다.",
+        "당근다운 시각 언어를 이해하고 다양한 프로젝트를 위한 키비주얼을 개발합니다.",
+        "개별 서비스의 브랜딩과 성장을 지원하는 랜딩페이지 및 SNS 콘텐츠 이미지를 제작합니다."
+      ],
+      "qualifications": [
+        "매력적인 그래픽 디자인으로 브랜딩 콘셉트를 구체화할 수 있어야 합니다.",
+        "단단한 타이포그래피와 편집디자인 스킬이 필요합니다.",
+        "인쇄 및 제작 프로세스를 이해해야 합니다.",
+        "모바일 기반 디자인 작업에 익숙해야 합니다.",
+        "1년 이상 경력이 필요합니다."
+      ],
+      "preferred": [
+        "드로잉과 일러스트레이션 스킬",
+        "개성 있는 레터링 디자인 역량",
+        "SNS 콘텐츠 트렌드 이해",
+        "모션그래픽 또는 3D 디자인 스킬"
+      ],
+      "related_links": [
+        {
+          "title": "당근 채용 공고",
+          "url": "https://careers.daangn.com/jobs/",
+          "source_name": "당근 채용",
+          "type": "company"
+        },
+        {
+          "title": "당근 Product Designer 인터뷰",
+          "url": "https://careers.daangn.com/blog/product-designer-interview/",
+          "source_name": "당근 채용",
+          "type": "company"
+        }
+      ]
+    },
+    {
+      "id": "2026-07-30-daangn-character-designer-illustrator",
+      "company": "당근",
+      "title": "Character Designer, Illustrator - 브랜딩",
+      "location": "한국 / 상세 근무지는 공식 공고 확인",
+      "employment_type": "full-time",
+      "experience": "기업 내 IP 디자인 관련 5년 이상",
+      "tags": [
+        "캐릭터디자인",
+        "브랜드IP",
+        "일러스트",
+        "브랜딩",
+        "콘텐츠"
+      ],
+      "url": "https://careers.daangn.com/jobs/role/5090389003/",
+      "posted_at": "2026-07-30",
+      "logo": "https://www.google.com/s2/favicons?domain=daangn.com&sz=128",
+      "company_description": "당근은 중고거래를 넘어 동네의 다양한 연결과 활동이 일어나는 하이퍼로컬 플랫폼을 만드는 회사입니다.",
+      "summary": "당근 캐릭터 IP의 콘텐츠, 일러스트 스타일, 앱 내 캐릭터 활용, 브랜드 마케팅 에셋과 상품 기획용 가이드를 만드는 캐릭터 디자이너 포지션입니다.",
+      "responsibilities": [
+        "캐릭터 애착을 높일 수 있는 콘텐츠를 기획하고 제작합니다.",
+        "캐릭터 디자인 및 일러스트 스타일을 고도화하고 가이드를 통해 지속적으로 관리합니다.",
+        "IP 활용 브랜드 마케팅 목적의 캐릭터 에셋, 툰, 일러스트를 제작합니다.",
+        "앱 서비스 내에 필요한 캐릭터 디자인에 참여하고 가이드를 제공합니다.",
+        "캐릭터의 성격과 이야기를 전달하기 위한 애니메이션 콘티와 상품 기획용 원화·가이드를 제작합니다."
+      ],
+      "qualifications": [
+        "기업 내 IP 디자인 부서에서 5년 이상의 관련 직무 경험이 필요합니다.",
+        "전사 브랜딩과 비즈니스 목적 안에서 문제를 정의하고 창의적인 해결책을 제시할 수 있어야 합니다.",
+        "캐릭터 일러스트, 콘텐츠, 디자인 프로젝트를 주도하고 성과를 낸 경험이 필요합니다.",
+        "콘셉트에 맞는 다양한 일러스트 스타일을 높은 퀄리티로 구사 또는 모사할 수 있어야 합니다.",
+        "캐릭터마다의 사랑스러운 행동 포인트를 감각적으로 포착하고 표현할 수 있어야 합니다."
+      ],
+      "preferred": [
+        "브랜드 캐릭터 IP를 장기적으로 운영하거나 확장해 본 경험",
+        "앱 서비스, 마케팅, 상품 등 여러 접점에 캐릭터 시스템을 적용해 본 경험",
+        "모션 또는 애니메이션 콘티 작업 경험"
+      ],
+      "related_links": [
+        {
+          "title": "당근 채용 공고",
+          "url": "https://careers.daangn.com/jobs/",
+          "source_name": "당근 채용",
+          "type": "company"
+        },
+        {
+          "title": "당근 팀 소개",
+          "url": "https://careers.daangn.com/culture/",
+          "source_name": "당근 채용",
+          "type": "company"
+        }
+      ]
+    }
+  ]
+}
