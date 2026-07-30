@@ -41,7 +41,7 @@ export const viewport: Viewport = {
 const themeInitScript = `
 (function () {
   try {
-    var saved = localStorage.getItem('crit:theme');
+    var saved = localStorage.getItem('crit:theme:v2');
     var dark = saved !== 'light';
     document.documentElement.classList.toggle('dark', dark);
     document.documentElement.style.colorScheme = dark ? 'dark' : 'light';

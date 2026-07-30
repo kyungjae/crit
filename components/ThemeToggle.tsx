@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "crit:theme";
+const STORAGE_KEY = "crit:theme:v2";
 
 type Theme = "light" | "dark";
 
