@@ -4,17 +4,40 @@ import type { Article } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 
-type ArticleCardVariant = "list" | "grid" | "featured";
+type ArticleCardVariant = "list" | "grid" | "featured" | "signal" | "compact";
+
+function getDomain(url?: string) {
+  if (!url) return null;
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+export function getSignalScore(article: Article) {
+  const seed = article.slug.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const formatBonus = article.format === "deep" ? 8 : article.format === "showcase" ? 7 : article.format === "rules" ? 6 : 4;
+  return 12 + (seed % 28) + formatBonus;
+}
+
+export function getCritTake(article: Article) {
+  const firstSentence = article.summary.split(/[.!?。]|(?<=다)\s/)[0]?.trim();
+  if (!firstSentence) return article.summary;
+  return firstSentence.length > 86 ? `${firstSentence.slice(0, 84)}…` : firstSentence;
+}
 
 function ArticleMeta({ article }: { article: Article }) {
+  const domain = getDomain(article.source_url);
+
   return (
     <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
       <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
-      {article.source_name && (
+      {(article.source_name || domain) && (
         <>
           <span className="text-neutral-300 dark:text-neutral-700">·</span>
           <span className="text-neutral-400 dark:text-neutral-500">
-            {article.source_name}
+            {article.source_name ?? domain}
           </span>
         </>
       )}
@@ -43,6 +66,35 @@ function ArticleBadges({ article }: { article: Article }) {
   );
 }
 
+function FeedStats({ article }: { article: Article }) {
+  return (
+    <div className="flex shrink-0 items-center gap-2 text-[11px] font-semibold text-neutral-400 dark:text-neutral-500">
+      <span className="tabular-nums text-neutral-700 dark:text-neutral-200">
+        {getSignalScore(article)}
+      </span>
+      <span>signals</span>
+      <span className="text-neutral-300 dark:text-neutral-700">·</span>
+      <span>토론 열기</span>
+    </div>
+  );
+}
+
+function SourceLink({ article }: { article: Article }) {
+  const domain = getDomain(article.source_url);
+  if (!article.source_url || !domain) return null;
+
+  return (
+    <a
+      href={article.source_url}
+      target="_blank"
+      rel="noreferrer"
+      className="relative z-10 rounded-full border border-neutral-200 px-2.5 py-1 text-[11px] font-semibold text-neutral-500 transition hover:border-neutral-300 hover:text-neutral-950 dark:border-neutral-800 dark:text-neutral-400 dark:hover:border-neutral-700 dark:hover:text-neutral-50"
+    >
+      원문 ↗ {domain}
+    </a>
+  );
+}
+
 function Thumbnail({
   article,
   variant,
@@ -57,7 +109,7 @@ function Thumbnail({
     return (
       <div
         className={`relative overflow-hidden bg-neutral-950 dark:bg-neutral-900 ${
-          variant === "list" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
+          variant === "list" || variant === "signal" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
         }`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(108,92,231,0.38),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.12),transparent_45%)]" />
@@ -71,17 +123,17 @@ function Thumbnail({
   return (
     <div
       className={`relative shrink-0 overflow-hidden bg-neutral-100 dark:bg-neutral-800 ${
-        variant === "list" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
+        variant === "list" || variant === "signal" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
       }`}
     >
       <Image
         src={image}
         alt=""
         fill
-        sizes={variant === "list" ? "80px" : "(min-width: 1024px) 33vw, 100vw"}
+        sizes={variant === "list" || variant === "signal" ? "80px" : "(min-width: 1024px) 33vw, 100vw"}
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
       />
-      {variant !== "list" && (
+      {variant !== "list" && variant !== "signal" && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-70" />
       )}
     </div>
@@ -91,10 +143,93 @@ function Thumbnail({
 export default function ArticleCard({
   article,
   variant = "list",
+  rank,
 }: {
   article: Article;
   variant?: ArticleCardVariant;
+  rank?: number;
 }) {
+  if (variant === "compact") {
+    return (
+      <li className="border-b border-neutral-200 py-3 last:border-b-0 dark:border-neutral-800">
+        <Link href={`/articles/${article.slug}`} className="group block">
+          <div className="flex items-start gap-3">
+            {rank && (
+              <span className="mt-0.5 w-5 text-right text-[12px] font-bold tabular-nums text-neutral-300 dark:text-neutral-700">
+                {rank}
+              </span>
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 flex items-center justify-between gap-2">
+                <ArticleMeta article={article} />
+                <span className="shrink-0 text-[11px] font-semibold tabular-nums text-neutral-400 dark:text-neutral-500">
+                  {getSignalScore(article)} signals
+                </span>
+              </div>
+              <h3 className="line-clamp-2 text-[14px] font-semibold leading-snug text-neutral-900 transition group-hover:text-brand dark:text-neutral-100">
+                {article.title}
+              </h3>
+              <p className="mt-1 line-clamp-1 text-[12px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                crit: {getCritTake(article)}
+              </p>
+            </div>
+          </div>
+        </Link>
+      </li>
+    );
+  }
+
+  if (variant === "signal") {
+    return (
+      <li>
+        <div className="group rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors hover:border-neutral-300 hover:bg-neutral-50/70 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900">
+          <div className="flex items-start gap-3.5">
+            <div className="hidden pt-1 text-center sm:block">
+              <div className="text-[20px] font-black tabular-nums leading-none text-neutral-950 dark:text-neutral-50">
+                {getSignalScore(article)}
+              </div>
+              <div className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-neutral-300 dark:text-neutral-700">
+                signal
+              </div>
+            </div>
+            <div className="min-w-0 flex-1">
+              <Link href={`/articles/${article.slug}`} className="block">
+                <div className="flex items-center justify-between gap-3">
+                  <ArticleMeta article={article} />
+                  <div className="sm:hidden">
+                    <FeedStats article={article} />
+                  </div>
+                </div>
+                <h2 className="mt-1.5 text-[17px] font-semibold leading-snug text-neutral-900 transition group-hover:text-brand dark:text-neutral-100 md:text-[18px]">
+                  {article.title}
+                </h2>
+                <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                  <span className="font-semibold text-neutral-700 dark:text-neutral-200">crit: </span>
+                  {getCritTake(article)}
+                </p>
+              </Link>
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                <ArticleBadges article={article} />
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/articles/${article.slug}#comments`}
+                    className="rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-600 transition hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+                  >
+                    토론하기
+                  </Link>
+                  <SourceLink article={article} />
+                </div>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <Thumbnail article={article} variant="signal" />
+            </div>
+          </div>
+        </div>
+      </li>
+    );
+  }
+
   if (variant === "grid") {
     return (
       <li>
@@ -138,7 +273,7 @@ export default function ArticleCard({
                 {article.summary}
               </p>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
               <ArticleBadges article={article} />
             </div>
           </div>

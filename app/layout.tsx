@@ -6,7 +6,9 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { SITE_URL } from "@/lib/site";
 
 const navItems = [
-  { href: "/", label: "아티클" },
+  { href: "/", label: "피드" },
+  { href: "/ask", label: "Ask" },
+  { href: "/show", label: "Show" },
   { href: "/inspiration", label: "영감" },
   { href: "/jobs", label: "채용" },
   { href: "/links", label: "링크" },
@@ -15,11 +17,11 @@ const navItems = [
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "crit — 디자이너를 위한 데일리 큐레이션",
+    default: "crit — 디자이너를 위한 오늘의 신호",
     template: "%s | crit",
   },
   description:
-    "디자이너를 위한 디자인, AI × 디자인, 툴, 케이스, 커리어 큐레이션과 채용 정보를 매일 정리합니다.",
+    "디자이너가 오늘 봐야 할 디자인, 제품, AI, 툴, 케이스, 커리어 신호를 빠르게 훑고 토론하는 피드입니다.",
   openGraph: {
     siteName: "crit",
     type: "website",
@@ -78,7 +80,7 @@ export default function RootLayout({
             </div>
             <div className="flex items-center gap-2">
               <span className="hidden text-[11px] font-medium text-neutral-400 dark:text-neutral-500 sm:inline">
-                디자이너를 위한 데일리 큐레이션
+                디자이너를 위한 오늘의 신호
               </span>
               <ThemeToggle />
             </div>

@@ -22,6 +22,26 @@ function FeedIcon({ className }: { className?: string }) {
   );
 }
 
+function AskIcon({ className }: { className?: string }) {
+  return (
+    <svg {...iconProps} className={className}>
+      <path d="M12 18h.01" />
+      <path d="M9.6 9a2.4 2.4 0 1 1 3.5 2.13c-.75.43-1.1.95-1.1 1.87v.5" />
+      <circle cx="12" cy="12" r="9" />
+    </svg>
+  );
+}
+
+function ShowIcon({ className }: { className?: string }) {
+  return (
+    <svg {...iconProps} className={className}>
+      <path d="M4 17V7a2 2 0 0 1 2-2h8" />
+      <path d="M8 21h10a2 2 0 0 0 2-2V9" />
+      <path d="M9 14l2 2 5-6" />
+    </svg>
+  );
+}
+
 function InspirationIcon({ className }: { className?: string }) {
   return (
     <svg {...iconProps} className={className}>
@@ -53,6 +73,8 @@ function LinksIcon({ className }: { className?: string }) {
 
 const items = [
   { href: "/", label: "피드", Icon: FeedIcon },
+  { href: "/ask", label: "Ask", Icon: AskIcon },
+  { href: "/show", label: "Show", Icon: ShowIcon },
   { href: "/inspiration", label: "영감", Icon: InspirationIcon },
   { href: "/jobs", label: "채용", Icon: JobsIcon },
   { href: "/links", label: "링크", Icon: LinksIcon },
