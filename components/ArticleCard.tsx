@@ -100,7 +100,7 @@ export default function ArticleCard({
       <li>
         <Link
           href={`/articles/${article.slug}`}
-          className="group flex h-full flex-col rounded-[1.35rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:shadow-none dark:hover:border-neutral-700 dark:hover:bg-neutral-900 dark:active:bg-neutral-900"
+          className="group flex h-full flex-col rounded-[1.35rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 dark:active:!bg-neutral-900"
         >
           <Thumbnail article={article} variant="grid" />
           <div className="flex flex-1 flex-col px-1 pb-1 pt-4">
@@ -125,7 +125,7 @@ export default function ArticleCard({
       <li>
         <Link
           href={`/articles/${article.slug}`}
-          className="group grid gap-5 rounded-[1.6rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:shadow-none dark:hover:border-neutral-700 dark:hover:bg-neutral-900 md:grid-cols-[1.2fr_1fr] md:p-4"
+          className="group grid gap-5 rounded-[1.6rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 md:grid-cols-[1.2fr_1fr] md:p-4"
         >
           <Thumbnail article={article} variant="featured" />
           <div className="flex flex-col justify-between px-1 pb-1 md:py-2">
@@ -151,7 +151,7 @@ export default function ArticleCard({
     <li>
       <Link
         href={`/articles/${article.slug}`}
-        className="group block rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:shadow-none dark:hover:border-neutral-700 dark:hover:bg-neutral-900 dark:active:bg-neutral-900"
+        className="group block rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 dark:active:!bg-neutral-900"
       >
         <div className="flex items-start gap-3.5">
           <div className="min-w-0 flex-1">

@@ -20,7 +20,7 @@ function HomeHero({
   counts: Record<Category, number>;
 }) {
   return (
-    <section className="mb-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] dark:border-neutral-800 dark:bg-neutral-900/70 md:mb-10 md:p-8">
+    <section className="mb-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] dark:!border-neutral-800 dark:!bg-neutral-900/70 md:mb-10 md:p-8">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
         <div>
           <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.18em] text-brand">
@@ -40,7 +40,7 @@ function HomeHero({
             <Link
               key={category}
               href={`/?category=${category}`}
-              className="group rounded-2xl border border-neutral-200 bg-neutral-50 p-4 transition hover:border-neutral-300 hover:bg-white dark:border-neutral-800 dark:bg-neutral-950/60 dark:hover:border-neutral-700 dark:hover:bg-neutral-900"
+              className="group rounded-2xl border border-neutral-200 bg-neutral-50 p-4 transition hover:border-neutral-300 hover:bg-white dark:!border-neutral-800 dark:!bg-neutral-950/60 dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -96,16 +96,16 @@ function SectionHeader({
 
 function NewsletterCTA() {
   return (
-    <section className="mt-10 rounded-[1.75rem] border border-neutral-200 bg-neutral-950 p-5 text-white dark:border-neutral-800 dark:bg-neutral-100 dark:text-neutral-950 md:p-7">
+    <section className="mt-10 rounded-[1.75rem] border border-neutral-200 bg-neutral-950 p-5 text-white dark:!border-neutral-800 dark:!bg-neutral-900 dark:!text-neutral-50 md:p-7">
       <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50 dark:text-neutral-950/45">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50 dark:text-white/45">
             Newsletter
           </p>
           <h2 className="mt-2 text-[25px] font-bold leading-tight tracking-[-0.045em] md:text-[32px]">
             매일 아침, 디자이너가 봐야 할 변화를 받아보세요.
           </h2>
-          <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-white/62 dark:text-neutral-950/60">
+          <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-white/62 dark:text-white/60">
             AI, 제품, 브랜드, 도구, 커리어 신호를 짧게 읽고 바로 판단할 수
             있게 정리합니다.
           </p>
@@ -178,7 +178,7 @@ export default async function HomePage({
             아직 등록된 아티클이 없습니다.
           </p>
         ) : latestArticles.length === 0 ? (
-          <p className="rounded-2xl border border-neutral-200 bg-white py-10 text-center text-sm text-neutral-400 dark:border-neutral-800 dark:bg-neutral-900/70 dark:text-neutral-500">
+          <p className="rounded-2xl border border-neutral-200 bg-white py-10 text-center text-sm text-neutral-400 dark:!border-neutral-800 dark:!bg-neutral-900/70 dark:text-neutral-500">
             더 표시할 아티클이 없습니다.
           </p>
         ) : (
