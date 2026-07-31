@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { getAllArticles } from "@/lib/content";
 import { CATEGORIES, CATEGORY_LABELS, type Category } from "@/lib/schema";
-import ArticleCard, { getSignalScore } from "@/components/ArticleCard";
+import ArticleCard from "@/components/ArticleCard";
 import CategoryTabs from "@/components/CategoryTabs";
+import { getPrisma } from "@/lib/db";
 
 function SectionTitle({
   eyebrow,
@@ -32,42 +33,23 @@ function SectionTitle({
   );
 }
 
-function Masthead({ total }: { total: number }) {
-  return (
-    <section className="mb-6 border-b border-neutral-200 pb-6 dark:border-neutral-800">
-      <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
-        <div>
-          <p className="text-[11px] font-black uppercase tracking-[0.18em] text-brand">
-            Designer feed
-          </p>
-          <h1 className="mt-2 max-w-3xl text-[30px] font-black leading-[1.05] tracking-[-0.055em] text-neutral-950 dark:text-neutral-50 md:text-[44px]">
-            오늘 볼 디자인 링크와 관점을 한 곳에.
-          </h1>
-          <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-            news.hada.io처럼 빠르게 훑되, 읽어야 할 글에 crit의 짧은 판단
-            단서와 토론 입구를 붙입니다. 매거진보다 가볍고, 단순 링크
-            목록보다는 더 해석적인 디자이너 피드입니다.
-          </p>
-        </div>
-        <div className="grid grid-cols-3 overflow-hidden rounded-2xl border border-neutral-200 bg-white text-center dark:!border-neutral-800 dark:!bg-neutral-900/80 md:w-[330px]">
-          <div className="border-r border-neutral-200 p-3 dark:border-neutral-800">
-            <p className="text-[20px] font-black tabular-nums text-neutral-950 dark:text-neutral-50">
-              {total}
-            </p>
-            <p className="mt-0.5 text-[11px] font-semibold text-neutral-400">links</p>
-          </div>
-          <div className="border-r border-neutral-200 p-3 dark:border-neutral-800">
-            <p className="text-[20px] font-black text-neutral-950 dark:text-neutral-50">Ask</p>
-            <p className="mt-0.5 text-[11px] font-semibold text-neutral-400">questions</p>
-          </div>
-          <div className="p-3">
-            <p className="text-[20px] font-black text-neutral-950 dark:text-neutral-50">Show</p>
-            <p className="mt-0.5 text-[11px] font-semibold text-neutral-400">works</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+async function getCommentCounts(slugs: string[]) {
+  const prisma = getPrisma();
+  if (!prisma || slugs.length === 0) return {} as Record<string, number>;
+
+  try {
+    const counts = await prisma.comment.groupBy({
+      by: ["slug"],
+      where: { slug: { in: slugs } },
+      _count: { slug: true },
+    });
+
+    return Object.fromEntries(
+      counts.map((item) => [item.slug, item._count.slug])
+    ) as Record<string, number>;
+  } catch {
+    return {} as Record<string, number>;
+  }
 }
 
 function SidebarPanel() {
@@ -150,20 +132,15 @@ export default async function HomePage({
   const articles = active
     ? allArticles.filter((article) => article.category === active)
     : allArticles;
-  const popularArticles = [...allArticles]
-    .sort((a, b) => getSignalScore(b) - getSignalScore(a))
-    .slice(0, 5);
+  const commentCounts = await getCommentCounts(allArticles.map((article) => article.slug));
 
   return (
     <div>
-      <Masthead total={allArticles.length} />
-
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
-        <main>
+      <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <main className="min-w-0">
           <SectionTitle
             eyebrow="Today"
             title={active ? `${CATEGORY_LABELS[active]} 링크` : "최신 피드"}
-            description="도메인, 제목, crit 관점, 토론 입구만 남겨 빠르게 정리했습니다."
           />
           <CategoryTabs active={active} counts={counts} total={allArticles.length} />
 
@@ -172,35 +149,17 @@ export default async function HomePage({
               아직 등록된 아티클이 없습니다.
             </p>
           ) : (
-            <ul className="overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:!border-neutral-800 dark:!bg-neutral-900/80">
-              {articles.map((article, index) => (
+            <ul className="min-w-0 overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:!border-neutral-800 dark:!bg-neutral-900/80">
+              {articles.map((article) => (
                 <ArticleCard
                   key={article.slug}
                   article={article}
                   variant="signal"
-                  rank={index + 1}
+                  commentCount={commentCounts[article.slug] ?? 0}
                 />
               ))}
             </ul>
           )}
-
-          <section className="mt-8">
-            <SectionTitle
-              eyebrow="Popular"
-              title="많이 읽을 글"
-              description="점수는 임시 편집 점수입니다. 나중에 추천/댓글 데이터로 대체할 수 있습니다."
-            />
-            <ul className="overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:!border-neutral-800 dark:!bg-neutral-900/80">
-              {popularArticles.map((article, index) => (
-                <ArticleCard
-                  key={article.slug}
-                  article={article}
-                  variant="compact"
-                  rank={index + 1}
-                />
-              ))}
-            </ul>
-          </section>
         </main>
 
         <SidebarPanel />

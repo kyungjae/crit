@@ -30,7 +30,7 @@ export default function CategoryTabs({
   return (
     <nav
       aria-label="아티클 카테고리"
-      className="scrollbar-none -mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1"
+      className="scrollbar-none -mx-4 mb-4 flex min-w-0 gap-2 overflow-x-auto px-4 pb-1"
     >
       {tabs.map((tab) => (
         <Link

@@ -46,7 +46,7 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   return (
-    <article className="mx-auto max-w-2xl">
+    <article className="article-reading mx-auto max-w-[620px]">
       {article.draft && (
         <p className="mb-3 flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
           초안 — 피드에 노출되지 않습니다
@@ -67,35 +67,37 @@ export default async function ArticlePage({
         </div>
       )}
 
-      <div className="mb-2 flex items-center gap-2 text-xs">
-        <span className="rounded-full bg-brand/10 px-2 py-0.5 font-medium text-brand">
-          {CATEGORY_LABELS[article.category]}
-        </span>
-        <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
-        {article.format !== "brief" && (
-          <span className="text-neutral-400 dark:text-neutral-500">
-            · {article.readingMinutes}분 읽기
+      <header className="article-header">
+        <div className="mb-4 flex items-center gap-2 text-xs">
+          <span className="rounded-full bg-brand/10 px-2 py-0.5 font-medium text-brand">
+            {CATEGORY_LABELS[article.category]}
           </span>
+          <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
+          {article.format !== "brief" && (
+            <span className="text-neutral-400 dark:text-neutral-500">
+              · {article.readingMinutes}분 읽기
+            </span>
+          )}
+        </div>
+
+        <h1 className="article-title text-[32px] font-bold leading-[1.35] tracking-[-0.03em] sm:text-[44px] sm:leading-[1.3]">
+          {article.title}
+        </h1>
+        <p className="article-summary mt-6 text-[17px] leading-[1.8] text-neutral-500 dark:text-neutral-400">
+          {article.summary}
+        </p>
+
+        {article.source_url && (
+          <a
+            href={article.source_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand underline underline-offset-2"
+          >
+            원문 보기{article.source_name ? ` — ${article.source_name}` : ""} ↗
+          </a>
         )}
-      </div>
-
-      <h1 className="text-2xl font-bold leading-snug tracking-[-0.02em]">
-        {article.title}
-      </h1>
-      <p className="mt-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
-        {article.summary}
-      </p>
-
-      {article.source_url && (
-        <a
-          href={article.source_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand underline underline-offset-2"
-        >
-          원문 보기{article.source_name ? ` — ${article.source_name}` : ""} ↗
-        </a>
-      )}
+      </header>
 
       <ArticleBody markdown={article.body} format={article.format} />
 

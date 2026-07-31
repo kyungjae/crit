@@ -46,6 +46,8 @@ export default function Comments({ slug }: { slug: string }) {
   const [drafts, setDrafts] = useState<Record<string, string>>({ [ROOT_DRAFT_KEY]: "" });
   const [pendingKey, setPendingKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
 
   const tree = useMemo(() => buildCommentTree(comments ?? []), [comments]);
 
@@ -59,6 +61,27 @@ export default function Comments({ slug }: { slug: string }) {
       })
       .catch(() => setComments([]));
   }, [slug]);
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const updateKeyboardOffset = () => {
+      const offset = Math.max(
+        0,
+        window.innerHeight - viewport.height - viewport.offsetTop
+      );
+      setKeyboardOffset(offset > 80 ? offset : 0);
+    };
+
+    updateKeyboardOffset();
+    viewport.addEventListener("resize", updateKeyboardOffset);
+    viewport.addEventListener("scroll", updateKeyboardOffset);
+    return () => {
+      viewport.removeEventListener("resize", updateKeyboardOffset);
+      viewport.removeEventListener("scroll", updateKeyboardOffset);
+    };
+  }, []);
 
   async function submit(e: React.FormEvent, parentId?: string) {
     e.preventDefault();
@@ -89,6 +112,7 @@ export default function Comments({ slug }: { slug: string }) {
       localStorage.setItem(NICKNAME_KEY, nickname.trim());
       setComments((prev) => [...(prev ?? []), comment]);
       setDrafts((prev) => ({ ...prev, [draftKey]: "" }));
+      if (parentId) setReplyingTo(null);
     } catch (e) {
       setError(
         (e as Error).message ||
@@ -99,7 +123,7 @@ export default function Comments({ slug }: { slug: string }) {
     }
   }
 
-  function CommentForm({
+  function renderCommentForm({
     parentId,
     autoFocus = false,
     compact = false,
@@ -114,16 +138,19 @@ export default function Comments({ slug }: { slug: string }) {
     return (
       <form
         onSubmit={(e) => submit(e, parentId)}
-        className={`scroll-mb-32 flex flex-col gap-2 ${compact ? "mt-3" : "mt-4 pb-4"}`}
+        className={`scroll-mb-32 flex flex-col gap-2 ${compact ? "mt-3 md:static md:rounded-none md:border-0 md:bg-transparent md:p-0" : "mt-4 pb-4"} ${compact ? "fixed inset-x-3 z-30 rounded-2xl border border-neutral-200 bg-white p-3 shadow-xl dark:border-neutral-700 dark:bg-neutral-950 md:relative md:inset-auto md:z-auto md:shadow-none" : ""}`}
+        style={compact ? { bottom: `calc(4.5rem + ${keyboardOffset}px)` } : undefined}
       >
-        <input
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-          placeholder="닉네임"
-          maxLength={20}
-          required
-          className="w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:w-32 sm:text-sm"
-        />
+        {(!compact || !nickname.trim()) && (
+          <input
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+            placeholder="닉네임"
+            maxLength={20}
+            required
+            className="w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:w-32 sm:text-sm"
+          />
+        )}
         <textarea
           value={drafts[draftKey] ?? ""}
           onChange={(e) =>
@@ -134,16 +161,16 @@ export default function Comments({ slug }: { slug: string }) {
           maxLength={1000}
           required
           autoFocus={autoFocus}
-          className="min-h-24 w-full resize-y rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:text-sm"
+          className={`w-full resize-y rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:text-sm ${compact ? "min-h-16" : "min-h-24"}`}
         />
         {error && pendingKey === null && (
           <p className="text-xs text-red-500">{error}</p>
         )}
-        <div className="flex gap-2 sm:self-end">
+        <div className={`flex gap-2 ${compact ? "justify-end" : "sm:self-end"}`}>
           <button
             type="submit"
             disabled={pending}
-            className="flex-1 rounded-lg bg-neutral-900 px-4 py-3 text-sm font-medium text-white transition-opacity disabled:opacity-50 dark:bg-brand dark:text-white dark:disabled:bg-neutral-800 dark:disabled:text-neutral-500 sm:flex-none sm:py-2"
+            className={`${compact ? "rounded-full px-4 py-2 text-xs" : "flex-1 px-4 py-3 text-sm sm:flex-none sm:py-2"} rounded-lg bg-neutral-900 font-medium text-white transition-opacity disabled:opacity-50 dark:bg-brand dark:text-white dark:disabled:bg-neutral-800 dark:disabled:text-neutral-500`}
           >
             {pending ? "등록 중…" : parentId ? "답글 등록" : "댓글 등록"}
           </button>
@@ -152,7 +179,7 @@ export default function Comments({ slug }: { slug: string }) {
     );
   }
 
-  function CommentItem({ comment, depth = 0 }: { comment: CommentNode; depth?: number }) {
+  function renderCommentItem({ comment, depth = 0 }: { comment: CommentNode; depth?: number }) {
     return (
       <li>
         <article className="rounded-xl bg-neutral-100 p-3 dark:bg-neutral-900">
@@ -166,12 +193,23 @@ export default function Comments({ slug }: { slug: string }) {
             {comment.body}
           </p>
           {available && (
-            <details className="mt-2 group">
-              <summary className="cursor-pointer list-none text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">
+            <details
+              className="mt-2 group"
+              open={replyingTo === comment.id}
+            >
+              <summary
+                onClick={(event) => {
+                  event.preventDefault();
+                  setReplyingTo((current) =>
+                    current === comment.id ? null : comment.id
+                  );
+                }}
+                className="cursor-pointer list-none text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+              >
                 <span className="group-open:hidden">답글</span>
                 <span className="hidden group-open:inline">답글 닫기</span>
               </summary>
-              <CommentForm parentId={comment.id} compact />
+              {renderCommentForm({ parentId: comment.id, compact: true })}
             </details>
           )}
         </article>
@@ -182,9 +220,9 @@ export default function Comments({ slug }: { slug: string }) {
               depth > 1 ? "ml-0" : "ml-4"
             }`}
           >
-            {comment.replies.map((reply) => (
-              <CommentItem key={reply.id} comment={reply} depth={depth + 1} />
-            ))}
+            {comment.replies.map((reply) =>
+              renderCommentItem({ comment: reply, depth: depth + 1 })
+            )}
           </ul>
         )}
       </li>
@@ -205,7 +243,7 @@ export default function Comments({ slug }: { slug: string }) {
             첫 댓글을 남겨보세요.
           </li>
         ) : (
-          tree.map((comment) => <CommentItem key={comment.id} comment={comment} />)
+          tree.map((comment) => renderCommentItem({ comment }))
         )}
       </ul>
 
@@ -215,7 +253,7 @@ export default function Comments({ slug }: { slug: string }) {
         </p>
       )}
 
-      {available && <CommentForm />}
+      {available && renderCommentForm({})}
     </section>
   );
 }

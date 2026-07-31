@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getPrisma } from "@/lib/db";
 import { getArticle } from "@/lib/content";
+import { askItems, showItems } from "@/lib/community";
 
 export async function GET(req: NextRequest) {
   const slug = req.nextUrl.searchParams.get("slug");
@@ -31,6 +32,17 @@ const createCommentSchema = z.object({
   deviceId: z.string().max(64).optional(),
 });
 
+function isCommentTarget(slug: string) {
+  if (getArticle(slug)) return true;
+  if (slug.startsWith("ask-")) {
+    return askItems.some((item) => `ask-${item.slug}` === slug);
+  }
+  if (slug.startsWith("show-")) {
+    return showItems.some((item) => `show-${item.slug}` === slug);
+  }
+  return false;
+}
+
 export async function POST(req: NextRequest) {
   const prisma = getPrisma();
   if (!prisma) {
@@ -47,8 +59,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "invalid request" }, { status: 400 });
   }
 
-  if (!getArticle(parsed.slug)) {
-    return NextResponse.json({ error: "article not found" }, { status: 404 });
+  if (!isCommentTarget(parsed.slug)) {
+    return NextResponse.json({ error: "comment target not found" }, { status: 404 });
   }
 
   if (parsed.parentId) {

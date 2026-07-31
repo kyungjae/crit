@@ -42,17 +42,6 @@ function ShowIcon({ className }: { className?: string }) {
   );
 }
 
-function InspirationIcon({ className }: { className?: string }) {
-  return (
-    <svg {...iconProps} className={className}>
-      <rect x="3" y="3" width="8" height="12" rx="2" />
-      <rect x="13" y="3" width="8" height="7" rx="2" />
-      <rect x="13" y="12" width="8" height="9" rx="2" />
-      <rect x="3" y="17" width="8" height="4" rx="2" />
-    </svg>
-  );
-}
-
 function JobsIcon({ className }: { className?: string }) {
   return (
     <svg {...iconProps} className={className}>
@@ -75,7 +64,6 @@ const items = [
   { href: "/", label: "피드", Icon: FeedIcon },
   { href: "/ask", label: "Ask", Icon: AskIcon },
   { href: "/show", label: "Show", Icon: ShowIcon },
-  { href: "/inspiration", label: "영감", Icon: InspirationIcon },
   { href: "/jobs", label: "채용", Icon: JobsIcon },
   { href: "/links", label: "링크", Icon: LinksIcon },
 ];

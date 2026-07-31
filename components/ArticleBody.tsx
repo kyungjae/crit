@@ -3,8 +3,8 @@ import type { Format } from "@/lib/schema";
 import Markdown from "./markdown";
 
 const PROSE = [
-  "prose prose-neutral max-w-none dark:prose-invert",
-  "prose-headings:tracking-tight prose-p:leading-[1.8] prose-li:leading-[1.75]",
+  "article-prose prose prose-neutral max-w-none dark:prose-invert",
+  "prose-headings:tracking-tight prose-p:leading-[1.9] prose-li:leading-[1.85]",
   "prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-neutral-500 dark:prose-blockquote:text-neutral-400",
   "prose-a:text-brand prose-a:underline-offset-2",
   // Tailwind Typography가 인라인 코드에 붙이는 백틱 제거 + 칩 스타일

@@ -28,6 +28,132 @@ h3 {
   letter-spacing: -0.02em;
 }
 
+/* 긴 글은 롱블랙처럼 한 줄 길이와 문단 호흡을 먼저 고정한다. */
+.article-reading {
+  font-feature-settings: "ss05";
+  padding-top: 24px;
+}
+
+.article-header {
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgb(229 229 229);
+}
+
+.dark .article-header {
+  border-bottom-color: rgb(38 38 38);
+}
+
+.article-reading .article-title {
+  max-width: 560px;
+}
+
+.article-reading .article-summary {
+  max-width: 560px;
+}
+
+.article-prose {
+  color: rgb(38 38 38);
+  margin-top: 56px;
+  font-size: 19px;
+  letter-spacing: -0.012em;
+  line-height: 1.9;
+}
+
+.dark .article-prose {
+  color: rgb(229 229 229);
+}
+
+.article-prose p {
+  margin-top: 0;
+  margin-bottom: 42px;
+}
+
+.article-prose > p,
+.article-prose > h2,
+.article-prose > h3,
+.article-prose > blockquote,
+.article-prose > ul,
+.article-prose > ol {
+  width: calc(100% - 40px);
+  margin-left: 40px;
+}
+
+.article-prose > :first-child {
+  margin-top: 0;
+}
+
+.article-prose h2 {
+  margin-top: 104px;
+  margin-bottom: 42px;
+  font-size: 32px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+.article-prose h3 {
+  margin-top: 76px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+.article-prose li {
+  line-height: 1.85;
+}
+
+.article-prose blockquote {
+  margin-top: 56px;
+  margin-bottom: 56px;
+  padding-left: 24px;
+  border-left-width: 2px;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.article-prose > figure,
+.article-prose > div.not-prose {
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 640px) {
+  .article-reading {
+    padding-top: 8px;
+  }
+
+  .article-header {
+    padding-bottom: 40px;
+  }
+
+  .article-prose {
+    margin-top: 40px;
+    font-size: 17px;
+    line-height: 1.85;
+    letter-spacing: -0.01em;
+  }
+
+  .article-prose p {
+    margin-bottom: 30px;
+  }
+
+  .article-prose > p,
+  .article-prose > h2,
+  .article-prose > h3,
+  .article-prose > blockquote,
+  .article-prose > ul,
+  .article-prose > ol {
+    width: auto;
+    margin-left: 0;
+  }
+
+  .article-prose h2 {
+    margin-top: 64px;
+    margin-bottom: 28px;
+    font-size: 25px;
+  }
+}
+
 .scrollbar-none {
   scrollbar-width: none;
 }

@@ -15,18 +15,6 @@ function getDomain(url?: string) {
   }
 }
 
-export function getSignalScore(article: Article) {
-  const seed = article.slug.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
-  const formatBonus = article.format === "deep" ? 8 : article.format === "showcase" ? 7 : article.format === "rules" ? 6 : 4;
-  return 12 + (seed % 28) + formatBonus;
-}
-
-export function getCritTake(article: Article) {
-  const firstSentence = article.summary.split(/[.!?。]|(?<=다)\s/)[0]?.trim();
-  if (!firstSentence) return article.summary;
-  return firstSentence.length > 86 ? `${firstSentence.slice(0, 84)}…` : firstSentence;
-}
-
 function ArticleMeta({ article }: { article: Article }) {
   const domain = getDomain(article.source_url);
 
@@ -63,22 +51,6 @@ function ArticleBadges({ article }: { article: Article }) {
         </span>
       )}
     </div>
-  );
-}
-
-function SourceLink({ article }: { article: Article }) {
-  const domain = getDomain(article.source_url);
-  if (!article.source_url || !domain) return null;
-
-  return (
-    <a
-      href={article.source_url}
-      target="_blank"
-      rel="noreferrer"
-      className="relative z-10 rounded-full border border-neutral-200 px-2.5 py-1 text-[11px] font-semibold text-neutral-500 transition hover:border-neutral-300 hover:text-neutral-950 dark:border-neutral-800 dark:text-neutral-400 dark:hover:border-neutral-700 dark:hover:text-neutral-50"
-    >
-      원문 ↗ {domain}
-    </a>
   );
 }
 
@@ -130,35 +102,24 @@ function Thumbnail({
 export default function ArticleCard({
   article,
   variant = "list",
-  rank,
+  commentCount = 0,
 }: {
   article: Article;
   variant?: ArticleCardVariant;
-  rank?: number;
+  commentCount?: number;
 }) {
   if (variant === "compact") {
     return (
       <li className="border-b border-neutral-200 py-3 last:border-b-0 dark:border-neutral-800">
         <Link href={`/articles/${article.slug}`} className="group block">
           <div className="flex items-start gap-3">
-            {rank && (
-              <span className="mt-0.5 w-5 text-right text-[12px] font-bold tabular-nums text-neutral-300 dark:text-neutral-700">
-                {rank}
-              </span>
-            )}
             <div className="min-w-0 flex-1">
-              <div className="mb-1 flex items-center justify-between gap-2">
+              <div className="mb-1">
                 <ArticleMeta article={article} />
-                <span className="shrink-0 text-[11px] font-semibold tabular-nums text-neutral-400 dark:text-neutral-500">
-                  {getSignalScore(article)} pts
-                </span>
               </div>
               <h3 className="line-clamp-2 text-[14px] font-semibold leading-snug text-neutral-900 transition group-hover:text-brand dark:text-neutral-100">
                 {article.title}
               </h3>
-              <p className="mt-1 line-clamp-1 text-[12px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                crit: {getCritTake(article)}
-              </p>
             </div>
           </div>
         </Link>
@@ -170,20 +131,8 @@ export default function ArticleCard({
     const domain = getDomain(article.source_url);
 
     return (
-      <li className="border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
-        <div className="grid gap-2 px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900 md:grid-cols-[44px_minmax(0,1fr)_auto] md:gap-4">
-          <div className="flex items-center gap-2 md:block md:text-center">
-            <span className="w-6 text-right text-[12px] font-bold tabular-nums text-neutral-300 dark:text-neutral-700 md:block md:w-auto">
-              {rank}
-            </span>
-            <span className="text-[12px] font-black tabular-nums text-neutral-800 dark:text-neutral-100 md:mt-1 md:block md:text-[18px]">
-              {getSignalScore(article)}
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-neutral-300 dark:text-neutral-700 md:block">
-              pts
-            </span>
-          </div>
-
+      <li className="min-w-0 border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
+        <div className="grid gap-2 px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900 md:grid-cols-[minmax(0,1fr)_auto] md:gap-4">
           <div className="min-w-0">
             <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
               <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
@@ -200,24 +149,17 @@ export default function ArticleCard({
               <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
                 {article.title}
               </h2>
-              <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                <span className="font-semibold text-neutral-700 dark:text-neutral-200">crit: </span>
-                {getCritTake(article)}
-              </p>
             </Link>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 md:justify-end md:self-center">
-            <span className="rounded bg-neutral-100 px-1.5 py-0.5 text-[11px] font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
-              {FORMAT_LABELS[article.format]}
-            </span>
             <Link
               href={`/articles/${article.slug}#comments`}
-              className="rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-600 transition hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+              aria-label={`댓글 ${commentCount}개`}
+              className="min-w-8 rounded-full bg-neutral-100 px-2.5 py-1 text-center text-[11px] font-semibold tabular-nums text-neutral-600 transition hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
             >
-              토론
+              {commentCount}
             </Link>
-            <SourceLink article={article} />
           </div>
         </div>
       </li>
