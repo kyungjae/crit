@@ -1,0 +1,280 @@
+{
+  "date": "2026-07-31",
+  "jobs": [
+    {
+      "id": "2026-07-31-wrtn-product-designer",
+      "company": "뤼튼테크놀로지스",
+      "title": "Product Designer",
+      "location": "서울특별시 서초구 서초대로77길 17",
+      "employment_type": "full-time",
+      "experience": "경력 3년 이상",
+      "tags": [
+        "프로덕트디자인",
+        "AI",
+        "AI캐릭터",
+        "UX",
+        "콘텐츠"
+      ],
+      "url": "https://career.wrtn.io/ko/o/184103",
+      "posted_at": "2026-07-31",
+      "logo": "https://www.google.com/s2/favicons?domain=wrtn.io&sz=128",
+      "company_description": "뤼튼테크놀로지스는 AI 플랫폼 뤼튼, AI 캐릭터 서비스 크랙, 기업 업무 에이전트 AX를 만드는 AI 스타트업입니다.",
+      "summary": "AI 캐릭터와 인터랙티브 스토리 경험을 만드는 AI 스토리본부에서 채팅, 게임, 웹소설·웹툰형 콘텐츠 소비 경험을 설계하는 프로덕트 디자이너 포지션입니다.",
+      "responsibilities": [
+        "AI 콘텐츠 소비 경험을 채팅, 게임, 웹소설·웹툰 등 다양한 형태로 설계합니다.",
+        "정량·정성 데이터를 기반으로 UX 솔루션을 제안합니다.",
+        "제품 디자인 업무를 처음부터 끝까지 수행하고 사용자 여정과 와이어프레임을 설계합니다.",
+        "엔지니어, PM, QA 매니저와 협업해 배포와 개선까지 주도합니다.",
+        "배포 후 사용자 피드백과 성과 지표를 분석해 지속적으로 개선합니다."
+      ],
+      "qualifications": [
+        "3년 이상 또는 이에 준하는 프로덕트 디자인 경험이 필요합니다.",
+        "Figma 및 주요 디자인 툴을 능숙하게 사용할 수 있어야 합니다.",
+        "데이터와 사용자 피드백을 기반으로 디자인 의사결정을 내릴 수 있어야 합니다.",
+        "PM, 엔지니어 등 다양한 직군과 원활하게 협업할 수 있어야 합니다."
+      ],
+      "preferred": [
+        "AI 캐릭터 챗에 대한 이해",
+        "콘텐츠 소비 경험에 대한 관심과 이해",
+        "디자인 시스템에 대한 높은 이해도"
+      ],
+      "related_links": [
+        {
+          "title": "크랙 서비스",
+          "url": "https://crack.wrtn.ai/",
+          "source_name": "Wrtn",
+          "type": "company"
+        },
+        {
+          "title": "Kyarapu 서비스",
+          "url": "https://kyarapu.com/",
+          "source_name": "Wrtn",
+          "type": "company"
+        }
+      ]
+    },
+    {
+      "id": "2026-07-31-scatterlab-product-designer-zeta",
+      "company": "스캐터랩",
+      "title": "Product Designer",
+      "location": "서울특별시 성동구 왕십리로 125, 9층",
+      "employment_type": "full-time",
+      "experience": "경력 5년 이상",
+      "tags": [
+        "프로덕트디자인",
+        "AI",
+        "엔터테인먼트",
+        "UX",
+        "글로벌"
+      ],
+      "url": "https://www.scatterlab.co.kr/ko/o/226890",
+      "posted_at": "2026-07-31",
+      "logo": "https://www.google.com/s2/favicons?domain=scatterlab.co.kr&sz=128",
+      "company_description": "스캐터랩은 AI 엔터테인먼트 플랫폼 제타를 운영하며 한국과 일본을 중심으로 글로벌 AI 캐릭터 경험을 만들고 있습니다.",
+      "summary": "AI 캐릭터와 세계관, 상황이 실시간으로 변화하는 제타에서 예측 불가능한 생성형 콘텐츠 위의 몰입과 관계 경험을 설계하는 프로덕트 디자이너 포지션입니다.",
+      "responsibilities": [
+        "AI 엔터테인먼트에 맞는 새로운 UX/UI 문법을 만들고 검증합니다.",
+        "비주얼노벨, 인터랙티브 기능, 크리에이터 제작 경험 등 새로운 제품 경험을 빠르게 설계합니다.",
+        "유저 반응과 데이터를 바탕으로 실험하고 제품을 반복 개선합니다.",
+        "PO, 데이터 분석가, 엔지니어와 함께 문제 정의부터 출시 후 개선까지 주도합니다.",
+        "필요하면 데이터 분석, A/B 테스트 설계, 프롬프트·콘텐츠 정책까지 함께 다룹니다."
+      ],
+      "qualifications": [
+        "5년 이상의 프로덕트 디자인 경험이 필요합니다.",
+        "UX/UI 설계부터 출시 후 지표와 유저 피드백 기반 개선까지 경험이 필요합니다.",
+        "요구사항을 화면으로 옮기는 것을 넘어 본질적인 제품 문제를 정의할 수 있어야 합니다.",
+        "엔터테인먼트, 게임, 웹툰·웹소설, UGC·크리에이터 플랫폼에 대한 관심과 이해가 필요합니다.",
+        "여러 직군과 협업하며 빠른 실험과 반복 개선을 실행할 수 있어야 합니다."
+      ],
+      "preferred": [
+        "게임, 웹툰·웹소설, UGC·크리에이터 플랫폼 등 팬덤 기반 제품 이해",
+        "에디터, 제작 도구, 템플릿 시스템처럼 창작 경험을 설계한 경험",
+        "LLM의 예측 어려움을 고려한 생성형 AI 제품 UX 설계 경험",
+        "일본, 미국 등 문화권이 다른 글로벌 유저를 대상으로 한 제품 설계 경험",
+        "Claude, ChatGPT 등 AI 도구를 리서치, 시안 탐색, 프로토타이핑에 활용하는 습관"
+      ],
+      "related_links": [
+        {
+          "title": "스캐터랩 채용",
+          "url": "https://www.scatterlab.co.kr/ko/jobs",
+          "source_name": "Scatterlab",
+          "type": "company"
+        },
+        {
+          "title": "제타 소개",
+          "url": "https://www.scatterlab.co.kr/ko/zeta",
+          "source_name": "Scatterlab",
+          "type": "company"
+        }
+      ]
+    },
+    {
+      "id": "2026-07-31-goodoc-product-designer",
+      "company": "굿닥",
+      "title": "Product Designer",
+      "location": "서울특별시 강남구 역삼로2길 16, 9층",
+      "employment_type": "full-time",
+      "experience": "경력 7~10년",
+      "tags": [
+        "프로덕트디자인",
+        "헬스케어",
+        "AI",
+        "정보구조",
+        "디자인시스템"
+      ],
+      "url": "https://www.teamgoodoc.co.kr/ko/o/231287",
+      "posted_at": "2026-07-31",
+      "logo": "https://www.google.com/s2/favicons?domain=teamgoodoc.co.kr&sz=128",
+      "company_description": "굿닥은 비대면 진료, 모바일 접수·예약, AI 기반 건강상담 등 의료 여정의 디지털화를 만드는 헬스케어 플랫폼입니다.",
+      "summary": "의료 정보, 권한, 상태, 정책과 예외 상황이 얽힌 복잡한 헬스케어 제품을 정보 구조와 UX 원칙, 디자인 시스템으로 정리하는 시니어 프로덕트 디자인 역할입니다.",
+      "responsibilities": [
+        "제품 전략과 목표 수립에 참여하고 해결해야 할 문제와 우선순위를 정의합니다.",
+        "비즈니스 정책, 데이터 구조, 사용자 역할, 권한과 상태를 이해해 일관된 정보 구조와 사용자 경험으로 설계합니다.",
+        "제품 용어, 상태값, 분기 기준을 정의하고 팀이 참조할 수 있는 기준으로 관리합니다.",
+        "기능 간 관계, 예외 상황, 운영 방식과 향후 확장성을 고려해 제품 구조를 설계합니다.",
+        "고객 불편과 의견을 정량·정성적으로 수집하고 주요 지표와 함께 모니터링하며 개선합니다.",
+        "제품 전반의 UX 원칙과 디자인 시스템을 구축하고 일관성을 관리합니다."
+      ],
+      "qualifications": [
+        "인하우스 경험을 포함한 프로덕트 디자인 경험 7년 이상이 필요합니다.",
+        "제품 데이터 구조와 주요 개념, 관계, 상태 전이, 권한을 이해하고 정보 구조를 설계한 경험이 필요합니다.",
+        "용어, 상태값, 예외 분기 기준을 직접 정의하고 문서화한 경험이 필요합니다.",
+        "비즈니스 상황과 정책, 예외 케이스를 고려해 일관된 UX/UI를 설계한 경험이 필요합니다.",
+        "정량·정성 데이터에 근거해 고객 문제를 해석하고 개선과 모니터링까지 수행한 경험이 필요합니다."
+      ],
+      "preferred": [
+        "개발 구조와 기술적 제약을 이해하고 엔지니어와 구현 방식을 조율한 경험",
+        "어드민, 백오피스, 운영 도구 등 데이터와 정책 중심 제품 설계 경험",
+        "B2B2C 또는 여러 사용자와 운영 주체가 연결된 서비스 설계 경험",
+        "웹과 앱을 아우르는 멀티 플랫폼 경험 설계 경험",
+        "디자인 시스템을 실제 제품과 조직에 적용하고 지속 운영한 경험",
+        "신규 서비스를 기획·설계해 시장 출시와 성장 단계까지 개선한 경험"
+      ],
+      "related_links": [
+        {
+          "title": "굿닥 인재영입",
+          "url": "https://www.teamgoodoc.co.kr/ko/home",
+          "source_name": "goodoc",
+          "type": "company"
+        },
+        {
+          "title": "굿닥 서비스 소개",
+          "url": "https://www.goodoc.co.kr/",
+          "source_name": "goodoc",
+          "type": "company"
+        }
+      ]
+    },
+    {
+      "id": "2026-07-31-banksalad-senior-product-designer-health",
+      "company": "뱅크샐러드",
+      "title": "Senior Product Designer (시니어 프로덕트 디자이너, 건강)",
+      "location": "서울 / 상세 근무지는 공식 공고 확인",
+      "employment_type": "full-time",
+      "experience": "경력 7년 이상",
+      "tags": [
+        "프로덕트디자인",
+        "헬스케어",
+        "데이터",
+        "UX",
+        "핀테크"
+      ],
+      "url": "https://banksalad.career.greetinghr.com/ko/o/144064",
+      "posted_at": "2026-07-31",
+      "logo": "https://www.google.com/s2/favicons?domain=banksalad.com&sz=128",
+      "company_description": "뱅크샐러드는 금융데이터와 건강데이터를 기반으로 사람들이 자신의 데이터로 삶을 더 낫게 만들도록 돕는 데이터 기반 서비스 회사입니다.",
+      "summary": "건강 영역에서 사용자 리서치와 데이터 분석을 바탕으로 고객 문제를 정의하고, 논리적인 UX와 감각적인 UI로 데이터 기반 건강 경험을 설계하는 시니어 포지션입니다.",
+      "responsibilities": [
+        "사용자 리서치와 데이터 분석을 기반으로 고객 니즈를 이해하고 디자인으로 해결할 문제를 정의합니다.",
+        "고객 가설을 세우고 프로토타입 사용성 평가와 A/B 테스트로 검증합니다.",
+        "사용자 맥락에 맞는 논리적 UX 설계와 감각적 UI 디자인으로 경험 품질을 높입니다.",
+        "사용자 경험과 비즈니스 관점에서 제품을 디자인하고 동료들과 협업합니다.",
+        "뱅크샐러드의 디자인 원칙과 디자인 시스템을 적용하고 더 나은 디자인 플로우와 컴포넌트를 제안합니다."
+      ],
+      "qualifications": [
+        "7년 이상의 UX 분야 실무 경험이 필요합니다.",
+        "사용자 친화적인 인터페이스를 디자인하기 위한 시각적 감각이 필요합니다.",
+        "프로젝트 매니저, 데이터 분석가, 개발자 등 여러 직군과 협업할 수 있어야 합니다.",
+        "사용자 인터뷰와 데이터 분석을 통해 문제를 도출하고 정의할 수 있어야 합니다.",
+        "비즈니스와 서비스 전체를 이해하고 논리적인 UX를 설계할 수 있어야 합니다.",
+        "복잡한 디자인 문제를 해결할 수 있는 창의적인 사고 능력이 필요합니다."
+      ],
+      "preferred": [
+        "자신의 생각을 자신감 있게 드러내고 설득할 수 있는 역량",
+        "제품 기획부터 출시, 운영, 개선까지 제품 라이프사이클을 경험한 이력",
+        "비즈니스 성공을 위해 디자인 관점에서 고민한 경험",
+        "금융 서비스 UX/UI 디자인 경험",
+        "Analytics 분석 및 데이터 기반 UX 디자인 경험",
+        "디자인과 IT 분야의 최신 트렌드와 기술을 학습하고 적용하는 관심"
+      ],
+      "related_links": [
+        {
+          "title": "뱅크샐러드 채용 공고",
+          "url": "https://corp.banksalad.com/jobs/",
+          "source_name": "Banksalad",
+          "type": "company"
+        },
+        {
+          "title": "뱅크샐러드 디자인 챕터 문화",
+          "url": "https://blog.banksalad.com/pnc/design_dressing/",
+          "source_name": "Banksalad Blog",
+          "type": "article"
+        }
+      ]
+    },
+    {
+      "id": "2026-07-31-ringle-motion-graphic-designer",
+      "company": "링글잉글리시에듀케이션서비스",
+      "title": "[경력직] Creative Part 모션그래픽 디자이너",
+      "location": "서울 강남구 역삼역 인근 오피스",
+      "employment_type": "full-time",
+      "experience": "3년차 미만 주니어",
+      "tags": [
+        "모션그래픽",
+        "콘텐츠디자인",
+        "브랜드",
+        "에듀테크",
+        "AI교육"
+      ],
+      "url": "https://career.ringleplus.com/12feb3b2-f942-808f-9806-d4287a570307",
+      "posted_at": "2026-07-31",
+      "logo": "https://www.google.com/s2/favicons?domain=ringleplus.com&sz=128",
+      "company_description": "링글은 아이비리그 튜터 화상영어, AI 튜터, AI 스피킹 테스트를 결합해 글로벌 영어 학습 경험을 만드는 에듀테크 회사입니다.",
+      "summary": "브랜드 이해를 바탕으로 광고, 홍보 영상, 소셜 콘텐츠, 서비스 설명 영상과 프로모션 캠페인의 모션 그래픽을 만드는 Creative Part 포지션입니다.",
+      "responsibilities": [
+        "링글의 브랜드 아이덴티티를 기반으로 광고, 홍보 영상, 다양한 디지털 매체의 모션 그래픽 콘텐츠를 제작합니다.",
+        "소셜 미디어 콘텐츠부터 서비스 설명 영상과 프로모션 캠페인까지 기획 단계부터 최종 결과물까지 담당합니다.",
+        "모든 매체에서 링글 특유의 톤앤매너와 시각적 통일성을 유지합니다.",
+        "모션 디자인 트렌드를 학습하고 작업에 반영합니다."
+      ],
+      "qualifications": [
+        "3년차 미만 주니어를 대상으로 합니다.",
+        "Adobe Creative Suite, 특히 After Effects, Illustrator, Photoshop 사용 능력이 필요합니다.",
+        "애니메이션 원리에 대한 기본적인 이해가 필요합니다.",
+        "독립적으로 일하면서도 팀 내에서 협업할 수 있어야 합니다.",
+        "창의적 문제 해결 능력과 세부 사항에 대한 꼼꼼함이 필요합니다.",
+        "모션 그래픽 작업을 담은 포트폴리오 제출이 필수입니다."
+      ],
+      "preferred": [
+        "타이포그래피에 대한 높은 이해도",
+        "3D 툴 경험 또는 숙련도",
+        "Figma 또는 Sketch 등 디자인 도구 사용 경험",
+        "프리 프로덕션, 촬영, 포스트 프로덕션 과정 경험"
+      ],
+      "related_links": [
+        {
+          "title": "링글 홈페이지",
+          "url": "https://www.ringleplus.com/",
+          "source_name": "Ringle",
+          "type": "company"
+        },
+        {
+          "title": "링글 채용 홈",
+          "url": "https://career.ringleplus.com/",
+          "source_name": "Ringle Career",
+          "type": "company"
+        }
+      ]
+    }
+  ]
+}
