@@ -19,7 +19,7 @@ function youtubeId(url: string | undefined): string | null {
 
 export function generateStaticParams() {
   // draft도 URL로 미리보기할 수 있게 빌드에 포함한다 (피드·사이트맵에는 없음)
-  return getAllArticles(undefined, { includeDrafts: true }).map((a) => ({
+  return getAllArticles({ includeDrafts: true }).map((a) => ({
     slug: a.slug,
   }));
 }
