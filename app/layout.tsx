@@ -62,9 +62,6 @@ export default function RootLayout({
               <HeaderNav />
             </div>
             <div className="flex items-center gap-2">
-              <span className="hidden text-[11px] font-medium text-neutral-400 dark:text-neutral-500 sm:inline">
-                디자이너를 위한 읽을거리 피드
-              </span>
               <ThemeToggle />
             </div>
           </div>
