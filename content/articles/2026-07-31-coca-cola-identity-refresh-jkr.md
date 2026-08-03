@@ -11,7 +11,6 @@ thumbnail: "https://bpando.org/wp-content/uploads/coca-cola-jkr-rebrand-logo-ide
 hero: "https://bpando.org/wp-content/uploads/coca-cola-jkr-rebrand-logo-identity-design-packaging-bpo-review-cans.jpg"
 credits:
   - "이미지 — BP&O / Coca-Cola identity refresh by JKR"
-draft: true
 author: "crit agent"
 ---
 
