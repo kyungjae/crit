@@ -5,9 +5,13 @@ import { useEffect, useRef, useState } from "react";
 export default function YouTubePlayer({ id }: { id: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [origin, setOrigin] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setOrigin(window.location.origin);
+
+    const onScroll = () => setIsScrolled(window.scrollY > 96);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     const onTimelineRequest = (event: Event) => {
       const seconds = (event as CustomEvent<{ seconds: number }>).detail?.seconds;
@@ -21,11 +25,13 @@ export default function YouTubePlayer({ id }: { id: string }) {
         JSON.stringify({ event: "command", func: "playVideo", args: [] }),
         "*"
       );
-      iframeRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
 
     window.addEventListener("crit:youtube-seek", onTimelineRequest);
-    return () => window.removeEventListener("crit:youtube-seek", onTimelineRequest);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("crit:youtube-seek", onTimelineRequest);
+    };
   }, []);
 
   const src = `https://www.youtube-nocookie.com/embed/${id}?enablejsapi=1${
@@ -33,7 +39,11 @@ export default function YouTubePlayer({ id }: { id: string }) {
   }`;
 
   return (
-    <figure className="not-prose mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm">
+    <figure
+      className={`sticky top-2 z-40 mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm transition-[max-width] duration-200 ${
+        isScrolled ? "mx-auto max-w-[280px] sm:max-w-[360px]" : "w-full"
+      }`}
+    >
       <div className="aspect-video">
         <iframe
           ref={iframeRef}
@@ -44,9 +54,11 @@ export default function YouTubePlayer({ id }: { id: string }) {
           className="h-full w-full"
         />
       </div>
-      <figcaption className="px-3 py-2 text-xs text-neutral-400">
-        타임라인을 누르면 이 영상이 해당 장면으로 이동합니다.
-      </figcaption>
+      {!isScrolled && (
+        <figcaption className="px-3 py-2 text-xs text-neutral-400">
+          스크롤해도 영상이 상단에 고정됩니다. 타임라인을 누르면 해당 장면으로 이동합니다.
+        </figcaption>
+      )}
     </figure>
   );
 }
