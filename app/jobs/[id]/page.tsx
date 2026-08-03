@@ -71,7 +71,7 @@ export default async function JobDetailPage({
   if (!job) notFound();
 
   return (
-    <article>
+    <article className="mx-auto max-w-3xl">
       <Link
         href="/jobs"
         className="mb-4 inline-flex text-sm font-medium text-neutral-500 underline underline-offset-2 dark:text-neutral-400"

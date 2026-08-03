@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
 import HeaderNav from "@/components/HeaderNav";
+import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 import { SITE_URL } from "@/lib/site";
 
@@ -69,6 +70,7 @@ export default function RootLayout({
           </div>
         </header>
         <main className="mx-auto max-w-6xl px-4 pb-24 pt-5 md:px-6 md:pt-8">{children}</main>
+        <Footer />
         <BottomNav />
       </body>
     </html>
