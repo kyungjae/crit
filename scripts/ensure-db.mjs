@@ -4,9 +4,10 @@
 import { execSync } from "node:child_process";
 
 const url = process.env.DATABASE_URL ?? "";
+const allowPush = process.env.PRISMA_DB_PUSH_ON_BUILD === "true";
 
-if (!/^postgres(ql)?:\/\//.test(url)) {
-  console.log("[ensure-db] Postgres DATABASE_URL 없음 — db push 건너뜀");
+if (!/^postgres(ql)?:\/\//.test(url) || !allowPush) {
+  console.log("[ensure-db] 빌드 중 자동 db push 건너뜀");
   process.exit(0);
 }
 
