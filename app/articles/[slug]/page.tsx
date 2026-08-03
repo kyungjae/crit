@@ -7,6 +7,15 @@ import { CATEGORY_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import Rating from "@/components/Rating";
 import Comments from "@/components/Comments";
+import YouTubePlayer from "@/components/embeds/YouTubePlayer";
+
+function youtubeId(url: string | undefined): string | null {
+  if (!url) return null;
+  const match = url.match(
+    /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/
+  );
+  return match?.[1] ?? null;
+}
 
 export function generateStaticParams() {
   // draft도 URL로 미리보기할 수 있게 빌드에 포함한다 (피드·사이트맵에는 없음)
@@ -65,6 +74,10 @@ export default async function ArticlePage({
             className="aspect-[4/3] w-full bg-neutral-100 object-cover sm:rounded-2xl dark:bg-neutral-800"
           />
         </div>
+      )}
+
+      {youtubeId(article.source_url) && (
+        <YouTubePlayer id={youtubeId(article.source_url)!} />
       )}
 
       <header className="article-header">

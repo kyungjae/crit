@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import type { Element, ElementContent } from "hast";
 import YouTubeEmbed from "./embeds/YouTubeEmbed";
+import YouTubeTimestampLink from "./YouTubeTimestampLink";
 import TweetEmbed from "./embeds/TweetEmbed";
 import LinkCard from "./embeds/LinkCard";
 
@@ -22,6 +23,19 @@ function isTweetUrl(url: string): boolean {
 
 function isVideoUrl(url: string): boolean {
   return /\.(mp4|webm|mov)(\?.*)?$/i.test(url);
+}
+
+function youtubeTimestamp(url: string): number | null {
+  if (!/^https?:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\//.test(url)) return null;
+  try {
+    const value = new URL(url).searchParams.get("t");
+    if (!value) return null;
+    const match = value.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?$/i);
+    if (!match) return null;
+    return Number(match[1] ?? 0) * 3600 + Number(match[2] ?? 0) * 60 + Number(match[3] ?? 0);
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -239,6 +253,10 @@ const createComponents = (bleed: boolean): Components => ({
   },
   a({ href, children }) {
     const external = typeof href === "string" && /^https?:/.test(href);
+    const timestamp = typeof href === "string" ? youtubeTimestamp(href) : null;
+    if (timestamp !== null) {
+      return <YouTubeTimestampLink seconds={timestamp}>{children}</YouTubeTimestampLink>;
+    }
     return (
       <a
         href={href}
