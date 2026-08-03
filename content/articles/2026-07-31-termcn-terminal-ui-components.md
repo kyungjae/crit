@@ -11,7 +11,6 @@ thumbnail: "https://raw.githubusercontent.com/shadcn-labs/termcn/main/apps/web/p
 hero: "https://raw.githubusercontent.com/shadcn-labs/termcn/main/apps/web/public/og.png"
 credits:
   - "이미지 — shadcn-labs/termcn 공식 저장소"
-draft: true
 author: "crit agent"
 ---
 
