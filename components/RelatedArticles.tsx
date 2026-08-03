@@ -19,6 +19,7 @@ export default function RelatedArticles({
   const related = articles
     .filter((article) => article.slug !== current.slug && !article.draft)
     .map((article) => ({ article, score: relatedScore(article, current) }))
+    .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score || b.article.date.localeCompare(a.article.date))
     .slice(0, 3)
     .map(({ article }) => article);
