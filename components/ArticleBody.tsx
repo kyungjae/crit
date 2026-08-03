@@ -60,11 +60,21 @@ function RulesLayout({ markdown }: { markdown: string }) {
   const intro = firstRule === -1 ? markdown : markdown.slice(0, firstRule);
   const rest = firstRule === -1 ? "" : markdown.slice(firstRule);
 
-  // `##`로 시작하는 상위 섹션은 규칙 카드 밖에서 일반 섹션으로 렌더링한다.
-  // 덕분에 마지막 규칙이나 crit의 관점이 직전 카드 안에 합쳐지지 않는다.
   const tailStart = rest.search(/^## (?!#)/m);
   const ruleMarkdown = tailStart === -1 ? rest : rest.slice(0, tailStart);
   const tail = tailStart === -1 ? "" : rest.slice(tailStart);
+
+  // 09번은 카드 밖에 두되, 앞의 규칙과 같은 번호·제목 포맷으로 렌더링한다.
+  const separateRuleMatch = tail.match(/^## 09\.\s+(.+?)(?:\n|$)([\s\S]*)$/);
+  const separateRuleTitle = separateRuleMatch?.[1] ?? null;
+  const separateRuleRest = separateRuleMatch?.[2] ?? "";
+  const nextSectionStart = separateRuleRest.search(/^## (?!#)/m);
+  const separateRuleBody = nextSectionStart === -1
+    ? separateRuleRest
+    : separateRuleRest.slice(0, nextSectionStart);
+  const tailContent = nextSectionStart === -1
+    ? ""
+    : separateRuleRest.slice(nextSectionStart);
 
   const rules = ruleMarkdown
     .split(/^### /m)
@@ -109,9 +119,27 @@ function RulesLayout({ markdown }: { markdown: string }) {
         ))}
       </ol>
 
-      {tail.trim() && (
+      {separateRuleTitle && (
+        <section className="mt-8">
+          <div className="flex items-baseline gap-2.5">
+            <span className="shrink-0 text-[13px] font-bold tabular-nums text-brand">
+              09
+            </span>
+            <h3 className="text-[15px] font-bold leading-snug tracking-tight text-neutral-900 dark:text-neutral-100">
+              {separateRuleTitle}
+            </h3>
+          </div>
+          {separateRuleBody.trim() && (
+            <div className={`${PROSE} prose-sm mt-2 pl-[30px] prose-p:leading-[1.7]`}>
+              <Markdown>{separateRuleBody.trim()}</Markdown>
+            </div>
+          )}
+        </section>
+      )}
+
+      {tailContent.trim() && (
         <div className={`${PROSE} mt-8`}>
-          <Markdown>{tail.trim()}</Markdown>
+          <Markdown>{tailContent.trim()}</Markdown>
         </div>
       )}
     </div>
