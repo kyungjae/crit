@@ -8,6 +8,7 @@ import { formatDate } from "@/lib/format";
 import Rating from "@/components/Rating";
 import Comments from "@/components/Comments";
 import YouTubePlayer from "@/components/embeds/YouTubePlayer";
+import RelatedArticles from "@/components/RelatedArticles";
 
 function youtubeId(url: string | undefined): string | null {
   if (!url) return null;
@@ -147,6 +148,8 @@ export default async function ArticlePage({
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
         <Comments slug={article.slug} />
       </div>
+
+      <RelatedArticles current={article} articles={getAllArticles()} />
     </article>
   );
 }
