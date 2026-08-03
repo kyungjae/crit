@@ -49,11 +49,11 @@ function SidebarPanel() {
           Community
         </p>
         <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em] text-neutral-950 dark:text-neutral-50">
-          질문과 작업물을 피드로 끌어오기
+          Ask와 Show로 함께 성장하기
         </h3>
         <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-          커뮤니티 기능은 큰 섹션보다 작은 입구로 둡니다. 읽다가 바로 질문하거나
-          작업물을 공유할 수 있으면 충분합니다.
+          Ask에서 질문하고 Show에서 작업물을 공유해보세요. 커뮤니티의 피드백과
+          다양한 의견이 다음 시도를 더 나은 방향으로 이끌어줍니다.
         </p>
         <div className="mt-4 grid grid-cols-2 gap-2">
           <Link
