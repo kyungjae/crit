@@ -7,7 +7,6 @@ import {
   jobsFileSchema,
   linksFileSchema,
   type ArticleFrontmatter,
-  type Category,
   type InspirationItem,
   type Job,
   type LinkGroup,
@@ -39,10 +38,7 @@ function listMarkdownFiles(dir: string): string[] {
   return fs.readdirSync(dir).filter((f) => f.endsWith(".md"));
 }
 
-export function getAllArticles(
-  category?: Category,
-  { includeDrafts = false } = {}
-): Article[] {
+export function getAllArticles({ includeDrafts = false } = {}): Article[] {
   const articles = listMarkdownFiles(ARTICLES_DIR).map((file) => {
     const slug = file.replace(/\.md$/, "");
     const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), "utf8");
@@ -53,21 +49,16 @@ export function getAllArticles(
   });
 
   const visible = includeDrafts ? articles : articles.filter((a) => !a.draft);
-  const filtered = category
-    ? visible.filter((a) => a.category === category)
-    : visible;
 
   // 최신 날짜 우선, 같은 날짜면 파일명 역순
-  return filtered.sort((a, b) =>
+  return visible.sort((a, b) =>
     a.date === b.date ? b.slug.localeCompare(a.slug) : b.date.localeCompare(a.date)
   );
 }
 
 /** 검수 대기 중인 초안 목록 (최신순) */
 export function getDraftArticles(): Article[] {
-  return getAllArticles(undefined, { includeDrafts: true }).filter(
-    (a) => a.draft
-  );
+  return getAllArticles({ includeDrafts: true }).filter((a) => a.draft);
 }
 
 /**
