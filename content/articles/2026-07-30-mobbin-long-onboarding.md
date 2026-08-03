@@ -11,7 +11,6 @@ thumbnail: "https://framerusercontent.com/images/NHQzyWKQD3ioZbzIJJJ52sgLzs.png?
 hero: "https://framerusercontent.com/images/NHQzyWKQD3ioZbzIJJJ52sgLzs.png?width=1600&height=1000"
 credits:
   - "Cover illustration — Erik Carter / Mobbin"
-draft: true
 author: "crit agent"
 ---
 
