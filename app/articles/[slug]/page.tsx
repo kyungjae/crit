@@ -3,15 +3,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllArticles, getArticle } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
-import ArticleViewTracker from "@/components/ArticleViewTracker";
 import { CATEGORY_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
-import Upvote from "@/components/Upvote";
+import Rating from "@/components/Rating";
 import Comments from "@/components/Comments";
+import YouTubePlayer from "@/components/embeds/YouTubePlayer";
+
+function youtubeId(url: string | undefined): string | null {
+  if (!url) return null;
+  const match = url.match(
+    /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/
+  );
+  return match?.[1] ?? null;
+}
 
 export function generateStaticParams() {
   // draft도 URL로 미리보기할 수 있게 빌드에 포함한다 (피드·사이트맵에는 없음)
-  return getAllArticles({ includeDrafts: true }).map((a) => ({
+  return getAllArticles(undefined, { includeDrafts: true }).map((a) => ({
     slug: a.slug,
   }));
 }
@@ -48,7 +56,6 @@ export default async function ArticlePage({
 
   return (
     <article className="article-reading mx-auto max-w-[620px]">
-      {!article.draft && <ArticleViewTracker slug={article.slug} />}
       {article.draft && (
         <p className="mb-3 flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
           초안 — 피드에 노출되지 않습니다
@@ -67,6 +74,10 @@ export default async function ArticlePage({
             className="aspect-[4/3] w-full bg-neutral-100 object-cover sm:rounded-2xl dark:bg-neutral-800"
           />
         </div>
+      )}
+
+      {youtubeId(article.source_url) && (
+        <YouTubePlayer id={youtubeId(article.source_url)!} />
       )}
 
       <header className="article-header">
@@ -130,7 +141,7 @@ export default async function ArticlePage({
       )}
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
-        <Upvote slug={article.slug} />
+        <Rating slug={article.slug} />
       </div>
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
