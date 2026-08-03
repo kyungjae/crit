@@ -37,12 +37,14 @@ test("signal 카드 제목 아래에 날짜, 업보트 수, 댓글 수를 표시
         variant: "signal",
         commentCount: 2,
         upvoteCount: 12,
+        viewCount: 34,
       })
     );
 
     assert.match(html, />1일 전</);
     assert.match(html, />업보트 12개</);
     assert.match(html, />댓글 2개</);
+    assert.match(html, />조회 34회</);
     assert.match(html, /href="\/articles\/test-article#comments"/);
     assert.doesNotMatch(html, />2026년 8월 2일</);
   } finally {

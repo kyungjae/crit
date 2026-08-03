@@ -12,6 +12,8 @@
 }
 
 html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   -webkit-tap-highlight-color: transparent;
   word-break: keep-all;
 }

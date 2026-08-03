@@ -11,7 +11,7 @@ export default function JobsPage() {
   const jobs = getAllJobs();
 
   return (
-    <div>
+    <div className="mx-auto max-w-4xl">
       <h1 className="mb-1 text-xl font-bold">채용</h1>
       <p className="mb-4 text-sm text-neutral-500">
         매일 업데이트되는 디자이너 채용 공고
