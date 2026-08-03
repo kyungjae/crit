@@ -1,0 +1,51 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+
+import ArticleCard from "@/components/ArticleCard";
+import type { Article } from "@/lib/content";
+
+(globalThis as typeof globalThis & { React: typeof React }).React = React;
+
+const article: Article = {
+  title: "테스트 아티클",
+  summary: "테스트 요약",
+  category: "design",
+  format: "brief",
+  tags: [],
+  date: "2026-08-02",
+  source_url: "https://example.com/article",
+  source_name: "Example",
+  credits: [],
+  draft: false,
+  author: "crit agent",
+  slug: "test-article",
+  body: "",
+  readingMinutes: 1,
+  ruleCount: 0,
+};
+
+test("signal 카드 제목 아래에 날짜, 업보트 수, 댓글 수를 표시한다", () => {
+  const originalNow = Date.now;
+  Date.now = () => new Date("2026-08-03T00:00:00Z").getTime();
+
+  try {
+    const html = renderToStaticMarkup(
+      React.createElement(ArticleCard, {
+        article,
+        variant: "signal",
+        commentCount: 2,
+        upvoteCount: 12,
+      })
+    );
+
+    assert.match(html, />1일 전</);
+    assert.match(html, />업보트 12개</);
+    assert.match(html, />댓글 2개</);
+    assert.match(html, /href="\/articles\/test-article#comments"/);
+    assert.doesNotMatch(html, />2026년 8월 2일</);
+  } finally {
+    Date.now = originalNow;
+  }
+});

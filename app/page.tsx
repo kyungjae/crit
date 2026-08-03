@@ -1,37 +1,13 @@
 import Link from "next/link";
 import { getAllArticles } from "@/lib/content";
-import { CATEGORIES, CATEGORY_LABELS, type Category } from "@/lib/schema";
 import ArticleCard from "@/components/ArticleCard";
-import CategoryTabs from "@/components/CategoryTabs";
+import FeedSort from "@/components/FeedSort";
 import { getPrisma } from "@/lib/db";
-
-function SectionTitle({
-  eyebrow,
-  title,
-  description,
-}: {
-  eyebrow: string;
-  title: string;
-  description?: string;
-}) {
-  return (
-    <div className="mb-4 border-b border-neutral-200 pb-3 dark:border-neutral-800">
-      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-brand">
-        {eyebrow}
-      </p>
-      <div className="mt-1 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-        <h2 className="text-[22px] font-black tracking-[-0.045em] text-neutral-950 dark:text-neutral-50">
-          {title}
-        </h2>
-        {description && (
-          <p className="max-w-md text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-            {description}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
+import { parseFeedSort, sortArticles } from "@/lib/feed";
+import {
+  createUpvoteStore,
+  getUpvoteCounts,
+} from "@/lib/upvotes";
 
 async function getCommentCounts(slugs: string[]) {
   const prisma = getPrisma();
@@ -49,6 +25,19 @@ async function getCommentCounts(slugs: string[]) {
     ) as Record<string, number>;
   } catch {
     return {} as Record<string, number>;
+  }
+}
+
+async function getFeedUpvoteCounts(
+  slugs: string[]
+): Promise<Record<string, number>> {
+  const prisma = getPrisma();
+  if (!prisma || slugs.length === 0) return {};
+
+  try {
+    return await getUpvoteCounts(createUpvoteStore(prisma), slugs);
+  } catch {
+    return {};
   }
 }
 
@@ -115,34 +104,24 @@ function SidebarPanel() {
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ sort?: string }>;
 }) {
-  const { category } = await searchParams;
-  const active = CATEGORIES.includes(category as Category)
-    ? (category as Category)
-    : undefined;
+  const { sort: sortParam } = await searchParams;
+  const sort = parseFeedSort(sortParam);
 
   const allArticles = getAllArticles();
-  const counts = Object.fromEntries(
-    CATEGORIES.map((item) => [
-      item,
-      allArticles.filter((article) => article.category === item).length,
-    ])
-  ) as Record<Category, number>;
-  const articles = active
-    ? allArticles.filter((article) => article.category === active)
-    : allArticles;
-  const commentCounts = await getCommentCounts(allArticles.map((article) => article.slug));
+  const slugs = allArticles.map((article) => article.slug);
+  const [commentCounts, upvoteCounts] = await Promise.all([
+    getCommentCounts(slugs),
+    getFeedUpvoteCounts(slugs),
+  ]);
+  const articles = sortArticles(allArticles, upvoteCounts, sort);
 
   return (
     <div>
       <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         <main className="min-w-0">
-          <SectionTitle
-            eyebrow="Today"
-            title={active ? `${CATEGORY_LABELS[active]} 링크` : "최신 피드"}
-          />
-          <CategoryTabs active={active} counts={counts} total={allArticles.length} />
+          <FeedSort sort={sort} />
 
           {articles.length === 0 ? (
             <p className="py-16 text-center text-sm text-neutral-400 dark:text-neutral-500">
@@ -156,6 +135,7 @@ export default async function HomePage({
                   article={article}
                   variant="signal"
                   commentCount={commentCounts[article.slug] ?? 0}
+                  upvoteCount={upvoteCounts[article.slug] ?? 0}
                 />
               ))}
             </ul>

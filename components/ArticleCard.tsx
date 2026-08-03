@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Article } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
-import { formatDate } from "@/lib/format";
+import { formatDate, relativeTime } from "@/lib/format";
 
 type ArticleCardVariant = "list" | "grid" | "featured" | "signal" | "compact";
 
@@ -103,10 +103,12 @@ export default function ArticleCard({
   article,
   variant = "list",
   commentCount = 0,
+  upvoteCount = 0,
 }: {
   article: Article;
   variant?: ArticleCardVariant;
   commentCount?: number;
+  upvoteCount?: number;
 }) {
   if (variant === "compact") {
     return (
@@ -132,7 +134,7 @@ export default function ArticleCard({
 
     return (
       <li className="min-w-0 border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
-        <div className="grid gap-2 px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900 md:grid-cols-[minmax(0,1fr)_auto] md:gap-4">
+        <div className="px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900">
           <div className="min-w-0">
             <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
               <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
@@ -142,24 +144,25 @@ export default function ArticleCard({
                   <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
                 </>
               )}
-              <span className="text-neutral-300 dark:text-neutral-700">·</span>
-              <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
             </div>
             <Link href={`/articles/${article.slug}`} className="group block">
               <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
                 {article.title}
               </h2>
             </Link>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2 md:justify-end md:self-center">
-            <Link
-              href={`/articles/${article.slug}#comments`}
-              aria-label={`댓글 ${commentCount}개`}
-              className="min-w-8 rounded-full bg-neutral-100 px-2.5 py-1 text-center text-[11px] font-semibold tabular-nums text-neutral-600 transition hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
-            >
-              {commentCount}
-            </Link>
+            <div className="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
+              <time dateTime={article.date}>{relativeTime(article.date)}</time>
+              <span className="text-neutral-300 dark:text-neutral-700">|</span>
+              <span>업보트 {upvoteCount}개</span>
+              <span className="text-neutral-300 dark:text-neutral-700">|</span>
+              <Link
+                href={`/articles/${article.slug}#comments`}
+                aria-label={`댓글 ${commentCount}개`}
+                className="transition hover:text-brand"
+              >
+                댓글 {commentCount}개
+              </Link>
+            </div>
           </div>
         </div>
       </li>

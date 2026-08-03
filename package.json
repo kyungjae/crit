@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "node scripts/ensure-db.mjs && next build",
+    "test": "tsx --test components/*.test.ts lib/*.test.ts",
     "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
