@@ -40,8 +40,10 @@ export default function YouTubePlayer({ id }: { id: string }) {
 
   return (
     <figure
-      className={`sticky top-2 z-40 mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm transition-[max-width] duration-200 ${
-        isScrolled ? "mx-auto max-w-[280px] sm:max-w-[360px]" : "w-full"
+      className={`mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm transition-[width,position] duration-200 ${
+        isScrolled
+          ? "fixed right-3 top-16 z-50 w-[220px] sm:right-6 sm:top-20 sm:w-[320px] lg:right-8 lg:w-[360px]"
+          : "relative w-full"
       }`}
     >
       <div className="aspect-video">
