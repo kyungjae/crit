@@ -10,7 +10,10 @@ export default function YouTubePlayer({ id }: { id: string }) {
   useEffect(() => {
     setOrigin(window.location.origin);
 
-    const onScroll = () => setIsScrolled(window.scrollY > 96);
+    const onScroll = () => {
+      const handoffPoint = window.innerWidth < 640 ? 220 : 320;
+      setIsScrolled(window.scrollY > handoffPoint);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
 
     const onTimelineRequest = (event: Event) => {
@@ -40,7 +43,7 @@ export default function YouTubePlayer({ id }: { id: string }) {
 
   return (
     <figure
-      className={`mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm transition-[width,position] duration-200 ${
+      className={`mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm ${
         isScrolled
           ? "fixed right-3 top-16 z-50 w-[220px] sm:right-6 sm:top-20 sm:w-[320px] lg:right-8 lg:w-[360px]"
           : "relative w-full"
