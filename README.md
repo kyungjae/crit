@@ -97,6 +97,23 @@ push하면 자동 배포되므로 **에이전트의 커밋이 곧 게시**입니
 로컬 개발: `DATABASE_URL` 없이 돌리면 댓글/박수만 "준비 중"으로 표시됩니다.
 실제 DB로 테스트하려면 `.env`에 Postgres URL(예: Neon의 dev 브랜치)을 넣으세요.
 
+### 3단계 — 뉴스레터 활성화 (Resend)
+
+Vercel 프로젝트에 아래 환경 변수를 등록하면 홈 화면에서 뉴스레터를
+구독하고 매주 월요일 오전 9시(KST)에 최근 아티클 10개를 발송합니다.
+
+```bash
+RESEND_API_KEY=re_...
+NEWSLETTER_FROM_EMAIL=Crit <newsletter@example.com>
+NEWSLETTER_TOKEN_SECRET=긴-랜덤-문자열
+CRON_SECRET=긴-랜덤-문자열
+NEXT_PUBLIC_SITE_URL=https://crit.example.com
+```
+
+`NEWSLETTER_FROM_EMAIL`의 도메인은 Resend에서 먼저 인증해야 합니다.
+구독자는 확인 메일의 링크를 눌러야 활성화되며, 모든 뉴스레터에는 해지
+링크가 포함됩니다.
+
 ## 로드맵
 
 - [x] 디자인/AI × 디자인/툴/케이스/커리어 큐레이션 피드
@@ -105,4 +122,4 @@ push하면 자동 배포되므로 **에이전트의 커밋이 곧 게시**입니
 - [ ] 댓글 좋아요
 - [ ] 포트폴리오 제출 → AI 1차 리뷰 → 에디터 리뷰 파이프라인
 - [ ] 채용 연계 (지원자 프로필 ↔ 공고 매칭)
-- [ ] 뉴스레터 발송 (주간 다이제스트)
+- [x] 뉴스레터 발송 (주간 다이제스트)
