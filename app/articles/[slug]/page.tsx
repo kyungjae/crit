@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllArticles, getArticle } from "@/lib/content";
+import { getAllArticles, getArticle, getDraftWarnings } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
 import { CATEGORY_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import Upvote from "@/components/Upvote";
 import Comments from "@/components/Comments";
 import YouTubePlayer from "@/components/embeds/YouTubePlayer";
+import DraftEditor from "@/components/DraftEditor";
+import DraftPublishButton from "@/components/DraftPublishButton";
 
 function youtubeId(url: string | undefined): string | null {
   if (!url) return null;
@@ -57,12 +59,30 @@ export default async function ArticlePage({
   return (
     <article className="article-reading mx-auto max-w-[620px]">
       {article.draft && (
-        <p className="mb-3 flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
-          초안 — 피드에 노출되지 않습니다
-          <Link href="/drafts" className="shrink-0 underline underline-offset-2">
-            목록
-          </Link>
-        </p>
+        <div className="mb-5 space-y-3">
+          <p className="flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
+            초안 — 피드에 노출되지 않습니다
+            <Link href="/drafts" className="shrink-0 underline underline-offset-2">
+              초안 목록
+            </Link>
+          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <DraftPublishButton
+              slug={article.slug}
+              title={article.title}
+              warnings={getDraftWarnings(article)}
+            />
+            <span className="text-xs text-neutral-500 dark:text-neutral-400">
+              이 페이지에서 바로 수정하고 저장할 수 있습니다.
+            </span>
+          </div>
+          <DraftEditor
+            slug={article.slug}
+            initialTitle={article.title}
+            initialSummary={article.summary}
+            initialBody={article.body}
+          />
+        </div>
       )}
 
       {article.hero && (
