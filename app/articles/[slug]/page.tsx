@@ -5,7 +5,7 @@ import { getAllArticles, getArticle } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
 import { CATEGORY_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
-import Rating from "@/components/Rating";
+import Upvote from "@/components/Upvote";
 import Comments from "@/components/Comments";
 import YouTubePlayer from "@/components/embeds/YouTubePlayer";
 
@@ -141,7 +141,7 @@ export default async function ArticlePage({
       )}
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
-        <Rating slug={article.slug} />
+        <Upvote slug={article.slug} />
       </div>
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
