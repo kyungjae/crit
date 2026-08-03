@@ -22,14 +22,15 @@ model Comment {
   @@index([slug, parentId, createdAt])
 }
 
-model Rating {
-  id        String   @id @default(cuid())
-  slug      String
-  deviceId  String
-  score     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Upvote {
+  id          String   @id @default(cuid())
+  slug        String
+  deviceId    String
+  legacyScore Int      @default(1) @map("score")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@unique([slug, deviceId])
   @@index([slug])
+  @@map("Rating")
 }
