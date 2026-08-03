@@ -76,7 +76,7 @@ export default function DraftPublishButton({
   }
 
   return (
-    <div className="mt-3 flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2">
       <button
         type="button"
         onClick={onClick}

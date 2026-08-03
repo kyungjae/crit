@@ -1,6 +1,7 @@
 import Slugger from "github-slugger";
 import type { Format } from "@/lib/schema";
 import Markdown from "./markdown";
+import TableOfContents from "./TableOfContents";
 
 const PROSE = [
   "article-prose prose prose-neutral max-w-none dark:prose-invert",
@@ -23,32 +24,10 @@ function extractHeadings(markdown: string) {
   });
 }
 
-function TableOfContents({ markdown }: { markdown: string }) {
+export function ArticleNavigation({ markdown }: { markdown: string }) {
   const headings = extractHeadings(markdown);
   if (headings.length < 3) return null;
-
-  return (
-    <nav className="mt-6 rounded-xl border border-neutral-200/80 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
-      <p className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400 dark:text-neutral-500">
-        목차
-      </p>
-      <ol className="flex flex-col gap-1.5">
-        {headings.map((h, i) => (
-          <li key={h.id} className="flex gap-2 text-sm leading-snug">
-            <span className="shrink-0 tabular-nums text-neutral-300 dark:text-neutral-700">
-              {i + 1}
-            </span>
-            <a
-              href={`#${h.id}`}
-              className="text-neutral-600 underline-offset-2 hover:text-brand hover:underline dark:text-neutral-300 dark:hover:text-brand"
-            >
-              {h.text}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
+  return <TableOfContents headings={headings} />;
 }
 
 /**
@@ -60,7 +39,13 @@ function RulesLayout({ markdown }: { markdown: string }) {
   const intro = firstRule === -1 ? markdown : markdown.slice(0, firstRule);
   const rest = firstRule === -1 ? "" : markdown.slice(firstRule);
 
-  const rules = rest
+  // `##`로 시작하는 상위 섹션은 규칙 카드 밖에서 일반 섹션으로 렌더링한다.
+  // 덕분에 마지막 규칙이나 crit의 관점이 직전 카드 안에 합쳐지지 않는다.
+  const tailStart = rest.search(/^## (?!#)/m);
+  const ruleMarkdown = tailStart === -1 ? rest : rest.slice(0, tailStart);
+  const tail = tailStart === -1 ? "" : rest.slice(tailStart);
+
+  const rules = ruleMarkdown
     .split(/^### /m)
     .filter((chunk) => chunk.trim())
     .map((chunk) => {
@@ -102,6 +87,12 @@ function RulesLayout({ markdown }: { markdown: string }) {
           </li>
         ))}
       </ol>
+
+      {tail.trim() && (
+        <div className={`${PROSE} mt-8`}>
+          <Markdown>{tail.trim()}</Markdown>
+        </div>
+      )}
     </div>
   );
 }
@@ -118,7 +109,9 @@ export default function ArticleBody({
   return (
     <>
       {(format === "deep" || format === "showcase") && (
-        <TableOfContents markdown={markdown} />
+        <div className="article-toc-mobile">
+          <ArticleNavigation markdown={markdown} />
+        </div>
       )}
       <div className={`${PROSE} mt-6`}>
         <Markdown bleed={format === "showcase"}>{markdown}</Markdown>

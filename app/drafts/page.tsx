@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DraftDeleteButton from "@/components/DraftDeleteButton";
+
 import DraftPublishButton from "@/components/DraftPublishButton";
 import { getDraftArticles, getDraftWarnings } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
@@ -81,11 +83,15 @@ export default function DraftsPage() {
                     </div>
                   )}
 
-                  <DraftPublishButton
-                    slug={article.slug}
-                    title={article.title}
-                    warnings={warnings}
-                  />
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <DraftPublishButton
+                      slug={article.slug}
+                      title={article.title}
+                      warnings={warnings}
+                    />
+                    <DraftDeleteButton slug={article.slug} title={article.title} />
+                  </div>
+
                 </div>
               </li>
             );

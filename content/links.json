@@ -12,7 +12,10 @@
         { "name": "Land-book", "url": "https://land-book.com", "description": "랜딩 페이지 레퍼런스 모음" },
         { "name": "Godly", "url": "https://godly.website", "description": "정제된 웹 디자인 큐레이션" },
         { "name": "Savee", "url": "https://savee.it", "description": "무드보드와 비주얼 레퍼런스 저장/탐색" },
-        { "name": "Design Spells", "url": "https://www.designspells.com", "description": "마이크로인터랙션과 웹 디테일 큐레이션" }
+        { "name": "Design Spells", "url": "https://www.designspells.com", "description": "마이크로인터랙션과 웹 디테일 큐레이션" },
+        { "name": "OriginKit", "url": "https://originkit.dev", "description": "웹사이트 제작을 위한 디자인·개발 리소스" },
+        { "name": "React Bits", "url": "https://reactbits.dev", "description": "바로 가져다 쓸 수 있는 React 애니메이션·UI 컴포넌트" },
+        { "name": "Canvas UI", "url": "https://canvasui.dev", "description": "캔버스 기반 인터랙션과 UI 레퍼런스" }
       ]
     },
     {

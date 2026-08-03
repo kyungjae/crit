@@ -1,7 +1,9 @@
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ThemeToggle from "@/components/ThemeToggle";
 import { SITE_URL } from "@/lib/site";
 
@@ -56,6 +58,8 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-dvh">
+        <Analytics />
+        <GoogleAnalytics />
         <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/85">
           <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
             <div className="flex items-center gap-8">

@@ -10,5 +10,10 @@ if (!/^postgres(ql)?:\/\//.test(url)) {
   process.exit(0);
 }
 
+if (process.env.VERCEL === "1") {
+  console.log("[ensure-db] Vercel 빌드에서는 자동 db push를 실행하지 않음");
+  process.exit(0);
+}
+
 console.log("[ensure-db] prisma db push 실행");
 execSync("npx prisma db push --skip-generate", { stdio: "inherit" });

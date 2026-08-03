@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Article } from "@/lib/content";
-import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
+import { FORMAT_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 
 type ArticleCardVariant = "list" | "grid" | "featured" | "signal" | "compact";
@@ -20,10 +20,8 @@ function ArticleMeta({ article }: { article: Article }) {
 
   return (
     <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
-      <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
       {(article.source_name || domain) && (
         <>
-          <span className="text-neutral-300 dark:text-neutral-700">·</span>
           <span className="text-neutral-400 dark:text-neutral-500">
             {article.source_name ?? domain}
           </span>
@@ -62,8 +60,6 @@ function Thumbnail({
   variant: ArticleCardVariant;
 }) {
   const image = article.thumbnail ?? article.hero;
-  const categoryLabel = CATEGORY_LABELS[article.category];
-
   if (!image) {
     return (
       <div
@@ -72,9 +68,6 @@ function Thumbnail({
         }`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(108,92,231,0.38),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.12),transparent_45%)]" />
-        <div className="absolute inset-x-3 bottom-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/65">
-          {categoryLabel}
-        </div>
       </div>
     );
   }
@@ -135,14 +128,10 @@ export default function ArticleCard({
         <div className="grid gap-2 px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900 md:grid-cols-[minmax(0,1fr)_auto] md:gap-4">
           <div className="min-w-0">
             <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
-              <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
               {domain && (
-                <>
-                  <span className="text-neutral-300 dark:text-neutral-700">·</span>
-                  <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
-                </>
+                <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
               )}
-              <span className="text-neutral-300 dark:text-neutral-700">·</span>
+              {domain && <span className="text-neutral-300 dark:text-neutral-700">·</span>}
               <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
             </div>
             <Link href={`/articles/${article.slug}`} className="group block">

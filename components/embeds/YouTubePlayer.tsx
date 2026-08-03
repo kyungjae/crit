@@ -59,11 +59,6 @@ export default function YouTubePlayer({ id }: { id: string }) {
           className="h-full w-full"
         />
       </div>
-      {!isScrolled && (
-        <figcaption className="px-3 py-2 text-xs text-neutral-400">
-          스크롤해도 영상이 상단에 고정됩니다. 타임라인을 누르면 해당 장면으로 이동합니다.
-        </figcaption>
-      )}
     </figure>
   );
 }

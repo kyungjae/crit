@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { getAllArticles } from "@/lib/content";
-import { CATEGORIES, CATEGORY_LABELS, type Category } from "@/lib/schema";
 import ArticleCard from "@/components/ArticleCard";
-import CategoryTabs from "@/components/CategoryTabs";
 import { getPrisma } from "@/lib/db";
 
 function SectionTitle({
@@ -112,37 +110,39 @@ function SidebarPanel() {
   );
 }
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string }>;
-}) {
-  const { category } = await searchParams;
-  const active = CATEGORIES.includes(category as Category)
-    ? (category as Category)
-    : undefined;
-
+export default async function HomePage() {
   const allArticles = getAllArticles();
-  const counts = Object.fromEntries(
-    CATEGORIES.map((item) => [
-      item,
-      allArticles.filter((article) => article.category === item).length,
-    ])
-  ) as Record<Category, number>;
-  const articles = active
-    ? allArticles.filter((article) => article.category === active)
-    : allArticles;
+  const articles = allArticles;
   const commentCounts = await getCommentCounts(allArticles.map((article) => article.slug));
 
   return (
     <div>
       <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         <main className="min-w-0">
-          <SectionTitle
-            eyebrow="Today"
-            title={active ? `${CATEGORY_LABELS[active]} 링크` : "최신 피드"}
-          />
-          <CategoryTabs active={active} counts={counts} total={allArticles.length} />
+          <section className="mb-10 border-b border-neutral-200 pb-8 dark:border-neutral-800">
+            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-brand">
+              crit / journal
+            </p>
+            <h1 className="mt-3 max-w-2xl text-[34px] font-black leading-[1.12] tracking-[-0.055em] text-neutral-950 dark:text-neutral-50 md:text-[48px]">
+              디자이너가 지금 읽어야 할 것들
+            </h1>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              디자인, 제품, AI, 툴, 커리어의 신호를 고르고 읽을 맥락을 덧붙입니다.
+            </p>
+          </section>
+
+          {articles.length >= 2 && (
+            <section className="mb-10">
+              <SectionTitle eyebrow="Featured" title="이번 주에 먼저 읽을 글" />
+              <ul className="grid gap-4 md:grid-cols-2">
+                {articles.slice(0, 2).map((article) => (
+                  <ArticleCard key={article.slug} article={article} variant="featured" />
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <SectionTitle eyebrow="Latest" title="최신 피드" />
 
           {articles.length === 0 ? (
             <p className="py-16 text-center text-sm text-neutral-400 dark:text-neutral-500">
@@ -150,7 +150,7 @@ export default async function HomePage({
             </p>
           ) : (
             <ul className="min-w-0 overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:!border-neutral-800 dark:!bg-neutral-900/80">
-              {articles.map((article) => (
+              {articles.slice(articles.length >= 2 ? 2 : 0).map((article) => (
                 <ArticleCard
                   key={article.slug}
                   article={article}
