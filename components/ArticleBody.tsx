@@ -60,7 +60,13 @@ function RulesLayout({ markdown }: { markdown: string }) {
   const intro = firstRule === -1 ? markdown : markdown.slice(0, firstRule);
   const rest = firstRule === -1 ? "" : markdown.slice(firstRule);
 
-  const rules = rest
+  // `##`로 시작하는 상위 섹션은 규칙 카드 밖에서 일반 섹션으로 렌더링한다.
+  // 덕분에 마지막 규칙이나 crit의 관점이 직전 카드 안에 합쳐지지 않는다.
+  const tailStart = rest.search(/^## (?!#)/m);
+  const ruleMarkdown = tailStart === -1 ? rest : rest.slice(0, tailStart);
+  const tail = tailStart === -1 ? "" : rest.slice(tailStart);
+
+  const rules = ruleMarkdown
     .split(/^### /m)
     .filter((chunk) => chunk.trim())
     .map((chunk) => {
@@ -102,6 +108,12 @@ function RulesLayout({ markdown }: { markdown: string }) {
           </li>
         ))}
       </ol>
+
+      {tail.trim() && (
+        <div className={`${PROSE} mt-8`}>
+          <Markdown>{tail.trim()}</Markdown>
+        </div>
+      )}
     </div>
   );
 }
