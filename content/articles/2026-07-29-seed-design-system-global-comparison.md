@@ -3,7 +3,6 @@ title: "당근 SEED는 컴포넌트 모음이 아니라 제품 운영 방식이�
 summary: "당근의 SEED Design System을 Material Design, Apple HIG, Carbon, Polaris, Atlassian, Fluent와 비교했습니다. SEED의 흥미로운 지점은 컴포넌트 수가 아니라, 브랜드·접근성·멀티플랫폼·AI 문서를 제품 만드는 방식으로 묶으려는 태도입니다."
 category: design
 format: deep
-draft: true
 tags: [디자인시스템, 당근, SEED, 디자인토큰, 접근성, AI]
 date: "2026-07-29"
 source_url: "https://seed-design.io/"
