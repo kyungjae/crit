@@ -68,7 +68,11 @@ function Thumbnail({
     return (
       <div
         className={`relative overflow-hidden bg-neutral-950 dark:bg-neutral-900 ${
-          variant === "list" || variant === "signal" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
+          variant === "signal"
+            ? "size-16 rounded-xl"
+            : variant === "list"
+              ? "size-20 rounded-xl"
+              : "aspect-[4/3] rounded-2xl"
         }`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(108,92,231,0.38),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.12),transparent_45%)]" />
@@ -82,14 +86,24 @@ function Thumbnail({
   return (
     <div
       className={`relative shrink-0 overflow-hidden bg-neutral-100 dark:bg-neutral-800 ${
-        variant === "list" || variant === "signal" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
+        variant === "signal"
+          ? "size-16 rounded-xl"
+          : variant === "list"
+            ? "size-20 rounded-xl"
+            : "aspect-[4/3] rounded-2xl"
       }`}
     >
       <Image
         src={image}
         alt=""
         fill
-        sizes={variant === "list" || variant === "signal" ? "80px" : "(min-width: 1024px) 33vw, 100vw"}
+        sizes={
+          variant === "signal"
+            ? "64px"
+            : variant === "list"
+              ? "80px"
+              : "(min-width: 1024px) 33vw, 100vw"
+        }
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
       />
       {variant !== "list" && variant !== "signal" && (
@@ -137,35 +151,44 @@ export default function ArticleCard({
     return (
       <li className="min-w-0 border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
         <div className="px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900">
-          <div className="min-w-0">
-            <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
-              <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
-              {domain && (
-                <>
-                  <span className="text-neutral-300 dark:text-neutral-700">·</span>
-                  <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
-                </>
-              )}
-            </div>
-            <Link href={`/articles/${article.slug}`} className="group block">
-              <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
-                {article.title}
-              </h2>
+          <div className="flex min-w-0 items-start gap-3">
+            <Link
+              href={`/articles/${article.slug}`}
+              aria-label={`${article.title} 읽기`}
+              className="group shrink-0"
+            >
+              <Thumbnail article={article} variant="signal" />
             </Link>
-            <div className="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
-              <time dateTime={article.date}>{relativeTime(article.date)}</time>
-              <span className="text-neutral-300 dark:text-neutral-700">|</span>
-              <span>업보트 {upvoteCount}개</span>
-              <span className="text-neutral-300 dark:text-neutral-700">|</span>
-              <Link
-                href={`/articles/${article.slug}#comments`}
-                aria-label={`댓글 ${commentCount}개`}
-                className="transition hover:text-brand"
-              >
-                댓글 {commentCount}개
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
+                <span className="text-brand">{CATEGORY_LABELS[article.category]}</span>
+                {domain && (
+                  <>
+                    <span className="text-neutral-300 dark:text-neutral-700">·</span>
+                    <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
+                  </>
+                )}
+              </div>
+              <Link href={`/articles/${article.slug}`} className="group block">
+                <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
+                  {article.title}
+                </h2>
               </Link>
-              <span className="text-neutral-300 dark:text-neutral-700">|</span>
-              <span>조회 {viewCount}회</span>
+              <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
+                <time dateTime={article.date}>{relativeTime(article.date)}</time>
+                <span className="text-neutral-300 dark:text-neutral-700">|</span>
+                <span>업보트 {upvoteCount}개</span>
+                <span className="text-neutral-300 dark:text-neutral-700">|</span>
+                <Link
+                  href={`/articles/${article.slug}#comments`}
+                  aria-label={`댓글 ${commentCount}개`}
+                  className="transition hover:text-brand"
+                >
+                  댓글 {commentCount}개
+                </Link>
+                <span className="text-neutral-300 dark:text-neutral-700">|</span>
+                <span>조회 {viewCount}회</span>
+              </div>
             </div>
           </div>
         </div>
