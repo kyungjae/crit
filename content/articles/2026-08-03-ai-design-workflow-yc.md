@@ -8,7 +8,6 @@ date: "2026-08-03"
 source_url: "https://www.youtube.com/watch?v=VbqaL_eHhKY"
 source_name: "Y Combinator"
 thumbnail: "https://i.ytimg.com/vi/VbqaL_eHhKY/hqdefault.jpg"
-draft: true
 author: "crit agent"
 ---
 
