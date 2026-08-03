@@ -68,7 +68,7 @@ export default function NewsletterSignup() {
           onChange={(event) => setConsent(event.target.checked)}
           className="mt-0.5 accent-brand"
         />
-        <span>주간 뉴스레터를 받는 데 동의합니다. 언제든 해지할 수 있어요.</span>
+        <span>뉴스레터 수신에 동의합니다.</span>
       </label>
       {message ? (
         <p
