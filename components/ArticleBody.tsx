@@ -88,7 +88,7 @@ function RulesLayout({ markdown }: { markdown: string }) {
         {rules.map((rule, i) => (
           <li
             key={i}
-            className="rounded-2xl border border-neutral-200/80 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80"
+            className="border-0 bg-transparent py-2"
           >
             <div className="flex items-baseline gap-2.5">
               <span className="shrink-0 text-[13px] font-bold tabular-nums text-brand">

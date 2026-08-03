@@ -43,7 +43,7 @@ Anthony Hobday의 Safe Rules는 디자인 시스템도, 접근성 표준도 아�
 
 ### 04. 수학적 중앙보다 광학적 중앙을 확인합니다
 
-![Safe Rule 04 — optical alignment](https://anthonyhobday.com/sideprojects/saferules/images/4.png)
+![Safe Rule 04 — optical alignment](https://anthonyhobday.com/sideprojects/saferules/images/5.png)
 
 원·삼각형·아이콘·한글 텍스트는 박스의 정확한 중앙에 놓여도 시각적으로 어긋나 보일 수 있습니다. 먼저 그리드와 토큰으로 정렬한 뒤, 반복되는 컴포넌트는 눈으로 보정한 값을 시스템에 기록합니다.
 
@@ -51,7 +51,7 @@ Anthony Hobday의 Safe Rules는 디자인 시스템도, 접근성 표준도 아�
 
 ### 05. 큰 글자는 자간과 행간을 줄이고, 작은 글자는 넓힙니다
 
-![Safe Rule 05 — typography spacing](https://anthonyhobday.com/sideprojects/saferules/images/5.png)
+![Safe Rule 05 — typography spacing](https://anthonyhobday.com/sideprojects/saferules/images/6.png)
 
 큰 제목은 글자 자체의 면적이 커서 자간과 행간이 넓으면 덩어리가 풀어질 수 있습니다. 작은 텍스트는 반대로 글자 사이와 줄 사이에 숨 쉴 공간이 있어야 읽기 쉽습니다.
 
@@ -59,7 +59,7 @@ Anthony Hobday의 Safe Rules는 디자인 시스템도, 접근성 표준도 아�
 
 ### 06. 컨테이너의 테두리는 컨테이너와 배경 양쪽에서 보여야 합니다
 
-![Safe Rule 06 — container borders](https://anthonyhobday.com/sideprojects/saferules/images/6.png)
+![Safe Rule 06 — container borders](https://anthonyhobday.com/sideprojects/saferules/images/7.png)
 
 카드 테두리가 카드 안쪽 색과만 대비되고 바깥 배경과는 섞이면 경계가 약해집니다. 반대로 양쪽 모두 강하게 두르면 모든 컨테이너가 선으로 둘러싸여 화면이 조각납니다.
 
@@ -67,7 +67,7 @@ Anthony Hobday의 Safe Rules는 디자인 시스템도, 접근성 표준도 아�
 
 ### 07. 모든 요소는 다른 요소와 정렬되어야 합니다
 
-![Safe Rule 07 — alignment](https://anthonyhobday.com/sideprojects/saferules/images/7.png)
+![Safe Rule 07 — alignment](https://anthonyhobday.com/sideprojects/saferules/images/8.png)
 
 제목·본문·버튼·이미지가 각자 다른 시작선을 가지면 작은 차이도 화면을 불안하게 만듭니다. 그리드, 텍스트 열, 이미지 모서리 중 최소 하나를 공유하게 하면 요소 사이 관계가 빨리 읽힙니다.
 
@@ -75,7 +75,7 @@ Anthony Hobday의 Safe Rules는 디자인 시스템도, 접근성 표준도 아�
 
 ### 08. 팔레트의 색은 서로 다른 명도 값을 가져야 합니다
 
-![Safe Rule 08 — distinct brightness values](https://anthonyhobday.com/sideprojects/saferules/images/8.png)
+![Safe Rule 08 — distinct brightness values](https://anthonyhobday.com/sideprojects/saferules/images/9.png)
 
 색상환에서 멀리 떨어진 색이라도 명도가 비슷하면 화면에서는 비슷한 무게로 보일 수 있습니다. 반대로 색이 비슷해도 명도 차이가 크면 위계를 만들 수 있습니다. 색상만 보지 말고 흑백으로 변환해 정보의 순서가 남는지 확인하는 이유입니다.
 
@@ -83,7 +83,7 @@ Anthony Hobday의 Safe Rules는 디자인 시스템도, 접근성 표준도 아�
 
 ## 09. 측정값은 서로 수학적으로 관계를 가져야 합니다
 
-![Safe Rule 09 — mathematically related measurements](https://anthonyhobday.com/sideprojects/saferules/images/9.png)
+![Safe Rule 09 — mathematically related measurements](https://anthonyhobday.com/sideprojects/saferules/images/11.png)
 
 이 항목은 앞의 규칙 카드와 분리해서 봐야 합니다. 반경·간격·그림자·타이포그래피 크기를 화면마다 임의의 숫자로 정하면 디자인은 금방 누더기가 됩니다. 값 사이에 배수나 단계가 있으면 새로운 화면을 만들 때 판단 비용이 줄어듭니다.
 
