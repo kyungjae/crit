@@ -2,16 +2,9 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
+import HeaderNav from "@/components/HeaderNav";
 import ThemeToggle from "@/components/ThemeToggle";
 import { SITE_URL } from "@/lib/site";
-
-const navItems = [
-  { href: "/", label: "피드" },
-  { href: "/ask", label: "Ask" },
-  { href: "/show", label: "Show" },
-  { href: "/jobs", label: "채용" },
-  { href: "/links", label: "링크" },
-];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -65,17 +58,7 @@ export default function RootLayout({
               >
                 crit<span className="text-brand">.</span>
               </Link>
-              <nav aria-label="주요 메뉴" className="hidden items-center gap-1 md:flex">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-full px-3 py-1.5 text-[13px] font-semibold text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-950 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-neutral-50"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
+              <HeaderNav />
             </div>
             <div className="flex items-center gap-2">
               <span className="hidden text-[11px] font-medium text-neutral-400 dark:text-neutral-500 sm:inline">
