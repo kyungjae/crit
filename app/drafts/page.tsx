@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DraftDeleteButton from "@/components/DraftDeleteButton";
+import DraftEditor from "@/components/DraftEditor";
 import DraftPublishButton from "@/components/DraftPublishButton";
 import { getDraftArticles, getDraftWarnings } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
@@ -90,6 +91,13 @@ export default function DraftsPage() {
                     />
                     <DraftDeleteButton slug={article.slug} title={article.title} />
                   </div>
+
+                  <DraftEditor
+                    slug={article.slug}
+                    initialTitle={article.title}
+                    initialSummary={article.summary}
+                    initialBody={article.body}
+                  />
                 </div>
               </li>
             );
