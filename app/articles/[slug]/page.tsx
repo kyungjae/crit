@@ -5,12 +5,12 @@ import { getAllArticles, getArticle } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
 import { CATEGORY_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
-import Rating from "@/components/Rating";
+import Upvote from "@/components/Upvote";
 import Comments from "@/components/Comments";
 
 export function generateStaticParams() {
   // draft도 URL로 미리보기할 수 있게 빌드에 포함한다 (피드·사이트맵에는 없음)
-  return getAllArticles(undefined, { includeDrafts: true }).map((a) => ({
+  return getAllArticles({ includeDrafts: true }).map((a) => ({
     slug: a.slug,
   }));
 }
@@ -128,7 +128,7 @@ export default async function ArticlePage({
       )}
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
-        <Rating slug={article.slug} />
+        <Upvote slug={article.slug} />
       </div>
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
