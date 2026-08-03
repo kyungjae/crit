@@ -104,11 +104,13 @@ export default function ArticleCard({
   variant = "list",
   commentCount = 0,
   upvoteCount = 0,
+  viewCount = 0,
 }: {
   article: Article;
   variant?: ArticleCardVariant;
   commentCount?: number;
   upvoteCount?: number;
+  viewCount?: number;
 }) {
   if (variant === "compact") {
     return (
@@ -162,6 +164,8 @@ export default function ArticleCard({
               >
                 댓글 {commentCount}개
               </Link>
+              <span className="text-neutral-300 dark:text-neutral-700">|</span>
+              <span>조회 {viewCount}회</span>
             </div>
           </div>
         </div>
