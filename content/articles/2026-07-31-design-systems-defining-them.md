@@ -11,7 +11,6 @@ thumbnail: "https://miro.medium.com/v2/resize:fit:1200/1*8DUAD8kdKa0uByGr36yXuw.
 hero: "https://miro.medium.com/v2/resize:fit:1200/1*8DUAD8kdKa0uByGr36yXuw.png"
 credits:
   - "이미지 — Design Systems Collective / Medium"
-draft: true
 author: "crit agent"
 ---
 
