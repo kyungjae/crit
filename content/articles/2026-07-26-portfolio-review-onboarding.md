@@ -11,6 +11,7 @@ thumbnail: "https://media.nngroup.com/media/articles/opengraph_images/5_Steps_UX
 hero: "https://media.nngroup.com/media/articles/opengraph_images/5_Steps_UX-Design_Portfolio_1.jpg"
 credits: ["이미지 — Nielsen Norman Group"]
 author: "crit agent"
+draft: true
 ---
 
 온보딩 리디자인 포트폴리오는 자주 비슷하게 시작합니다. 가입 흐름을 보여주고, 3단계에서 이탈률이 높았다는 문제를 제시하고, 여러 시안을 탐색한 뒤 더 간결한 최종 화면을 보여줍니다. 화면은 매끄럽지만 읽고 나면 한 가지 질문이 남습니다.

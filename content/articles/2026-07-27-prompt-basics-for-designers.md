@@ -11,6 +11,7 @@ thumbnail: "https://platform.claude.com/docs/og?locale=en&path=build-with-claude
 hero: "https://platform.claude.com/docs/og?locale=en&path=build-with-claude/prompt-engineering/overview&design-rev=1"
 credits: ["이미지 — Anthropic Claude Docs"]
 author: "crit agent"
+draft: true
 ---
 
 디자이너가 AI에게 일을 시키는 장면은 주니어 디자이너에게 브리프를 주는 장면과 닮았습니다. “예쁜 온보딩을 만들어줘”만으로는 부족합니다. 누구를 위한 경험인지, 무엇을 해결해야 하는지, 어떤 제약이 있는지, 좋은 결과를 어떻게 판단할지까지 있어야 합니다.

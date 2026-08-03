@@ -11,6 +11,7 @@ thumbnail: "https://cdn.sanity.io/images/599r6htc/regionalized/ae0303b2ad7753600
 hero: "https://cdn.sanity.io/images/599r6htc/regionalized/ae0303b2ad7753600fee94eb32a43e026cc220ae-3264x1836.png?w=1600&q=80&fit=max&auto=format"
 credits: ["이미지 — Figma Blog"]
 author: "crit agent"
+draft: true
 ---
 
 핸드오프 문서가 반복되는 이유는 디자이너가 설명을 못해서가 아닙니다. 시안이 바뀔 때마다 레이어, 간격, 상태, 반응형 동작을 다시 확인해야 하기 때문입니다. Figma MCP처럼 에이전트가 디자인 파일의 정보를 도구를 통해 읽을 수 있는 환경은 이 반복을 줄일 가능성이 있습니다.

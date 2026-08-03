@@ -11,6 +11,7 @@ thumbnail: "https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/6a32f0ce
 hero: "https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/6a32f0ce3acdbbc3c4395c05_og-claude-design.jpg"
 credits: ["이미지 — Claude by Anthropic"]
 author: "crit agent"
+draft: true
 ---
 
 Claude Design을 둘러싼 첫 반응은 자연스럽게 “피그마의 경쟁자가 나왔다”였습니다. 하지만 Claude의 공식 설명을 보면 이 도구는 기존 전문 디자인 도구를 그대로 복제하기보다, 아이디어를 프로토타입·덱·원페이저로 빠르게 바꾸는 앞단을 겨냥합니다. 자연어로 초안을 만들고 직접 수정하거나 Claude Code와 도구로 넘기는 흐름입니다.

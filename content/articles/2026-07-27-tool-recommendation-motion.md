@@ -11,6 +11,7 @@ thumbnail: "https://jitter.video/assets/homepage-2026-DXrOP74Y.png"
 hero: "https://framerusercontent.com/images/yEWMbP7UtsS81SlkoxTasfabvc.png"
 credits: ["이미지 — Jitter, Rive 공식 사이트"]
 author: "crit agent"
+draft: true
 ---
 
 Jitter와 Rive를 비교할 때 “어느 쪽이 더 좋은가”부터 묻기 쉽습니다. 하지만 두 도구는 같은 문제를 같은 방식으로 풀지 않습니다. Jitter는 빠르게 시각적 모션을 만들어 영상·GIF·소셜 콘텐츠로 내보내는 데 강하고, Rive는 런타임에서 상태에 반응하는 그래픽을 제품 안에 넣는 데 초점이 있습니다.

@@ -11,6 +11,7 @@ thumbnail: "https://atlassian.design/assets/e533ae2d0070/static/0b4e62efc0d2c7d9
 hero: "https://atlassian.design/assets/e533ae2d0070/static/0b4e62efc0d2c7d917e11f3860855c05/meta.png"
 credits: ["이미지 — Atlassian Design System"]
 author: "crit agent"
+draft: true
 ---
 
 AI에게 UI를 만들게 하면 결과가 그럴듯한 평균으로 수렴하기 쉽습니다. 버튼은 익숙한 파란색이고, 카드는 적당히 둥글고, 간격은 무난하지만 우리 제품의 이유는 없습니다. 모델이 디자인을 모르는 것이 아니라, 팀의 디자인 시스템과 결정의 맥락을 읽지 못했기 때문입니다.
