@@ -2,12 +2,17 @@ import Link from "next/link";
 import { getAllArticles } from "@/lib/content";
 import ArticleCard from "@/components/ArticleCard";
 import FeedSort from "@/components/FeedSort";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { getPrisma } from "@/lib/db";
 import { parseFeedSort, sortArticles } from "@/lib/feed";
 import {
   createUpvoteStore,
   getUpvoteCounts,
 } from "@/lib/upvotes";
+import { createViewStore, getViewCounts } from "@/lib/views";
+
+const SIDEBAR_CARD_CLASS =
+  "rounded-2xl border border-neutral-200 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80";
 
 async function getCommentCounts(slugs: string[]) {
   const prisma = getPrisma();
@@ -41,10 +46,23 @@ async function getFeedUpvoteCounts(
   }
 }
 
+async function getFeedViewCounts(
+  slugs: string[]
+): Promise<Record<string, number>> {
+  const prisma = getPrisma();
+  if (!prisma || slugs.length === 0) return {};
+
+  try {
+    return await getViewCounts(createViewStore(prisma), slugs);
+  } catch {
+    return {};
+  }
+}
+
 function SidebarPanel() {
   return (
     <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
-      <section className="rounded-2xl border border-neutral-200 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
+      <section className={SIDEBAR_CARD_CLASS}>
         <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
           Community
         </p>
@@ -58,44 +76,56 @@ function SidebarPanel() {
         <div className="mt-4 grid grid-cols-2 gap-2">
           <Link
             href="/ask"
-            className="rounded-full bg-neutral-950 px-3 py-2 text-center text-[12px] font-bold text-white dark:bg-brand"
+            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
           >
             Ask crit
           </Link>
           <Link
             href="/show"
-            className="rounded-full border border-neutral-200 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 dark:!border-neutral-700 dark:!bg-neutral-800 dark:!text-neutral-100"
+            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
           >
             Show crit
           </Link>
         </div>
       </section>
 
-      <section className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-4 dark:!border-neutral-700 dark:!bg-neutral-900/45">
+      <section className={SIDEBAR_CARD_CLASS}>
         <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
           Submit
         </p>
         <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em] text-neutral-950 dark:text-neutral-50">
-          좋은 링크 제보
+          함께 채우는 피드와 링크
         </h3>
         <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-          디자인, 제품, AI, 툴, 채용 관련해서 같이 읽을 만한 글을 발견하면
-          crit 피드 후보로 모읍니다.
-          초기에는 폼 연결 전 안내 모듈로 둡니다.
+          피드에 소개할 아티클과 다시 찾고 싶은 리소스 링크를 각각 제보해주세요.
         </p>
+        <div className="mt-4 grid grid-cols-2 gap-2">
+          <Link
+            href="/submit"
+            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
+          >
+            아티클 제보
+          </Link>
+          <Link
+            href="/links/submit"
+            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
+          >
+            링크 추가
+          </Link>
+        </div>
       </section>
 
-      <section className="rounded-2xl border border-neutral-200 bg-neutral-950 p-4 text-white dark:!border-neutral-800 dark:!bg-neutral-900">
-        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-white/45">
+      <section className={SIDEBAR_CARD_CLASS}>
+        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
           Weekly
         </p>
-        <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em]">
-          이번 주 읽어야 할 글 10개
+        <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em] text-neutral-950 dark:text-neutral-50">
+          이번 주 읽을거리, 이메일로 받기
         </h3>
-        <p className="mt-2 text-[13px] leading-relaxed text-white/55">
-          Sidebar처럼 날짜별 링크가 쌓이면, 주간 다이제스트는 자연스럽게
-          뉴스레터/구독 상품으로 이어집니다.
+        <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+          매주 crit가 고른 아티클 10개를 한 번에 보내드려요.
         </p>
+        <NewsletterSignup />
       </section>
     </aside>
   );
@@ -111,9 +141,10 @@ export default async function HomePage({
 
   const allArticles = getAllArticles();
   const slugs = allArticles.map((article) => article.slug);
-  const [commentCounts, upvoteCounts] = await Promise.all([
+  const [commentCounts, upvoteCounts, viewCounts] = await Promise.all([
     getCommentCounts(slugs),
     getFeedUpvoteCounts(slugs),
+    getFeedViewCounts(slugs),
   ]);
   const articles = sortArticles(allArticles, upvoteCounts, sort);
 
@@ -136,6 +167,7 @@ export default async function HomePage({
                   variant="signal"
                   commentCount={commentCounts[article.slug] ?? 0}
                   upvoteCount={upvoteCounts[article.slug] ?? 0}
+                  viewCount={viewCounts[article.slug] ?? 0}
                 />
               ))}
             </ul>
