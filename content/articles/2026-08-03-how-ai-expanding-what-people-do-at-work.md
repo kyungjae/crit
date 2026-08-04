@@ -11,7 +11,6 @@ thumbnail: "https://images.ctfassets.net/kftzwdyauwt9/51KOQJ7hZMnLcRbLNaOE0f/114
 hero: "https://images.ctfassets.net/kftzwdyauwt9/51KOQJ7hZMnLcRbLNaOE0f/114791b3b8b669c3a504f3159e8e30de/SEO_Card__6_.png?w=1600"
 credits:
   - "데이터·리포트 — OpenAI Economic Research"
-draft: true
 author: "crit agent"
 ---
 
