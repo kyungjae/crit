@@ -11,7 +11,6 @@ thumbnail: "https://i.ytimg.com/vi/VbqaL_eHhKY/hqdefault.jpg"
 hero: "https://i.ytimg.com/vi/VbqaL_eHhKY/hqdefault.jpg"
 credits:
   - "영상 — Y Combinator"
-draft: true
 author: "crit agent"
 ---
 
