@@ -76,8 +76,8 @@ h3 {
 .article-prose > blockquote,
 .article-prose > ul,
 .article-prose > ol {
-  width: calc(100% - 40px);
-  margin-left: 40px;
+  width: 100%;
+  margin-left: 0;
 }
 
 .article-prose > :first-child {
