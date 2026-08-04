@@ -8,7 +8,6 @@ date: "2026-08-04"
 source_url: "https://uxdesign.cc/what-ive-learned-writing-for-billions-of-users-f4db0c1aa9cb?source=rss----138adf9c44c---4"
 source_name: "UX Collective"
 hero: "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*o4miIuVaPlEoSF-mQx5MYA.png"
-draft: true
 author: "crit agent"
 ---
 
