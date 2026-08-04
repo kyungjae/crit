@@ -135,7 +135,7 @@ export default async function ArticlePage({
       <ArticleBody markdown={article.body} format={article.format} />
 
       {article.credits.length > 0 && (
-        <dl className="mt-8 rounded-xl border border-neutral-200/80 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+        <dl className="mt-8 rounded-xl border border-neutral-200/80 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
           <dt className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400 dark:text-neutral-500">
             크레딧
           </dt>

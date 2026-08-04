@@ -81,7 +81,7 @@ export default function DraftEditor({
             value={title}
             onChange={(event) => { setTitle(event.target.value); setStatus("idle"); }}
             maxLength={120}
-            className="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm font-semibold outline-none ring-brand/30 transition focus:ring-2 dark:border-neutral-700 dark:bg-neutral-950"
+            className="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm font-semibold text-neutral-900 outline-none ring-brand/30 transition focus:ring-2 dark:!border-neutral-700 dark:!bg-neutral-950 dark:!text-neutral-100 dark:placeholder:text-neutral-500"
           />
         </label>
 
@@ -92,7 +92,7 @@ export default function DraftEditor({
             onChange={(event) => { setSummary(event.target.value); setStatus("idle"); }}
             maxLength={300}
             rows={2}
-            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm leading-relaxed outline-none ring-brand/30 transition focus:ring-2 dark:border-neutral-700 dark:bg-neutral-950"
+            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-neutral-900 outline-none ring-brand/30 transition focus:ring-2 dark:!border-neutral-700 dark:!bg-neutral-950 dark:!text-neutral-100 dark:placeholder:text-neutral-500"
           />
         </label>
 
@@ -103,7 +103,7 @@ export default function DraftEditor({
             onChange={(event) => { setBody(event.target.value); setStatus("idle"); }}
             rows={20}
             spellCheck={false}
-            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-3 font-mono text-[13px] leading-[1.75] outline-none ring-brand/30 transition focus:ring-2 dark:border-neutral-700 dark:bg-neutral-950"
+            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-3 font-mono text-[13px] leading-[1.75] text-neutral-900 outline-none ring-brand/30 transition focus:ring-2 dark:!border-neutral-700 dark:!bg-neutral-950 dark:!text-neutral-100 dark:placeholder:text-neutral-500"
           />
         </label>
       </div>
