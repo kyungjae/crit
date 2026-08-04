@@ -1,5 +1,5 @@
 ---
-title: "AI는 사람들이 직장에서 하는 일을 어떻게 확장하는가"
+title: "AI는 직업보다 업무의 경계를 먼저 바꾼다"
 summary: "OpenAI가 미국 ChatGPT Business 사용자의 업무 관련 메시지 80만 건 이상을 분석했습니다. 직업별 업무를 넘어서는 ‘task crossover’가 실제 AI 사용에서 얼마나 나타나는지, 특히 디자이너와 소규모 조직에서 어떤 패턴을 보이는지 살펴봅니다."
 category: ai-design
 format: deep
