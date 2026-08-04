@@ -11,7 +11,6 @@ hero: "https://www.creativeboom.com/upload/articles/0a/0a2e6a3224791911c9c95a2bd
 credits:
   - "작업 — Emma Giacalone"
   - "기사 — Katy Cowan, Creative Boom"
-draft: true
 author: "crit agent"
 ---
 
