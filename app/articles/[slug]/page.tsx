@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllArticles, getArticle, getDraftWarnings } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
-import { CATEGORY_LABELS } from "@/lib/schema";
+
 import { formatDate } from "@/lib/format";
 import Upvote from "@/components/Upvote";
 import Comments from "@/components/Comments";
@@ -102,9 +102,6 @@ export default async function ArticlePage({
 
       <header className="article-header">
         <div className="mb-4 flex items-center gap-2 text-xs">
-          <span className="rounded-full bg-brand/10 px-2 py-0.5 font-medium text-brand">
-            {CATEGORY_LABELS[article.category]}
-          </span>
           <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
           {article.format !== "brief" && (
             <span className="text-neutral-400 dark:text-neutral-500">
