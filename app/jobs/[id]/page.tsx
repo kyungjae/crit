@@ -34,7 +34,7 @@ function CompanyLogo({ job }: { job: Job }) {
       <img
         src={job.logo}
         alt={`${job.company} 로고`}
-        className="size-16 rounded-2xl border border-neutral-200 bg-white object-contain p-2 dark:border-neutral-800 dark:bg-neutral-900"
+        className="size-16 rounded-2xl border border-neutral-200 bg-white object-contain p-2 dark:!border-neutral-800 dark:!bg-neutral-900"
       />
     );
   }
@@ -50,7 +50,7 @@ function DetailSection({ title, items }: { title: string; items: string[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+    <section className="rounded-2xl border border-neutral-200 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
       <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">{title}</h2>
       <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-neutral-600 marker:text-brand dark:text-neutral-300">
         {items.map((item) => (
@@ -79,7 +79,7 @@ export default async function JobDetailPage({
         ← 채용 목록
       </Link>
 
-      <header className="rounded-3xl border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900/80">
+      <header className="rounded-3xl border border-neutral-200 bg-white p-5 dark:!border-neutral-800 dark:!bg-neutral-900/80">
         <div className="flex gap-4">
           <CompanyLogo job={job} />
           <div className="min-w-0 flex-1">
@@ -134,7 +134,7 @@ export default async function JobDetailPage({
       </header>
 
       {job.company_description && (
-        <section className="mt-4 rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+        <section className="mt-4 rounded-2xl border border-neutral-200 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
           <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">회사 한눈에 보기</h2>
           <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
             {job.company_description}
@@ -162,7 +162,7 @@ export default async function JobDetailPage({
       )}
 
       {job.related_links.length > 0 && (
-        <section className="mt-6 rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+        <section className="mt-6 rounded-2xl border border-neutral-200 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
           <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
             지원 전에 참고할 자료
           </h2>
