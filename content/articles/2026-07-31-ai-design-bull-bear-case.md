@@ -11,7 +11,6 @@ thumbnail: "https://files.smashing.media/articles/bull-and-bear-case-digital-des
 hero: "https://files.smashing.media/articles/bull-and-bear-case-digital-design-age-ai/bull-and-bear-case-digital-design-age-ai.jpg"
 credits:
   - "이미지 — Smashing Magazine"
-draft: true
 author: "crit agent"
 ---
 
