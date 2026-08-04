@@ -206,7 +206,7 @@ export default function ArticleCard({
             <h2 className="mt-2 line-clamp-2 text-[18px] font-semibold leading-snug tracking-[-0.025em] text-neutral-950 dark:text-neutral-50">
               {article.title}
             </h2>
-            <p className="mt-2 line-clamp-3 whitespace-pre-line text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+            <p className="mt-2 whitespace-pre-line line-clamp-3 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
               {article.summary}
             </p>
             <div className="mt-auto pt-4">
@@ -233,7 +233,7 @@ export default function ArticleCard({
               <h2 className="mt-3 text-[24px] font-bold leading-tight tracking-[-0.04em] text-neutral-950 dark:text-neutral-50 md:text-[30px]">
                 {article.title}
               </h2>
-              <p className="mt-3 line-clamp-4 whitespace-pre-line text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              <p className="mt-3 whitespace-pre-line line-clamp-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
                 {article.summary}
               </p>
             </div>
@@ -259,7 +259,7 @@ export default function ArticleCard({
             <h2 className="mt-1.5 text-[17px] font-semibold leading-snug text-neutral-900 dark:text-neutral-100">
               {article.title}
             </h2>
-            <p className="mt-1.5 line-clamp-2 whitespace-pre-line text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+            <p className="mt-1.5 whitespace-pre-line line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
               {article.summary}
             </p>
             <div className="mt-2">

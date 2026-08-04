@@ -1,6 +1,9 @@
 ---
 title: "Paper는 AI 시대의 디자인 도구를 어떻게 만들고 있나"
-summary: "Designer Fund가 Paper 창업자 Stephen Haney를 인터뷰했습니다. Paper는 AI로 화면을 대신 만드는 대신, 디자이너가 HTML/CSS라는 실제 제품의 매체에서 작업하도록 합니다. 창업자 적합성, 깊이 있는 오너십, 6주 사이클, 커뮤니티 중심의 마케팅이 하나의 운영 철학으로 이어집니다."
+summary: |
+  • Paper는 AI로 화면을 대신 만들기보다, 디자이너가 HTML/CSS라는 실제 제품의 매체에서 작업하게 합니다.
+  • 창업자 적합성, 한 사람의 깊은 오너십, 6주 사이클이 Paper의 운영 방식으로 이어집니다.
+  • AI 시대에는 디자인 도구의 생성 기능보다 디자이너·엔지니어·에이전트가 공유하는 작업 매체가 중요해집니다.
 category: ai-design
 format: deep
 draft: true
