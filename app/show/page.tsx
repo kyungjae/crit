@@ -1,37 +1,32 @@
-import Link from "next/link";
-import { showItems } from "@/lib/community";
-
 export default function ShowPage() {
   return (
     <div className="mx-auto max-w-5xl">
-      <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white dark:border-neutral-800 dark:bg-neutral-900 md:p-8">
-        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-white/50">Show crit</p>
-        <h1 className="mt-3 text-[36px] font-black leading-none tracking-[-0.06em] md:text-[56px]">
-          작업물, 툴, 실험을 보여주는 디자이너 광장.
+      <section className="relative overflow-hidden rounded-[2rem] border border-neutral-200 bg-neutral-100 p-7 text-neutral-950 dark:border-neutral-800 dark:bg-neutral-900 dark:text-white md:p-10">
+        <div className="absolute right-0 top-0 size-48 translate-x-1/4 -translate-y-1/3 rounded-full bg-brand/10 blur-3xl" />
+        <p className="relative text-[11px] font-black uppercase tracking-[0.18em] text-neutral-500 dark:text-white/50">Show · 작업물</p>
+        <h1 className="relative mt-4 max-w-2xl text-[42px] font-black leading-[1.04] tracking-[-0.06em] md:text-[64px]">
+          곧, 만드는 과정을 보여드립니다.
         </h1>
-        <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/60">
-          완성작 자랑만이 아니라 과정, 판단 기준, 실패한 실험까지 공유하는 작업물 피드입니다.
+        <p className="relative mt-5 max-w-xl text-[15px] leading-[1.8] text-neutral-500 dark:text-white/60">
+          작업물, 툴, 프로토타입과 실패한 실험을 공유하는 공간을 준비하고 있습니다.
+          결과 화면만이 아니라 무엇을 선택했고 무엇을 다시 바꿀지까지 남길 수 있게 만들겠습니다.
         </p>
+        <div className="relative mt-8 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-2 text-xs font-semibold text-brand">
+          <span className="size-1.5 rounded-full bg-brand" />
+          Coming soon
+        </div>
       </section>
 
-      <section className="mt-6 grid gap-3 md:grid-cols-3">
-        {showItems.map((item) => (
-          <Link
-            key={item.slug}
-            href={`/show/${item.slug}`}
-            className="group rounded-[1.35rem] border border-neutral-200 bg-white p-4 transition-colors hover:border-brand/40 hover:bg-brand/[0.02] dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:border-brand/50"
-          >
-            <p className="text-[11px] font-bold text-brand">{item.meta}</p>
-            <h2 className="mt-2 text-[20px] font-black leading-tight tracking-[-0.045em] text-neutral-950 transition-colors group-hover:text-brand dark:text-neutral-50">
-              {item.title}
-            </h2>
-            <p className="mt-3 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-              {item.body}
-            </p>
-            <span className="mt-4 inline-block text-[12px] font-semibold text-brand opacity-0 transition-opacity group-hover:opacity-100">
-              작업물 열기 →
-            </span>
-          </Link>
+      <section className="mt-5 grid gap-3 sm:grid-cols-3">
+        {[
+          ["작업물", "무엇을 만들었는지 보여줍니다."],
+          ["과정", "제약과 선택의 맥락을 함께 남깁니다."],
+          ["피드백", "다음 실험으로 이어지는 의견을 나눕니다."],
+        ].map(([title, body]) => (
+          <div key={title} className="rounded-2xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/70">
+            <p className="text-sm font-bold text-neutral-950 dark:text-neutral-100">{title}</p>
+            <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">{body}</p>
+          </div>
         ))}
       </section>
     </div>
