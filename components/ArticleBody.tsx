@@ -81,9 +81,14 @@ function RulesLayout({ markdown }: { markdown: string }) {
     .filter((chunk) => chunk.trim())
     .map((chunk) => {
       const nl = chunk.indexOf("\n");
-      return nl === -1
-        ? { title: chunk.trim(), body: "" }
-        : { title: chunk.slice(0, nl).trim(), body: chunk.slice(nl + 1).trim() };
+      const title = nl === -1 ? chunk.trim() : chunk.slice(0, nl).trim();
+      const body = nl === -1 ? "" : chunk.slice(nl + 1).trim();
+
+      // 규칙 카드가 번호를 자동으로 표시하므로 콘텐츠 제목의 번호는 한 번 제거한다.
+      return {
+        title: title.replace(/^\d{1,3}[.)]\s*/, ""),
+        body,
+      };
     });
 
   return (
