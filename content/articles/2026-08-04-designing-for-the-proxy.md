@@ -1,12 +1,13 @@
 ---
 title: "AI가 먼저 읽는 시대, 사람을 위한 디자인은 어떻게 달라질까"
-summary: "AI는 이제 콘텐츠를 사람에게 전달하는 검색 도구를 넘어 먼저 읽고, 요약하고, 평가하는 중간자가 됐습니다. Aurélie Radom은 기계가 이해하기 쉬운 구조와 사람을 위한 경험을 어떻게 함께 설계할지 묻습니다."
+summary: "• AI가 원문보다 먼저 읽고 요약하고 평가하는 콘텐츠가 늘어남\n• 검색 최적화와 사람 중심 설계는 같은 일이 아님\n• 그럴듯한 화면과 실제 제품 사이에는 보이지 않는 시스템이 있음\n• 기계를 위한 구조가 사람을 위한 경험을 대신해서는 안 됨"
 category: ai-design
 format: deep
 tags: [ai, ux, content-strategy, design-judgment]
 date: "2026-08-04"
 source_url: "https://uxdesign.cc/designing-for-the-proxy-2606ffac2335?source=rss----138adf9c44c---4"
 source_name: "UX Collective"
+hero: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*p9ZSUqRu3IsE9au13EPvLg.png"
 draft: true
 author: "crit agent"
 ---
@@ -14,6 +15,8 @@ author: "crit agent"
 Aurélie Radom은 디자이너가 오랫동안 사람을 유일한 관객으로 삼아 왔다고 말합니다. 그런데 지금은 글, API 문서, 검색 결과가 사람에게 닿기 전에 언어 모델에 먼저 읽히고 요약되고 인용됩니다. AI는 제작 과정에서 쓰는 도구를 넘어, 작업이 발견되고 해석되고 경험되는 방식에 참여하는 중간자가 됐다는 이야기입니다.
 
 핵심 질문은 기계가 먼저 읽는 상황에 맞춰야 하느냐가 아닙니다. 기계에 맞춘 최적화가 사람을 위한 설계를 대신하지 않게 하려면 어떻게 해야 하느냐입니다.
+
+![AI가 무수한 선택지를 만들고 사람의 판단이 다음 수를 고르는 모습을 체스판으로 표현한 이미지 — Aurélie Radom, UX Collective](https://miro.medium.com/v2/resize:fit:720/format:webp/1*p9ZSUqRu3IsE9au13EPvLg.png "이미지: UX Collective")
 
 ## 검색을 돕던 중간자와 대신 행동하는 중간자
 
@@ -23,6 +26,8 @@ Radom은 LLM이 여기서 달라진다고 봅니다. LLM은 정보를 가리키�
 
 마셜 매클루언의 『미디어의 이해』를 빌리면 매체는 정보를 유통하는 방법뿐 아니라 정보가 만들어지는 방법도 바꿉니다. 검색엔진은 발견 가능성을, 소셜 미디어는 참여를, LLM은 해석 가능성을 보상합니다. 문제는 신호가 그것이 대표해야 할 대상을 대신하기 시작할 때 생깁니다.
 
+![전통적인 검색과 AI가 먼저 읽고 요약하는 검색의 차이를 비교한 이미지 — Aurélie Radom, UX Collective](https://miro.medium.com/v2/resize:fit:1000/1*1dgF3c6C_1iXGnliS_16KA.png "이미지: UX Collective")
+
 소셜 플랫폼이 관계를 만들기보다 시청 시간을 늘리는 콘텐츠를 보상하게 된 것처럼, 조직이 언어 모델이 검색하고 요약하고 인용하기 쉬운 콘텐츠를 만드는 데만 집중하면 질문이 달라집니다. 이 콘텐츠는 정보를 필요로 하는 사람을 위해 설계된 것인가, 아니면 그 사람과 콘텐츠 사이에 선 시스템을 위해 설계된 것인가.
 
 ## 스크린샷에는 제품의 중요한 부분이 보이지 않는다
@@ -31,11 +36,17 @@ Radom은 LLM이 여기서 달라진다고 봅니다. LLM은 정보를 가리키�
 
 실제 디자인 워크플로에 넣으면 간격과 그리드가 무너지고, 컴포넌트가 시스템처럼 동작하지 않으며, 상호작용 상태가 빠지고, 타이포그래피가 브레이크포인트마다 제대로 확장되지 않습니다. 접근성도 고려되지 않았습니다. 픽셀은 있지만 엔지니어가 실제로 만들고 유지할 수 있는 제품은 없는 상태입니다.
 
+![에이전틱 도구가 만든 바이브 코딩 인터페이스를 Figma에서 다시 확인한 화면 — Aurélie Radom, UX Collective](https://miro.medium.com/v2/resize:fit:700/1*Igz94ch8W1j7hSX4yOgx5A.png "이미지: UX Collective")
+
 > 픽셀은 있다. 제품은 없다.
 
 좋은 디자인은 스크린샷에 나타나는 것만으로 정의되지 않습니다. 위계를 만드는 간격 시스템, 제품이 진화할 수 있게 하는 컴포넌트 구조, 인지 부담을 낮추는 인터랙션 패턴, 복잡성을 이해하게 하는 정보 구조, 모두가 쓸 수 있게 하는 접근성 결정이 스크린샷 바깥에 있습니다.
 
+![에이전틱 도구가 생성한 UI 키트에서 버튼 크기와 의미, 상호작용 상태가 서로 다르게 나타나는 모습 — Aurélie Radom, UX Collective](https://miro.medium.com/v2/resize:fit:700/1*E0DOPoiJk7rebJNmtSSLDg.png "이미지: UX Collective")
+
 AI가 보이는 레이어를 만드는 비용을 크게 낮출수록 보이지 않는 레이어의 가치는 커집니다. 생성할 수 있는 화면의 수가 늘어날수록 무엇을 만들지 판단하는 능력이 희소해지는 이유입니다. 건축물을 렌더링 한 장만으로 판단할 수 없는 것과 같은 이야기입니다.
+
+![AI가 만든 Figma 변형안에서 일관된 간격 대신 임의의 소수점 값이 나타나는 모습 — Aurélie Radom, UX Collective](https://miro.medium.com/v2/resize:fit:700/1*LD6V_IYGdrWXLJxDbZpgtA.png "이미지: UX Collective")
 
 ## 최적화할 것과 남겨둘 것을 구분하기
 
