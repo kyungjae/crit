@@ -138,7 +138,7 @@ export default function Comments({ slug }: { slug: string }) {
     return (
       <form
         onSubmit={(e) => submit(e, parentId)}
-        className={`scroll-mb-32 flex flex-col gap-2 ${compact ? "mt-3 md:static md:rounded-none md:border-0 md:bg-transparent md:p-0" : "mt-4 pb-4"} ${compact ? "fixed inset-x-3 z-30 rounded-2xl border border-neutral-200 bg-white p-3 shadow-xl dark:border-neutral-700 dark:bg-neutral-950 md:relative md:inset-auto md:z-auto md:shadow-none" : ""}`}
+        className={`scroll-mb-32 flex flex-col gap-2 ${compact ? "mt-3 md:static md:rounded-none md:border-0 md:bg-transparent md:p-0" : "mt-4 pb-4"} ${compact ? "fixed inset-x-3 z-30 rounded-2xl border border-neutral-200 bg-white p-3 shadow-xl dark:!border-neutral-700 dark:!bg-neutral-950 md:relative md:inset-auto md:z-auto md:shadow-none" : ""}`}
         style={compact ? { bottom: `calc(4.5rem + ${keyboardOffset}px)` } : undefined}
       >
         {(!compact || !nickname.trim()) && (
@@ -148,7 +148,7 @@ export default function Comments({ slug }: { slug: string }) {
             placeholder="닉네임"
             maxLength={20}
             required
-            className="w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:w-32 sm:text-sm"
+            className="w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:!border-neutral-800 dark:!bg-neutral-900 dark:!text-neutral-100 dark:placeholder:text-neutral-500 sm:w-32 sm:text-sm"
           />
         )}
         <textarea
@@ -161,7 +161,7 @@ export default function Comments({ slug }: { slug: string }) {
           maxLength={1000}
           required
           autoFocus={autoFocus}
-          className={`w-full resize-y rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:text-sm ${compact ? "min-h-16" : "min-h-24"}`}
+          className={`w-full resize-y rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:!border-neutral-800 dark:!bg-neutral-900 dark:!text-neutral-100 dark:placeholder:text-neutral-500 sm:text-sm ${compact ? "min-h-16" : "min-h-24"}`}
         />
         {error && pendingKey === null && (
           <p className="text-xs text-red-500">{error}</p>

@@ -40,9 +40,9 @@ export function UpvoteButton({
   burstKey = 0,
 }: UpvoteButtonProps) {
   const selectedClasses =
-    "border-brand bg-brand/10 text-brand dark:border-brand/70 dark:bg-brand/20";
+    "border-brand bg-brand/10 text-brand dark:!border-brand/70 dark:!bg-brand/20";
   const idleClasses =
-    "border-neutral-200 bg-white text-neutral-800 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100";
+    "border-neutral-200 bg-white text-neutral-800 dark:!border-neutral-800 dark:!bg-neutral-900 dark:!text-neutral-100";
 
   return (
     <button
