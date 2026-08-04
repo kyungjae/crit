@@ -1,12 +1,13 @@
 ---
 title: "수십억 명을 위한 제품 글쓰기에서 배운 73가지"
-summary: "Nick DiLallo가 수십 개 언어와 시간대, 문화권의 사용자를 가진 제품을 쓰며 정리한 73가지 원칙을 소개합니다. 좋은 문구보다 먼저, 문구가 필요 없도록 만드는 인터페이스와 제품의 진실성이 중심에 있습니다."
+summary: "• 인터페이스 대부분은 글로 이루어져 있음\n• 좋은 문구보다 먼저, 문구가 필요 없는 UI를 만들어야 함\n• 이름·날짜·가격·접근성까지 글쓰기의 문제임\n• 짧게 쓰는 일과 제품을 고치는 일은 다름"
 category: design
 format: rules
 tags: [ux-writing, content-design, accessibility, product-design]
 date: "2026-08-04"
 source_url: "https://uxdesign.cc/what-ive-learned-writing-for-billions-of-users-f4db0c1aa9cb?source=rss----138adf9c44c---4"
 source_name: "UX Collective"
+hero: "https://miro.medium.com/v2/resize:fit:1100/format:webp/1*o4miIuVaPlEoSF-mQx5MYA.png"
 draft: true
 author: "crit agent"
 ---
@@ -15,9 +16,13 @@ Nick DiLallo는 소수의 사용자가 쓰는 제품과 지구의 의미 있는 
 
 전부 옮기기보다 제품팀이 반복해서 부딪히는 원칙을 골랐습니다. 이 글에서 글쓰기는 문장을 예쁘게 다듬는 일이 아니라 인터페이스, 제품 정책, 조직의 의사결정과 연결된 일로 다뤄집니다.
 
+![수십억 사용자를 상징하는 여러 겹의 휴대폰 화면 — Nick DiLallo, UX Collective](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*o4miIuVaPlEoSF-mQx5MYA.png "이미지: UX Collective")
+
 ### 대부분의 인터페이스는 대부분 단어로 이루어진다
 
 텍스트를 모두 지우면 화면은 이해되지 않습니다. 그래서 타이포그래피는 글쓰기만큼 중요하고, 오탈자와 어색한 표현은 제품 품질에 대한 판단으로 이어집니다. 사용자는 쉼표도 믿지 못하면서 개인정보를 맡기지는 않습니다.
+
+![서체의 차이를 보여주는 세 가지 큰 글자 형태 — Nick DiLallo, UX Collective](https://miro.medium.com/v2/resize:fit:1000/1*V0q0MmrBP3lYVmoRwQEMow.png "이미지: UX Collective")
 
 ### 좋은 인터페이스는 사용 설명서를 덜 필요로 한다
 
@@ -30,6 +35,8 @@ Nick DiLallo는 소수의 사용자가 쓰는 제품과 지구의 의미 있는 
 짧은 문장이 거의 항상 더 나은 문장이고, 중요한 문구는 두 번이 아니라 열두 번 다시 씁니다. 사용자는 인터페이스의 모든 텍스트를 읽지 않고 훑고, 스캔하고, 원하는 곳으로 스크롤합니다. 긴 글은 길이만큼의 가치를 제공해야 합니다.
 
 다만 저자는 문장을 줄이는 일만으로 모든 문제가 해결된다고 말하지 않습니다. 계속 다시 써도 나아지지 않으면 컴포넌트를 바꾸고, 애니메이션을 추가하고, 내비게이션을 조정해야 합니다. 단어를 고치는 대신 UI를 다시 생각할 때가 있다는 뜻입니다.
+
+![짧은 헤드라인과 서브헤드가 UI를 단순하게 만드는 과정을 보여주는 화면 — Nick DiLallo, UX Collective](https://miro.medium.com/v2/resize:fit:1000/1*MwoBT-UlgQyEU00WA4OlMw.png "이미지: UX Collective")
 
 ### 거대한 사용자 기반을 위해 한 사람에게 쓴다
 
@@ -48,6 +55,8 @@ Nick DiLallo는 소수의 사용자가 쓰는 제품과 지구의 의미 있는 
 $45와 $45.00, 45 (USD) 중 무엇을 쓸지, “July 5th”와 “Next Tuesday” 중 무엇을 쓸지, Settings와 Preferences 중 무엇을 쓸지 결정해야 합니다. 좋은 팀은 포맷과 구두점을 두고도 논쟁합니다.
 
 작은 수정 하나가 여러 화면과 세션에 반복되면 결과는 작지 않습니다. 제품 곳곳의 더 명확한 헤드라인, 더 짧은 오류 문구, 더 직접적인 CTA가 쌓이면 제품 전체가 달라집니다.
+
+![날짜와 시간을 표시하는 서로 다른 방식 — Nick DiLallo, UX Collective](https://miro.medium.com/v2/resize:fit:1000/1*IowQnwmUSr9ekApxxCzy3w.png "이미지: UX Collective")
 
 ### 말과 행동이 다르면 글이 문제를 가린다
 
