@@ -6,6 +6,7 @@ import DraftPublishButton from "@/components/DraftPublishButton";
 import { getDraftArticles, getDraftWarnings } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
+import { SummaryText } from "@/components/SummaryText";
 
 export const metadata: Metadata = {
   title: "초안",
@@ -66,7 +67,7 @@ export default function DraftsPage() {
                       {article.title}
                     </h2>
                     <p className="mt-1 line-clamp-4 whitespace-pre-line text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                      {article.summary}
+                      <SummaryText summary={article.summary} />
                     </p>
                   </Link>
 

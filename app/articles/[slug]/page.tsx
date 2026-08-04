@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllArticles, getArticle, getDraftWarnings } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
+import { SummaryText } from "@/components/SummaryText";
 
 import { formatDate } from "@/lib/format";
 import Upvote from "@/components/Upvote";
@@ -114,7 +115,7 @@ export default async function ArticlePage({
           {article.title}
         </h1>
         <p className="article-summary mt-6 whitespace-pre-line text-[17px] leading-[1.8] text-neutral-500 dark:text-neutral-400">
-          {article.summary}
+          <SummaryText summary={article.summary} />
         </p>
 
         {article.source_url && (

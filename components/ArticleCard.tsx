@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Article } from "@/lib/content";
 import { FORMAT_LABELS } from "@/lib/schema";
 import { formatDate, relativeTime } from "@/lib/format";
+import { SummaryText } from "@/components/SummaryText";
 
 type ArticleCardVariant = "list" | "grid" | "featured" | "signal" | "compact";
 
@@ -207,7 +208,7 @@ export default function ArticleCard({
               {article.title}
             </h2>
             <p className="mt-2 whitespace-pre-line line-clamp-3 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-              {article.summary}
+              <SummaryText summary={article.summary} />
             </p>
             <div className="mt-auto pt-4">
               <ArticleBadges article={article} />
@@ -234,7 +235,7 @@ export default function ArticleCard({
                 {article.title}
               </h2>
               <p className="mt-3 whitespace-pre-line line-clamp-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                {article.summary}
+                <SummaryText summary={article.summary} />
               </p>
             </div>
             <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
@@ -260,7 +261,7 @@ export default function ArticleCard({
               {article.title}
             </h2>
             <p className="mt-1.5 whitespace-pre-line line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-              {article.summary}
+              <SummaryText summary={article.summary} />
             </p>
             <div className="mt-2">
               <ArticleBadges article={article} />
