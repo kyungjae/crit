@@ -116,7 +116,7 @@ export default async function ArticlePage({
         <h1 className="article-title text-[32px] font-bold leading-[1.35] tracking-[-0.03em] sm:text-[44px] sm:leading-[1.3]">
           {article.title}
         </h1>
-        <p className="article-summary mt-6 text-[17px] leading-[1.8] text-neutral-500 dark:text-neutral-400">
+        <p className="article-summary mt-6 whitespace-pre-line text-[17px] leading-[1.8] text-neutral-500 dark:text-neutral-400">
           {article.summary}
         </p>
 

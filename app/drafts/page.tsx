@@ -65,7 +65,7 @@ export default function DraftsPage() {
                     <h2 className="text-base font-semibold leading-snug">
                       {article.title}
                     </h2>
-                    <p className="mt-1 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                    <p className="mt-1 line-clamp-4 whitespace-pre-line text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
                       {article.summary}
                     </p>
                   </Link>
