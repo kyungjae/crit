@@ -49,7 +49,7 @@ AI가 바꾸는 것은 업무 처리 속도만이 아닙니다. 누가 그 일�
 
 여기서 일반 업무를 빼고 나머지 직업 특화 메시지만 다시 100%로 환산하면, 다른 직업의 업무에 해당하는 비율이 43.5%가 됩니다.
 
-![Fig. 2 — 업무 관련 메시지에서 일반·직업 내·직업 간 업무를 구분한 원문 차트](/images/articles/openai-work-frontier/fig-2-task-crossover.png "OpenAI Economic Research, Fig. 2")
+![Fig. 2 — 업무 관련 메시지에서 일반·직업 내·직업 간 업무를 구분한 원문 차트](/images/articles/openai-work-frontier/fig-2-task-crossover-chart.png "OpenAI Economic Research, Fig. 2")
 
 즉 “업무 메시지의 거의 절반이 다른 직업의 일”이라는 뜻은 아닙니다. 이메일 작성처럼 원래부터 여러 직업이 함께 하는 일을 제외했을 때, 직업 특화 업무를 AI에 요청한 방식의 상당 부분이 기존 직업 경계 밖에 있었다는 뜻입니다.
 
@@ -65,7 +65,7 @@ AI가 바꾸는 것은 업무 처리 속도만이 아닙니다. 누가 그 일�
 - 법무: 56%
 - 마케팅: 53%
 
-![Fig. 3 — 직업군별 cross-occupation 비율을 보여주는 원문 차트](/images/articles/openai-work-frontier/fig-3-occupation-crossover.png "OpenAI Economic Research, Fig. 3")
+![Fig. 3 — 직업군별 cross-occupation 비율을 보여주는 원문 차트](/images/articles/openai-work-frontier/fig-3-occupation-crossover-chart.png "OpenAI Economic Research, Fig. 3")
 
 이 수치는 디자이너의 업무가 곧 다른 직업으로 대체된다는 뜻이 아닙니다. 디자이너가 AI를 사용하면서 기존 직무에 속하지 않았던 업무를 함께 시도하고 있다는 뜻에 가깝습니다.
 
@@ -101,7 +101,7 @@ OpenAI는 이를 두 방향으로 나눠 설명합니다.
 
 조직 규모도 차이를 만들었습니다. 2~5석 규모 워크스페이스의 일반적인 사용자에게서 직업 간 업무가 나타난 비율은 18.9%였습니다. 101석 이상 워크스페이스에서는 16.3%였습니다.
 
-![Fig. 6 — 워크스페이스 좌석 수와 cross-occupation 비율의 관계를 보여주는 원문 차트](/images/articles/openai-work-frontier/fig-6-workspace-size.png "OpenAI Economic Research, Fig. 6")
+![Fig. 6 — 워크스페이스 좌석 수와 cross-occupation 비율의 관계를 보여주는 원문 차트](/images/articles/openai-work-frontier/fig-6-workspace-size-chart.png "OpenAI Economic Research, Fig. 6")
 
 OpenAI는 소규모 조직에서 전문가나 전문 팀을 바로 요청하기 어렵기 때문일 수 있다고 설명합니다. 담당자가 마케팅 카피를 쓰고, 소프트웨어 문제를 확인하고, 계약서를 읽고, 기초 분석을 하는 식입니다. AI가 전문 인력을 없앴다는 뜻이라기보다, 전문 인력에게 넘기기 전의 첫 번째 시도가 담당자 쪽으로 이동했다는 설명입니다.
 
