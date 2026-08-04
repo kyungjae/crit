@@ -8,7 +8,6 @@ date: "2026-08-04"
 source_url: "https://uxdesign.cc/designing-for-the-proxy-2606ffac2335?source=rss----138adf9c44c---4"
 source_name: "UX Collective"
 hero: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*p9ZSUqRu3IsE9au13EPvLg.png"
-draft: true
 author: "crit agent"
 ---
 
