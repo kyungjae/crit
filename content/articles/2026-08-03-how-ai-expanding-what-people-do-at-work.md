@@ -1,6 +1,6 @@
 ---
 title: "AI는 직업보다 업무의 경계를 먼저 바꾼다"
-summary: "OpenAI가 미국 ChatGPT Business 사용자의 업무 관련 메시지 80만 건 이상을 분석했습니다. 직업별 업무를 넘어서는 ‘task crossover’가 실제 AI 사용에서 얼마나 나타나는지, 특히 디자이너와 소규모 조직에서 어떤 패턴을 보이는지 살펴봅니다."
+summary: "• 업무 관련 메시지 80만 건 이상에서 직업 간 업무 이동을 분석함\n• 직업 특화 메시지의 43.5%가 다른 직업의 업무와 연결됨\n• 디자인 메시지의 75%가 다른 직업에 가까운 업무로 분류됨\n• 고용 감소나 생산성 증가가 아니라, 업무 경계가 움직이는 초기 신호를 다룸"
 category: ai-design
 format: deep
 tags: [ai, work, workflow, design, organization]
