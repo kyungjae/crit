@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { getAllArticles } from "@/lib/content";
-import ArticleCard from "@/components/ArticleCard";
-import FeedSort from "@/components/FeedSort";
+import FeedClient from "@/components/FeedClient";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import { getPrisma } from "@/lib/db";
-import { parseFeedSort, sortArticles } from "@/lib/feed";
+import { parseFeedSort } from "@/lib/feed";
 import {
   createUpvoteStore,
   getUpvoteCounts,
@@ -146,32 +145,18 @@ export default async function HomePage({
     getFeedUpvoteCounts(slugs),
     getFeedViewCounts(slugs),
   ]);
-  const articles = sortArticles(allArticles, upvoteCounts, sort);
 
   return (
     <div>
       <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         <main className="min-w-0">
-          <FeedSort sort={sort} />
-
-          {articles.length === 0 ? (
-            <p className="py-16 text-center text-sm text-neutral-400 dark:text-neutral-500">
-              아직 등록된 아티클이 없습니다.
-            </p>
-          ) : (
-            <ul className="min-w-0 overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:!border-neutral-800 dark:!bg-neutral-900/80">
-              {articles.map((article) => (
-                <ArticleCard
-                  key={article.slug}
-                  article={article}
-                  variant="signal"
-                  commentCount={commentCounts[article.slug] ?? 0}
-                  upvoteCount={upvoteCounts[article.slug] ?? 0}
-                  viewCount={viewCounts[article.slug] ?? 0}
-                />
-              ))}
-            </ul>
-          )}
+          <FeedClient
+            articles={allArticles}
+            commentCounts={commentCounts}
+            upvoteCounts={upvoteCounts}
+            viewCounts={viewCounts}
+            initialSort={sort}
+          />
         </main>
 
         <SidebarPanel />

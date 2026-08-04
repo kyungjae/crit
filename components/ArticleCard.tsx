@@ -124,7 +124,7 @@ export default function ArticleCard({
   if (variant === "compact") {
     return (
       <li className="border-b border-neutral-200 py-3 last:border-b-0 dark:border-neutral-800">
-        <Link href={`/articles/${article.slug}`} className="group block">
+        <Link prefetch={false} href={`/articles/${article.slug}`} className="group block">
           <div className="flex items-start gap-3">
             <div className="min-w-0 flex-1">
               <div className="mb-1">
@@ -148,6 +148,7 @@ export default function ArticleCard({
         <div className="px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900">
           <div className="flex min-w-0 items-start gap-3">
             <Link
+              prefetch={false}
               href={`/articles/${article.slug}`}
               aria-label={`${article.title} 읽기`}
               className="group shrink-0"
@@ -163,7 +164,7 @@ export default function ArticleCard({
                   </>
                 )}
               </div>
-              <Link href={`/articles/${article.slug}`} className="group block">
+              <Link prefetch={false} href={`/articles/${article.slug}`} className="group block">
                 <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
                   {article.title}
                 </h2>
@@ -174,6 +175,7 @@ export default function ArticleCard({
                 <span>업보트 {upvoteCount}개</span>
                 <span className="text-neutral-300 dark:text-neutral-700">|</span>
                 <Link
+                  prefetch={false}
                   href={`/articles/${article.slug}#comments`}
                   aria-label={`댓글 ${commentCount}개`}
                   className="transition hover:text-brand"
@@ -194,6 +196,7 @@ export default function ArticleCard({
     return (
       <li>
         <Link
+          prefetch={false}
           href={`/articles/${article.slug}`}
           className="group flex h-full flex-col rounded-[1.35rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 dark:active:!bg-neutral-900"
         >
@@ -219,6 +222,7 @@ export default function ArticleCard({
     return (
       <li>
         <Link
+          prefetch={false}
           href={`/articles/${article.slug}`}
           className="group grid gap-5 rounded-[1.6rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 md:grid-cols-[1.2fr_1fr] md:p-4"
         >
@@ -245,6 +249,7 @@ export default function ArticleCard({
   return (
     <li>
       <Link
+        prefetch={false}
         href={`/articles/${article.slug}`}
         className="group block rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 dark:active:!bg-neutral-900"
       >
