@@ -6,6 +6,7 @@ export default function YouTubePlayer({ id }: { id: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [origin, setOrigin] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
     setOrigin(window.location.origin);
@@ -41,14 +42,26 @@ export default function YouTubePlayer({ id }: { id: string }) {
     origin ? `&origin=${encodeURIComponent(origin)}` : ""
   }`;
 
+  if (isDismissed) return null;
+
   return (
     <figure
-      className={`mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm ${
+      className={`relative mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm ${
         isScrolled
-          ? "fixed right-3 top-16 z-50 w-[220px] sm:right-6 sm:top-20 sm:w-[320px] lg:right-8 lg:w-[360px]"
+          ? "fixed left-3 right-3 top-16 z-50 w-auto sm:left-auto sm:right-6 sm:top-20 sm:w-[320px] lg:right-8 lg:w-[360px]"
           : "relative w-full"
       }`}
     >
+      {isScrolled && (
+        <button
+          type="button"
+          onClick={() => setIsDismissed(true)}
+          aria-label="영상 닫기"
+          className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/75 text-lg leading-none text-white transition hover:bg-black focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      )}
       <div className="aspect-video">
         <iframe
           ref={iframeRef}
@@ -61,7 +74,7 @@ export default function YouTubePlayer({ id }: { id: string }) {
       </div>
       {!isScrolled && (
         <figcaption className="px-3 py-2 text-xs text-neutral-400">
-          스크롤해도 영상이 상단에 고정됩니다. 타임라인을 누르면 해당 장면으로 이동합니다.
+          스크롤하면 모바일에서는 화면 너비에 맞춰 상단에 고정됩니다. 닫기 버튼으로 영상을 숨길 수 있고, 타임라인을 누르면 해당 장면으로 이동합니다.
         </figcaption>
       )}
     </figure>
