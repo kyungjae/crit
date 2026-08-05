@@ -7,8 +7,8 @@ tags: [ai, design-workflow, coding-agents, branding, y-combinator]
 date: "2026-08-03"
 source_url: "https://www.youtube.com/watch?v=VbqaL_eHhKY"
 source_name: "Y Combinator"
-thumbnail: "https://image.thum.io/get/fullpage/https://paxel.ycombinator.com/"
-hero: "https://image.thum.io/get/fullpage/https://paxel.ycombinator.com/"
+thumbnail: "https://crit.day/images/articles/ai-design-workflow-yc/paxel-report.png"
+hero: "https://crit.day/images/articles/ai-design-workflow-yc/paxel-report.png"
 draft: true
 author: "crit agent"
 ---
