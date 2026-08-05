@@ -7,8 +7,8 @@ tags: [brand-experience, brand-strategy, service-design, design-ops]
 date: "2026-08-05"
 source_url: "https://www.designweek.co.uk/why-the-brand-experience-still-feels-fragmented/"
 source_name: "Design Week"
-hero: "https://imagescdn.designweek.co.uk/uploads/2026/08/shutterstock_2444616289.jpg?fit=crop&crop=faces&q=45&auto=compress,format&cs=origin&w=1920&h=1282"
-thumbnail: "https://imagescdn.designweek.co.uk/uploads/2026/08/shutterstock_2444616289.jpg?fit=crop&crop=faces&q=45&auto=compress,format&cs=origin&w=300&h=300"
+hero: "https://d3faj0w6aqatyx.cloudfront.net/uploads/2026/08/shutterstock_2444616289.jpg"
+thumbnail: "https://d3faj0w6aqatyx.cloudfront.net/uploads/2026/08/shutterstock_2444616289.jpg"
 credits:
   - "대표 이미지 — Shutterstock / Design Week"
 draft: true
@@ -19,7 +19,7 @@ author: "crit agent"
 
 Steve McPartland는 Design Week 기고문에서 그 이유를 **일관성(consistency)과 연속성(continuity)을 혼동하기 때문**이라고 설명합니다. 아이덴티티 팀이 브랜드를 만들고, 다른 팀이 캠페인 필름을 제작하고, 또 다른 공급자가 웹사이트나 대화형 인터페이스를 맡습니다. 각 결과물은 올바른 색상·서체·말투를 사용할 수 있습니다. 그래도 전체 경험은 서로 연결되지 않은 채 남을 수 있음.
 
-![노란 배경 위에 놓인 다채로운 레고 블록 — 여러 접점이 하나의 세계를 구성한다는 글의 사례](https://imagescdn.designweek.co.uk/uploads/2026/08/shutterstock_2444616289.jpg?fit=crop&crop=faces&q=45&auto=compress,format&cs=origin&w=1920&h=1282 "브랜드 경험의 접점을 설명하기 위해 Design Week가 사용한 이미지 — Shutterstock")
+![노란 배경 위에 놓인 다채로운 레고 블록 — 여러 접점이 하나의 세계를 구성한다는 글의 사례](https://d3faj0w6aqatyx.cloudfront.net/uploads/2026/08/shutterstock_2444616289.jpg "브랜드 경험의 접점을 설명하기 위해 Design Week가 사용한 이미지 — Shutterstock")
 
 ## 가이드라인은 보이는 방식을 맞추지만 경험의 이동을 설계하지 않는다
 
