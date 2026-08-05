@@ -24,12 +24,11 @@ export default function DraftPublishButton({
   const [status, setStatus] = useState<"idle" | "publishing" | "done" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
 
-  async function publish(token?: string | null): Promise<Response> {
+  async function publish(): Promise<Response> {
     return fetch("/api/admin/publish", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { "x-crit-admin-token": token } : {}),
       },
       body: JSON.stringify({ slug }),
     });
@@ -46,23 +45,11 @@ export default function DraftPublishButton({
     setMessage(null);
 
     try {
-      let token = window.localStorage.getItem("crit-admin-token");
-      let response = await publish(token);
-
-      if (response.status === 401) {
-        token = window.prompt("발행 키를 입력하세요")?.trim() ?? "";
-        if (!token) {
-          setStatus("idle");
-          return;
-        }
-        window.localStorage.setItem("crit-admin-token", token);
-        response = await publish(token);
-      }
+      const response = await publish();
 
       const result = (await response.json()) as PublishResult;
 
       if (!response.ok || !result.ok) {
-        if (response.status === 401) window.localStorage.removeItem("crit-admin-token");
         throw new Error(result.error ?? "발행에 실패했습니다");
       }
 

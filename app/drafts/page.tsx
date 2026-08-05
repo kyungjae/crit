@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import DraftLogin from "@/components/DraftLogin";
 import DraftDeleteButton from "@/components/DraftDeleteButton";
 
 import DraftPublishButton from "@/components/DraftPublishButton";
 import { getDraftArticles, getDraftWarnings } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
-import { SummaryText } from "@/components/SummaryText";
 
 export const metadata: Metadata = {
   title: "초안",
@@ -14,7 +15,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function DraftsPage() {
+export default async function DraftsPage() {
+  const cookieStore = await cookies();
+  const adminToken = process.env.CRIT_ADMIN_TOKEN;
+  const authenticated = Boolean(adminToken && cookieStore.get("crit-admin-session")?.value === adminToken);
+
+  if (!authenticated) return <DraftLogin />;
+
   const drafts = getDraftArticles();
 
   return (
@@ -66,8 +73,8 @@ export default function DraftsPage() {
                     <h2 className="text-base font-semibold leading-snug">
                       {article.title}
                     </h2>
-                    <p className="mt-1 line-clamp-4 whitespace-pre-line text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                      <SummaryText summary={article.summary} />
+                    <p className="mt-1 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                      {article.summary}
                     </p>
                   </Link>
 
@@ -92,7 +99,6 @@ export default function DraftsPage() {
                     />
                     <DraftDeleteButton slug={article.slug} title={article.title} />
                   </div>
-
 
                 </div>
               </li>

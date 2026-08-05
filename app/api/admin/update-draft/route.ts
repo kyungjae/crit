@@ -36,6 +36,7 @@ function assertAuthorized(request: Request, body: UpdateDraftBody) {
   const provided =
     request.headers.get("x-crit-admin-token") ??
     request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ??
+    request.headers.get("cookie")?.match(/(?:^|;\s*)crit-admin-session=([^;]+)/)?.[1] ??
     (body as UpdateDraftBody & { token?: string }).token;
   if (provided && provided === adminToken) return { ok: true as const };
   return { ok: false as const, status: 401, error: "편집 키가 필요합니다" };

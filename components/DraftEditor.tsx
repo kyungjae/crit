@@ -23,12 +23,11 @@ export default function DraftEditor({
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
 
-  async function save(token?: string | null): Promise<Response> {
+  async function save(): Promise<Response> {
     return fetch("/api/admin/update-draft", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { "x-crit-admin-token": token } : {}),
       },
       body: JSON.stringify({ slug, title, summary, body }),
     });
@@ -38,21 +37,10 @@ export default function DraftEditor({
     setStatus("saving");
     setMessage(null);
     try {
-      let token = window.localStorage.getItem("crit-admin-token");
-      let response = await save(token);
-      if (response.status === 401) {
-        token = window.prompt("편집 키를 입력하세요")?.trim() ?? "";
-        if (!token) {
-          setStatus("idle");
-          return;
-        }
-        window.localStorage.setItem("crit-admin-token", token);
-        response = await save(token);
-      }
+      const response = await save();
 
       const result = (await response.json()) as SaveResult;
       if (!response.ok || !result.ok) {
-        if (response.status === 401) window.localStorage.removeItem("crit-admin-token");
         throw new Error(result.error ?? "초안 저장에 실패했습니다");
       }
       setStatus("saved");
@@ -81,7 +69,7 @@ export default function DraftEditor({
             value={title}
             onChange={(event) => { setTitle(event.target.value); setStatus("idle"); }}
             maxLength={120}
-            className="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm font-semibold text-neutral-900 outline-none ring-brand/30 transition focus:ring-2 dark:!border-neutral-700 dark:!bg-neutral-950 dark:!text-neutral-100 dark:placeholder:text-neutral-500"
+            className="w-full rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm font-semibold outline-none ring-brand/30 transition focus:ring-2 dark:border-neutral-700 dark:bg-neutral-950"
           />
         </label>
 
@@ -92,7 +80,7 @@ export default function DraftEditor({
             onChange={(event) => { setSummary(event.target.value); setStatus("idle"); }}
             maxLength={300}
             rows={2}
-            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-neutral-900 outline-none ring-brand/30 transition focus:ring-2 dark:!border-neutral-700 dark:!bg-neutral-950 dark:!text-neutral-100 dark:placeholder:text-neutral-500"
+            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-2.5 text-sm leading-relaxed outline-none ring-brand/30 transition focus:ring-2 dark:border-neutral-700 dark:bg-neutral-950"
           />
         </label>
 
@@ -103,7 +91,7 @@ export default function DraftEditor({
             onChange={(event) => { setBody(event.target.value); setStatus("idle"); }}
             rows={20}
             spellCheck={false}
-            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-3 font-mono text-[13px] leading-[1.75] text-neutral-900 outline-none ring-brand/30 transition focus:ring-2 dark:!border-neutral-700 dark:!bg-neutral-950 dark:!text-neutral-100 dark:placeholder:text-neutral-500"
+            className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3 py-3 font-mono text-[13px] leading-[1.75] outline-none ring-brand/30 transition focus:ring-2 dark:border-neutral-700 dark:bg-neutral-950"
           />
         </label>
       </div>

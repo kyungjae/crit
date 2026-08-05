@@ -38,6 +38,7 @@ function assertAuthorized(request: Request, body: DeleteBody) {
   const provided =
     request.headers.get("x-crit-admin-token") ??
     request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ??
+    request.headers.get("cookie")?.match(/(?:^|;\s*)crit-admin-session=([^;]+)/)?.[1] ??
     body.token;
 
   if (provided && provided === adminToken) return { ok: true as const };
