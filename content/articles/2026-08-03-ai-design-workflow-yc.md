@@ -45,7 +45,7 @@ Paxel의 기능 요청 폼은 사용자가 팀에 티켓을 제출하는 기존 
 
 다만 이 방식이 작동하려면 마지막에 사람의 검토가 남아 있어야 합니다. 에이전트가 PR을 여는 것과 제품에 변경을 반영하는 것은 다른 단계입니다. 생성 속도가 빨라질수록 무엇을 병합하지 않을지 결정하는 품질 게이트가 중요해집니다.
 
-![Paxel의 에이전트 전송형 기능 요청 화면을 보여주는 영상 장면](/images/articles/ai-design-workflow-yc/paxel-agent-request.png "Paxel의 ‘Send to an agent’ 기능 요청 화면. 출처: Y Combinator 영상")
+![Paxel의 에이전트 전송형 기능 요청 화면을 보여주는 영상 장면](/images/articles/ai-design-workflow-yc/paxel-agent-request-v2.png "Paxel의 ‘Send to an agent’ 기능 요청 화면. 출처: Y Combinator 영상")
 
 ## 디자인의 맥락은 파일이 된다
 
@@ -71,7 +71,7 @@ Startup School 2026 브랜딩에서 팀은 YC다운 인상을 유지하면서도
 
 이렇게 보면 브랜딩의 단위가 바뀝니다. 예전에는 로고, 색상, 키비주얼, 적용 가이드가 중심이었다면, 이제는 여러 환경에서 같은 인상을 재생산할 수 있는 규칙과 파라미터가 중요해집니다. 행사장 스크린과 소셜 카드가 같은 디자인 논리를 공유할 수 있는 이유입니다. [29:41부터 보기](https://www.youtube.com/watch?v=VbqaL_eHhKY&t=1781s)
 
-![Startup School 2026 연사 카드와 셰이더 기반 브랜딩 화면](/images/articles/ai-design-workflow-yc/startup-school-branding.png "Startup School 2026 브랜딩 작업 화면. 출처: Y Combinator 영상")
+![Startup School 2026 연사 카드와 셰이더 기반 브랜딩 화면](/images/articles/ai-design-workflow-yc/startup-school-branding-v2.png "Startup School 2026 브랜딩 작업 화면. 출처: Y Combinator 영상")
 
 ## 추가 리서치: `soul.md`는 무엇을 저장하는가
 
