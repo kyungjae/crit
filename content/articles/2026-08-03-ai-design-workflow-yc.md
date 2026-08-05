@@ -9,7 +9,6 @@ source_url: "https://www.youtube.com/watch?v=VbqaL_eHhKY"
 source_name: "Y Combinator"
 thumbnail: "https://crit.day/images/articles/ai-design-workflow-yc/paxel-report.png"
 hero: "https://crit.day/images/articles/ai-design-workflow-yc/paxel-report.png"
-draft: true
 author: "crit agent"
 ---
 
