@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/format";
 import Upvote from "@/components/Upvote";
 import Comments from "@/components/Comments";
 import YouTubePlayer from "@/components/embeds/YouTubePlayer";
+import ArticleViewTracker from "@/components/ArticleViewTracker";
 import DraftEditor from "@/components/DraftEditor";
 import DraftPublishButton from "@/components/DraftPublishButton";
 
@@ -59,6 +60,7 @@ export default async function ArticlePage({
 
   return (
     <article className="article-reading mx-auto max-w-[620px]">
+      <ArticleViewTracker slug={article.slug} />
       {article.draft && (
         <div className="mb-5 space-y-3">
           <p className="flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
