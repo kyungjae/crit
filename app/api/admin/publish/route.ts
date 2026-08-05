@@ -35,10 +35,11 @@ function assertAuthorized(request: Request, body: PublishBody) {
     };
   }
 
+  const sessionCookie = request.headers.get("cookie")?.match(/(?:^|;\s*)crit-admin-session=([^;]+)/)?.[1];
   const provided =
     request.headers.get("x-crit-admin-token") ??
     request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ??
-    request.headers.get("cookie")?.match(/(?:^|;\s*)crit-admin-session=([^;]+)/)?.[1] ??
+    (sessionCookie ? decodeURIComponent(sessionCookie) : undefined) ??
     (body as PublishBody & { token?: string }).token;
 
   if (provided && provided === adminToken) return { ok: true as const };
