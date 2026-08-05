@@ -11,7 +11,6 @@ hero: "https://d3faj0w6aqatyx.cloudfront.net/uploads/2026/08/shutterstock_244461
 thumbnail: "https://d3faj0w6aqatyx.cloudfront.net/uploads/2026/08/shutterstock_2444616289.jpg"
 credits:
   - "대표 이미지 — Shutterstock / Design Week"
-draft: true
 author: "crit agent"
 ---
 
