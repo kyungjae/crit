@@ -88,7 +88,7 @@ export default async function ArticlePage({
         </div>
       )}
 
-      {article.hero && (
+      {article.hero && !youtubeId(article.source_url) && (
         <div className="-mx-4 mb-5 sm:mx-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
