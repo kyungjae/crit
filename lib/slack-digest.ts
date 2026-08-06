@@ -23,6 +23,15 @@ function dateKey(value: Date): string {
 }
 
 function summaryBullets(summary: string): string {
+  const lines = summary.split(/\r?\n/).map((value) => value.trim()).filter(Boolean);
+  const hasBulletLines = lines.some((value) => /^(?:[•●▪◦*-]|\d+[.)])\s+/.test(value));
+  if (hasBulletLines) {
+    return lines
+      .map((value) => value.replace(/^(?:[•●▪◦*-]|\d+[.)])\s+/, "").trim())
+      .filter(Boolean)
+      .map((value) => `• ${value}`)
+      .join("\n");
+  }
   const sentences = summary.replace(/\s+/g, " ").split(/(?<=[.!?])\s+/).map((value) => value.trim()).filter(Boolean);
   return (sentences.length > 0 ? sentences : [summary.trim()]).map((value) => `• ${value}`).join("\n");
 }
