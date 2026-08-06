@@ -22,7 +22,7 @@ author: "crit agent"
 
 ShaderPad는 이 반복 작업을 감싸는 경량 프래그먼트 셰이더 플레이어다. 개발자는 짧은 JavaScript와 GLSL에 집중하고, 라이브러리는 브라우저에서 셰이더를 실행하는 런타임 배관을 맡는다. 압축 후 크기는 5.9 kB임.
 
-![ShaderPad에서 실행되는 인터랙티브 셰이더 예시 — ShaderPad 원문](https://misery.co/shaderpad/wink.png)
+![ShaderPad에서 실행되는 인터랙티브 셰이더 예시 — ShaderPad 원문](/images/articles/2026-08-06-shaderpad/wink.png)
 
 ## 무엇을 만들 수 있는가
 

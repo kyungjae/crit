@@ -22,7 +22,7 @@ author: "crit agent"
 
 긴급 업무를 보여주는 홈 카드든, 액션 메뉴든, 급여 내역이든 상관없었다. 에이전트는 같은 패턴을 계속 꺼냈다. 저자는 이것을 ‘발명’이라고 부르는 것도 관대하다고 말함. 사실상 같은 패턴의 반복이었기 때문이다.
 
-![급여 제품 프로토타입에서 반복되는 회색 컨테이너와 아이콘 — Beyond Consistency 원문](https://substack-post-media.s3.amazonaws.com/public/images/fb2acb0f-87c6-4a38-afe9-0724c5202e9c_1172x729.png)
+![급여 제품 프로토타입에서 반복되는 회색 컨테이너와 아이콘 — Beyond Consistency 원문](/images/articles/2026-08-06-plateau-of-sad-gray-icons/repeated-gray-ui.png)
 
 ## 왜 에이전트는 밋밋한 중간값으로 가는가
 
@@ -67,7 +67,7 @@ Claude의 인터페이스는 아이콘과 일러스트레이션을 쓰는 방식
 
 저자는 밀도가 진짜 판단이 아니었다고 정리한다. 밀도는 사용자의 과업, 마음가짐, 기기, 사용 빈도, 비교의 필요성에서 나온 결과다. 급여 표가 본질적으로 고밀도인 것이 아니라 많은 값을 한 번에 비교하고 수정해야 하기 때문에 고밀도다. 프로필 페이지는 하나의 자원을 읽고 수정하기 때문에 더 여유롭고, 홈은 사용자가 현재 상황을 파악해야 하므로 더 표현적이다. 문서화한 것은 결과였고, 그 결과를 만든 이유는 빠져 있었다.
 
-![화면의 의미적 역할과 밀도를 분류하는 디자인 시스템 실험 — Beyond Consistency 원문](https://substack-post-media.s3.amazonaws.com/public/images/86b771a8-29b3-420b-b084-e98e5f660ee5_1164x729.png)
+![화면의 의미적 역할과 밀도를 분류하는 디자인 시스템 실험 — Beyond Consistency 원문](/images/articles/2026-08-06-plateau-of-sad-gray-icons/semantic-density.png)
 
 ## 에이전트가 실제로 만드는 일을 가르치기
 

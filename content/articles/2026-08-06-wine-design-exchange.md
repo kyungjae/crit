@@ -28,7 +28,7 @@ andstudio는 1년에 한 번 세계 어디인가의 와이너리를 골라 일�
 
 와이너리는 여행·숙소·식사를 부담하지만 별도의 에이전시 비용은 내지 않는다. 언뜻 리테이너와 범위 확장이 익숙한 업계에서 순진한 제안처럼 보이지만, 그 밑에는 더 날카로운 상업적 계산이 있다.
 
-![andstudio의 Wine Design Exchange 관련 이미지 — Creative Boom 원문](https://www.creativeboom.com/upload/articles/7e/7ea3bbbf9066dcf1816381ef882c95511599673a_944.jpg)
+![andstudio의 Wine Design Exchange 관련 이미지 — Creative Boom 원문](/images/articles/2026-08-06-wine-design-exchange/wine-exchange.jpg)
 
 가족 소유 와이너리는 젊은 소비자의 음주 감소와 시장 세분화로 어려움을 겪고 있다. andstudio 자체 조사에 따르면 소비자의 85%가 라벨만 보고 병을 고른다. 이 수치가 대략 맞다면, 많은 독립 와이너리는 한 모금도 맛보기 전에 이미 선택에서 밀려난다. andstudio는 실제 사업 문제를 발견했고, 동시에 그 문제를 풀며 고객을 만나는 사업개발 모델을 만든 셈이다.
 
@@ -42,7 +42,7 @@ andstudio는 1년에 한 번 세계 어디인가의 와이너리를 골라 일�
 
 와이너리는 리브랜딩을 얻고, andstudio는 평판을 쌓을 원재료와 새로운 관계를 얻는다. 양쪽 모두 순진하지 않다.
 
-![와이너리와 함께하는 현장 교환의 분위기 — Creative Boom 원문](https://www.creativeboom.com/upload/articles/df/df6f2c36be14ecafa39bd9b5d4dd3c60ed685fe3_944.png)
+![와이너리와 함께하는 현장 교환의 분위기 — Creative Boom 원문](/images/articles/2026-08-06-wine-design-exchange/winery.png)
 
 아이디어의 출발점은 팬데믹 이전 피렌체에서의 스튜디오 교환이었다. andstudio 팀은 이탈리아 디자인 스튜디오와 한 달간 일했고, 저녁과 와인 바, 테라스에서 시간을 보냈다. 당시 팀은 와인을 매일 만들고 마시는 사람들의 관점으로 경험했다. 와인에 대해 이야기하는 열정이 디자인을 말할 때의 열정과 닮았다는 발견도 있었다.
 
