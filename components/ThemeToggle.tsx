@@ -44,7 +44,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={isDark ? "라이트 모드로 전환" : "다크 모드로 전환"}
       title={isDark ? "라이트 모드" : "다크 모드"}
-      className="inline-flex size-8 items-center justify-center rounded-full border border-neutral-200 bg-white text-[15px] text-neutral-600 shadow-sm transition-colors hover:border-brand/40 hover:text-brand dark:!border-neutral-700 dark:!bg-neutral-900 dark:!text-orange-300 dark:!shadow-none dark:hover:!border-brand dark:hover:!bg-neutral-800 dark:hover:!text-orange-200"
+      className="inline-flex size-8 items-center justify-center rounded-full border border-neutral-200 bg-white text-[15px] text-neutral-600 shadow-sm transition-colors hover:border-brand/40 hover:text-brand dark:!border-neutral-200 dark:!bg-white dark:!text-neutral-600 dark:!shadow-sm dark:hover:!border-brand dark:hover:!bg-white dark:hover:!text-neutral-700"
     >
       <span aria-hidden="true">{isDark ? "☀" : "☾"}</span>
     </button>
