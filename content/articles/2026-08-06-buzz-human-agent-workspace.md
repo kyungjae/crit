@@ -12,7 +12,6 @@ hero: "https://raw.githubusercontent.com/block/buzz/main/docs/assets/screenshots
 credits:
   - "스크린샷 — Block / Buzz GitHub 저장소"
   - "출처 — https://buzz.xyz/ 및 https://github.com/block/buzz"
-draft: true
 author: "crit agent"
 ---
 
