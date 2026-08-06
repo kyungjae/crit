@@ -89,3 +89,17 @@ model ArticleView {
   @@unique([slug, viewerId])
   @@index([slug])
 }
+
+model SlackInstallation {
+  id                  String   @id @default(cuid())
+  teamId              String   @unique
+  teamName            String?
+  botTokenEncrypted   String
+  channelId           String?
+  channelName         String?
+  active              Boolean  @default(true)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([active])
+}
