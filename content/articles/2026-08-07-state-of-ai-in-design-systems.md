@@ -1,6 +1,6 @@
 ---
 title: "AI가 읽을 수 있는 디자인 시스템의 현재"
-summary: "• Kaelig Deloumeau-Prigent가 20개 오픈소스 디자인 시스템과 6개 플랫폼의 AI 대응 표면을 조사함\n• 20개 중 19개가 MCP 서버를, 18개가 에이전트 스킬을 제공하지만 성숙도에는 큰 차이가 있음\n• llms.txt, 에이전트 파일, 문서, 레지스트리, CLI가 실제 컴포넌트 사용을 유도하는 경로로 묶임\n• 디자인 시스템의 다음 경쟁력은 컴포넌트 수보다 에이전트가 틀리지 않게 만드는 구조에 달려 있음"
+summary: "• Kaelig Deloumeau-Prigent가 20개 오픈소스 디자인 시스템과 6개 플랫폼의 AI 연결 경로를 조사함\n• 20개 중 19개가 MCP 서버를, 18개가 에이전트 스킬을 제공하지만 성숙도에는 큰 차이가 있음\n• llms.txt, 에이전트 파일, 문서, 레지스트리, CLI가 실제 컴포넌트 사용을 유도하는 경로로 묶임\n• 디자인 시스템의 다음 경쟁력은 컴포넌트 수보다 에이전트가 틀리지 않게 만드는 구조에 달려 있음"
 category: ai-design
 format: deep
 style: geeknews
@@ -19,7 +19,7 @@ Kaelig Deloumeau-Prigent의 `State of AI in Design Systems · July 2026`은 이 
 
 ## 조사 범위와 성숙도
 
-조사 대상은 **오픈소스이고, 최근 6개월 동안 활동했으며, 공개적으로 확인할 수 있는 표면이 충분한 디자인 시스템**이다. AI-native 리더부터 대형 기업 시스템, 공공 부문 대비 사례인 USWDS까지 포함함. Atlassian, Nord, SLDS처럼 모노레포 전체가 공개되지 않은 경우에는 공개 패키지와 문서를 기준으로 기록하고 그 범위를 명시함.
+조사 대상은 **오픈소스이고, 최근 6개월 동안 활동했으며, 공개적으로 확인할 수 있는 자료가 충분한 디자인 시스템**이다. AI-native 리더부터 대형 기업 시스템, 공공 부문 대비 사례인 USWDS까지 포함함. Atlassian, Nord, SLDS처럼 모노레포 전체가 공개되지 않은 경우에는 공개 패키지와 문서를 기준으로 기록하고 그 범위를 명시함.
 
 20개 시스템은 네 단계로 나뉜다.
 
@@ -29,7 +29,7 @@ Kaelig Deloumeau-Prigent의 `State of AI in Design Systems · July 2026`은 이 
 
 이 분류는 “AI를 쓰는가”를 묻는 순위가 아니다. 같은 기준표로 **에이전트가 시스템을 소비하는 경로**와 **팀이 AI를 사용해 시스템을 만드는 경로**를 함께 살핀 편집적 평가임.
 
-## 현재 가장 널리 퍼진 표면은 MCP
+## 디자인 시스템과 AI를 잇는 가장 흔한 경로는 MCP
 
 20개 시스템이 제공하는 AI affordance는 모두 179개로 집계됐다. 유형별로 보면 다음 순서다.
 
@@ -44,7 +44,7 @@ Kaelig Deloumeau-Prigent의 `State of AI in Design Systems · July 2026`은 이 
 - **Storybook**: 3개
 - **Code Connect**: 2개
 
-MCP(Model Context Protocol)는 에이전트가 디자인 시스템의 컴포넌트와 문서에 접근하는 표준화된 도구 표면이다. 숫자만 보면 MCP가 사실상의 기본값이 됐음. 다만 조사에는 공식 구현과 커뮤니티 구현이 함께 들어간다. 예를 들어 Ant Design, daisyUI, HeroUI, Shopify Polaris는 공식 서버와 커뮤니티 서버이 함께 기록된다.
+MCP(Model Context Protocol)는 에이전트가 디자인 시스템의 컴포넌트와 문서에 접근하는 표준화된 도구 경로다. 숫자만 보면 MCP가 사실상의 기본값이 됐음. 다만 조사에는 공식 구현과 커뮤니티 구현이 함께 들어간다. 예를 들어 Ant Design, daisyUI, HeroUI, Shopify Polaris는 공식 서버와 커뮤니티 서버이 함께 기록된다.
 
 `llms.txt`는 문서 전체를 모델이 읽기 좋은 형태로 제공하는 별도의 경로다. 모든 시스템이 이 방식을 채택한 것은 아니다. PatternFly, Primer, Salesforce Lightning Design System, Shopify Polaris 등은 `llms.txt`가 없거나 404를 반환하는 사례로 기록됐고, Microsoft Fluent UI처럼 상태 코드가 200이어도 실제로는 텍스트 파일이 아니라 HTML 셸을 내놓는 경우도 포함됐다.
 
@@ -57,7 +57,7 @@ MCP(Model Context Protocol)는 에이전트가 디자인 시스템의 컴포넌�
 - **에이전트용 스킬**: 특정 시스템의 설치·선택·구현 절차를 설명하는 `SKILL.md`와 클라이언트별 설치 패키지
 - **저장소 지침**: `AGENTS.md`, `CLAUDE.md`, Copilot instructions처럼 에이전트가 코드를 수정하기 전에 읽는 규칙
 - **문서와 데이터 쌍**: AI docs, `llms.txt`, 페이지별 Markdown twin, 컴포넌트별 JSON 정의
-- **행동 표면**: 레지스트리와 CLI를 통해 컴포넌트를 검색하고 설치하거나 마이그레이션하는 경로
+- **행동 경로**: 레지스트리와 CLI를 통해 컴포넌트를 검색하고 설치하거나 마이그레이션하는 경로
 - **검증 장치**: 린터, codemod, Storybook, 훅, 테스트처럼 생성 결과가 시스템의 규칙에서 벗어나는지 확인하는 장치
 
 shadcn/ui의 레지스트리와 CLI, Carbon의 Figma Code Connect와 토큰 보존 문서, Nuxt UI의 `/.well-known` discovery manifest와 문서의 Markdown 협상, React Spectrum의 페이지별 `.md` 문서와 “Copy for LLM” 버튼 등이 서로 다른 구현 사례로 제시된다. 하나의 정답보다 **발견 → 이해 → 적용 → 검증**의 경로를 얼마나 끊김 없이 연결하는지가 핵심임.
