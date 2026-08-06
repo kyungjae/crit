@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { decryptSlackToken, prismaOrThrow, slackApi } from "@/lib/slack";
+import { decryptSlackToken, prismaOrThrow, siteUrl, slackApi } from "@/lib/slack";
+import { buildSlackWelcome, latestPublishedArticles } from "@/lib/slack-digest";
 
 type Conversation = { id: string; name: string; is_private?: boolean; is_member?: boolean };
 type ConversationsResponse = { channels?: Conversation[]; response_metadata?: { next_cursor?: string } };
+type PostResponse = { ts?: string };
 
 async function installationFromCookie() {
   const id = (await cookies()).get("slack_install_id")?.value;
@@ -41,8 +43,14 @@ export async function POST(request: Request) {
       where: { id: installation.id },
       data: { channelId: body.channelId, channelName: body.channelName },
     });
-    return NextResponse.json({ ok: true });
+    const payload = buildSlackWelcome(latestPublishedArticles(3), siteUrl());
+    await slackApi<PostResponse>(decryptSlackToken(installation.botTokenEncrypted), "chat.postMessage", {
+      channel: body.channelId,
+      text: payload.text,
+      blocks: JSON.stringify(payload.blocks),
+    });
+    return NextResponse.json({ ok: true, welcomeSent: true });
   } catch (error) {
-    return NextResponse.json({ error: error instanceof Error ? error.message : "채널을 저장하지 못했습니다." }, { status: 400 });
+    return NextResponse.json({ error: error instanceof Error ? error.message : "채널을 저장하거나 테스트 메시지를 보내지 못했습니다." }, { status: 502 });
   }
 }

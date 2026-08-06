@@ -47,7 +47,7 @@ export default function SlackSetupPage() {
       <button className="rounded-lg bg-black px-5 py-3 font-medium text-white disabled:opacity-40 dark:bg-white dark:text-black" disabled={!channelId || saved} onClick={save}>
         {saved ? "설정 완료" : "이 채널로 설정"}
       </button>
-      {saved && <p className="mt-5 text-sm text-green-700">설정이 저장되었습니다. 다음 데일리 digest부터 이 채널로 전송됩니다.</p>}
+      {saved && <p className="mt-5 text-sm text-green-700">설정이 저장되었습니다. 환영 메시지와 최근 아티클 3개를 이 채널로 보냈습니다. 다음 데일리 digest부터도 이 채널로 전송됩니다.</p>}
     </main>
   );
 }
