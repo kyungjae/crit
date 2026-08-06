@@ -5,6 +5,7 @@ import DraftLogin from "@/components/DraftLogin";
 import DraftDeleteButton from "@/components/DraftDeleteButton";
 
 import DraftPublishButton from "@/components/DraftPublishButton";
+import { SummaryText } from "@/components/SummaryText";
 import { getDraftArticles, getDraftWarnings } from "@/lib/content";
 import { CATEGORY_LABELS, FORMAT_LABELS } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
@@ -73,8 +74,8 @@ export default async function DraftsPage() {
                     <h2 className="text-base font-semibold leading-snug">
                       {article.title}
                     </h2>
-                    <p className="mt-1 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                      {article.summary}
+                    <p className="mt-1 whitespace-pre-line line-clamp-3 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                      <SummaryText summary={article.summary} />
                     </p>
                   </Link>
 

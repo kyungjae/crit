@@ -1,6 +1,9 @@
 ---
 title: "AI 에이전트는 왜 회색 아이콘만 반복할까"
-summary: "AI 에이전트에게 컴포넌트와 토큰만 가르치면 맥락 없는 회색 아이콘과 컨테이너를 반복합니다. 이 글은 디자인 시스템에 요소의 모양뿐 아니라 사용자의 업무, 화면의 밀도, 인터랙션의 이유까지 담아야 한다고 말합니다."
+summary: |
+  • 컴포넌트와 토큰만 배운 에이전트는 회색 컨테이너와 큰 아이콘을 반복함
+  • 요소의 역할과 화면 밀도만으로는 제품의 업무 맥락을 설명하기 어려움
+  • 디자인 시스템에 사용자의 과업과 행동 규칙까지 담아야 함
 category: ai-design
 format: deep
 tags: [ai, design-systems, ux, agents, product-design]
@@ -18,6 +21,8 @@ author: "crit agent"
 디자인 시스템의 토큰과 컴포넌트를 AI 에이전트에게 알려주면 더 일관된 화면이 나올 것이라고 기대하기 쉽다. 그런데 Yesenia Perez-Cruz가 급여 제품을 Claude Code로 만들어본 실험에서 에이전트가 반복한 것은 큰 Lucide 아이콘, 회색 컨테이너, 제목과 부제목의 조합이었다.
 
 긴급 업무를 보여주는 홈 카드든, 액션 메뉴든, 급여 내역이든 상관없었다. 에이전트는 같은 패턴을 계속 꺼냈다. 저자는 이것을 ‘발명’이라고 부르는 것도 관대하다고 말함. 사실상 같은 패턴의 반복이었기 때문이다.
+
+![급여 제품 프로토타입에서 반복되는 회색 컨테이너와 아이콘 — Beyond Consistency 원문](https://substackcdn.com/image/fetch/$s_!IVNF!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffb2acb0f-87c6-4a38-afe9-0724c5202e9c_1172x729.png)
 
 ## 왜 에이전트는 밋밋한 중간값으로 가는가
 
@@ -61,6 +66,8 @@ Claude의 인터페이스는 아이콘과 일러스트레이션을 쓰는 방식
 이런 규칙은 구체적이고 검증하기 쉬울 때 잘 작동했다. 에이전트는 액션 메뉴를 고밀도 화면으로 분류하고, 아이콘 크기와 정렬, 색을 맞출 수 있었다. 그러나 중밀도 카드 안에 고밀도 목록이 섞인 Home 화면에서는 어떤 규칙을 따라야 할지 어려워했다.
 
 저자는 밀도가 진짜 판단이 아니었다고 정리한다. 밀도는 사용자의 과업, 마음가짐, 기기, 사용 빈도, 비교의 필요성에서 나온 결과다. 급여 표가 본질적으로 고밀도인 것이 아니라 많은 값을 한 번에 비교하고 수정해야 하기 때문에 고밀도다. 프로필 페이지는 하나의 자원을 읽고 수정하기 때문에 더 여유롭고, 홈은 사용자가 현재 상황을 파악해야 하므로 더 표현적이다. 문서화한 것은 결과였고, 그 결과를 만든 이유는 빠져 있었다.
+
+![화면의 의미적 역할과 밀도를 분류하는 디자인 시스템 실험 — Beyond Consistency 원문](https://substackcdn.com/image/fetch/$s_!iS1F!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F86b771a8-29b3-420b-b084-e98e5f660ee5_1164x729.png)
 
 ## 에이전트가 실제로 만드는 일을 가르치기
 

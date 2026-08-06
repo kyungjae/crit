@@ -1,6 +1,9 @@
 ---
 title: "셰이더를 쉽게 웹에 넣는 도구, ShaderPad"
-summary: "ShaderPad는 WebGL2 설정, 텍스처·리사이징·히스토리 버퍼 같은 반복 작업을 감싸는 5.9 kB 경량 프래그먼트 셰이더 라이브러리입니다. 짧은 JavaScript와 GLSL만으로 인터랙티브 효과, 멀티패스 그래픽, 영상 후처리와 미디어 추적을 웹 프로젝트에 넣을 수 있습니다."
+summary: |
+  • WebGL2 설정과 텍스처·리사이징·히스토리 버퍼를 라이브러리가 처리함
+  • 5.9 kB 크기로 짧은 JavaScript와 GLSL만 사용해 인터랙티브 효과를 만들 수 있음
+  • 셰이더를 제품에 넣을 때 성능·접근성·대체 표현까지 함께 관리해야 함
 category: design
 format: rules
 tags: [creative-coding, webgl, shaders, interaction, frontend]
@@ -18,6 +21,8 @@ author: "crit agent"
 셰이더를 웹 인터페이스에 넣는 일은 GPU에서 코드를 실행하는 것보다 주변 작업이 더 번거롭다. WebGL2를 초기화하고, uniform과 텍스처를 동기화하고, 화면 크기를 맞추고, 여러 패스와 이전 프레임을 관리해야 함.
 
 ShaderPad는 이 반복 작업을 감싸는 경량 프래그먼트 셰이더 플레이어다. 개발자는 짧은 JavaScript와 GLSL에 집중하고, 라이브러리는 브라우저에서 셰이더를 실행하는 런타임 배관을 맡는다. 압축 후 크기는 5.9 kB임.
+
+![ShaderPad에서 실행되는 인터랙티브 셰이더 예시 — ShaderPad 원문](https://misery.co/shaderpad/wink.png)
 
 ## 무엇을 만들 수 있는가
 
