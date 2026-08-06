@@ -15,7 +15,7 @@ export default function Footer() {
             crit<span className="text-brand">.</span>
           </Link>
           <p className="mt-1 text-[12px] text-neutral-400 dark:text-neutral-500">
-            디자이너를 위한 읽을거리 피드
+            디자인과 AI의 변화를 읽다
           </p>
         </div>
 
