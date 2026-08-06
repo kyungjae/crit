@@ -23,6 +23,30 @@ body {
   font-feature-settings: "ss05";
 }
 
+/* Draft editing fields must keep readable contrast even when the theme class
+   is toggled after the form has mounted. */
+.draft-editor-field {
+  color: rgb(23 23 23);
+  background-color: rgb(255 255 255);
+  border-color: rgb(229 229 229);
+  color-scheme: light;
+}
+
+.draft-editor-field::placeholder {
+  color: rgb(163 163 163);
+}
+
+.dark .draft-editor-field {
+  color: rgb(245 245 245);
+  background-color: rgb(23 23 23);
+  border-color: rgb(64 64 64);
+  color-scheme: dark;
+}
+
+.dark .draft-editor-field::placeholder {
+  color: rgb(115 115 115);
+}
+
 /* 프리텐다드는 자간을 살짝 좁힐 때 제목이 단단해 보인다 */
 h1,
 h2,
