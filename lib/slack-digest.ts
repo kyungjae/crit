@@ -64,7 +64,7 @@ export function buildSlackDigest(articles: DigestArticle[], siteUrl: string) {
   const baseUrl = siteUrl.replace(/\/$/, "");
   const blocks: Array<Record<string, unknown>> = [
     { type: "header", text: { type: "plain_text", text: `crit 새 글 ${articles.length}건`, emoji: false } },
-    { type: "context", elements: [{ type: "mrkdwn", text: `${articles[0]?.dateKey ?? "오늘"} · <${baseUrl}|crit.day>` }] },
+    { type: "context", elements: [{ type: "mrkdwn", text: `${articles[0]?.dateKey ?? "오늘"} · crit.day` }] },
     { type: "divider" },
   ];
 
