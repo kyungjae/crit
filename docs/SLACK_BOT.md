@@ -25,8 +25,9 @@ Bot Token Scopes에는 다음을 추가한다.
 - `SLACK_REDIRECT_URI=https://crit.day/api/slack/oauth/callback`
 - `SLACK_TOKEN_ENCRYPTION_KEY`: 32바이트 랜덤 값을 base64로 인코딩한 값
 - `SLACK_CRON_SECRET`: GitHub Actions와 API 사이의 호출 인증값
-- `GA4_PROPERTY_ID`: 사이트 GA4 속성 ID
-- `GA4_SERVICE_ACCOUNT_JSON`: GA4 Data API를 읽을 서비스 계정 JSON
+- `VERCEL_ANALYTICS_TOKEN`: Vercel Web Analytics API access token
+- `VERCEL_ANALYTICS_PROJECT_ID`: Vercel 프로젝트 ID
+- `VERCEL_ANALYTICS_TEAM_ID`: 팀 프로젝트의 Vercel 팀 ID
 
 키 생성 예시:
 
@@ -57,6 +58,7 @@ SLACK_CRON_SECRET
 제목 링크 + bullet 요약 + 원문 링크를 보낸다.
 
 `.github/workflows/slack-report.yml`은 같은 시각에 `/api/slack/report`를 호출한다.
-활성화된 Slack 워크스페이스 수는 DB에서, 사이트 방문자 수(`activeUsers`)와
-아티클 페이지뷰(`screenPageViews`, `/articles/` 경로)는 GA4 Data API에서 전날
-기준으로 조회해 보낸다. GA4 환경변수가 없으면 해당 두 항목은 `GA4 API 설정 필요`로 표시된다.
+활성화된 Slack 워크스페이스 수는 DB에서, 사이트 방문자 수와 아티클 페이지뷰는
+Vercel Web Analytics API에서 전날 기준으로 조회해 보낸다. 아티클 페이지뷰는
+`/articles/`로 시작하는 `requestPath`를 필터링한다. Vercel Analytics 환경변수가
+없으면 해당 두 항목은 `Vercel Analytics API 설정 필요`로 표시된다.

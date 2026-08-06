@@ -1,116 +1,66 @@
-import crypto from "node:crypto";
-
 import { decryptSlackToken, slackApi } from "@/lib/slack";
 
-type AnalyticsReport = {
-  rows?: Array<{ metricValues?: Array<{ value?: string }> }>;
+type VercelAnalyticsRow = {
+  pageviews?: number;
+  visitors?: number;
 };
 
-type GoogleServiceAccount = {
-  client_email?: string;
-  private_key?: string;
+type VercelAnalyticsResponse = {
+  data?: VercelAnalyticsRow[];
 };
 
-function base64url(value: string | Buffer): string {
-  return Buffer.from(value).toString("base64url");
+function yesterdayKst(): string {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date(Date.now() - 24 * 60 * 60 * 1000));
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
 }
 
-function serviceAccount(): GoogleServiceAccount | null {
-  const raw = process.env.GA4_SERVICE_ACCOUNT_JSON;
-  if (!raw) return null;
-  try {
-    const parsed = JSON.parse(raw) as GoogleServiceAccount;
-    if (!parsed.client_email || !parsed.private_key) return null;
-    return parsed;
-  } catch {
-    return null;
-  }
-}
+async function queryVercelAnalytics(filter?: string): Promise<VercelAnalyticsRow> {
+  const token = process.env.VERCEL_ANALYTICS_TOKEN;
+  const projectId = process.env.VERCEL_ANALYTICS_PROJECT_ID;
+  const teamId = process.env.VERCEL_ANALYTICS_TEAM_ID;
+  if (!token || !projectId) return {};
 
-async function googleAccessToken(): Promise<string | null> {
-  const account = serviceAccount();
-  if (!account) return null;
+  const date = yesterdayKst();
+  const params = new URLSearchParams({
+    projectId,
+    by: "day",
+    since: date,
+    until: date,
+  });
+  if (teamId) params.set("teamId", teamId);
+  if (filter) params.set("filter", filter);
 
-  const now = Math.floor(Date.now() / 1000);
-  const header = base64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
-  const claim = base64url(JSON.stringify({
-    iss: account.client_email,
-    scope: "https://www.googleapis.com/auth/analytics.readonly",
-    aud: "https://oauth2.googleapis.com/token",
-    iat: now,
-    exp: now + 3600,
-  }));
-  const unsigned = `${header}.${claim}`;
-  const signer = crypto.createSign("RSA-SHA256");
-  signer.update(unsigned);
-  const assertion = `${unsigned}.${signer.sign(account.private_key!, "base64url")}`;
-
-  const response = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-      assertion,
+  const response = await fetch(`https://api.vercel.com/v1/query/web-analytics/visits/aggregate?${params.toString()}`, {
+    headers: { authorization: `Bearer ${token}` },
+    signal: AbortSignal.timeout(15_000),
+  });
+  if (!response.ok) throw new Error(`Vercel Web Analytics API HTTP ${response.status}`);
+  const result = (await response.json()) as VercelAnalyticsResponse;
+  return (result.data ?? []).reduce(
+    (total, row) => ({
+      pageviews: (total.pageviews ?? 0) + Number(row.pageviews ?? 0),
+      visitors: (total.visitors ?? 0) + Number(row.visitors ?? 0),
     }),
-    signal: AbortSignal.timeout(15_000),
-  });
-  if (!response.ok) throw new Error(`Google access token HTTP ${response.status}`);
-  const result = (await response.json()) as { access_token?: string };
-  return result.access_token ?? null;
-}
-
-async function runReport(
-  accessToken: string,
-  body: Record<string, unknown>,
-): Promise<AnalyticsReport> {
-  const propertyId = process.env.GA4_PROPERTY_ID;
-  if (!propertyId) throw new Error("GA4_PROPERTY_ID가 설정되지 않았습니다.");
-
-  const response = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${encodeURIComponent(propertyId)}:runReport`, {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-    signal: AbortSignal.timeout(15_000),
-  });
-  if (!response.ok) throw new Error(`GA4 Data API HTTP ${response.status}`);
-  return (await response.json()) as AnalyticsReport;
-}
-
-function firstMetric(report: AnalyticsReport): number {
-  return Number(report.rows?.[0]?.metricValues?.[0]?.value ?? 0);
+    {},
+  );
 }
 
 export async function fetchAnalyticsNumbers(): Promise<{ visitors: number; articlePageviews: number } | null> {
-  const accessToken = await googleAccessToken();
-  if (!accessToken) return null;
+  if (!process.env.VERCEL_ANALYTICS_TOKEN || !process.env.VERCEL_ANALYTICS_PROJECT_ID) return null;
 
-  const [visitors, articlePageviews] = await Promise.all([
-    runReport(accessToken, {
-      dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
-      metrics: [{ name: "activeUsers" }],
-    }),
-    runReport(accessToken, {
-      dateRanges: [{ startDate: "yesterday", endDate: "yesterday" }],
-      dimensions: [{ name: "pagePath" }],
-      metrics: [{ name: "screenPageViews" }],
-      dimensionFilter: {
-        filter: {
-          fieldName: "pagePath",
-          stringFilter: { matchType: "BEGINS_WITH", value: "/articles/" },
-        },
-      },
-    }),
+  const [site, articles] = await Promise.all([
+    queryVercelAnalytics(),
+    queryVercelAnalytics("startswith(requestPath, '/articles/')"),
   ]);
-
   return {
-    visitors: firstMetric(visitors),
-    articlePageviews: (articlePageviews.rows ?? []).reduce(
-      (total, row) => total + Number(row.metricValues?.[0]?.value ?? 0),
-      0,
-    ),
+    visitors: site.visitors ?? 0,
+    articlePageviews: articles.pageviews ?? 0,
   };
 }
 
@@ -127,7 +77,7 @@ export function buildSlackReport(
   }).format(new Date(Date.now() - 24 * 60 * 60 * 1000));
   const analyticsLines = analytics
     ? `• 사이트 방문자수: ${analytics.visitors.toLocaleString("ko-KR")}명\n• 아티클 페이지뷰: ${analytics.articlePageviews.toLocaleString("ko-KR")}회`
-    : "• 사이트 방문자수: GA4 API 설정 필요\n• 아티클 페이지뷰: GA4 API 설정 필요";
+    : "• 사이트 방문자수: Vercel Analytics API 설정 필요\n• 아티클 페이지뷰: Vercel Analytics API 설정 필요";
   const text = `crit 일일 리포트 · ${date}\n• 설치된 Slack 워크스페이스 수: ${installationCount}개\n${analyticsLines}`;
   return {
     text,
