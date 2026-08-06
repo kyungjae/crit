@@ -4,7 +4,13 @@ on:
   schedule:
     # 매일 10:00 KST (01:00 UTC)
     - cron: "0 1 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "수동 테스트에 포함할 최근 게시일 수"
+        required: false
+        default: "1"
+        type: string
 
 jobs:
   send:
@@ -15,5 +21,5 @@ jobs:
           CRIT_SLACK_CRON_SECRET: ${{ format('{0}', secrets.SLACK_CRON_SECRET) }}
         run: >-
           curl --fail-with-body --silent --show-error
-          -X POST "https://crit.day/api/slack/digest"
+          -X POST "https://crit.day/api/slack/digest?days=${{ inputs.days || '1' }}"
           -H "Authorization: Bearer $CRIT_SLACK_CRON_SECRET"

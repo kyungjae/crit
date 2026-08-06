@@ -15,7 +15,10 @@ export async function POST(request: Request) {
   const prisma = getPrisma();
   if (!prisma) return NextResponse.json({ error: "DATABASE_URL이 설정되지 않았습니다." }, { status: 503 });
 
-  const articles = recentPublishedArticles(1);
+  const requestUrl = new URL(request.url);
+  const requestedDays = Number(requestUrl.searchParams.get("days") ?? "1");
+  const days = Number.isInteger(requestedDays) ? Math.min(Math.max(requestedDays, 1), 30) : 1;
+  const articles = recentPublishedArticles(days);
   if (articles.length === 0) return NextResponse.json({ ok: true, sent: 0 });
 
   const installations = await prisma.slackInstallation.findMany({
