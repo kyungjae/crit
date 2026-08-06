@@ -15,23 +15,23 @@ async function getClapData(slug: string, deviceId?: string) {
   }
 
   const [agg, mine] = await Promise.all([
-    prisma.rating.aggregate({
+    prisma.upvote.aggregate({
       where: { slug },
-      _sum: { score: true },
+      _sum: { legacyScore: true },
       _count: true,
     }),
     deviceId
-      ? prisma.rating.findUnique({
+      ? prisma.upvote.findUnique({
           where: { slug_deviceId: { slug, deviceId } },
-          select: { score: true },
+          select: { legacyScore: true },
         })
       : Promise.resolve(null),
   ]);
 
   return {
-    total: agg._sum.score ?? 0,
+    total: agg._sum.legacyScore ?? 0,
     count: agg._count,
-    myClaps: mine?.score ?? 0,
+    myClaps: mine?.legacyScore ?? 0,
     available: true,
   };
 }
@@ -73,10 +73,10 @@ export async function POST(req: NextRequest) {
 
   const { slug, deviceId } = parsed;
 
-  await prisma.rating.upsert({
+  await prisma.upvote.upsert({
     where: { slug_deviceId: { slug, deviceId } },
-    create: { slug, deviceId, score: 1 },
-    update: { score: { increment: 1 } },
+    create: { slug, deviceId, legacyScore: 1 },
+    update: { legacyScore: { increment: 1 } },
   });
 
   return NextResponse.json(await getClapData(slug, deviceId));

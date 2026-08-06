@@ -22,14 +22,84 @@ model Comment {
   @@index([slug, parentId, createdAt])
 }
 
-model Rating {
-  id        String   @id @default(cuid())
-  slug      String
-  deviceId  String
-  score     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Upvote {
+  id          String   @id @default(cuid())
+  slug        String
+  deviceId    String
+  legacyScore Int      @default(1) @map("score")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@unique([slug, deviceId])
   @@index([slug])
+  @@map("Rating")
+}
+
+model LinkSubmission {
+  id             String   @id @default(cuid())
+  url            String   @unique
+  note           String
+  category       String?
+  submitterName  String?
+  submitterEmail String?
+  status         String   @default("pending")
+  reviewerNote   String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([status, createdAt])
+}
+
+model ResourceSubmission {
+  id             String   @id @default(cuid())
+  url            String   @unique
+  name           String
+  description    String
+  category       String
+  submitterName  String?
+  submitterEmail String?
+  status         String   @default("pending")
+  reviewerNote   String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([status, createdAt])
+}
+
+model NewsletterSubscriber {
+  id                    String    @id @default(cuid())
+  email                 String    @unique
+  status                String    @default("pending")
+  confirmationTokenHash  String?   @unique
+  consentAt             DateTime  @default(now())
+  confirmedAt           DateTime?
+  unsubscribedAt        DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([status, createdAt])
+}
+
+model ArticleView {
+  id        String   @id @default(cuid())
+  slug      String
+  viewerId  String
+  createdAt DateTime @default(now())
+
+  @@unique([slug, viewerId])
+  @@index([slug])
+}
+
+model SlackInstallation {
+  id                  String   @id @default(cuid())
+  teamId              String   @unique
+  teamName            String?
+  botTokenEncrypted   String
+  channelId           String?
+  channelName         String?
+  active              Boolean  @default(true)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([active])
 }

@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Article } from "@/lib/content";
 import { FORMAT_LABELS } from "@/lib/schema";
-import { formatDate } from "@/lib/format";
+import { formatDate, relativeTime } from "@/lib/format";
+import { SummaryText } from "@/components/SummaryText";
 
 type ArticleCardVariant = "list" | "grid" | "featured" | "signal" | "compact";
 
@@ -22,6 +23,7 @@ function ArticleMeta({ article }: { article: Article }) {
     <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
       {(article.source_name || domain) && (
         <>
+          <span className="text-neutral-300 dark:text-neutral-700">·</span>
           <span className="text-neutral-400 dark:text-neutral-500">
             {article.source_name ?? domain}
           </span>
@@ -64,10 +66,15 @@ function Thumbnail({
     return (
       <div
         className={`relative overflow-hidden bg-neutral-950 dark:bg-neutral-900 ${
-          variant === "list" || variant === "signal" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
+          variant === "signal"
+            ? "size-16 rounded-xl"
+            : variant === "list"
+              ? "size-20 rounded-xl"
+              : "aspect-[4/3] rounded-2xl"
         }`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(108,92,231,0.38),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.12),transparent_45%)]" />
+
       </div>
     );
   }
@@ -75,14 +82,24 @@ function Thumbnail({
   return (
     <div
       className={`relative shrink-0 overflow-hidden bg-neutral-100 dark:bg-neutral-800 ${
-        variant === "list" || variant === "signal" ? "size-20 rounded-xl" : "aspect-[4/3] rounded-2xl"
+        variant === "signal"
+          ? "size-16 rounded-xl"
+          : variant === "list"
+            ? "size-20 rounded-xl"
+            : "aspect-[4/3] rounded-2xl"
       }`}
     >
       <Image
         src={image}
         alt=""
         fill
-        sizes={variant === "list" || variant === "signal" ? "80px" : "(min-width: 1024px) 33vw, 100vw"}
+        sizes={
+          variant === "signal"
+            ? "64px"
+            : variant === "list"
+              ? "80px"
+              : "(min-width: 1024px) 33vw, 100vw"
+        }
         className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
       />
       {variant !== "list" && variant !== "signal" && (
@@ -96,15 +113,19 @@ export default function ArticleCard({
   article,
   variant = "list",
   commentCount = 0,
+  upvoteCount = 0,
+  viewCount = 0,
 }: {
   article: Article;
   variant?: ArticleCardVariant;
   commentCount?: number;
+  upvoteCount?: number;
+  viewCount?: number;
 }) {
   if (variant === "compact") {
     return (
       <li className="border-b border-neutral-200 py-3 last:border-b-0 dark:border-neutral-800">
-        <Link href={`/articles/${article.slug}`} className="group block">
+        <Link prefetch={false} href={`/articles/${article.slug}`} className="group block">
           <div className="flex items-start gap-3">
             <div className="min-w-0 flex-1">
               <div className="mb-1">
@@ -125,30 +146,47 @@ export default function ArticleCard({
 
     return (
       <li className="min-w-0 border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
-        <div className="grid gap-2 px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900 md:grid-cols-[minmax(0,1fr)_auto] md:gap-4">
-          <div className="min-w-0">
-            <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
-              {domain && (
-                <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
-              )}
-              {domain && <span className="text-neutral-300 dark:text-neutral-700">·</span>}
-              <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
-            </div>
-            <Link href={`/articles/${article.slug}`} className="group block">
-              <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
-                {article.title}
-              </h2>
-            </Link>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2 md:justify-end md:self-center">
+        <div className="px-4 py-4 transition-colors hover:bg-neutral-50/80 dark:hover:bg-neutral-900">
+          <div className="flex min-w-0 items-start gap-3">
             <Link
-              href={`/articles/${article.slug}#comments`}
-              aria-label={`댓글 ${commentCount}개`}
-              className="min-w-8 rounded-full bg-neutral-100 px-2.5 py-1 text-center text-[11px] font-semibold tabular-nums text-neutral-600 transition hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+              prefetch={false}
+              href={`/articles/${article.slug}`}
+              aria-label={`${article.title} 읽기`}
+              className="group shrink-0"
             >
-              {commentCount}
+              <Thumbnail article={article} variant="signal" />
             </Link>
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium">
+                {domain && (
+                  <>
+                    <span className="text-neutral-300 dark:text-neutral-700">·</span>
+                    <span className="text-neutral-400 dark:text-neutral-500">{domain}</span>
+                  </>
+                )}
+              </div>
+              <Link prefetch={false} href={`/articles/${article.slug}`} className="group block">
+                <h2 className="text-[17px] font-bold leading-snug tracking-[-0.025em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[18px]">
+                  {article.title}
+                </h2>
+              </Link>
+              <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
+                <time dateTime={article.date}>{relativeTime(article.date)}</time>
+                <span className="text-neutral-300 dark:text-neutral-700">|</span>
+                <span>업보트 {upvoteCount}개</span>
+                <span className="text-neutral-300 dark:text-neutral-700">|</span>
+                <Link
+                  prefetch={false}
+                  href={`/articles/${article.slug}#comments`}
+                  aria-label={`댓글 ${commentCount}개`}
+                  className="transition hover:text-brand"
+                >
+                  댓글 {commentCount}개
+                </Link>
+                <span className="text-neutral-300 dark:text-neutral-700">|</span>
+                <span>조회 {viewCount}회</span>
+              </div>
+            </div>
           </div>
         </div>
       </li>
@@ -159,6 +197,7 @@ export default function ArticleCard({
     return (
       <li>
         <Link
+          prefetch={false}
           href={`/articles/${article.slug}`}
           className="group flex h-full flex-col rounded-[1.35rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 dark:active:!bg-neutral-900"
         >
@@ -168,8 +207,8 @@ export default function ArticleCard({
             <h2 className="mt-2 line-clamp-2 text-[18px] font-semibold leading-snug tracking-[-0.025em] text-neutral-950 dark:text-neutral-50">
               {article.title}
             </h2>
-            <p className="mt-2 line-clamp-3 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-              {article.summary}
+            <p className="mt-2 whitespace-pre-line line-clamp-3 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              <SummaryText summary={article.summary} />
             </p>
             <div className="mt-auto pt-4">
               <ArticleBadges article={article} />
@@ -184,6 +223,7 @@ export default function ArticleCard({
     return (
       <li>
         <Link
+          prefetch={false}
           href={`/articles/${article.slug}`}
           className="group grid gap-5 rounded-[1.6rem] border border-neutral-200/80 bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 md:grid-cols-[1.2fr_1fr] md:p-4"
         >
@@ -194,8 +234,8 @@ export default function ArticleCard({
               <h2 className="mt-3 text-[24px] font-bold leading-tight tracking-[-0.04em] text-neutral-950 dark:text-neutral-50 md:text-[30px]">
                 {article.title}
               </h2>
-              <p className="mt-3 line-clamp-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-                {article.summary}
+              <p className="mt-3 whitespace-pre-line line-clamp-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <SummaryText summary={article.summary} />
               </p>
             </div>
             <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
@@ -210,6 +250,7 @@ export default function ArticleCard({
   return (
     <li>
       <Link
+        prefetch={false}
         href={`/articles/${article.slug}`}
         className="group block rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-colors hover:border-neutral-300 hover:bg-neutral-50/70 active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:shadow-none dark:hover:!border-neutral-700 dark:hover:!bg-neutral-900 dark:active:!bg-neutral-900"
       >
@@ -219,8 +260,8 @@ export default function ArticleCard({
             <h2 className="mt-1.5 text-[17px] font-semibold leading-snug text-neutral-900 dark:text-neutral-100">
               {article.title}
             </h2>
-            <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-              {article.summary}
+            <p className="mt-1.5 whitespace-pre-line line-clamp-2 text-[13.5px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              <SummaryText summary={article.summary} />
             </p>
             <div className="mt-2">
               <ArticleBadges article={article} />
