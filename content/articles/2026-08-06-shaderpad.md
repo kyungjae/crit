@@ -1,5 +1,5 @@
 ---
-title: "ShaderPad | Get creative with shaders"
+title: "셰이더를 쉽게 웹에 넣는 도구, ShaderPad"
 summary: "ShaderPad는 WebGL2 설정, 텍스처·리사이징·히스토리 버퍼 같은 반복 작업을 감싸는 5.9 kB 경량 프래그먼트 셰이더 라이브러리입니다. 짧은 JavaScript와 GLSL만으로 인터랙티브 효과, 멀티패스 그래픽, 영상 후처리와 미디어 추적을 웹 프로젝트에 넣을 수 있습니다."
 category: design
 format: rules

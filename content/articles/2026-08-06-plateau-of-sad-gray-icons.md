@@ -1,5 +1,5 @@
 ---
-title: "The plateau of sad gray icons"
+title: "AI 에이전트는 왜 회색 아이콘만 반복할까"
 summary: "AI 에이전트에게 컴포넌트와 토큰만 가르치면 맥락 없는 회색 아이콘과 컨테이너를 반복합니다. 이 글은 디자인 시스템에 요소의 모양뿐 아니라 사용자의 업무, 화면의 밀도, 인터랙션의 이유까지 담아야 한다고 말합니다."
 category: ai-design
 format: deep

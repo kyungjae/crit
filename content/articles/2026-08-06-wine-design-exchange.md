@@ -1,5 +1,5 @@
 ---
-title: "Meet the design studio that's paid in wine, meals and travel rather than money"
+title: "와인과 식사와 여행으로 대금을 받는 디자인 스튜디오"
 summary: "리투아니아 스튜디오 andstudio는 와이너리에 일주일간 머물며 수확과 시음에 참여하고, 전략·포지셔닝·아이덴티티·패키지 리브랜딩을 비용 대신 여행·숙소·식사와 교환합니다. 무료 프로젝트라기보다 접근권과 사례를 얻는 사업개발 모델입니다."
 category: design
 format: deep
