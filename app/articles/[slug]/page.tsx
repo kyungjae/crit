@@ -1,16 +1,17 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllArticles, getArticle } from "@/lib/content";
-import ArticleBody, { ArticleNavigation } from "@/components/ArticleBody";
-import { CATEGORY_LABELS } from "@/lib/schema";
+import { getAllArticles, getArticle, getDraftWarnings } from "@/lib/content";
+import ArticleBody from "@/components/ArticleBody";
+import { SummaryText } from "@/components/SummaryText";
+
 import { formatDate } from "@/lib/format";
-import Rating from "@/components/Rating";
+import Upvote from "@/components/Upvote";
 import Comments from "@/components/Comments";
 import YouTubePlayer from "@/components/embeds/YouTubePlayer";
+import ArticleViewTracker from "@/components/ArticleViewTracker";
 import DraftEditor from "@/components/DraftEditor";
 import DraftPublishButton from "@/components/DraftPublishButton";
-import { getDraftWarnings } from "@/lib/content";
 
 function youtubeId(url: string | undefined): string | null {
   if (!url) return null;
@@ -58,7 +59,8 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   return (
-    <article className="article-reading mx-auto max-w-[1120px]">
+    <article className="article-reading mx-auto max-w-[620px]">
+      <ArticleViewTracker slug={article.slug} />
       {article.draft && (
         <div className="mb-5 space-y-3">
           <p className="flex items-center justify-between gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-amber-900">
@@ -86,7 +88,7 @@ export default async function ArticlePage({
         </div>
       )}
 
-      {article.hero && (
+      {article.hero && !youtubeId(article.source_url) && (
         <div className="-mx-4 mb-5 sm:mx-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -101,11 +103,8 @@ export default async function ArticlePage({
         <YouTubePlayer id={youtubeId(article.source_url)!} />
       )}
 
-      <header className="article-header mx-auto max-w-[860px]">
+      <header className="article-header">
         <div className="mb-4 flex items-center gap-2 text-xs">
-          <span className="rounded-full bg-brand/10 px-2 py-0.5 font-medium text-brand">
-            {CATEGORY_LABELS[article.category]}
-          </span>
           <time className="text-neutral-400 dark:text-neutral-500">{formatDate(article.date)}</time>
           {article.format !== "brief" && (
             <span className="text-neutral-400 dark:text-neutral-500">
@@ -117,8 +116,8 @@ export default async function ArticlePage({
         <h1 className="article-title text-[32px] font-bold leading-[1.35] tracking-[-0.03em] sm:text-[44px] sm:leading-[1.3]">
           {article.title}
         </h1>
-        <p className="article-summary mt-6 text-[17px] leading-[1.8] text-neutral-500 dark:text-neutral-400">
-          {article.summary}
+        <p className="article-summary mt-6 whitespace-pre-line text-[17px] leading-[1.8] text-neutral-500 dark:text-neutral-400">
+          <SummaryText summary={article.summary} />
         </p>
 
         {article.source_url && (
@@ -133,17 +132,10 @@ export default async function ArticlePage({
         )}
       </header>
 
-      <div className="article-layout">
-        <aside className="article-toc-desktop">
-          {(article.format === "deep" || article.format === "showcase") && (
-            <ArticleNavigation markdown={article.body} />
-          )}
-        </aside>
-        <div className="article-content">
-          <ArticleBody markdown={article.body} format={article.format} />
+      <ArticleBody markdown={article.body} format={article.format} />
 
       {article.credits.length > 0 && (
-        <dl className="mt-8 rounded-xl border border-neutral-200/80 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80">
+        <dl className="mt-8 rounded-xl border border-neutral-200/80 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
           <dt className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400 dark:text-neutral-500">
             크레딧
           </dt>
@@ -169,13 +161,11 @@ export default async function ArticlePage({
       )}
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
-        <Rating slug={article.slug} />
+        <Upvote slug={article.slug} />
       </div>
 
       <div className="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
         <Comments slug={article.slug} />
-      </div>
-        </div>
       </div>
     </article>
   );

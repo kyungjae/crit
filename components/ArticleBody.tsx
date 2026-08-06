@@ -1,7 +1,6 @@
 import Slugger from "github-slugger";
 import type { Format } from "@/lib/schema";
 import Markdown from "./markdown";
-import TableOfContents from "./TableOfContents";
 
 const PROSE = [
   "article-prose prose prose-neutral max-w-none dark:prose-invert",
@@ -24,10 +23,32 @@ function extractHeadings(markdown: string) {
   });
 }
 
-export function ArticleNavigation({ markdown }: { markdown: string }) {
+function TableOfContents({ markdown }: { markdown: string }) {
   const headings = extractHeadings(markdown);
   if (headings.length < 3) return null;
-  return <TableOfContents headings={headings} />;
+
+  return (
+    <nav className="mt-6 rounded-xl border border-neutral-200/80 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
+      <p className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400 dark:text-neutral-500">
+        목차
+      </p>
+      <ol className="flex flex-col gap-1.5">
+        {headings.map((h, i) => (
+          <li key={h.id} className="flex gap-2 text-sm leading-snug">
+            <span className="shrink-0 tabular-nums text-neutral-300 dark:!text-neutral-500">
+              {i + 1}
+            </span>
+            <a
+              href={`#${h.id}`}
+              className="text-neutral-600 underline-offset-2 hover:text-brand hover:underline dark:!text-neutral-300 dark:hover:!text-brand"
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
 }
 
 /**
@@ -39,20 +60,35 @@ function RulesLayout({ markdown }: { markdown: string }) {
   const intro = firstRule === -1 ? markdown : markdown.slice(0, firstRule);
   const rest = firstRule === -1 ? "" : markdown.slice(firstRule);
 
-  // `##`로 시작하는 상위 섹션은 규칙 카드 밖에서 일반 섹션으로 렌더링한다.
-  // 덕분에 마지막 규칙이나 crit의 관점이 직전 카드 안에 합쳐지지 않는다.
   const tailStart = rest.search(/^## (?!#)/m);
   const ruleMarkdown = tailStart === -1 ? rest : rest.slice(0, tailStart);
   const tail = tailStart === -1 ? "" : rest.slice(tailStart);
+
+  // 09번은 카드 밖에 두되, 앞의 규칙과 같은 번호·제목 포맷으로 렌더링한다.
+  const separateRuleMatch = tail.match(/^## 09\.\s+(.+?)(?:\n|$)([\s\S]*)$/);
+  const separateRuleTitle = separateRuleMatch?.[1] ?? null;
+  const separateRuleRest = separateRuleMatch?.[2] ?? "";
+  const nextSectionStart = separateRuleRest.search(/^## (?!#)/m);
+  const separateRuleBody = nextSectionStart === -1
+    ? separateRuleRest
+    : separateRuleRest.slice(0, nextSectionStart);
+  const tailContent = nextSectionStart === -1
+    ? ""
+    : separateRuleRest.slice(nextSectionStart);
 
   const rules = ruleMarkdown
     .split(/^### /m)
     .filter((chunk) => chunk.trim())
     .map((chunk) => {
       const nl = chunk.indexOf("\n");
-      return nl === -1
-        ? { title: chunk.trim(), body: "" }
-        : { title: chunk.slice(0, nl).trim(), body: chunk.slice(nl + 1).trim() };
+      const title = nl === -1 ? chunk.trim() : chunk.slice(0, nl).trim();
+      const body = nl === -1 ? "" : chunk.slice(nl + 1).trim();
+
+      // 규칙 카드가 번호를 자동으로 표시하므로 콘텐츠 제목의 번호는 한 번 제거한다.
+      return {
+        title: title.replace(/^\d{1,3}[.)]\s*/, ""),
+        body,
+      };
     });
 
   return (
@@ -67,7 +103,7 @@ function RulesLayout({ markdown }: { markdown: string }) {
         {rules.map((rule, i) => (
           <li
             key={i}
-            className="rounded-2xl border border-neutral-200/80 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900/80"
+            className="border-0 bg-transparent py-2"
           >
             <div className="flex items-baseline gap-2.5">
               <span className="shrink-0 text-[13px] font-bold tabular-nums text-brand">
@@ -88,9 +124,27 @@ function RulesLayout({ markdown }: { markdown: string }) {
         ))}
       </ol>
 
-      {tail.trim() && (
+      {separateRuleTitle && (
+        <section className="mt-8">
+          <div className="flex items-baseline gap-2.5">
+            <span className="shrink-0 text-[13px] font-bold tabular-nums text-brand">
+              09
+            </span>
+            <h3 className="text-[15px] font-bold leading-snug tracking-tight text-neutral-900 dark:text-neutral-100">
+              {separateRuleTitle}
+            </h3>
+          </div>
+          {separateRuleBody.trim() && (
+            <div className={`${PROSE} prose-sm mt-2 pl-[30px] prose-p:leading-[1.7]`}>
+              <Markdown>{separateRuleBody.trim()}</Markdown>
+            </div>
+          )}
+        </section>
+      )}
+
+      {tailContent.trim() && (
         <div className={`${PROSE} mt-8`}>
-          <Markdown>{tail.trim()}</Markdown>
+          <Markdown>{tailContent.trim()}</Markdown>
         </div>
       )}
     </div>
@@ -109,9 +163,7 @@ export default function ArticleBody({
   return (
     <>
       {(format === "deep" || format === "showcase") && (
-        <div className="article-toc-mobile">
-          <ArticleNavigation markdown={markdown} />
-        </div>
+        <TableOfContents markdown={markdown} />
       )}
       <div className={`${PROSE} mt-6`}>
         <Markdown bleed={format === "showcase"}>{markdown}</Markdown>
