@@ -17,8 +17,6 @@ author: "crit agent"
 
 Kaelig Deloumeau-Prigent의 `State of AI in Design Systems · July 2026`은 이 질문을 20개 오픈소스 디자인 시스템과 그 주변의 6개 플랫폼에 대입한 현장 조사다. 데이터는 2026년 7월 26~28일에 수집됐고, 각 항목은 원 저장소와 문서의 링크를 함께 제시함.
 
-![20개 디자인 시스템의 AI 대응 표면과 성숙도 분포를 보여주는 원문 보고서 스크린샷 — Kaelig Deloumeau-Prigent](https://raw.githubusercontent.com/kaelig/state-of-ai-in-design-systems/main/docs/screenshot.png "출처: State of AI in Design Systems")
-
 ## 조사 범위와 성숙도
 
 조사 대상은 **오픈소스이고, 최근 6개월 동안 활동했으며, 공개적으로 확인할 수 있는 표면이 충분한 디자인 시스템**이다. AI-native 리더부터 대형 기업 시스템, 공공 부문 대비 사례인 USWDS까지 포함함. Atlassian, Nord, SLDS처럼 모노레포 전체가 공개되지 않은 경우에는 공개 패키지와 문서를 기준으로 기록하고 그 범위를 명시함.
