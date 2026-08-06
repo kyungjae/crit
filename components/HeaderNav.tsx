@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { href: "/", label: "피드" },
-  { href: "/ask", label: "Ask" },
-  { href: "/show", label: "Show" },
   { href: "/jobs", label: "채용" },
   { href: "/links", label: "링크" },
   { href: "/slack", label: "Slack" },
