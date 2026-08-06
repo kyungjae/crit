@@ -4,8 +4,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-brand: #6c5ce7;
-  --color-brand-dark: #5346c8;
+  --color-brand: #f97316;
+  --color-brand-dark: #ea580c;
   --font-sans: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;

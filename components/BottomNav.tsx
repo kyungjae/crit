@@ -60,12 +60,28 @@ function LinksIcon({ className }: { className?: string }) {
   );
 }
 
+function SlackIcon({ className }: { className?: string }) {
+  return (
+    <svg {...iconProps} className={className}>
+      <path d="M8 4a2 2 0 1 0 0 4h2V6a2 2 0 0 0-2-2Z" />
+      <path d="M4 8a2 2 0 1 0 4 0V6H6a2 2 0 0 0-2 2Z" />
+      <path d="M16 20a2 2 0 1 0 0-4h-2v2a2 2 0 0 0 2 2Z" />
+      <path d="M20 16a2 2 0 1 0-4 0v2h2a2 2 0 0 0 2-2Z" />
+      <path d="M20 8a2 2 0 1 0-4 0v2h2a2 2 0 0 0 2-2Z" />
+      <path d="M16 4a2 2 0 1 0 0 4h2V6a2 2 0 0 0-2-2Z" />
+      <path d="M4 16a2 2 0 1 0 4 0v-2H6a2 2 0 0 0-2 2Z" />
+      <path d="M8 20a2 2 0 1 0 0-4H6v2a2 2 0 0 0 2 2Z" />
+    </svg>
+  );
+}
+
 const items = [
   { href: "/", label: "피드", Icon: FeedIcon },
   { href: "/ask", label: "Ask", Icon: AskIcon },
   { href: "/show", label: "Show", Icon: ShowIcon },
   { href: "/jobs", label: "채용", Icon: JobsIcon },
   { href: "/links", label: "링크", Icon: LinksIcon },
+  { href: "/slack", label: "Slack", Icon: SlackIcon },
 ];
 
 export default function BottomNav() {

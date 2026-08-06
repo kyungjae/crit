@@ -9,6 +9,7 @@ const navItems = [
   { href: "/show", label: "Show" },
   { href: "/jobs", label: "채용" },
   { href: "/links", label: "링크" },
+  { href: "/slack", label: "Slack" },
 ];
 
 export function isNavItemActive(pathname: string, href: string): boolean {
