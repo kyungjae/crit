@@ -1,0 +1,19 @@
+name: Slack Daily Report
+
+on:
+  schedule:
+    # 매일 10:00 KST (01:00 UTC)
+    - cron: "0 1 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send daily metrics report through the Slack Bot API
+        env:
+          CRIT_SLACK_CRON_SECRET: ${{ secrets.SLACK_CRON_SECRET }}
+        run: >-
+          curl --fail-with-body --silent --show-error
+          -X POST "https://crit.day/api/slack/report"
+          -H "Authorization: Bearer $CRIT_SLACK_CRON_SECRET"
