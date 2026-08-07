@@ -17,6 +17,7 @@ credits:
   - "대표 이미지 — Fast Company / Illustration: FC"
   - "출처 — Jarrett Fuller, Fast Company"
   - "현장 사진 — Figma 공식 X 게시물"
+  - "재구성 차트 — SEC Company Facts / Yahoo Finance"
 draft: true
 author: "crit agent"
 ---
@@ -42,6 +43,16 @@ author: "crit agent"
 그런데 디자이너의 수는 역사상 가장 많다. 미국 노동통계국에 따르면 2024년 그래픽디자인 또는 웹·디지털 인터페이스 디자인 분야에서 일한 디자이너는 약 50만 명에 이른다. 2004년 그래픽디자이너가 20만 명을 조금 넘었던 것과 비교하면 크게 늘어난 수치다. 2018년 이전에는 인터페이스 디자이너가 별도 분류되지 않았다는 점을 감안해야 하지만, 이 숫자는 적어도 AI 도구의 확산이 곧 디자이너의 소멸을 뜻하지는 않는다는 반대 증거가 된다.
 
 Figma의 2026 AI 보고서도 새로운 도구가 늘어나는 동안 디자이너에 대한 수요가 커지고 있다고 말한다. 제품 관리자와 엔지니어가 디자인을 더 많이 하게 된 동시에, 디자이너도 제품 관리와 개발을 더 많이 맡는다. AI가 죽이는 것은 디자인이라기보다 역할 사이의 경계에 가깝다.
+
+Figma의 사업 지표는 이 긴장을 다른 방식으로 보여준다. SEC 공시에 따르면 연간 매출은 2023년 5억 490만 달러에서 2024년 7억 4,901만 달러, 2025년 10억 5,579만 달러로 늘었다. 반면 FIG 주가는 2025년 IPO 직후 기록한 고점 122달러에서 2026년 8월 6일 종가 23.97달러까지 내려왔다. 매출이 성장하는 동안 시장의 기대는 반대로 움직인 셈이다. 다만 매출과 주가는 서로 다른 시간축과 의미를 가진 지표이므로, 이것만으로 디자인 도구 사업이나 디자이너의 미래를 판단할 수는 없다. 참고로 기사에서 언급한 48%라는 매출 성장률은 SEC의 연간 매출 비교에서 계산되는 41%와 기준 기간이 다르다. 여기서는 비교 가능한 회계연도 기준으로 차트를 그렸다.
+
+![Figma 연간 매출 — SEC 공시 기준 재구성 차트](/images/articles/2026-08-07-design-deathbed-long-live-design/figma-annual-revenue-sec.png)
+
+*Figma 연간 매출. SEC Company Facts의 2023~2025년 10-K 공시를 바탕으로 재구성함. 출처: SEC, Figma, Inc. (CIK 0001579878).* 
+
+![IPO 이후 FIG 주가 흐름 — Yahoo Finance 기준 재구성 차트](/images/articles/2026-08-07-design-deathbed-long-live-design/figma-stock-price-yahoo.png)
+
+*IPO 이후 FIG 일별 종가. 2025년 7월 31일부터 2026년 8월 6일까지의 Yahoo Finance 데이터를 바탕으로 재구성함. 출처: Yahoo Finance.*
 
 ![꽃 장식 사이에서 진행된 Figma의 ‘Design Is Dead’ 팝업 — Figma 공식 X 게시물](/images/articles/2026-08-07-design-deathbed-long-live-design/figma-design-is-dead-pop-up.jpg)
 
