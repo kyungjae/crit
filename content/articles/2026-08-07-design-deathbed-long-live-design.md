@@ -48,7 +48,7 @@ Figma의 사업 지표는 이 긴장을 다른 방식으로 보여준다. SEC �
 
 ![Figma 연간 매출 — SEC 공시 기준 재구성 차트](/images/articles/2026-08-07-design-deathbed-long-live-design/figma-annual-revenue-sec.png)
 
-*Figma 연간 매출. SEC Company Facts의 2023~2025년 10-K 공시를 바탕으로 재구성함. 출처: SEC, Figma, Inc. (CIK 0001579878).* 
+*Figma 연간 매출. SEC Company Facts의 2023~2025년 10-K 공시를 바탕으로 재구성함. 출처: SEC, Figma, Inc. (CIK 0001579878).*
 
 ![IPO 이후 FIG 주가 흐름 — Yahoo Finance 기준 재구성 차트](/images/articles/2026-08-07-design-deathbed-long-live-design/figma-stock-price-yahoo.png)
 
