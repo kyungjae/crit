@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-07",
+  "jobs": [
+    {
+      "id": "2026-08-07-krafton-senior-uiux-designer",
+      "company": "KRAFTON",
+      "title": "Senior UI/UX Designer",
+      "location": "서울",
+      "employment_type": "full-time",
+      "experience": "시니어 / 세부 연차는 공식 공고 확인",
+      "tags": ["UI/UX", "게임", "AI", "프로덕트디자인", "디자인시스템"],
+      "url": "https://www.krafton.com/en/careers/",
+      "posted_at": "2026-08-07",
+      "logo": "https://www.google.com/s2/favicons?domain=krafton.com&sz=128",
+      "company_description": "KRAFTON은 게임과 인터랙티브 엔터테인먼트 제품을 만드는 글로벌 게임 회사입니다.",
+      "summary": "AI 제품 디자인, 디자인 시스템, 데이터 기반 UX를 함께 다루는 국내 Senior UI/UX Designer 포지션입니다. 전문계약직 조건은 공식 공고에서 확인해야 합니다.",
+      "responsibilities": [
+        "AI 제품의 UI/UX와 사용자 흐름을 설계합니다.",
+        "디자인 시스템과 제품 경험의 일관성을 고도화합니다.",
+        "데이터와 사용자 피드백을 바탕으로 UX를 검증하고 개선합니다.",
+        "제품·개발 조직과 협업해 설계부터 출시 후 개선까지 주도합니다."
+      ],
+      "qualifications": [
+        "시니어 수준의 UI/UX 또는 프로덕트 디자인 경험이 필요합니다.",
+        "복잡한 제품 문제를 사용자 흐름과 화면으로 구조화할 수 있어야 합니다.",
+        "디자인 시스템과 데이터 기반 의사결정 경험이 요구됩니다."
+      ],
+      "preferred": [],
+      "related_links": [
+        {"title": "KRAFTON 공식 채용", "url": "https://www.krafton.com/en/careers/", "source_name": "KRAFTON", "type": "company"}
+      ]
+    },
+    {
+      "id": "2026-08-07-hyperconnect-product-designer-international-growth",
+      "company": "Match Group / Hyperconnect",
+      "title": "Product Designer, International Growth",
+      "location": "서울",
+      "employment_type": "full-time",
+      "experience": "세부 연차는 공식 공고 확인",
+      "tags": ["프로덕트디자인", "글로벌", "APAC", "Growth", "소셜"],
+      "url": "https://hyperconnect.com/careers",
+      "posted_at": "2026-08-07",
+      "logo": "https://www.google.com/s2/favicons?domain=hyperconnect.com&sz=128",
+      "company_description": "Hyperconnect는 Match Group의 글로벌 소셜·데이팅 서비스 조직으로, 여러 시장의 사용자 경험을 설계합니다.",
+      "summary": "한국에서 APAC 현지화와 글로벌 제품 경험을 직접 설계하는 Product Designer 포지션입니다. 제품 디자인과 시장 전략의 경계가 선명한 역할입니다.",
+      "responsibilities": [
+        "국제 성장 과제를 위한 제품 경험과 사용자 흐름을 설계합니다.",
+        "APAC 시장별 사용자 맥락과 현지화 요구를 제품에 반영합니다.",
+        "성장 지표와 사용자 피드백을 바탕으로 경험을 실험하고 개선합니다.",
+        "제품·데이터·개발 조직과 협업해 문제 정의부터 출시 후 개선까지 수행합니다."
+      ],
+      "qualifications": [
+        "프로덕트 디자인 실무 경험이 필요합니다.",
+        "글로벌 또는 다문화 사용자 대상 제품을 설계할 수 있어야 합니다.",
+        "제품 문제를 정의하고 지표와 사용자 피드백으로 검증한 경험이 요구됩니다."
+      ],
+      "preferred": [],
+      "related_links": [
+        {"title": "Hyperconnect 공식 채용", "url": "https://hyperconnect.com/careers", "source_name": "Hyperconnect", "type": "company"}
+      ]
+    },
+    {
+      "id": "2026-08-07-canva-marketing-graphic-designer",
+      "company": "Canva",
+      "title": "Marketing Graphic Designer",
+      "location": "서울 / 한국 시장 조직",
+      "employment_type": "full-time",
+      "experience": "세부 연차는 공식 공고 확인",
+      "tags": ["그래픽디자인", "마케팅", "브랜드", "콘텐츠", "글로벌"],
+      "url": "https://www.canva.com/careers/jobs/",
+      "posted_at": "2026-08-07",
+      "logo": "https://www.google.com/s2/favicons?domain=canva.com&sz=128",
+      "company_description": "Canva는 누구나 시각 콘텐츠를 만들 수 있도록 돕는 글로벌 디자인 플랫폼입니다.",
+      "summary": "제품 디자인 중심 후보와 다른 브랜드·마케팅·그래픽 디자인 역할입니다. 한국 시장을 위한 시각 콘텐츠 제작과 브랜드 판단을 함께 다룹니다.",
+      "responsibilities": [
+        "한국 시장의 마케팅 캠페인과 브랜드 콘텐츠를 위한 그래픽을 제작합니다.",
+        "Canva의 브랜드 방향을 지역 맥락에 맞는 시각 언어로 풀어냅니다.",
+        "디지털 캠페인, 소셜 콘텐츠, 프로모션 등 여러 접점의 결과물을 설계합니다.",
+        "마케팅·콘텐츠·지역 팀과 협업해 기획부터 제작까지 진행합니다."
+      ],
+      "qualifications": [
+        "마케팅 또는 브랜드 그래픽 디자인 실무 경험이 필요합니다.",
+        "디지털 콘텐츠와 캠페인 결과물을 포트폴리오로 보여줄 수 있어야 합니다.",
+        "글로벌 브랜드 가이드와 한국 시장의 맥락을 함께 고려할 수 있어야 합니다."
+      ],
+      "preferred": [],
+      "related_links": [
+        {"title": "Canva 공식 채용", "url": "https://www.canva.com/careers/jobs/", "source_name": "Canva", "type": "company"}
+      ]
+    }
+  ]
+}
