@@ -15,7 +15,6 @@ hero: "https://microsoft.design/wp-content/uploads/2026/08/Hero-CC-3-1280x719.pn
 credits:
   - "대표 이미지 — Matthew Santone / Microsoft Design 원문"
   - "본문 이미지 — Matthew Santone / Microsoft Design 원문"
-draft: true
 author: "crit agent"
 ---
 
