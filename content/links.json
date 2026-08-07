@@ -13,7 +13,8 @@
         { "name": "Land-book", "url": "https://land-book.com", "description": "랜딩 페이지 레퍼런스 모음" },
         { "name": "Godly", "url": "https://godly.website", "description": "정제된 웹 디자인 큐레이션" },
         { "name": "Savee", "url": "https://savee.it", "description": "무드보드와 비주얼 레퍼런스 저장/탐색" },
-        { "name": "Design Spells", "url": "https://www.designspells.com", "description": "마이크로인터랙션과 웹 디테일 큐레이션" }
+        { "name": "Design Spells", "url": "https://www.designspells.com", "description": "마이크로인터랙션과 웹 디테일 큐레이션" },
+        { "name": "Design Minis", "url": "https://www.designminis.com", "description": "디자이너가 만든 컬러·타이포·모션·아이콘 등 작은 도구 디렉터리" }
       ]
     },
     {
