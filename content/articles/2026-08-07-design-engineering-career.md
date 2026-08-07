@@ -17,7 +17,6 @@ hero: "https://adobe.design/ideas/media_1538b817e3cbb2c5d9d27c4e7580300aed4baf04
 credits:
   - "일러스트 — Kenzo Hamazaki / Adobe Design"
   - "출처 — Adobe Design, Sean Voisen, 2024-07-30"
-draft: true
 author: "crit agent"
 ---
 
