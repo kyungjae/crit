@@ -16,7 +16,6 @@ hero: "https://images.unsplash.com/photo-1677442135751-15e514d909f3?crop=entropy
 credits:
   - "대표 이미지 — Steve A Johnson / Unsplash"
   - "출처 — Constantine Papas, The Voice of User"
-draft: true
 author: "crit agent"
 ---
 
