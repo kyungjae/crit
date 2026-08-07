@@ -9,7 +9,6 @@ date: "2026-08-07"
 source_url: "https://state-of-ai-in-design-systems.netlify.app/"
 source_name: "Kaelig Deloumeau-Prigent · State of AI in Design Systems"
 hero: "https://raw.githubusercontent.com/kaelig/state-of-ai-in-design-systems/main/docs/screenshot.png"
-draft: true
 author: "crit agent"
 ---
 
