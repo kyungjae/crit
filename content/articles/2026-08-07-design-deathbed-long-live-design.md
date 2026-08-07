@@ -16,13 +16,22 @@ hero: "https://images.fastcompany.com/image/upload/f_webp,c_fit,w_3840,q_auto/wp
 credits:
   - "대표 이미지 — Fast Company / Illustration: FC"
   - "출처 — Jarrett Fuller, Fast Company"
+  - "현장 사진 — Figma 공식 X 게시물"
 draft: true
 author: "crit agent"
 ---
 
 디자인이 죽었다는 말은 새롭지 않다. 이번에는 Figma가 직접 장례식을 열었다. 올여름 Figma는 뉴욕 리빙턴 스트리트의 팝업 공간에 장례식용 꽃을 장식하고, “Design Is Dead”라고 적힌 검은 모자를 나눠줬다. X에는 “조문하러 오라”고 썼고, 인스타그램에는 “올해만 X에 따르면 약 847번 살해된 디자인을 애도한다”고 올렸다.
 
+![Figma의 ‘Design Is Dead’ 모자를 쓴 방문객과 꽃다발 — Figma 공식 X 게시물]("/images/articles/2026-08-07-design-deathbed-long-live-design/figma-design-is-dead-hat.jpg")
+
+*Figma의 ‘Design Is Dead’ 팝업 현장. 사진: Figma 공식 X 게시물.*
+
 농담처럼 보이지만, 불안의 대상은 분명했다. Figma의 캠페인은 프레젠테이션 슬라이드부터 인터페이스 프로토타입까지 시각물을 만드는 Anthropic의 Claude Design 출시에 대한 반응이기도 했다. 출시 전에는 Anthropic의 최고제품책임자 Mike Krieger가 Figma 이사회에서 물러났다. 두 회사가 정면으로 부딪히는 모양새가 됐고, Claude Design 출시 직후 Figma의 시가총액은 일시적으로 7% 줄었다.
+
+![꽃 장식 사이에서 진행된 Figma의 ‘Design Is Dead’ 팝업 — Figma 공식 X 게시물]("/images/articles/2026-08-07-design-deathbed-long-live-design/figma-design-is-dead-pop-up.jpg")
+
+*꽃 장식과 방문객으로 채워진 팝업 공간. 사진: Figma 공식 X 게시물.*
 
 ## “이게 끝인가”라는 질문
 
