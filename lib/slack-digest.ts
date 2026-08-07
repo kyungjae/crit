@@ -78,10 +78,9 @@ export function buildSlackDigest(articles: DigestArticle[], siteUrl: string) {
   ];
 
   for (const article of articles) {
-    const source = article.sourceUrl ? `\n출처: <${article.sourceUrl}|${article.sourceName ?? "원문"}>` : "";
     blocks.push({ type: "section", text: {
       type: "mrkdwn",
-      text: `*<${baseUrl}/articles/${encodeURIComponent(article.slug)}|${article.title}>*\n${summaryBullets(article.summary)}${source}`,
+      text: `*<${baseUrl}/articles/${encodeURIComponent(article.slug)}|${article.title}>*\n${summaryBullets(article.summary)}`,
     } });
   }
   return { text: `crit 새 글 ${articles.length}건`, blocks };
@@ -99,10 +98,9 @@ export function buildSlackWelcome(articles: DigestArticle[], siteUrl: string) {
   ];
 
   for (const article of articles) {
-    const source = article.sourceUrl ? `\n출처: <${article.sourceUrl}|${article.sourceName ?? "원문"}>` : "";
     blocks.push({ type: "section", text: {
       type: "mrkdwn",
-      text: `*<${baseUrl}/articles/${encodeURIComponent(article.slug)}|${article.title}>*\n${summaryBullets(article.summary)}${source}`,
+      text: `*<${baseUrl}/articles/${encodeURIComponent(article.slug)}|${article.title}>*\n${summaryBullets(article.summary)}`,
     } });
   }
 
