@@ -1,6 +1,41 @@
 {
   "events": [
     {
+      "id": "design-miami-seoul-2026",
+      "title": "디자인마이애미 서울 2026",
+      "organizer": "Design Miami",
+      "type": "전시",
+      "date": "2026-08-31",
+      "end_date": "2026-09-06",
+      "location": "서울 DDP 디자인랩 1층",
+      "description": "Design Miami의 서울 두 번째 에디션. 한국과 해외 디자인 갤러리, 문화기관, 큐레이션 전시가 참여하며 ‘Resonance’를 주제로 디자인 담론과 상업적 교류를 결합함.",
+      "url": "https://designmiami.com/fair/seoul-2026",
+      "image": "https://cdn.sanity.io/images/v2n4gj8r/production/f49933345c14ede404e5dec799fc51a469b47ab4-1920x1080.png"
+    },
+    {
+      "id": "design-korea-2026",
+      "title": "Design Korea 2026",
+      "organizer": "한국디자인진흥원",
+      "type": "전시",
+      "date": "2026-11-25",
+      "end_date": "2026-11-29",
+      "location": "서울 코엑스 Hall B",
+      "description": "제품·그래픽·디지털·UI/UX 등 디자인을 중심으로 산업 트렌드와 선진 사례를 공유하는 국내 디자인 종합 박람회. 기업과 디자이너 전시, 프로그램, 네트워킹이 함께 진행됨.",
+      "url": "https://designkorea.kidp.or.kr/",
+      "image": "https://designkorea.kidp.or.kr/images/meta_img.png"
+    },
+    {
+      "id": "seoul-design-festival-2026",
+      "title": "제25회 서울디자인페스티벌",
+      "organizer": "㈜디자인하우스",
+      "type": "전시",
+      "date": "2026-11-26",
+      "end_date": "2026-11-29",
+      "location": "서울 코엑스 1층 Hall A",
+      "description": "월간 <디자인>의 콘텐츠와 국내외 디자인 업계 네트워크를 기반으로 열리는 디자인 전문 전시. 2026년 전시 주제는 추후 공개 예정임.",
+      "url": "https://seoul.designfestival.co.kr/SDF/SDF2026/"
+    },
+    {
       "id": "wanted-ax-product-design",
       "title": "클로드 에이전틱 디자인 시스템 | 프로덕트 디자인 자동화 강의",
       "organizer": "원티드",

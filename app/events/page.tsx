@@ -14,6 +14,12 @@ const dateFormatter = new Intl.DateTimeFormat("ko-KR", {
   timeZone: "Asia/Seoul",
 });
 
+function formatEventDate(start: string, end?: string) {
+  const startLabel = dateFormatter.format(new Date(`${start}T00:00:00+09:00`));
+  if (!end || end === start) return startLabel;
+  return `${startLabel} — ${dateFormatter.format(new Date(`${end}T00:00:00+09:00`))}`;
+}
+
 export default function EventsPage() {
   const events = getEvents();
 
@@ -62,7 +68,7 @@ export default function EventsPage() {
                 </p>
                 <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 border-t border-neutral-100 pt-3 text-sm dark:border-neutral-800">
                   <dt className="text-neutral-400">일정</dt>
-                  <dd>{dateFormatter.format(new Date(`${event.date}T00:00:00+09:00`))}</dd>
+                  <dd>{formatEventDate(event.date, event.end_date)}</dd>
                   <dt className="text-neutral-400">장소</dt>
                   <dd>{event.location}</dd>
                 </dl>

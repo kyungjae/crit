@@ -167,6 +167,7 @@ export const eventSchema = z.object({
   organizer: z.string().min(1).max(60),
   type: z.enum(["컨퍼런스", "강의", "밋업", "워크숍", "전시", "기타"]),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  end_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   location: z.string().min(1).max(60),
   description: z.string().min(1).max(300),
   url: z.string().url(),
