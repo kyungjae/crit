@@ -11,6 +11,11 @@ on:
         required: false
         default: "1"
         type: string
+      slugs:
+        description: "특정 글만 재발송할 query string (예: slug=a&slug=b)"
+        required: false
+        default: ""
+        type: string
 
 jobs:
   send:
@@ -19,7 +24,9 @@ jobs:
       - name: Send digest through the Slack Bot API
         env:
           CRIT_SLACK_CRON_SECRET: ${{ format('{0}', secrets.SLACK_CRON_SECRET) }}
+          CRIT_SLACK_SLUG_QUERY: ${{ inputs.slugs || '' }}
         run: >-
+          QUERY="${CRIT_SLACK_SLUG_QUERY:-days=${{ inputs.days || '1' }}}" &&
           curl --fail-with-body --silent --show-error
-          -X POST "https://crit.day/api/slack/digest?days=${{ inputs.days || '1' }}"
+          -X POST "https://crit.day/api/slack/digest?$QUERY"
           -H "Authorization: Bearer $CRIT_SLACK_CRON_SECRET"

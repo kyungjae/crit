@@ -69,6 +69,11 @@ export function latestPublishedArticles(limit = 3): DigestArticle[] {
   return publishedArticles().slice(0, limit);
 }
 
+export function publishedArticlesBySlugs(slugs: string[]): DigestArticle[] {
+  const wanted = new Set(slugs);
+  return publishedArticles().filter((article) => wanted.has(article.slug));
+}
+
 export function buildSlackDigest(articles: DigestArticle[], siteUrl: string) {
   const baseUrl = siteUrl.replace(/\/$/, "");
   const blocks: Array<Record<string, unknown>> = [

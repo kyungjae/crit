@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/db";
 import { decryptSlackToken, slackApi } from "@/lib/slack";
-import { buildSlackDigest, recentPublishedArticles } from "@/lib/slack-digest";
+import { buildSlackDigest, publishedArticlesBySlugs, recentPublishedArticles } from "@/lib/slack-digest";
 
 type PostResponse = { ts?: string };
 
@@ -15,10 +15,11 @@ export async function POST(request: Request) {
   const prisma = getPrisma();
   if (!prisma) return NextResponse.json({ error: "DATABASE_URL이 설정되지 않았습니다." }, { status: 503 });
 
-  const requestUrl = new URL(request.url);
-  const requestedDays = Number(requestUrl.searchParams.get("days") ?? "1");
+  const url = new URL(request.url);
+  const slugs = url.searchParams.getAll("slug").map((slug) => slug.trim()).filter(Boolean);
+  const requestedDays = Number(url.searchParams.get("days") ?? "1");
   const days = Number.isInteger(requestedDays) ? Math.min(Math.max(requestedDays, 1), 30) : 1;
-  const articles = recentPublishedArticles(days);
+  const articles = slugs.length > 0 ? publishedArticlesBySlugs(slugs) : recentPublishedArticles(days);
   if (articles.length === 0) return NextResponse.json({ ok: true, sent: 0 });
 
   const installations = await prisma.slackInstallation.findMany({
