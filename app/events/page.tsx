@@ -11,6 +11,7 @@ const dateFormatter = new Intl.DateTimeFormat("ko-KR", {
   month: "long",
   day: "numeric",
   weekday: "short",
+  timeZone: "Asia/Seoul",
 });
 
 export default function EventsPage() {
