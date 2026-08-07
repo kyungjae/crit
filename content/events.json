@@ -34,17 +34,6 @@
       "location": "서울 코엑스 1층 Hall A",
       "description": "월간 <디자인>의 콘텐츠와 국내외 디자인 업계 네트워크를 기반으로 열리는 디자인 전문 전시. 2026년 전시 주제는 추후 공개 예정임.",
       "url": "https://seoul.designfestival.co.kr/SDF/SDF2026/"
-    },
-    {
-      "id": "wanted-ax-product-design",
-      "title": "클로드 에이전틱 디자인 시스템 | 프로덕트 디자인 자동화 강의",
-      "organizer": "원티드",
-      "type": "강의",
-      "date": "2026-12-31",
-      "location": "온라인",
-      "description": "Figma MCP와 Claude Code로 프로덕트 디자인 업무를 자동화하고, 원티드 디자인 시스템 ‘몽타주’ 사례를 통해 AI가 읽고 생성하는 디자인 시스템을 다루는 강의.",
-      "url": "https://event.wanted.co.kr/ax-product-design",
-      "image": "https://static.wanted.co.kr/events/og-image/4dlUufZnpPRUsd9QQw1DG2/F4VHCAgF.jpg"
     }
   ]
 }
