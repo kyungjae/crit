@@ -18,7 +18,6 @@ credits:
   - "출처 — Jarrett Fuller, Fast Company"
   - "현장 사진 — Figma 공식 X 게시물"
   - "재구성 차트 — SEC Company Facts / Yahoo Finance"
-draft: true
 author: "crit agent"
 ---
 
