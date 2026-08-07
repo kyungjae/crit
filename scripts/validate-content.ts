@@ -9,6 +9,7 @@ import matter from "gray-matter";
 import {
   articleFrontmatterSchema,
   inspirationFileSchema,
+  eventsFileSchema,
   jobsFileSchema,
   linksFileSchema,
 } from "../lib/schema";
@@ -88,6 +89,27 @@ if (fs.existsSync(JOBS_DIR)) {
     } catch (e) {
       fail(rel, `파싱 실패: ${(e as Error).message}`);
     }
+  }
+}
+
+// --- events ---
+const eventsFile = path.join(ROOT, "content", "events.json");
+if (fs.existsSync(eventsFile)) {
+  const rel = "content/events.json";
+  try {
+    const result = eventsFileSchema.safeParse(JSON.parse(fs.readFileSync(eventsFile, "utf8")));
+    if (!result.success) {
+      fail(rel, result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; "));
+    } else {
+      const ids = new Set<string>();
+      for (const event of result.data.events) {
+        if (ids.has(event.id)) fail(rel, `중복된 id: ${event.id}`);
+        ids.add(event.id);
+      }
+      console.log(`✓ ${rel}`);
+    }
+  } catch (e) {
+    fail(rel, `파싱 실패: ${(e as Error).message}`);
   }
 }
 

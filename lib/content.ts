@@ -4,10 +4,12 @@ import matter from "gray-matter";
 import {
   articleFrontmatterSchema,
   inspirationFileSchema,
+  eventsFileSchema,
   jobsFileSchema,
   linksFileSchema,
   type ArticleFrontmatter,
   type InspirationItem,
+  type Event,
   type Job,
   type LinkGroup,
 } from "./schema";
@@ -15,6 +17,7 @@ import {
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const ARTICLES_DIR = path.join(CONTENT_DIR, "articles");
 const JOBS_DIR = path.join(CONTENT_DIR, "jobs");
+const EVENTS_FILE = path.join(CONTENT_DIR, "events.json");
 
 export type Article = ArticleFrontmatter & {
   slug: string;
@@ -117,6 +120,14 @@ export function getLinkGroups(): LinkGroup[] {
   if (!fs.existsSync(file)) return [];
   return linksFileSchema.parse(JSON.parse(fs.readFileSync(file, "utf8")))
     .groups;
+}
+
+export function getEvents(): Event[] {
+  if (!fs.existsSync(EVENTS_FILE)) return [];
+  const { events } = eventsFileSchema.parse(
+    JSON.parse(fs.readFileSync(EVENTS_FILE, "utf8"))
+  );
+  return events.sort((a, b) => a.date.localeCompare(b.date));
 }
 
 export function getInspirationItems(): InspirationItem[] {

@@ -40,6 +40,15 @@ function LinksIcon({ className }: { className?: string }) {
   );
 }
 
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg {...iconProps} className={className}>
+      <rect x="3" y="5" width="18" height="16" rx="3" />
+      <path d="M8 3v4M16 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+    </svg>
+  );
+}
+
 function SlackIcon({ className }: { className?: string }) {
   return (
     <svg {...iconProps} className={className}>
@@ -59,6 +68,7 @@ const items = [
   { href: "/", label: "피드", Icon: FeedIcon },
   { href: "/jobs", label: "채용", Icon: JobsIcon },
   { href: "/links", label: "링크", Icon: LinksIcon },
+  { href: "/events", label: "행사", Icon: CalendarIcon },
   { href: "/slack", label: "Slack", Icon: SlackIcon },
 ];
 

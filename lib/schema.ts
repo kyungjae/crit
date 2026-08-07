@@ -160,3 +160,21 @@ export type InspirationItem = z.infer<typeof inspirationItemSchema>;
 export const inspirationFileSchema = z.object({
   items: z.array(inspirationItemSchema),
 });
+
+export const eventSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1).max(120),
+  organizer: z.string().min(1).max(60),
+  type: z.enum(["컨퍼런스", "강의", "밋업", "워크숍", "전시", "기타"]),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  location: z.string().min(1).max(60),
+  description: z.string().min(1).max(300),
+  url: z.string().url(),
+  image: z.string().url().optional(),
+});
+
+export type Event = z.infer<typeof eventSchema>;
+
+export const eventsFileSchema = z.object({
+  events: z.array(eventSchema),
+});

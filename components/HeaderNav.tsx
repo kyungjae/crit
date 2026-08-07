@@ -7,6 +7,7 @@ const navItems = [
   { href: "/", label: "피드" },
   { href: "/jobs", label: "채용" },
   { href: "/links", label: "링크" },
+  { href: "/events", label: "행사" },
   { href: "/slack", label: "Slack" },
 ];
 
