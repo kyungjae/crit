@@ -12,8 +12,8 @@ tags: [branding, rebranding, global-design, product-design, campaign, localizati
 date: "2026-08-08"
 source_url: "https://blog.gangnamunni.com/series/rebranding-2026"
 source_name: "힐링페이퍼(강남언니) 블로그"
-thumbnail: "https://rebranding.unni.app/hero-bgloop-web-poster.webp"
-hero: "https://rebranding.unni.app/hero-bgloop-web-poster.webp"
+thumbnail: "https://crit.day/images/articles/gangnam-unni-global-rebranding/campaign-visual.webp"
+hero: "https://crit.day/images/articles/gangnam-unni-global-rebranding/campaign-visual.webp"
 credits:
   - "이미지 — 강남언니/Unni 리브랜딩 시리즈 및 공식 리브랜딩 페이지"
   - "브랜드 아이덴티티 파트너 — PlusX"
@@ -88,8 +88,6 @@ author: "crit agent"
 캠페인팀은 “리브랜딩을 알리자”를 “**지향하는 바가 달라졌음을 느끼게 하자**”로 바꿨다. 브랜드가 달라졌다는 설명보다 고객이 얻을 상태를 앞에 놓고, 태그라인은 “**내 선택에 확신을**”로 정했다.
 
 옥외 비주얼도 완벽하게 연출한 모델 대신 집처럼 보이는 공간에서 웃고 흐트러지는 순간을 담았다.
-
-![집처럼 보이는 공간에서 자연스럽게 웃는 모델과 ‘내 선택에 확신을’ 카피](/images/articles/gangnam-unni-global-rebranding/campaign-visual.webp "리브랜딩 캠페인 비주얼. 출처: 강남언니/Unni 리브랜딩 시리즈 4편")
 
 브랜드 필름은 미용의료를 가볍게 여기지도, 고객의 욕망을 판단하지도 않는 선을 찾았다. “나 자신을 사랑하세요”는 기만으로 들릴 수 있고 시술이 만드는 변화를 가볍게 말하면 선택 자체를 경시할 수 있다는 고민에서 “**이건 그냥 사랑이야 나에 대한**”을 만들었다.
 
