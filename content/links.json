@@ -24,7 +24,8 @@
         { "name": "산돌구름", "url": "https://www.sandollcloud.com", "description": "한글 폰트 구독 서비스" },
         { "name": "Google Fonts", "url": "https://fonts.google.com", "description": "무료 웹폰트 표준. 한글 지원 확인 가능" },
         { "name": "Fontshare", "url": "https://www.fontshare.com", "description": "ITF의 고품질 무료 영문 폰트" },
-        { "name": "Adobe Fonts", "url": "https://fonts.adobe.com", "description": "CC 구독에 포함된 폰트 라이브러리" }
+        { "name": "Adobe Fonts", "url": "https://fonts.adobe.com", "description": "CC 구독에 포함된 폰트 라이브러리" },
+        { "name": "Fonts In Use", "url": "https://fontsinuse.com/", "description": "실제 디자인 사례로 살펴보는 타이포그래피 아카이브" }
       ]
     },
     {
