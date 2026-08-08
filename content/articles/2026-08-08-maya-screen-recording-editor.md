@@ -57,17 +57,11 @@ Maya 저장소는 2026년 5월 17일 만들어졌고, 8월 2일 [v1.1](https://g
 
 ## SNS와 GitHub에서 확인된 반응
 
-가장 크게 퍼진 글은 제작자 Ronaldo Avalos의 출시 게시물이다. 그는 Maya를 Claude Code로 약 2시간 만에 만들었다고 소개했다. 조사 시점 기준 조회수 2.4만 회, 좋아요 264개, 재게시 14회, 답글 15개를 기록했다. 다만 제작자 자신의 발표이므로 이 숫자를 사용자 만족도로 읽을 수는 없다.
+가장 크게 퍼진 글은 제작자 Ronaldo Avalos의 [출시 게시물](https://x.com/ronaldo_avals/status/2055877084765982738)이다. 그는 Maya를 Claude Code로 약 2시간 만에 만들었다고 소개했다. 조사 시점 기준 조회수 2.4만 회, 좋아요 264개, 재게시 14회, 답글 15개를 기록했다. 다만 제작자 자신의 발표이므로 이 숫자를 사용자 만족도로 읽을 수는 없다.
 
-https://x.com/ronaldo_avals/status/2055877084765982738
+확인 가능한 제3자 반응은 많지 않지만 실제 사용 사례가 하나 있다. Yago는 [답글](https://x.com/yagomp/status/2056328152943665648)에서 새로 출시한 앱의 첫 프로모션 영상을 만드는 데 Maya를 썼다고 밝혔다. 단순한 링크 공유가 아니라 결과물을 만든 뒤 남긴 반응임.
 
-확인 가능한 제3자 반응은 많지 않지만 실제 사용 사례가 하나 있다. Yago는 새로 출시한 앱의 첫 프로모션 영상을 만드는 데 Maya를 썼다고 답했다. 단순한 링크 공유가 아니라 결과물을 만든 뒤 남긴 반응임.
-
-https://x.com/yagomp/status/2056328152943665648
-
-Stephan은 “정말 멋지다. 내 스타를 받으라”고 답하며 GitHub 스타를 주겠다고 밝혔다.
-
-https://x.com/Stephan_Kop/status/2056109763352465862
+Stephan은 [“정말 멋지다. 내 스타를 받으라”](https://x.com/Stephan_Kop/status/2056109763352465862)고 답하며 GitHub 스타를 주겠다고 밝혔다.
 
 GitHub 쪽 반응은 더 구체적이다. AyoParadis는 실제로 내보내기를 하면서 창에 가려지는 컨트롤, 분명하지 않은 재생·탐색 방식, 드래그할 때마다 스냅되어 튀는 애니메이션 구간을 발견해 [개선 PR #2](https://github.com/ronaldo-avalos/Maya/pull/2)를 올렸다. 이 PR 자체는 병합되지 않았지만 이후 hknakn이 제출한 사이드바·크래시 수정 [#5](https://github.com/ronaldo-avalos/Maya/pull/5), 탭 피드백 [#6](https://github.com/ronaldo-avalos/Maya/pull/6), 줌 드래그 수정 [#7](https://github.com/ronaldo-avalos/Maya/pull/7)이 v1.1에 들어갔다. 넓은 여론이라기보다, 작은 사용자·기여자 집단이 문제를 찾아 제품을 밀어 올리는 단계로 보는 편이 정확하다.
 
