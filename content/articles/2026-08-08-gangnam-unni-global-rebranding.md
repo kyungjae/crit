@@ -18,7 +18,7 @@ credits:
   - "이미지 — 강남언니/Unni 리브랜딩 시리즈 및 공식 리브랜딩 페이지"
   - "브랜드 아이덴티티 파트너 — PlusX"
   - "브랜드 필름 — 강남언니 공식 YouTube"
-draft: true
+draft: false
 author: "crit agent"
 ---
 
