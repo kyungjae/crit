@@ -16,7 +16,7 @@ thumbnail: "https://crit.day/images/articles/2026-08-08-edgecase-ai/hero.png"
 hero: "https://crit.day/images/articles/2026-08-08-edgecase-ai/hero.png"
 credits:
   - "제품 및 이미지 — HAES AI / EdgeCase AI"
-draft: true
+draft: false
 author: "crit agent"
 ---
 
