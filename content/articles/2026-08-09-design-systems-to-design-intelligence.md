@@ -16,7 +16,7 @@ thumbnail: "https://crit.day/images/articles/design-systems-to-design-intelligen
 hero: "https://crit.day/images/articles/design-systems-to-design-intelligence/hero.png"
 credits:
   - "글·이미지 — Jennifer Darmour, From Design Systems to Design Intelligence"
-draft: true
+draft: false
 author: "crit agent"
 ---
 
