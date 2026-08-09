@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { decryptSlackToken, prismaOrThrow, siteUrl, slackApi } from "@/lib/slack";
-import { buildSlackWelcome, latestPublishedArticles } from "@/lib/slack-digest";
+import { allPublishedArticles, buildSlackWelcome, latestPublishedArticles } from "@/lib/slack-digest";
 
 type Conversation = { id: string; name: string; is_private?: boolean; is_member?: boolean };
 type ConversationsResponse = { channels?: Conversation[]; response_metadata?: { next_cursor?: string } };
@@ -39,9 +39,33 @@ export async function POST(request: Request) {
     const { prisma, installation } = await installationFromCookie();
     const body = (await request.json()) as { channelId?: string; channelName?: string };
     if (!body.channelId || !body.channelName) return NextResponse.json({ error: "채널을 선택해주세요." }, { status: 400 });
-    await prisma.slackInstallation.update({
-      where: { id: installation.id },
-      data: { channelId: body.channelId, channelName: body.channelName },
+    const initializedAt = new Date();
+    const existingArticleSlugs = allPublishedArticles().map((article) => article.slug);
+    await prisma.$transaction(async (transaction) => {
+      await transaction.slackInstallation.update({
+        where: { id: installation.id },
+        data: {
+          channelId: body.channelId,
+          channelName: body.channelName,
+        },
+      });
+      const initialized = await transaction.slackInstallation.updateMany({
+        where: { id: installation.id, digestInitializedAt: null },
+        data: { digestInitializedAt: initializedAt },
+      });
+      if (initialized.count > 0 && existingArticleSlugs.length > 0) {
+        await transaction.slackDelivery.createMany({
+          data: existingArticleSlugs.map((slug) => ({
+            installationId: installation.id,
+            slug,
+            status: "sent",
+            claimToken: null,
+            claimedAt: initializedAt,
+            sentAt: initializedAt,
+          })),
+          skipDuplicates: true,
+        });
+      }
     });
     const payload = buildSlackWelcome(latestPublishedArticles(3), siteUrl());
     await slackApi<PostResponse>(decryptSlackToken(installation.botTokenEncrypted), "chat.postMessage", {

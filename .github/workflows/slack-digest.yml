@@ -4,18 +4,21 @@ on:
   schedule:
     # 매일 10:00 KST (01:00 UTC)
     - cron: "0 1 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "content/articles/**"
   workflow_dispatch:
     inputs:
-      days:
-        description: "수동 테스트에 포함할 최근 게시일 수"
-        required: false
-        default: "2"
-        type: string
-      slugs:
-        description: "특정 글만 재발송할 query string (예: slug=a&slug=b)"
+      query:
+        description: "운영자용 query string (예: slug=a&slug=b 또는 baseline=current)"
         required: false
         default: ""
         type: string
+
+concurrency:
+  group: slack-digest
+  cancel-in-progress: false
 
 jobs:
   send:
@@ -24,9 +27,25 @@ jobs:
       - name: Send digest through the Slack Bot API
         env:
           CRIT_SLACK_CRON_SECRET: ${{ format('{0}', secrets.SLACK_CRON_SECRET) }}
-          CRIT_SLACK_SLUG_QUERY: ${{ inputs.slugs || '' }}
-        run: >-
-          QUERY="${CRIT_SLACK_SLUG_QUERY:-days=${{ inputs.days || '2' }}}" &&
-          curl --fail-with-body --silent --show-error
-          -X POST "https://crit.day/api/slack/digest?$QUERY"
-          -H "Authorization: Bearer $CRIT_SLACK_CRON_SECRET"
+          CRIT_SLACK_QUERY: ${{ inputs.query || '' }}
+        run: |
+          set -euo pipefail
+          query="${CRIT_SLACK_QUERY}"
+          url="https://crit.day/api/slack/digest${query:+?$query}"
+          attempts=1
+          if [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            attempts=8
+          fi
+
+          failed=0
+          for attempt in $(seq 1 "$attempts"); do
+            if ! curl --fail-with-body --silent --show-error \
+              -X POST "$url" \
+              -H "Authorization: Bearer $CRIT_SLACK_CRON_SECRET"; then
+              failed=1
+            fi
+            if [[ "$attempt" -lt "$attempts" ]]; then
+              sleep 30
+            fi
+          done
+          exit "$failed"

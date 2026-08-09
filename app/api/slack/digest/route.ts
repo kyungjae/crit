@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
+import type { Prisma } from "@prisma/client";
 import { getPrisma } from "@/lib/db";
 import { decryptSlackToken, slackApi } from "@/lib/slack";
 import {
+  allPublishedArticles,
   buildSlackDigest,
   claimSlackDeliveries,
   markSlackDeliveriesSent,
   publishedArticlesBySlugs,
-  recentPublishedArticles,
-  releaseSlackDeliveryClaims,
   runSlackDigest,
   type SlackDeliveryClaimStore,
 } from "@/lib/slack-digest";
@@ -24,9 +24,11 @@ export async function POST(request: Request) {
   const prisma = getPrisma();
   if (!prisma) return NextResponse.json({ error: "DATABASE_URL이 설정되지 않았습니다." }, { status: 503 });
 
-  const deliveryStore: SlackDeliveryClaimStore = {
-    createMany: ({ data }) => prisma.slackDelivery.createMany({ data, skipDuplicates: true }),
-    updateMany: ({ where, data }) => prisma.slackDelivery.updateMany({
+  const makeDeliveryStore = (
+    database: Pick<Prisma.TransactionClient, "slackDelivery">,
+  ): SlackDeliveryClaimStore => ({
+    createMany: ({ data }) => database.slackDelivery.createMany({ data, skipDuplicates: true }),
+    updateMany: ({ where, data }) => database.slackDelivery.updateMany({
       where: {
         installationId: where.installationId,
         ...(where.slug ? { slug: where.slug } : {}),
@@ -37,37 +39,102 @@ export async function POST(request: Request) {
       },
       data,
     }),
-    findMany: ({ where }) => prisma.slackDelivery.findMany({
+    findMany: ({ where }) => database.slackDelivery.findMany({
       where: {
         installationId: where.installationId,
         ...(where.slugIn ? { slug: { in: where.slugIn } } : {}),
         ...(where.status ? { status: where.status } : {}),
         ...(where.claimToken !== undefined ? { claimToken: where.claimToken } : {}),
+        ...(where.claimedBefore ? { claimedAt: { lt: where.claimedBefore } } : {}),
       },
-      select: { slug: true },
+      select: { slug: true, status: true, claimToken: true, claimedAt: true },
     }),
-    deleteMany: ({ where }) => prisma.slackDelivery.deleteMany({
-      where: {
-        installationId: where.installationId,
-        ...(where.status ? { status: where.status } : {}),
-        ...(where.claimToken !== undefined ? { claimToken: where.claimToken } : {}),
-      },
-    }),
-  };
+  });
+  const deliveryStore = makeDeliveryStore(prisma);
 
-  const result = await runSlackDigest(new URL(request.url), {
-    recentArticles: recentPublishedArticles,
+  const digestUrl = new URL(request.url);
+  const activeInstallations = (includeUninitialized = false) => prisma.slackInstallation.findMany({
+    where: {
+      active: true,
+      channelId: { not: null },
+      ...(includeUninitialized ? {} : { digestInitializedAt: { not: null } }),
+    },
+  });
+
+  // One-time migration/maintenance operation: acknowledge every currently
+  // published article without posting it. Normal digests ignore installations
+  // until this initialization is complete, so rollout cannot resend the archive.
+  if (digestUrl.searchParams.get("baseline") === "current") {
+    const articles = allPublishedArticles();
+    const installations = await prisma.slackInstallation.findMany({
+      where: {
+        digestInitializedAt: null,
+        active: true,
+        channelId: { not: null },
+      },
+      select: { id: true },
+    });
+    const slugs = articles.map((article) => article.slug);
+    const acknowledgedAt = new Date();
+    let acknowledged = 0;
+
+    for (const installation of installations) {
+      acknowledged += await prisma.$transaction(async (transaction) => {
+        const initialized = await transaction.slackInstallation.updateMany({
+          where: { id: installation.id, digestInitializedAt: null },
+          data: { digestInitializedAt: acknowledgedAt },
+        });
+        if (initialized.count === 0 || slugs.length === 0) return 0;
+
+        await transaction.slackDelivery.createMany({
+          data: slugs.map((slug) => ({
+            installationId: installation.id,
+            slug,
+            status: "pending",
+            claimToken: null,
+            claimedAt: acknowledgedAt,
+            sentAt: null,
+          })),
+          skipDuplicates: true,
+        });
+        const result = await transaction.slackDelivery.updateMany({
+          where: { installationId: installation.id, slug: { in: slugs }, status: "pending" },
+          data: { status: "sent", claimToken: null, claimedAt: acknowledgedAt, sentAt: acknowledgedAt },
+        });
+        return result.count;
+      });
+    }
+
+    return NextResponse.json({
+      ok: true,
+      baseline: "current",
+      articles: articles.length,
+      installations: installations.length,
+      acknowledged,
+    });
+  }
+
+  const nextPostAt = new Map<string, number>();
+  const result = await runSlackDigest(digestUrl, {
+    allArticles: allPublishedArticles,
     articlesBySlugs: publishedArticlesBySlugs,
-    installations: () => prisma.slackInstallation.findMany({
-      where: { active: true, channelId: { not: null } },
+    installations: activeInstallations,
+    claim: (installationId, articleSlugs, claimToken) => prisma.$transaction(async (transaction) => {
+      await transaction.$queryRaw`
+        SELECT pg_advisory_xact_lock(
+          hashtextextended(${`crit-slack-digest:${installationId}`}, 0)
+        )
+      `;
+      return claimSlackDeliveries(
+        makeDeliveryStore(transaction),
+        installationId,
+        articleSlugs,
+        claimToken,
+      );
     }),
-    claim: (installationId, articleSlugs, claimToken) => claimSlackDeliveries(
-      deliveryStore,
-      installationId,
-      articleSlugs,
-      claimToken,
-    ),
     async send(installation, articles, clientMessageId) {
+      const waitMs = Math.max(0, (nextPostAt.get(installation.id) ?? 0) - Date.now());
+      if (waitMs > 0) await new Promise((resolve) => setTimeout(resolve, waitMs));
       const payload = buildSlackDigest(articles, process.env.CRIT_SITE_URL ?? "https://crit.day");
       await slackApi<PostResponse>(decryptSlackToken(installation.botTokenEncrypted), "chat.postMessage", {
         channel: installation.channelId!,
@@ -75,17 +142,13 @@ export async function POST(request: Request) {
         text: payload.text,
         blocks: JSON.stringify(payload.blocks),
       });
+      nextPostAt.set(installation.id, Date.now() + 1_100);
     },
     markSent: (installationId, articleSlugs, claimToken) => markSlackDeliveriesSent(
       deliveryStore,
       installationId,
       claimToken,
       articleSlugs,
-    ),
-    release: (installationId, _articleSlugs, claimToken) => releaseSlackDeliveryClaims(
-      deliveryStore,
-      installationId,
-      claimToken,
     ),
   });
 
