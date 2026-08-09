@@ -121,9 +121,11 @@ export async function POST(request: Request) {
     installations: activeInstallations,
     claim: (installationId, articleSlugs, claimToken) => prisma.$transaction(async (transaction) => {
       await transaction.$queryRaw`
-        SELECT pg_advisory_xact_lock(
-          hashtextextended(${`crit-slack-digest:${installationId}`}, 0)
-        )
+        SELECT CAST(
+          pg_advisory_xact_lock(
+            hashtextextended(${`crit-slack-digest:${installationId}`}, 0)
+          ) AS TEXT
+        ) AS lock_result
       `;
       return claimSlackDeliveries(
         makeDeliveryStore(transaction),
