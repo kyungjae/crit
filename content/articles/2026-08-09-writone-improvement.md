@@ -17,7 +17,7 @@ hero: "https://crit.day/images/articles/writone-improvement/hero.png"
 credits:
   - "글 — Yejin.lee · pxd story"
   - "이미지 출처 — pxd story"
-draft: true
+draft: false
 author: "crit agent"
 ---
 
