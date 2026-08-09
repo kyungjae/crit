@@ -9,7 +9,7 @@ on:
       days:
         description: "수동 테스트에 포함할 최근 게시일 수"
         required: false
-        default: "1"
+        default: "2"
         type: string
       slugs:
         description: "특정 글만 재발송할 query string (예: slug=a&slug=b)"
@@ -26,7 +26,7 @@ jobs:
           CRIT_SLACK_CRON_SECRET: ${{ format('{0}', secrets.SLACK_CRON_SECRET) }}
           CRIT_SLACK_SLUG_QUERY: ${{ inputs.slugs || '' }}
         run: >-
-          QUERY="${CRIT_SLACK_SLUG_QUERY:-days=${{ inputs.days || '1' }}}" &&
+          QUERY="${CRIT_SLACK_SLUG_QUERY:-days=${{ inputs.days || '2' }}}" &&
           curl --fail-with-body --silent --show-error
           -X POST "https://crit.day/api/slack/digest?$QUERY"
           -H "Authorization: Bearer $CRIT_SLACK_CRON_SECRET"
