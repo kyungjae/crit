@@ -1,4 +1,4 @@
-import { createHash, randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
@@ -58,12 +58,8 @@ function publishedArticles(): DigestArticle[] {
     .sort((a, b) => b.dateKey.localeCompare(a.dateKey) || a.title.localeCompare(b.title));
 }
 
-export function recentPublishedArticles(days = 1): DigestArticle[] {
-  const todayKst = dateKey(new Date());
-  const startDate = new Date(`${todayKst}T00:00:00+09:00`);
-  startDate.setDate(startDate.getDate() - (days - 1));
-  const since = dateKey(startDate);
-  return publishedArticles().filter((article) => article.dateKey >= since);
+export function allPublishedArticles(): DigestArticle[] {
+  return publishedArticles();
 }
 
 export function latestPublishedArticles(limit = 3): DigestArticle[] {
@@ -76,6 +72,7 @@ export function publishedArticlesBySlugs(slugs: string[]): DigestArticle[] {
 }
 
 const SLACK_DELIVERY_CLAIM_TTL_MS = 15 * 60 * 1000;
+export const SLACK_DIGEST_BATCH_SIZE = 40;
 
 type PendingSlackDelivery = {
   installationId: string;
@@ -94,6 +91,13 @@ type SlackDeliveryWhere = {
   claimedBefore?: Date;
 };
 
+type SlackDeliveryRecord = {
+  slug: string;
+  status: string;
+  claimToken: string | null;
+  claimedAt: Date;
+};
+
 export type SlackDeliveryClaimStore = {
   createMany(args: { data: PendingSlackDelivery[] }): Promise<{ count: number }>;
   updateMany(args: {
@@ -105,8 +109,12 @@ export type SlackDeliveryClaimStore = {
       sentAt?: Date | null;
     };
   }): Promise<{ count: number }>;
-  findMany(args: { where: SlackDeliveryWhere }): Promise<Array<{ slug: string }>>;
-  deleteMany(args: { where: SlackDeliveryWhere }): Promise<{ count: number }>;
+  findMany(args: { where: SlackDeliveryWhere }): Promise<SlackDeliveryRecord[]>;
+};
+
+export type ClaimedSlackDeliveries = {
+  slugs: string[];
+  claimToken: string;
 };
 
 export async function claimSlackDeliveries(
@@ -115,12 +123,53 @@ export async function claimSlackDeliveries(
   slugs: string[],
   claimToken: string,
   now = new Date(),
-): Promise<string[]> {
+): Promise<ClaimedSlackDeliveries | null> {
   const uniqueSlugs = [...new Set(slugs)];
-  if (uniqueSlugs.length === 0) return [];
+  if (uniqueSlugs.length === 0) return null;
+
+  const claimedBefore = new Date(now.getTime() - SLACK_DELIVERY_CLAIM_TTL_MS);
+  const pendingRows = await store.findMany({
+    where: {
+      installationId,
+      status: "pending",
+    },
+  });
+  const staleRows = pendingRows
+    .filter((row) => row.claimedAt < claimedBefore && row.claimToken)
+    .sort((a, b) => a.claimedAt.getTime() - b.claimedAt.getTime() || a.slug.localeCompare(b.slug));
+
+  if (staleRows.length > 0) {
+    const staleClaimToken = staleRows[0].claimToken as string;
+    const staleSlugs = staleRows
+      .filter((row) => row.claimToken === staleClaimToken)
+      .map((row) => row.slug);
+    const recovered = await store.updateMany({
+      where: {
+        installationId,
+        slugIn: staleSlugs,
+        status: "pending",
+        claimToken: staleClaimToken,
+        claimedBefore,
+      },
+      data: { claimedAt: now },
+    });
+    if (recovered.count !== staleSlugs.length) return null;
+    return { slugs: staleSlugs, claimToken: staleClaimToken };
+  }
+
+  if (pendingRows.length > 0) return null;
+
+  const existingRows = await store.findMany({
+    where: { installationId, slugIn: uniqueSlugs },
+  });
+  const recorded = new Set(existingRows.map((row) => row.slug));
+  const freshSlugs = uniqueSlugs
+    .filter((slug) => !recorded.has(slug))
+    .slice(0, SLACK_DIGEST_BATCH_SIZE);
+  if (freshSlugs.length === 0) return null;
 
   await store.createMany({
-    data: uniqueSlugs.map((slug) => ({
+    data: freshSlugs.map((slug) => ({
       installationId,
       slug,
       status: "pending",
@@ -129,17 +178,16 @@ export async function claimSlackDeliveries(
     })),
   });
 
-  const claimedBefore = new Date(now.getTime() - SLACK_DELIVERY_CLAIM_TTL_MS);
-  await Promise.all(uniqueSlugs.map((slug) => store.updateMany({
-    where: { installationId, slug, status: "pending", claimedBefore },
-    data: { claimToken, claimedAt: now },
-  })));
-
-  const claims = await store.findMany({
-    where: { installationId, slugIn: uniqueSlugs, status: "pending", claimToken },
+  const claimed = await store.findMany({
+    where: {
+      installationId,
+      slugIn: freshSlugs,
+      status: "pending",
+      claimToken,
+    },
   });
-  const claimed = new Set(claims.map((claim) => claim.slug));
-  return uniqueSlugs.filter((slug) => claimed.has(slug));
+  const claimedSlugs = claimed.map((row) => row.slug);
+  return claimedSlugs.length > 0 ? { slugs: claimedSlugs, claimToken } : null;
 }
 
 export async function markSlackDeliveriesSent(
@@ -159,16 +207,6 @@ export async function markSlackDeliveriesSent(
   }
 }
 
-export async function releaseSlackDeliveryClaims(
-  store: SlackDeliveryClaimStore,
-  installationId: string,
-  claimToken: string,
-): Promise<void> {
-  await store.deleteMany({
-    where: { installationId, status: "pending", claimToken },
-  });
-}
-
 type SlackDigestInstallation = { id: string; teamId: string };
 
 type SlackDigestResult = {
@@ -178,33 +216,17 @@ type SlackDigestResult = {
   error?: string;
 };
 
-export function slackDigestClientMessageId(
-  installationId: string,
-  slugs: string[],
-): string {
-  const hex = createHash("sha256")
-    .update(JSON.stringify([installationId, [...new Set(slugs)].sort()]))
-    .digest("hex")
-    .slice(0, 32)
-    .split("");
-  hex[12] = "5";
-  hex[16] = ((Number.parseInt(hex[16], 16) & 0x3) | 0x8).toString(16);
-  const value = hex.join("");
-  return `${value.slice(0, 8)}-${value.slice(8, 12)}-${value.slice(12, 16)}-${value.slice(16, 20)}-${value.slice(20)}`;
-}
-
 export type SlackDigestDependencies<TInstallation extends SlackDigestInstallation> = {
-  recentArticles(days: number): DigestArticle[];
+  allArticles(): DigestArticle[];
   articlesBySlugs(slugs: string[]): DigestArticle[];
-  installations(): Promise<TInstallation[]>;
-  claim(installationId: string, slugs: string[], claimToken: string): Promise<string[]>;
+  installations(targetedReplay: boolean): Promise<TInstallation[]>;
+  claim(installationId: string, slugs: string[], claimToken: string): Promise<ClaimedSlackDeliveries | null>;
   send(
     installation: TInstallation,
     articles: DigestArticle[],
     clientMessageId: string,
   ): Promise<void>;
   markSent(installationId: string, slugs: string[], claimToken: string): Promise<void>;
-  release(installationId: string, slugs: string[], claimToken: string): Promise<void>;
 };
 
 export async function runSlackDigest<TInstallation extends SlackDigestInstallation>(
@@ -212,58 +234,91 @@ export async function runSlackDigest<TInstallation extends SlackDigestInstallati
   dependencies: SlackDigestDependencies<TInstallation>,
 ): Promise<{
   status: number;
-  body: { ok: boolean; sent: number; results?: SlackDigestResult[] };
+  body: { ok: boolean; sent: number; error?: string; results?: SlackDigestResult[] };
 }> {
-  const slugs = url.searchParams.getAll("slug").map((slug) => slug.trim()).filter(Boolean);
+  const slugs = [...new Set(
+    url.searchParams.getAll("slug").map((slug) => slug.trim()).filter(Boolean),
+  )];
   const targetedReplay = slugs.length > 0;
-  const requestedDays = Number(url.searchParams.get("days") ?? "2");
-  const days = Number.isInteger(requestedDays) ? Math.min(Math.max(requestedDays, 1), 30) : 2;
+  if (targetedReplay && slugs.length > SLACK_DIGEST_BATCH_SIZE) {
+    return {
+      status: 400,
+      body: {
+        ok: false,
+        sent: 0,
+        error: `특정 글 재발송은 한 번에 ${SLACK_DIGEST_BATCH_SIZE}건까지만 가능합니다.`,
+      },
+    };
+  }
+
   const articles = targetedReplay
     ? dependencies.articlesBySlugs(slugs)
-    : dependencies.recentArticles(days);
+    : dependencies.allArticles();
+  if (targetedReplay) {
+    const publishedSlugs = new Set(articles.map((article) => article.slug));
+    const unresolved = slugs.filter((slug) => !publishedSlugs.has(slug));
+    if (unresolved.length > 0) {
+      return {
+        status: 400,
+        body: {
+          ok: false,
+          sent: 0,
+          error: `공개 글을 찾을 수 없습니다: ${unresolved.join(", ")}`,
+        },
+      };
+    }
+  }
   if (articles.length === 0) return { status: 200, body: { ok: true, sent: 0 } };
 
-  const installations = await dependencies.installations();
+  const installations = await dependencies.installations(targetedReplay);
   const results: SlackDigestResult[] = [];
 
   for (const installation of installations) {
-    const claimToken = randomUUID();
-    let claimedSlugs: string[] = [];
-    let slackAccepted = false;
     try {
-      claimedSlugs = targetedReplay
-        ? articles.map((article) => article.slug)
-        : await dependencies.claim(
-            installation.id,
-            articles.map((article) => article.slug),
-            claimToken,
-          );
-      const claimed = new Set(claimedSlugs);
-      const pendingArticles = targetedReplay
-        ? articles
-        : articles.filter((article) => claimed.has(article.slug));
-      if (pendingArticles.length === 0) {
-        results.push({ teamId: installation.teamId, ok: true, sent: false });
-        continue;
-      }
+      let sentAny = false;
 
-      const clientMessageId = targetedReplay
-        ? randomUUID()
-        : slackDigestClientMessageId(installation.id, claimedSlugs);
-      await dependencies.send(installation, pendingArticles, clientMessageId);
-      slackAccepted = true;
-      if (!targetedReplay) {
-        await dependencies.markSent(installation.id, claimedSlugs, claimToken);
-      }
-      results.push({ teamId: installation.teamId, ok: true, sent: true });
-    } catch (error) {
-      if (!targetedReplay && !slackAccepted) {
-        try {
-          await dependencies.release(installation.id, claimedSlugs, claimToken);
-        } catch (releaseError) {
-          console.error("Slack delivery claim release failed", releaseError);
+      if (targetedReplay) {
+        for (let offset = 0; offset < articles.length; offset += SLACK_DIGEST_BATCH_SIZE) {
+          const batch = articles.slice(offset, offset + SLACK_DIGEST_BATCH_SIZE);
+          await dependencies.send(installation, batch, randomUUID());
+          sentAny = true;
+        }
+      } else {
+        let remainingArticles = [...articles];
+        while (remainingArticles.length > 0) {
+          const requestedClaimToken = randomUUID();
+          const claimedDelivery = await dependencies.claim(
+            installation.id,
+            remainingArticles.map((article) => article.slug),
+            requestedClaimToken,
+          );
+          if (!claimedDelivery) break;
+
+          const claimed = new Set(claimedDelivery.slugs);
+          const batch = remainingArticles.filter((article) => claimed.has(article.slug));
+          if (batch.length === 0) {
+            await dependencies.markSent(
+              installation.id,
+              claimedDelivery.slugs,
+              claimedDelivery.claimToken,
+            );
+            continue;
+          }
+
+          await dependencies.send(installation, batch, claimedDelivery.claimToken);
+          await dependencies.markSent(
+            installation.id,
+            claimedDelivery.slugs,
+            claimedDelivery.claimToken,
+          );
+
+          sentAny = true;
+          remainingArticles = remainingArticles.filter((article) => !claimed.has(article.slug));
         }
       }
+
+      results.push({ teamId: installation.teamId, ok: true, sent: sentAny });
+    } catch (error) {
       results.push({
         teamId: installation.teamId,
         ok: false,
