@@ -13,7 +13,7 @@ date: "2026-08-09"
 source_url: "https://readafterthoughts.com/essays/leading-and-following"
 source_name: "Afterthoughts"
 thumbnail: "https://crit.day/images/articles/leading-and-following/thumbnail.png"
-draft: true
+draft: false
 author: "crit agent"
 ---
 
