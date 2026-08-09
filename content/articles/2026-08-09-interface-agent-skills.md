@@ -16,7 +16,7 @@ thumbnail: "https://oiszjiwtfc65cwa2.public.blob.vercel-storage.com/og-images/sk
 hero: "https://crit.day/images/articles/interface-agent-skills/hero.png"
 credits:
   - "글·이미지 — Jakub Krehel, Skills"
-draft: true
+draft: false
 author: "crit agent"
 ---
 
