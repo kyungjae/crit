@@ -100,6 +100,21 @@ model SlackInstallation {
   active              Boolean  @default(true)
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
+  deliveries          SlackDelivery[]
 
   @@index([active])
+}
+
+model SlackDelivery {
+  id             String            @id @default(cuid())
+  installationId String
+  slug           String
+  status         String            @default("pending")
+  claimToken     String?
+  claimedAt      DateTime          @default(now())
+  sentAt         DateTime?
+  installation   SlackInstallation @relation(fields: [installationId], references: [id], onDelete: Cascade)
+
+  @@unique([installationId, slug])
+  @@index([status, claimedAt])
 }

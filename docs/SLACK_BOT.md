@@ -53,9 +53,17 @@ SLACK_CRON_SECRET
 
 ## 5. 일일 발송
 
+이 라우트를 배포하기 전에 반드시 `prisma db push`(또는 동등한 스키마 배포 절차)를
+Production `DATABASE_URL`에 실행해 `SlackDelivery` 테이블을 먼저 생성해야 한다.
+Vercel 빌드에서 자동 적용하려면 `PRISMA_DB_PUSH_ON_BUILD=true`를 설정한다. 이 값이
+없으면 `npm run build`는 DB 스키마를 변경하지 않으므로 라우트를 먼저 배포하면 안 된다.
+
 `.github/workflows/slack-digest.yml`이 매일 10:00 KST에
-`/api/slack/digest`를 호출한다. API는 활성화된 모든 워크스페이스의 선택 채널에
-제목 링크 + bullet 요약 + 원문 링크를 보낸다.
+`/api/slack/digest`를 호출한다. API는 오늘과 전날 공개된 글 중 워크스페이스별로
+아직 발송하지 않은 글만 골라 선택 채널에 제목 링크 + bullet 요약을 보낸다.
+실행 뒤 공개된 글은 다음 날 보충 발송하며, 발송 이력으로 중복을 막는다.
+이 변경을 처음 배포한 날에는 스키마와 Production 배포를 확인한 뒤 GitHub Actions에서
+`days=2`로 한 번 수동 실행해 전날 누락분을 즉시 보충하고 발송 이력을 만든다.
 
 `.github/workflows/slack-report.yml`은 같은 시각에 `/api/slack/report`를 호출한다.
 활성화된 Slack 워크스페이스 수는 DB에서, 사이트 방문자 수와 아티클 페이지뷰는
