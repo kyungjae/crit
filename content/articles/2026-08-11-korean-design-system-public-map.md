@@ -52,7 +52,7 @@ SEED의 공개 범위가 넓다는 사실보다 중요한 것은 무엇을 한 �
 
 ### KRDS — 기업 시스템이 아니라 범정부 서비스 기반
 
-[대한민국 정부 디자인 시스템(KRDS)](https://www.krds.go.kr/html/site/index.html)은 원칙·스타일·컴포넌트·기본 패턴·서비스 패턴·디자인 토큰을 공개한다. [HTML 컴포넌트 키트와 GitHub](https://github.com/KRDS-uiux/krds-uiux), [Figma 자료](https://www.figma.com/@krds)까지 이어짐.
+[대한민국 정부 디자인 시스템(KRDS)](https://www.krds.go.kr/html/site/index.html)은 원칙·스타일·컴포넌트·기본 패턴·서비스 패턴·디자인 토큰을 공개한다. [HTML 컴포넌트 키트와 GitHub](https://github.com/KRDS-uiux/krds-uiux), [Figma 디자인 리소스 안내](https://www.krds.go.kr/html/site/outline/outline_05.html)까지 이어짐.
 
 공개 자산만 보면 국내에서 가장 넓은 사례 중 하나다. 다만 KRDS의 단위는 특정 회사 제품이 아니라 정부 디지털 서비스다. 접근성·일관성과 함께 공공 서비스의 책임성을 다루며, 개별 기관 사이트가 KRDS를 적용했다고 해서 새로운 디자인 시스템 하나로 다시 세면 안 된다.
 
