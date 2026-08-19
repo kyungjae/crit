@@ -28,7 +28,7 @@ export default function YouTubeTimestampLink({
           new CustomEvent("crit:youtube-seek", { detail: { seconds } })
         );
       }}
-      className="inline-flex cursor-pointer items-center text-[11px] font-bold leading-none tabular-nums tracking-[0.04em] text-brand transition hover:opacity-70"
+      className="inline-flex cursor-pointer items-center rounded-md border border-brand/20 bg-brand/[0.08] px-2 py-1 text-[11px] font-bold leading-none tabular-nums tracking-[0.04em] text-brand shadow-sm transition hover:border-brand/35 hover:bg-brand/[0.13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 active:translate-y-px dark:!border-brand/30 dark:!bg-brand/[0.12] dark:!shadow-none dark:hover:!border-brand/45 dark:hover:!bg-brand/[0.18]"
     >
       {label}
     </button>
