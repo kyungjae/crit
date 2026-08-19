@@ -42,7 +42,7 @@ function TableOfContents({ markdown }: { markdown: string }) {
               href={`#${h.id}`}
               className="text-neutral-600 transition hover:text-brand dark:!text-neutral-300 dark:hover:!text-brand"
             >
-              {h.text}
+              {h.text.replace(/^\d{1,3}[.)]\s*/, "")}
             </a>
           </li>
         ))}
