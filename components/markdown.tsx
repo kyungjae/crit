@@ -38,6 +38,12 @@ function youtubeTimestamp(url: string): number | null {
   }
 }
 
+function hasTrailingYoutubeTimestamp(node: Element | undefined): boolean {
+  const last = node?.children.at(-1);
+  if (last?.type !== "element" || last.tagName !== "a") return false;
+  return youtubeTimestamp(String(last.properties?.href ?? "")) !== null;
+}
+
 /**
  * bleed: showcase 포맷에서 이미지·영상이 모바일 화면 폭을 꽉 채우게 한다.
  * 컨테이너(px-4)를 벗어나되 640px 이상에서는 원래 폭 + 라운드로 돌아온다.
@@ -231,6 +237,20 @@ const createComponents = (bleed: boolean): Components => ({
     if (imgs?.length === 1) return <Figure {...imgs[0]} bleed={bleed} />;
     if (imgs && imgs.length >= 2)
       return <ImageGrid images={imgs} bleed={bleed} />;
+
+    if (hasTrailingYoutubeTimestamp(node)) {
+      const parts = React.Children.toArray(children);
+      const timestamp = parts.pop();
+      const last = parts.at(-1);
+      if (typeof last === "string") parts[parts.length - 1] = last.trimEnd();
+
+      return (
+        <>
+          <span className="not-prose mb-1.5 mt-6 block">{timestamp}</span>
+          <p>{parts}</p>
+        </>
+      );
+    }
 
     return <p>{children}</p>;
   },
