@@ -28,19 +28,19 @@ function TableOfContents({ markdown }: { markdown: string }) {
   if (headings.length < 3) return null;
 
   return (
-    <nav className="mt-6 rounded-xl border border-neutral-200/80 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80">
-      <p className="mb-2 text-[11px] font-bold tracking-wide text-neutral-400 dark:text-neutral-500">
+    <nav className="mt-8 border-l border-neutral-300 py-1 pl-4 dark:border-neutral-700">
+      <p className="mb-3 text-[11px] font-black uppercase tracking-[0.14em] text-brand">
         목차
       </p>
-      <ol className="flex flex-col gap-1.5">
+      <ol className="flex flex-col gap-2">
         {headings.map((h, i) => (
-          <li key={h.id} className="flex gap-2 text-sm leading-snug">
+          <li key={h.id} className="flex gap-2.5 text-[13px] leading-snug">
             <span className="shrink-0 tabular-nums text-neutral-300 dark:!text-neutral-500">
               {i + 1}
             </span>
             <a
               href={`#${h.id}`}
-              className="text-neutral-600 underline-offset-2 hover:text-brand hover:underline dark:!text-neutral-300 dark:hover:!text-brand"
+              className="text-neutral-600 transition hover:text-brand dark:!text-neutral-300 dark:hover:!text-brand"
             >
               {h.text}
             </a>

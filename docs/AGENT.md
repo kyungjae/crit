@@ -30,6 +30,7 @@ title: "제목 (120자 이내)"                # 필수
 summary: "한두 문장 요약 (300자 이내)"     # 필수. 피드 카드에 노출됨
 category: design                          # 필수. 아래 카테고리 중 하나
 format: brief                             # 선택. brief(기본) | deep | rules | showcase
+style: geeknews                           # 선택. geeknews | interview, format과 별개
 tags: [figma, ai]                         # 선택. 최대 8개
 date: "2026-07-28"                        # 필수. YYYY-MM-DD
 source_url: "https://..."                 # 선택. 외부 원문이 있으면 필수 권장

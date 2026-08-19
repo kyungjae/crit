@@ -9,7 +9,7 @@ const footerLinks = [
 export default function Footer() {
   return (
     <footer className="border-t border-neutral-200 dark:border-neutral-800">
-      <div className="mx-auto flex max-w-6xl flex-col gap-5 px-4 py-8 pb-24 md:flex-row md:items-center md:justify-between md:px-6 md:pb-8">
+      <div className="mx-auto flex max-w-[1240px] flex-col gap-5 px-4 py-8 pb-24 md:flex-row md:items-center md:justify-between md:px-6 md:pb-8">
         <div>
           <Link href="/" className="text-[18px] font-extrabold tracking-[-0.04em]">
             crit<span className="text-brand">.</span>

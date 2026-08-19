@@ -1,17 +1,15 @@
 import Link from "next/link";
-import { getAllArticles } from "@/lib/content";
+import { getAllArticles, type FeedArticle } from "@/lib/content";
 import FeedClient from "@/components/FeedClient";
+import HomeLead from "@/components/HomeLead";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import { getPrisma } from "@/lib/db";
 import { parseFeedSort } from "@/lib/feed";
-import {
-  createUpvoteStore,
-  getUpvoteCounts,
-} from "@/lib/upvotes";
+import { createUpvoteStore, getUpvoteCounts } from "@/lib/upvotes";
 import { createViewStore, getViewCounts } from "@/lib/views";
 
-const SIDEBAR_CARD_CLASS =
-  "rounded-2xl border border-neutral-200 bg-white p-4 dark:!border-neutral-800 dark:!bg-neutral-900/80";
+const SIDEBAR_SECTION_CLASS =
+  "border-t border-neutral-300 pt-4 dark:border-neutral-800";
 
 async function getCommentCounts(slugs: string[]) {
   const prisma = getPrisma();
@@ -32,9 +30,7 @@ async function getCommentCounts(slugs: string[]) {
   }
 }
 
-async function getFeedUpvoteCounts(
-  slugs: string[]
-): Promise<Record<string, number>> {
+async function getFeedUpvoteCounts(slugs: string[]): Promise<Record<string, number>> {
   const prisma = getPrisma();
   if (!prisma || slugs.length === 0) return {};
 
@@ -45,9 +41,7 @@ async function getFeedUpvoteCounts(
   }
 }
 
-async function getFeedViewCounts(
-  slugs: string[]
-): Promise<Record<string, number>> {
+async function getFeedViewCounts(slugs: string[]): Promise<Record<string, number>> {
   const prisma = getPrisma();
   if (!prisma || slugs.length === 0) return {};
 
@@ -60,71 +54,46 @@ async function getFeedViewCounts(
 
 function SidebarPanel() {
   return (
-    <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
-      <section className={SIDEBAR_CARD_CLASS}>
-        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
-          Community
-        </p>
-        <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em] text-neutral-950 dark:text-neutral-50">
-          Ask와 Show로 함께 성장하기
-        </h3>
-        <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-          Ask에서 질문하고 Show에서 작업물을 공유해보세요. 커뮤니티의 피드백과
-          다양한 의견이 다음 시도를 더 나은 방향으로 이끌어줍니다.
-        </p>
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <Link
-            href="/ask"
-            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
-          >
-            Ask crit
-          </Link>
-          <Link
-            href="/show"
-            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
-          >
-            Show crit
-          </Link>
-        </div>
-      </section>
-
-      <section className={SIDEBAR_CARD_CLASS}>
-        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
-          Submit
-        </p>
-        <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em] text-neutral-950 dark:text-neutral-50">
-          함께 채우는 피드와 링크
-        </h3>
-        <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-          피드에 소개할 아티클과 다시 찾고 싶은 리소스 링크를 각각 제보해주세요.
-        </p>
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <Link
-            href="/submit"
-            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
-          >
-            아티클 제보
-          </Link>
-          <Link
-            href="/links/submit"
-            className="rounded-full border border-neutral-300 px-3 py-2 text-center text-[12px] font-bold text-neutral-700 transition hover:border-brand hover:text-brand dark:!border-neutral-700 dark:!text-neutral-200"
-          >
-            링크 추가
-          </Link>
-        </div>
-      </section>
-
-      <section className={SIDEBAR_CARD_CLASS}>
-        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-brand">
+    <aside className="space-y-8 lg:sticky lg:top-20 lg:self-start">
+      <section className={SIDEBAR_SECTION_CLASS}>
+        <p className="text-[11px] font-black uppercase tracking-[0.14em] text-brand">
           Weekly
         </p>
-        <h3 className="mt-2 text-[18px] font-black tracking-[-0.04em] text-neutral-950 dark:text-neutral-50">
-          이번 주 읽을거리, 이메일로 받기
-        </h3>
-        <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-          매주 crit가 고른 아티클 10개를 한 번에 보내드려요.
+        <h2 className="mt-2 text-[19px] font-black tracking-[-0.035em] text-neutral-950 dark:text-neutral-50">
+          이번 주 읽을거리
+        </h2>
+        <p className="mt-2 text-[13px] leading-[1.7] text-neutral-500 dark:text-neutral-400">
+          매주 crit가 고른 아티클 10개를 한 번에 보냅니다.
         </p>
         <NewsletterSignup />
+      </section>
+
+      <section className={SIDEBAR_SECTION_CLASS}>
+        <p className="text-[11px] font-black uppercase tracking-[0.14em] text-brand">
+          Participate
+        </p>
+        <h2 className="mt-2 text-[19px] font-black tracking-[-0.035em] text-neutral-950 dark:text-neutral-50">
+          질문하고, 보여주고, 제보하기
+        </h2>
+        <p className="mt-2 text-[13px] leading-[1.7] text-neutral-500 dark:text-neutral-400">
+          읽은 뒤의 판단과 작업을 커뮤니티에 이어주세요.
+        </p>
+        <nav aria-label="커뮤니티 참여" className="mt-4 grid grid-cols-2 border-y border-neutral-200 text-[12px] font-bold dark:border-neutral-800">
+          {[
+            ["/ask", "Ask crit"],
+            ["/show", "Show crit"],
+            ["/submit", "아티클 제보"],
+            ["/links/submit", "링크 추가"],
+          ].map(([href, label]) => (
+            <Link
+              key={href}
+              href={href}
+              className="border-b border-neutral-200 py-2.5 text-neutral-600 transition hover:text-brand odd:pr-2 even:border-l even:pl-3 dark:border-neutral-800 dark:text-neutral-300"
+            >
+              {label} ↗
+            </Link>
+          ))}
+        </nav>
       </section>
     </aside>
   );
@@ -145,17 +114,22 @@ export default async function HomePage({
     getFeedUpvoteCounts(slugs),
     getFeedViewCounts(slugs),
   ]);
+  const feedArticles: FeedArticle[] = allArticles.map(({ body: _body, ...article }) => article);
+  const leadSlugs = feedArticles.slice(0, 4).map((article) => article.slug);
 
   return (
     <div>
-      <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <HomeLead articles={feedArticles} viewCounts={viewCounts} />
+
+      <div className="mt-10 grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
         <main className="min-w-0">
           <FeedClient
-            articles={allArticles}
+            articles={feedArticles}
             commentCounts={commentCounts}
             upvoteCounts={upvoteCounts}
             viewCounts={viewCounts}
             initialSort={sort}
+            latestExcludedSlugs={leadSlugs}
           />
         </main>
 

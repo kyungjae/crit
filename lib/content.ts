@@ -28,6 +28,12 @@ export type Article = ArticleFrontmatter & {
   ruleCount: number;
 };
 
+/**
+ * 피드에서 필요한 메타데이터만 담는다. 본문을 client component props로 넘기면
+ * 홈의 RSC payload에 모든 아티클 본문이 함께 직렬화된다.
+ */
+export type FeedArticle = Omit<Article, "body">;
+
 function analyze(body: string): { readingMinutes: number; ruleCount: number } {
   const images = (body.match(/!\[[^\]]*\]\(/g) ?? []).length;
   const text = body.replace(/!\[[^\]]*\]\([^)]*\)/g, "").replace(/\s/g, "");

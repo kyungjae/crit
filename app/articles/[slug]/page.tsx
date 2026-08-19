@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getAllArticles, getArticle, getDraftWarnings } from "@/lib/content";
 import ArticleBody from "@/components/ArticleBody";
 import { SummaryText } from "@/components/SummaryText";
@@ -59,7 +60,10 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   return (
-    <article className="article-reading mx-auto max-w-[620px]">
+    <article
+      className="article-reading mx-auto max-w-[720px]"
+      data-editorial-style={article.style}
+    >
       <ArticleViewTracker slug={article.slug} />
       {article.draft && (
         <div className="mb-5 space-y-3">
@@ -86,21 +90,6 @@ export default async function ArticlePage({
             initialBody={article.body}
           />
         </div>
-      )}
-
-      {article.hero && !youtubeId(article.source_url) && (
-        <div className="-mx-4 mb-5 sm:mx-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={article.hero}
-            alt=""
-            className="aspect-[4/3] w-full bg-neutral-100 object-cover sm:rounded-2xl dark:bg-neutral-800"
-          />
-        </div>
-      )}
-
-      {youtubeId(article.source_url) && (
-        <YouTubePlayer id={youtubeId(article.source_url)!} />
       )}
 
       <header className="article-header">
@@ -131,6 +120,26 @@ export default async function ArticlePage({
           </a>
         )}
       </header>
+
+      {article.hero && !youtubeId(article.source_url) && (
+        <div className="-mx-4 mt-8 sm:mx-0">
+          <Image
+            src={article.hero}
+            alt=""
+            width={1600}
+            height={1067}
+            priority
+            sizes="(min-width: 768px) 720px, 100vw"
+            className="aspect-[3/2] w-full bg-neutral-100 object-cover sm:rounded-sm dark:bg-neutral-800"
+          />
+        </div>
+      )}
+
+      {youtubeId(article.source_url) && (
+        <div className="mt-8">
+          <YouTubePlayer id={youtubeId(article.source_url)!} />
+        </div>
+      )}
 
       <ArticleBody markdown={article.body} format={article.format} />
 

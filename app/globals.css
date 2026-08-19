@@ -16,11 +16,21 @@ html {
   scrollbar-gutter: stable;
   -webkit-tap-highlight-color: transparent;
   word-break: keep-all;
+  color-scheme: light;
 }
 
 body {
-  @apply bg-neutral-50 text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100;
+  @apply text-neutral-900 antialiased dark:text-neutral-100;
+  background: #fbf8f4;
   font-feature-settings: "ss05";
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background: #0b0b0a;
 }
 
 /* Draft editing fields must keep readable contrast even when the theme class
@@ -70,11 +80,11 @@ h3 {
 }
 
 .article-reading .article-title {
-  max-width: 560px;
+  max-width: 680px;
 }
 
 .article-reading .article-summary {
-  max-width: 560px;
+  max-width: 640px;
 }
 
 .article-prose {

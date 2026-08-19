@@ -33,6 +33,9 @@ export const CATEGORY_LABELS: Record<Category, string> = {
 export const FORMATS = ["brief", "deep", "rules", "showcase"] as const;
 export type Format = (typeof FORMATS)[number];
 
+export const EDITORIAL_STYLES = ["geeknews", "interview"] as const;
+export type EditorialStyle = (typeof EDITORIAL_STYLES)[number];
+
 export const FORMAT_LABELS: Record<Format, string> = {
   brief: "브리핑",
   deep: "긴 글",
@@ -45,6 +48,8 @@ export const articleFrontmatterSchema = z.object({
   summary: z.string().min(1).max(300),
   category: z.enum(CATEGORIES),
   format: z.enum(FORMATS).default("brief"),
+  /** 글쓰기 리듬. 레이아웃 format과 분리해서 관리한다. */
+  style: z.enum(EDITORIAL_STYLES).optional(),
   tags: z.array(z.string()).max(8).default([]),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD 형식"),
   source_url: z.string().url().optional(),

@@ -1,4 +1,4 @@
-import type { Article } from "@/lib/content";
+import type { FeedArticle } from "@/lib/content";
 
 export type FeedSort = "latest" | "popular";
 
@@ -7,10 +7,10 @@ export function parseFeedSort(value?: string): FeedSort {
 }
 
 export function sortArticles(
-  articles: Article[],
+  articles: FeedArticle[],
   counts: Record<string, number>,
   sort: FeedSort
-): Article[] {
+): FeedArticle[] {
   const sorted = [...articles];
   if (sort === "latest") return sorted;
 

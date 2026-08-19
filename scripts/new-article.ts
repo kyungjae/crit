@@ -43,8 +43,11 @@ const template = `---
 title: "${title}"
 summary: "한두 문장 요약 (300자 이내)"
 category: ${category}
+format: brief
+style: geeknews
 tags: []
 date: "${date}"
+draft: true
 author: "crit agent"
 ---
 

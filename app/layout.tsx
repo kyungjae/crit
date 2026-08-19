@@ -51,8 +51,8 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="flex min-h-dvh flex-col">
-        <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/85">
-          <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
+        <header className="sticky top-0 z-20 border-b border-neutral-300 bg-[#fbf8f4]/90 backdrop-blur dark:border-neutral-800 dark:bg-[#0b0b0a]/88">
+          <div className="mx-auto flex h-14 max-w-[1240px] items-center justify-between gap-4 px-4 md:px-6">
             <div className="flex items-center gap-8">
               <Link
                 href="/"
@@ -67,7 +67,7 @@ export default function RootLayout({
             </div>
           </div>
         </header>
-        <main className="mx-auto flex-1 max-w-6xl px-4 pb-24 pt-5 md:px-6 md:pt-8">{children}</main>
+        <main className="mx-auto w-full max-w-[1240px] flex-1 px-4 pb-24 pt-5 md:px-6 md:pt-8">{children}</main>
         <Footer />
         <BottomNav />
         <Analytics />

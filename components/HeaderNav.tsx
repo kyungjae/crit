@@ -21,7 +21,7 @@ export default function HeaderNav() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="주요 메뉴" className="hidden items-center gap-1 md:flex">
+    <nav aria-label="주요 메뉴" className="hidden h-14 items-center gap-5 md:flex">
       {navItems.map((item) => {
         const isActive = isNavItemActive(pathname, item.href);
 
@@ -30,10 +30,10 @@ export default function HeaderNav() {
             key={item.href}
             href={item.href}
             aria-current={isActive ? "page" : undefined}
-            className={`rounded-full px-3 py-1.5 text-[13px] font-semibold transition ${
+            className={`relative flex h-full items-center text-[13px] font-semibold transition ${
               isActive
-                ? "bg-neutral-100 text-neutral-950 dark:bg-neutral-900 dark:text-neutral-50"
-                : "text-neutral-500 hover:bg-neutral-100 hover:text-neutral-950 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-neutral-50"
+                ? "text-neutral-950 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-brand dark:text-neutral-50"
+                : "text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
             }`}
           >
             {item.label}
