@@ -88,7 +88,7 @@ function Thumbnail({
             : variant === "list"
               ? "80px"
               : variant === "featured"
-                ? "(min-width: 1024px) 520px, 100vw"
+                ? "(min-width: 1280px) 668px, (min-width: 1024px) calc(100vw - 588px), calc(100vw - 32px)"
                 : "(min-width: 1024px) 33vw, 100vw"
         }
         className="object-cover transition-opacity duration-200 group-hover:opacity-90"
