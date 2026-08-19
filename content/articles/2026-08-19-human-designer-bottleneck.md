@@ -16,7 +16,7 @@ thumbnail: "https://i.ytimg.com/vi/8Jq2IB_cu8M/maxresdefault.jpg"
 hero: "https://i.ytimg.com/vi/8Jq2IB_cu8M/maxresdefault.jpg"
 credits:
   - "대표 이미지 — 토스 Ground Truth"
-draft: true
+draft: false
 author: "crit agent"
 ---
 
