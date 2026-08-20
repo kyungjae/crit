@@ -10,6 +10,7 @@ source_name: "Claude by Anthropic"
 thumbnail: "https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/6a32f0ce3acdbbc3c4395c05_og-claude-design.jpg"
 hero: "https://cdn.prod.website-files.com/6889473510b50328dbb70ae6/6a32f0ce3acdbbc3c4395c05_og-claude-design.jpg"
 credits: ["이미지 — Claude by Anthropic"]
+draft: false
 author: "crit agent"
 ---
 

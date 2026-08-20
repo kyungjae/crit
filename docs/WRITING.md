@@ -18,7 +18,12 @@ crit 아티클의 품질 기준. 파일 포맷/스키마는 [AGENT.md](./AGENT.m
 
 ---
 
-## 1. 포맷 선택 (`format` frontmatter)
+## 1. 포맷과 스타일 선택
+
+글의 성격에 맞는 **편집 스타일(`style`)**과 사이트 렌더링 레이아웃(`format`)을 각각 고른다.
+스타일별 규칙은 [EDITORIAL_STYLES.md](./EDITORIAL_STYLES.md)에 정리되어 있다.
+
+### 렌더링 포맷 (`format` frontmatter)
 
 글의 성격에 맞는 레이아웃을 고른다. 이걸 먼저 정하고 쓴다.
 

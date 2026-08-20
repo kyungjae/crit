@@ -148,7 +148,7 @@ export default function Comments({ slug }: { slug: string }) {
             placeholder="닉네임"
             maxLength={20}
             required
-            className="w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:w-32 sm:text-sm"
+            className="w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:!border-neutral-800 dark:!bg-neutral-900 dark:!text-neutral-100 dark:placeholder:text-neutral-500 sm:w-32 sm:text-sm"
           />
         )}
         <textarea
@@ -161,7 +161,7 @@ export default function Comments({ slug }: { slug: string }) {
           maxLength={1000}
           required
           autoFocus={autoFocus}
-          className={`w-full resize-y rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 sm:text-sm ${compact ? "min-h-16" : "min-h-24"}`}
+          className={`w-full resize-y rounded-lg border border-neutral-200 bg-white px-3 py-2 text-base outline-none focus:border-brand dark:!border-neutral-800 dark:!bg-neutral-900 dark:!text-neutral-100 dark:placeholder:text-neutral-500 sm:text-sm ${compact ? "min-h-16" : "min-h-24"}`}
         />
         {error && pendingKey === null && (
           <p className="text-xs text-red-500">{error}</p>

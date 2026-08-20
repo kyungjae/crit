@@ -10,6 +10,7 @@ source_name: "Figma Blog"
 thumbnail: "https://cdn.sanity.io/images/599r6htc/regionalized/0af001706582826acba9d406cd47fef233db07e6-3264x1836.png?w=1200&q=70&fit=max&auto=format"
 hero: "https://cdn.sanity.io/images/599r6htc/regionalized/0af001706582826acba9d406cd47fef233db07e6-3264x1836.png?w=1600&q=80&fit=max&auto=format"
 credits: ["이미지 — Figma Blog, Introducing Figma Motion"]
+draft: false
 author: "crit agent"
 ---
 

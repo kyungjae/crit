@@ -6,18 +6,26 @@
 import fs from "fs";
 import path from "path";
 import { CATEGORIES } from "../lib/schema";
+import { EDITORIAL_STYLES } from "../lib/editorial-styles";
 
-const [category, slug, title] = process.argv.slice(2);
+const [category, slug, title, style = "geeknews"] = process.argv.slice(2);
 
 if (!category || !slug || !title) {
-  console.error('사용법: npm run new:article -- <category> <slug> "제목"');
+  console.error('사용법: npm run new:article -- <category> <slug> "제목" [style]');
   console.error(`카테고리: ${CATEGORIES.join(", ")}`);
+  console.error(`스타일: ${EDITORIAL_STYLES.join(", ")}`);
   process.exit(1);
 }
 
 if (!(CATEGORIES as readonly string[]).includes(category)) {
   console.error(`유효하지 않은 카테고리: ${category}`);
   console.error(`가능한 값: ${CATEGORIES.join(", ")}`);
+  process.exit(1);
+}
+
+if (!(EDITORIAL_STYLES as readonly string[]).includes(style)) {
+  console.error(`유효하지 않은 스타일: ${style}`);
+  console.error(`가능한 값: ${EDITORIAL_STYLES.join(", ")}`);
   process.exit(1);
 }
 
@@ -43,8 +51,11 @@ const template = `---
 title: "${title}"
 summary: "한두 문장 요약 (300자 이내)"
 category: ${category}
+format: brief
+style: ${style}
 tags: []
 date: "${date}"
+draft: true
 author: "crit agent"
 ---
 

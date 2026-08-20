@@ -10,6 +10,7 @@ source_name: "Nielsen Norman Group"
 thumbnail: "https://media.nngroup.com/media/articles/opengraph_images/UX_Context_Design_1.png"
 hero: "https://media.nngroup.com/media/articles/opengraph_images/UX_Context_Design_1.png"
 credits: ["이미지 — Nielsen Norman Group, UX-Context Design"]
+draft: false
 author: "crit agent"
 ---
 

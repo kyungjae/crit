@@ -22,25 +22,6 @@ function FeedIcon({ className }: { className?: string }) {
   );
 }
 
-function AskIcon({ className }: { className?: string }) {
-  return (
-    <svg {...iconProps} className={className}>
-      <path d="M12 18h.01" />
-      <path d="M9.6 9a2.4 2.4 0 1 1 3.5 2.13c-.75.43-1.1.95-1.1 1.87v.5" />
-      <circle cx="12" cy="12" r="9" />
-    </svg>
-  );
-}
-
-function ShowIcon({ className }: { className?: string }) {
-  return (
-    <svg {...iconProps} className={className}>
-      <path d="M4 17V7a2 2 0 0 1 2-2h8" />
-      <path d="M8 21h10a2 2 0 0 0 2-2V9" />
-      <path d="M9 14l2 2 5-6" />
-    </svg>
-  );
-}
 
 function JobsIcon({ className }: { className?: string }) {
   return (
@@ -60,12 +41,26 @@ function LinksIcon({ className }: { className?: string }) {
   );
 }
 
+function SlackIcon({ className }: { className?: string }) {
+  return (
+    <svg {...iconProps} className={className}>
+      <path d="M8 4a2 2 0 1 0 0 4h2V6a2 2 0 0 0-2-2Z" />
+      <path d="M4 8a2 2 0 1 0 4 0V6H6a2 2 0 0 0-2 2Z" />
+      <path d="M16 20a2 2 0 1 0 0-4h-2v2a2 2 0 0 0 2 2Z" />
+      <path d="M20 16a2 2 0 1 0-4 0v2h2a2 2 0 0 0 2-2Z" />
+      <path d="M20 8a2 2 0 1 0-4 0v2h2a2 2 0 0 0 2-2Z" />
+      <path d="M16 4a2 2 0 1 0 0 4h2V6a2 2 0 0 0-2-2Z" />
+      <path d="M4 16a2 2 0 1 0 4 0v-2H6a2 2 0 0 0-2 2Z" />
+      <path d="M8 20a2 2 0 1 0 0-4H6v2a2 2 0 0 0 2 2Z" />
+    </svg>
+  );
+}
+
 const items = [
   { href: "/", label: "피드", Icon: FeedIcon },
-  { href: "/ask", label: "Ask", Icon: AskIcon },
-  { href: "/show", label: "Show", Icon: ShowIcon },
   { href: "/jobs", label: "채용", Icon: JobsIcon },
   { href: "/links", label: "링크", Icon: LinksIcon },
+  { href: "/slack", label: "Slack", Icon: SlackIcon },
 ];
 
 export default function BottomNav() {

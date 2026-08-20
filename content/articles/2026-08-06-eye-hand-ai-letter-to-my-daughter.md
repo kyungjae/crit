@@ -11,6 +11,7 @@ thumbnail: "https://substackcdn.com/image/fetch/$s_!DqJE!,w_1200,c_limit,f_auto,
 hero: "https://substack-post-media.s3.amazonaws.com/public/images/d7f3dfc0-f95c-41d1-ba62-079cc63762d5_1024x726.png"
 credits:
   - "대표 이미지 — Julie Zhuo / The Looking Glass 원문"
+draft: false
 author: "crit agent"
 ---
 

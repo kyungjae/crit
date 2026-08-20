@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import DraftLogin from "@/components/DraftLogin";
 import DraftDeleteButton from "@/components/DraftDeleteButton";
 
 import DraftPublishButton from "@/components/DraftPublishButton";
@@ -13,7 +15,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function DraftsPage() {
+export default async function DraftsPage() {
+  const cookieStore = await cookies();
+  const adminToken = process.env.CRIT_ADMIN_TOKEN;
+  const authenticated = Boolean(adminToken && cookieStore.get("crit-admin-session")?.value === adminToken);
+
+  if (!authenticated) return <DraftLogin />;
+
   const drafts = getDraftArticles();
 
   return (

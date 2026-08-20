@@ -20,31 +20,19 @@ export default function DraftDeleteButton({ slug, title }: { slug: string; title
     setMessage(null);
 
     try {
-      let token = window.localStorage.getItem("crit-admin-token");
-      const request = (authToken?: string | null) =>
+      const request = () =>
         fetch("/api/admin/delete", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            ...(authToken ? { "x-crit-admin-token": authToken } : {}),
           },
           body: JSON.stringify({ slug }),
         });
 
-      let response = await request(token);
-      if (response.status === 401) {
-        token = window.prompt("삭제 키를 입력하세요")?.trim() ?? "";
-        if (!token) {
-          setStatus("idle");
-          return;
-        }
-        window.localStorage.setItem("crit-admin-token", token);
-        response = await request(token);
-      }
+      const response = await request();
 
       const result = (await response.json()) as DeleteResult;
       if (!response.ok || !result.ok) {
-        if (response.status === 401) window.localStorage.removeItem("crit-admin-token");
         throw new Error(result.error ?? "삭제에 실패했습니다");
       }
 

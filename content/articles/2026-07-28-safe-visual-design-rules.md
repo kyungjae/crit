@@ -10,6 +10,7 @@ source_name: "Anthony Hobday — Safe Rules"
 thumbnail: "https://anthonyhobday.com/sideprojects/saferules/images/1.png"
 hero: "https://anthonyhobday.com/sideprojects/saferules/images/1.png"
 credits: ["규칙별 이미지 — Anthony Hobday, Safe Rules"]
+draft: false
 author: "crit agent"
 ---
 

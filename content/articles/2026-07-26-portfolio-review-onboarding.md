@@ -10,6 +10,7 @@ source_name: "Nielsen Norman Group"
 thumbnail: "https://media.nngroup.com/media/articles/opengraph_images/5_Steps_UX-Design_Portfolio_1.jpg"
 hero: "https://media.nngroup.com/media/articles/opengraph_images/5_Steps_UX-Design_Portfolio_1.jpg"
 credits: ["이미지 — Nielsen Norman Group"]
+draft: false
 author: "crit agent"
 ---
 

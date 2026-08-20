@@ -11,7 +11,9 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "validate": "tsx scripts/validate-content.ts",
+    "release:check": "tsx scripts/release-check.ts",
     "sources:check": "tsx scripts/check-sources.ts",
+    "slack:digest": "tsx scripts/slack-digest.ts",
     "assets:find": "tsx scripts/find-assets.ts",
     "new:article": "tsx scripts/new-article.ts"
   },

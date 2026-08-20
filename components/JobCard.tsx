@@ -27,7 +27,7 @@ export default function JobCard({ job }: { job: Job }) {
     <li>
       <Link
         href={`/jobs/${job.id}`}
-        className="block rounded-2xl border border-neutral-200 bg-white p-4 transition-colors active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:active:bg-neutral-900"
+        className="block rounded-2xl border border-neutral-200 bg-white p-4 transition-colors active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:active:!bg-neutral-900"
       >
         <div className="flex gap-3">
           <CompanyLogo job={job} />

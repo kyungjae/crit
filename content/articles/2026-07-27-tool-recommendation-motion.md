@@ -10,6 +10,7 @@ source_name: "Jitter"
 thumbnail: "https://jitter.video/assets/homepage-2026-DXrOP74Y.png"
 hero: "https://framerusercontent.com/images/yEWMbP7UtsS81SlkoxTasfabvc.png"
 credits: ["이미지 — Jitter, Rive 공식 사이트"]
+draft: false
 author: "crit agent"
 ---
 

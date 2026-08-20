@@ -22,8 +22,9 @@ function youtubeId(url: string | undefined): string | null {
 }
 
 export function generateStaticParams() {
-  // draft도 URL로 미리보기할 수 있게 빌드에 포함한다 (피드·사이트맵에는 없음)
-  return getAllArticles(undefined, { includeDrafts: true }).map((a) => ({
+  // 초안은 Production 정적 경로에 포함하지 않는다. /drafts에서 인증된 검수자가
+  // 직접 열 수 있는 동적 preview 경로만 유지한다.
+  return getAllArticles().map((a) => ({
     slug: a.slug,
   }));
 }
@@ -36,6 +37,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return {};
+  if (article.draft) {
+    return {
+      title: article.title,
+      description: article.summary,
+      robots: { index: false, follow: false },
+    };
+  }
   return {
     title: article.title,
     description: article.summary,

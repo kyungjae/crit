@@ -45,7 +45,7 @@ export default function YouTubePlayer({ id }: { id: string }) {
     <figure
       className={`mb-8 overflow-hidden rounded-xl bg-neutral-900 shadow-sm ${
         isScrolled
-          ? "fixed right-3 top-16 z-50 w-[220px] sm:right-6 sm:top-20 sm:w-[320px] lg:right-8 lg:w-[360px]"
+          ? "fixed left-3 right-3 top-16 z-50 w-auto sm:left-auto sm:right-6 sm:top-20 sm:w-[320px] lg:right-8 lg:w-[360px]"
           : "relative w-full"
       }`}
     >

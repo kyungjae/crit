@@ -71,6 +71,11 @@ DB 없이 바로 실행됩니다 (댓글/박수만 "준비 중" 표시).
 에이전트를 실행합니다. 활성화하려면 리포지토리 시크릿에 `ANTHROPIC_API_KEY`를
 등록하세요. 수동 실행은 Actions 탭 → Daily Curation → Run workflow.
 
+`.github/workflows/slack-digest.yml`은 매일 10:00 KST에 최근 게시 글을 Slack Bot API로
+보냅니다. 공개 설치 페이지(`/slack`)에서 Slack App을 연결하고, Vercel 환경변수와
+GitHub Actions Secret을 등록해야 활성화됩니다. 로컬에서 발송 전 내용만 확인하려면
+`npm run slack:digest -- --days 1 --dry-run`을 실행합니다.
+
 ## 배포 (Vercel)
 
 push하면 자동 배포되므로 **에이전트의 커밋이 곧 게시**입니다.

@@ -10,6 +10,7 @@ source_name: "Smashing Magazine"
 thumbnail: "https://files.smashing.media/articles/people-dont-want-more-ai/people-dont-want-more-ai.jpg"
 hero: "https://files.smashing.media/articles/people-dont-want-more-ai/people-dont-want-more-ai.jpg"
 credits: ["이미지 — Smashing Magazine"]
+draft: false
 author: "crit agent"
 ---
 

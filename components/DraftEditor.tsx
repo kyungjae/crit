@@ -23,12 +23,11 @@ export default function DraftEditor({
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
 
-  async function save(token?: string | null): Promise<Response> {
+  async function save(): Promise<Response> {
     return fetch("/api/admin/update-draft", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { "x-crit-admin-token": token } : {}),
       },
       body: JSON.stringify({ slug, title, summary, body }),
     });
@@ -38,21 +37,10 @@ export default function DraftEditor({
     setStatus("saving");
     setMessage(null);
     try {
-      let token = window.localStorage.getItem("crit-admin-token");
-      let response = await save(token);
-      if (response.status === 401) {
-        token = window.prompt("편집 키를 입력하세요")?.trim() ?? "";
-        if (!token) {
-          setStatus("idle");
-          return;
-        }
-        window.localStorage.setItem("crit-admin-token", token);
-        response = await save(token);
-      }
+      const response = await save();
 
       const result = (await response.json()) as SaveResult;
       if (!response.ok || !result.ok) {
-        if (response.status === 401) window.localStorage.removeItem("crit-admin-token");
         throw new Error(result.error ?? "초안 저장에 실패했습니다");
       }
       setStatus("saved");

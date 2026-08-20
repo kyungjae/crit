@@ -67,7 +67,7 @@ export default function LinksExplorer({ groups }: { groups: LinkGroups }) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="사이트 이름, 설명, 도메인으로 검색"
-            className="w-full rounded-2xl border border-neutral-200 bg-white py-3 pl-9 pr-3 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-neutral-400 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500 dark:focus:border-neutral-600"
+            className="w-full rounded-2xl border border-neutral-200 bg-white py-3 pl-9 pr-3 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-neutral-400 dark:!border-neutral-800 dark:!bg-neutral-900 dark:!text-neutral-100 dark:placeholder:text-neutral-500 dark:focus:border-neutral-600"
           />
         </label>
 
@@ -155,7 +155,7 @@ export default function LinksExplorer({ groups }: { groups: LinkGroups }) {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block overflow-hidden rounded-2xl border border-neutral-200/80 bg-white transition-colors active:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/80 dark:active:bg-neutral-900"
+                      className="group block overflow-hidden rounded-2xl border border-neutral-200/80 bg-white transition-colors active:bg-neutral-50 dark:!border-neutral-800 dark:!bg-neutral-900/80 dark:active:!bg-neutral-900"
                     >
                       <div className="relative aspect-[1.55] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -191,7 +191,7 @@ export default function LinksExplorer({ groups }: { groups: LinkGroups }) {
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border border-dashed border-neutral-200 bg-white px-4 py-10 text-center dark:border-neutral-800 dark:bg-neutral-900/70">
+        <div className="rounded-2xl border border-dashed border-neutral-200 bg-white px-4 py-10 text-center dark:!border-neutral-800 dark:!bg-neutral-900/70">
           <p className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">
             찾는 링크가 없어요
           </p>

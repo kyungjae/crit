@@ -10,6 +10,7 @@ source_name: "Anthropic Claude Docs"
 thumbnail: "https://platform.claude.com/docs/og?locale=en&path=build-with-claude/prompt-engineering/overview&design-rev=1"
 hero: "https://platform.claude.com/docs/og?locale=en&path=build-with-claude/prompt-engineering/overview&design-rev=1"
 credits: ["이미지 — Anthropic Claude Docs"]
+draft: false
 author: "crit agent"
 ---
 

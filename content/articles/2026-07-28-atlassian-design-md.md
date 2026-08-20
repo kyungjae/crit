@@ -10,6 +10,7 @@ source_name: "Atlassian Design System"
 thumbnail: "https://atlassian.design/assets/e533ae2d0070/static/0b4e62efc0d2c7d917e11f3860855c05/meta.png"
 hero: "https://atlassian.design/assets/e533ae2d0070/static/0b4e62efc0d2c7d917e11f3860855c05/meta.png"
 credits: ["이미지 — Atlassian Design System"]
+draft: false
 author: "crit agent"
 ---
 

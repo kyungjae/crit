@@ -9,20 +9,19 @@ import { SITE_URL } from "@/lib/site";
 
 const navItems = [
   { href: "/", label: "피드" },
-  { href: "/ask", label: "Ask" },
-  { href: "/show", label: "Show" },
   { href: "/jobs", label: "채용" },
   { href: "/links", label: "링크" },
+  { href: "/slack", label: "Slack" },
 ];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "crit — 디자이너를 위한 읽을거리 피드",
+    default: "crit — 디자인과 AI의 변화를 읽다",
     template: "%s | crit",
   },
   description:
-    "디자이너가 오늘 봐야 할 디자인, 제품, AI, 툴, 케이스, 커리어 글을 빠르게 훑고 토론하는 피드입니다.",
+    "디자인 사례부터 AI 도구, 제품, 브랜드, 디자인 시스템까지. 만드는 사람이 매일 확인할 만한 글을 모읍니다.",
   openGraph: {
     siteName: "crit",
     type: "website",
@@ -83,7 +82,7 @@ export default function RootLayout({
             </div>
             <div className="flex items-center gap-2">
               <span className="hidden text-[11px] font-medium text-neutral-400 dark:text-neutral-500 sm:inline">
-                디자이너를 위한 읽을거리 피드
+                디자인과 AI의 변화를 읽다
               </span>
               <ThemeToggle />
             </div>

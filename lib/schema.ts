@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { EDITORIAL_STYLES, type EditorialStyle } from "./editorial-styles";
 
 /**
  * 콘텐츠 스키마 — 에이전트가 생성하는 파일의 유효성 기준.
@@ -40,11 +41,16 @@ export const FORMAT_LABELS: Record<Format, string> = {
   showcase: "케이스 스터디",
 };
 
+export { EDITORIAL_STYLES };
+export type { EditorialStyle };
+
 export const articleFrontmatterSchema = z.object({
   title: z.string().min(1).max(120),
   summary: z.string().min(1).max(300),
   category: z.enum(CATEGORIES),
   format: z.enum(FORMATS).default("brief"),
+  /** 글을 편집하고 전달하는 문체. format(렌더링 레이아웃)과 분리한다. */
+  style: z.enum(EDITORIAL_STYLES).default("geeknews"),
   tags: z.array(z.string()).max(8).default([]),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD 형식"),
   source_url: z.string().url().optional(),
@@ -55,8 +61,8 @@ export const articleFrontmatterSchema = z.object({
   hero: z.string().url().optional(),
   /** 크레딧 표기 (스튜디오, 클라이언트 등). showcase에서 사용 */
   credits: z.array(z.string()).max(8).default([]),
-  /** true면 피드·사이트맵에서 제외. URL로는 미리보기 가능 */
-  draft: z.boolean().default(false),
+  /** true면 피드·사이트맵에서 제외. 발행 여부를 암묵적으로 추론하지 않도록 필수로 둔다. */
+  draft: z.boolean(),
   author: z.string().default("crit agent"),
 });
 

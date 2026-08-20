@@ -10,6 +10,7 @@ source_name: "Figma Blog"
 thumbnail: "https://cdn.sanity.io/images/599r6htc/regionalized/ae0303b2ad7753600fee94eb32a43e026cc220ae-3264x1836.png?w=1200&q=70&fit=max&auto=format"
 hero: "https://cdn.sanity.io/images/599r6htc/regionalized/ae0303b2ad7753600fee94eb32a43e026cc220ae-3264x1836.png?w=1600&q=80&fit=max&auto=format"
 credits: ["이미지 — Figma Blog"]
+draft: false
 author: "crit agent"
 ---
 
