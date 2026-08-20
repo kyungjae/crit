@@ -11,10 +11,8 @@ export default function HomeLead({
   const featured = articles[0];
   if (!featured) return null;
 
-  const latest = articles.slice(1, 4);
-  const latestSlugs = new Set([featured.slug, ...latest.map((article) => article.slug)]);
   const popular = [...articles]
-    .filter((article) => !latestSlugs.has(article.slug))
+    .filter((article) => article.slug !== featured.slug)
     .sort((first, second) => {
       const difference =
         (viewCounts[second.slug] ?? 0) - (viewCounts[first.slug] ?? 0);
@@ -28,13 +26,13 @@ export default function HomeLead({
         <h1 id="today-heading" className="text-[12px] font-black uppercase tracking-[0.16em] text-neutral-950 dark:text-neutral-50">
           오늘의 큐레이션
         </h1>
-        <p className="text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
+        <p className="hidden text-[11px] font-medium text-neutral-500 dark:text-neutral-400 sm:block">
           디자인과 AI에서 건질 신호만 빠르게
         </p>
       </div>
 
-      <div className="grid min-w-0 gap-8 lg:grid-cols-[210px_minmax(0,1fr)_250px]">
-        <section aria-labelledby="popular-heading" className="order-2 border-t border-neutral-300 pt-3 dark:border-neutral-800 lg:order-1">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-[230px_minmax(0,820px)]">
+        <section aria-labelledby="popular-heading" className="hidden border-t border-neutral-300 pt-3 dark:border-neutral-800 lg:block">
           <h2 id="popular-heading" className="text-[11px] font-black uppercase tracking-[0.14em] text-brand">
             많이 읽는 글
           </h2>
@@ -45,22 +43,12 @@ export default function HomeLead({
           </ol>
         </section>
 
-        <section aria-label="대표 아티클" className="order-1 min-w-0 lg:order-2">
+        <section aria-label="대표 아티클" className="min-w-0">
           <ul>
             <ArticleCard article={featured} variant="featured" />
           </ul>
         </section>
 
-        <section aria-labelledby="latest-heading" className="order-3 border-t border-neutral-300 pt-3 dark:border-neutral-800">
-          <h2 id="latest-heading" className="text-[11px] font-black uppercase tracking-[0.14em] text-brand">
-            새로 올라온 글
-          </h2>
-          <ul className="mt-1">
-            {latest.map((article) => (
-              <ArticleCard key={article.slug} article={article} variant="compact" />
-            ))}
-          </ul>
-        </section>
       </div>
     </section>
   );

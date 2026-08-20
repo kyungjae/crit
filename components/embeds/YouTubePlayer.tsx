@@ -74,7 +74,7 @@ export default function YouTubePlayer({ id }: { id: string }) {
       </div>
       {!isScrolled && (
         <figcaption className="px-3 py-2 text-xs text-neutral-400">
-          스크롤하면 모바일에서는 화면 너비에 맞춰 상단에 고정됩니다. 닫기 버튼으로 영상을 숨길 수 있고, 타임라인을 누르면 해당 장면으로 이동합니다.
+          본문의 타임라인을 누르면 해당 장면으로 이동합니다.
         </figcaption>
       )}
     </figure>

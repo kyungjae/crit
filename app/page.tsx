@@ -70,18 +70,16 @@ function SidebarPanel() {
 
       <section className={SIDEBAR_SECTION_CLASS}>
         <p className="text-[11px] font-black uppercase tracking-[0.14em] text-brand">
-          Participate
+          Contribute
         </p>
         <h2 className="mt-2 text-[19px] font-black tracking-[-0.035em] text-neutral-950 dark:text-neutral-50">
-          질문하고, 보여주고, 제보하기
+          좋은 글과 자료 제보하기
         </h2>
         <p className="mt-2 text-[13px] leading-[1.7] text-neutral-500 dark:text-neutral-400">
-          읽은 뒤의 판단과 작업을 커뮤니티에 이어주세요.
+          crit가 함께 읽으면 좋을 아티클과 링크를 알려주세요.
         </p>
-        <nav aria-label="커뮤니티 참여" className="mt-4 grid grid-cols-2 border-y border-neutral-200 text-[12px] font-bold dark:border-neutral-800">
+        <nav aria-label="콘텐츠 제보" className="mt-4 grid grid-cols-2 border-y border-neutral-200 text-[12px] font-bold dark:border-neutral-800">
           {[
-            ["/ask", "Ask crit"],
-            ["/show", "Show crit"],
             ["/submit", "아티클 제보"],
             ["/links/submit", "링크 추가"],
           ].map(([href, label]) => (
@@ -115,7 +113,7 @@ export default async function HomePage({
     getFeedViewCounts(slugs),
   ]);
   const feedArticles: FeedArticle[] = allArticles.map(({ body: _body, ...article }) => article);
-  const leadSlugs = feedArticles.slice(0, 4).map((article) => article.slug);
+  const leadSlugs = feedArticles.slice(0, 1).map((article) => article.slug);
 
   return (
     <div>
@@ -127,7 +125,6 @@ export default async function HomePage({
             articles={feedArticles}
             commentCounts={commentCounts}
             upvoteCounts={upvoteCounts}
-            viewCounts={viewCounts}
             initialSort={sort}
             latestExcludedSlugs={leadSlugs}
           />

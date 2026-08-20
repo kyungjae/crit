@@ -22,7 +22,7 @@ function ArticleMeta({ article }: { article: FeedArticle }) {
   if (!source) return null;
 
   return (
-    <div className="text-[11px] font-semibold text-neutral-400 dark:text-neutral-500">
+    <div className="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400">
       {source}
     </div>
   );
@@ -30,7 +30,7 @@ function ArticleMeta({ article }: { article: FeedArticle }) {
 
 function ArticleBadges({ article }: { article: FeedArticle }) {
   return (
-    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
       <time dateTime={article.date}>{formatDate(article.date)}</time>
       <span className="text-neutral-300 dark:text-neutral-700">/</span>
       <span>{FORMAT_LABELS[article.format]}</span>
@@ -64,15 +64,11 @@ function Thumbnail({
       : variant === "list"
         ? "size-20 rounded-lg"
         : variant === "featured"
-          ? "aspect-[3/2] rounded-sm"
+          ? "aspect-video rounded-sm"
           : "aspect-[4/3] rounded-xl";
 
   if (!image) {
-    return (
-      <div className={`relative shrink-0 overflow-hidden bg-neutral-900 dark:bg-neutral-800 ${shape}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(249,115,22,0.38),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.1),transparent_45%)]" />
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -88,7 +84,7 @@ function Thumbnail({
             : variant === "list"
               ? "80px"
               : variant === "featured"
-                ? "(min-width: 1280px) 668px, (min-width: 1024px) calc(100vw - 588px), calc(100vw - 32px)"
+                ? "(min-width: 1280px) 820px, (min-width: 1024px) calc(100vw - 310px), calc(100vw - 32px)"
                 : "(min-width: 1024px) 33vw, 100vw"
         }
         className="object-cover transition-opacity duration-200 group-hover:opacity-90"
@@ -104,15 +100,11 @@ export default function ArticleCard({
   article,
   variant = "list",
   commentCount = 0,
-  upvoteCount = 0,
-  viewCount = 0,
   rank,
 }: {
   article: FeedArticle;
   variant?: ArticleCardVariant;
   commentCount?: number;
-  upvoteCount?: number;
-  viewCount?: number;
   rank?: number;
 }) {
   if (variant === "compact") {
@@ -141,22 +133,25 @@ export default function ArticleCard({
 
   if (variant === "signal") {
     const domain = getDomain(article.source_url);
+    const hasImage = Boolean(article.thumbnail ?? article.hero);
 
     return (
       <li className="min-w-0 border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
         <div className="py-4 transition-colors hover:bg-black/[0.025] dark:hover:bg-white/[0.025] sm:px-1">
           <div className="flex min-w-0 items-start gap-3.5">
-            <Link
-              prefetch={false}
-              href={`/articles/${article.slug}`}
-              aria-label={`${article.title} 읽기`}
-              className="group shrink-0"
-            >
-              <Thumbnail article={article} variant="signal" />
-            </Link>
+            {hasImage && (
+              <Link
+                prefetch={false}
+                href={`/articles/${article.slug}`}
+                aria-label={`${article.title} 읽기`}
+                className="group shrink-0"
+              >
+                <Thumbnail article={article} variant="signal" />
+              </Link>
+            )}
             <div className="min-w-0 flex-1">
               {domain && (
-                <div className="mb-1 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
+                <div className="mb-1 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
                   {domain}
                 </div>
               )}
@@ -165,21 +160,17 @@ export default function ArticleCard({
                   {article.title}
                 </h2>
               </Link>
-              <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium text-neutral-400 dark:text-neutral-500">
+              <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
                 <time dateTime={article.date}>{relativeTime(article.date)}</time>
-                <span className="text-neutral-300 dark:text-neutral-700">/</span>
-                <span>업보트 {upvoteCount}개</span>
-                <span className="text-neutral-300 dark:text-neutral-700">/</span>
+                <span className="text-neutral-300 dark:text-neutral-700">·</span>
                 <Link
                   prefetch={false}
                   href={`/articles/${article.slug}#comments`}
                   aria-label={`댓글 ${commentCount}개`}
                   className="transition hover:text-brand"
                 >
-                  댓글 {commentCount}개
+                  댓글 {commentCount}
                 </Link>
-                <span className="text-neutral-300 dark:text-neutral-700">/</span>
-                <span>조회 {viewCount}회</span>
               </div>
             </div>
           </div>
@@ -224,8 +215,8 @@ export default function ArticleCard({
             <h2 className="mt-2 text-[26px] font-black leading-[1.25] tracking-[-0.04em] text-neutral-950 transition group-hover:text-brand dark:text-neutral-50 md:text-[34px]">
               {article.title}
             </h2>
-            <p className="mt-3 whitespace-pre-line line-clamp-3 text-[14px] leading-[1.7] text-neutral-500 dark:text-neutral-400 md:text-[15px]">
-              <SummaryText summary={article.summary} />
+            <p className="mt-3 whitespace-pre-line text-[14px] leading-[1.7] text-neutral-500 dark:text-neutral-400 md:text-[15px]">
+              <SummaryText summary={article.summary} maxBulletItems={2} />
             </p>
             <div className="mt-4">
               <ArticleBadges article={article} />

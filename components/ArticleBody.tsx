@@ -4,7 +4,7 @@ import Markdown from "./markdown";
 
 const PROSE = [
   "article-prose prose prose-neutral max-w-none dark:prose-invert",
-  "prose-headings:tracking-tight prose-p:leading-[1.9] prose-li:leading-[1.85]",
+  "prose-headings:tracking-tight prose-li:leading-[1.85]",
   "prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-neutral-500 dark:prose-blockquote:text-neutral-400",
   "prose-a:text-brand prose-a:underline-offset-2",
   // Tailwind Typography가 인라인 코드에 붙이는 백틱 제거 + 칩 스타일
@@ -27,27 +27,35 @@ function TableOfContents({ markdown }: { markdown: string }) {
   const headings = extractHeadings(markdown);
   if (headings.length < 3) return null;
 
+  const items = headings.map((h, i) => (
+    <li key={h.id} className="flex gap-2.5 text-[13px] leading-snug">
+      <span className="shrink-0 tabular-nums text-neutral-400 dark:!text-neutral-500">
+        {i + 1}
+      </span>
+      <a
+        href={`#${h.id}`}
+        className="text-neutral-600 transition hover:text-brand dark:!text-neutral-300 dark:hover:!text-brand"
+      >
+        {h.text.replace(/^\d{1,3}[.)]\s*/, "")}
+      </a>
+    </li>
+  ));
+
   return (
-    <nav className="mt-8 border-l border-neutral-300 py-1 pl-4 dark:border-neutral-700">
-      <p className="mb-3 text-[11px] font-black uppercase tracking-[0.14em] text-brand">
-        목차
-      </p>
-      <ol className="flex flex-col gap-2">
-        {headings.map((h, i) => (
-          <li key={h.id} className="flex gap-2.5 text-[13px] leading-snug">
-            <span className="shrink-0 tabular-nums text-neutral-300 dark:!text-neutral-500">
-              {i + 1}
-            </span>
-            <a
-              href={`#${h.id}`}
-              className="text-neutral-600 transition hover:text-brand dark:!text-neutral-300 dark:hover:!text-brand"
-            >
-              {h.text.replace(/^\d{1,3}[.)]\s*/, "")}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
+    <>
+      <details className="mt-8 border-l border-neutral-300 py-1 pl-4 dark:border-neutral-700 sm:hidden">
+        <summary className="cursor-pointer text-[12px] font-black tracking-[0.08em] text-brand">
+          목차 <span className="ml-1 font-medium text-neutral-500 dark:text-neutral-400">{headings.length}개</span>
+        </summary>
+        <ol className="mt-4 flex flex-col gap-2.5">{items}</ol>
+      </details>
+      <nav className="mt-8 hidden border-l border-neutral-300 py-1 pl-4 dark:border-neutral-700 sm:block">
+        <p className="mb-3 text-[11px] font-black uppercase tracking-[0.14em] text-brand">
+          목차
+        </p>
+        <ol className="flex flex-col gap-2">{items}</ol>
+      </nav>
+    </>
   );
 }
 

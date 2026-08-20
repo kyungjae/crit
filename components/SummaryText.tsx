@@ -1,8 +1,9 @@
 type SummaryTextProps = {
   summary: string;
+  maxBulletItems?: number;
 };
 
-export function SummaryText({ summary }: SummaryTextProps) {
+export function SummaryText({ summary, maxBulletItems }: SummaryTextProps) {
   const lines = summary.trim().split(/\r?\n/).filter(Boolean);
   const isBulletSummary = lines.length > 0 && lines.every((line) => line.trimStart().startsWith("•"));
 
@@ -12,7 +13,7 @@ export function SummaryText({ summary }: SummaryTextProps) {
 
   return (
     <>
-      {lines.map((line) => (
+      {lines.slice(0, maxBulletItems ?? lines.length).map((line) => (
         <span
           key={line}
           className="grid grid-cols-[1rem_minmax(0,1fr)] gap-x-2"
