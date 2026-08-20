@@ -100,11 +100,15 @@ export default function ArticleCard({
   article,
   variant = "list",
   commentCount = 0,
+  upvoteCount = 0,
+  viewCount = 0,
   rank,
 }: {
   article: FeedArticle;
   variant?: ArticleCardVariant;
   commentCount?: number;
+  upvoteCount?: number;
+  viewCount?: number;
   rank?: number;
 }) {
   if (variant === "compact") {
@@ -162,6 +166,10 @@ export default function ArticleCard({
               </Link>
               <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
                 <time dateTime={article.date}>{relativeTime(article.date)}</time>
+                <span className="text-neutral-300 dark:text-neutral-700">·</span>
+                <span>업보트 {upvoteCount}</span>
+                <span className="text-neutral-300 dark:text-neutral-700">·</span>
+                <span>조회 {viewCount}</span>
                 <span className="text-neutral-300 dark:text-neutral-700">·</span>
                 <Link
                   prefetch={false}

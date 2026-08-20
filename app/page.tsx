@@ -125,6 +125,7 @@ export default async function HomePage({
             articles={feedArticles}
             commentCounts={commentCounts}
             upvoteCounts={upvoteCounts}
+            viewCounts={viewCounts}
             initialSort={sort}
             latestExcludedSlugs={leadSlugs}
           />

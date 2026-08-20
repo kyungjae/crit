@@ -11,12 +11,14 @@ export default function FeedClient({
   articles,
   commentCounts,
   upvoteCounts,
+  viewCounts,
   initialSort,
   latestExcludedSlugs = [],
 }: {
   articles: FeedArticle[];
   commentCounts: Record<string, number>;
   upvoteCounts: Record<string, number>;
+  viewCounts: Record<string, number>;
   initialSort: FeedSort;
   latestExcludedSlugs?: string[];
 }) {
@@ -83,6 +85,8 @@ export default function FeedClient({
                 article={article}
                 variant="signal"
                 commentCount={commentCounts[article.slug] ?? 0}
+                upvoteCount={upvoteCounts[article.slug] ?? 0}
+                viewCount={viewCounts[article.slug] ?? 0}
               />
             ))}
           </ul>

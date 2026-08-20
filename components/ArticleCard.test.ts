@@ -27,7 +27,7 @@ const article: Article = {
   ruleCount: 0,
 };
 
-test("signal 카드 제목 아래에 날짜와 댓글 수만 표시한다", () => {
+test("signal 카드 제목 아래에 날짜, 업보트 수, 조회 수, 댓글 수를 표시한다", () => {
   const originalNow = Date.now;
   Date.now = () => new Date("2026-08-03T00:00:00Z").getTime();
 
@@ -37,13 +37,15 @@ test("signal 카드 제목 아래에 날짜와 댓글 수만 표시한다", () =
         article,
         variant: "signal",
         commentCount: 2,
+        upvoteCount: 12,
+        viewCount: 34,
       })
     );
 
     assert.match(html, />1일 전</);
+    assert.match(html, />업보트 12</);
+    assert.match(html, />조회 34</);
     assert.match(html, />댓글 2</);
-    assert.doesNotMatch(html, /업보트/);
-    assert.doesNotMatch(html, /조회/);
     assert.match(html, /data:image\/gif/);
     assert.match(html, /href="\/articles\/test-article#comments"/);
     assert.doesNotMatch(html, />2026년 8월 2일</);
